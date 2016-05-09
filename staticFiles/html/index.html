@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <title></title>
+</head>
+<body>
+  <div id="index">
+    <div class="board">
+        <div class="left" >
+            <div class="sculpture"><img ng-src="{{sponsor.img}}"  alt=""></div>
+            <div class="chief">
+                <p><span>{{sponsor.name}}</span>帮主</p>
+                <span class="chief_in">{{sponsor.note}}</span>
+            </div>
+        </div> 
+        <div class="right" >
+            <div class="audio"></div>
+            <div>已有<span>{{offered.offeredTotal}}人</span>参团</div>
+            <div>还有<span>{{offered.date}}天</span>结束</div>
+        </div>
+    </div>
+    <div id="move" class="main" >
+        <ul>    
+            <li ng-repeat="x in commodities">
+                <div>
+                    <img ng-src="{{x.img}}"  alt="">
+                </div>
+                <div class="content">
+                    <div class="first">
+                        <div>
+                            <h1>{{x.title}}</h1>
+                            <span>{{x.spec}}</span>
+                        </div>
+                        <p>{{x.describle}}</p>
+                    </div>
+                    <div class="between clearfloat">
+                        <span>已团{{x.commodityCount}}盒</span>
+                        <span>已有{{x.peopleCount}}人参团</span>
+                    </div>
+                    <div class="last ">
+                        <div class="counter">
+                            <a class="block left" href="javascript:void(0);" ng-click="removeCommodity(x);">-</a>
+                            <span class="block center">{{x.num | safenum}}</span>
+                            <a class="block right" href="javascript:void(0);" ng-click="addCommodity(x);">+</a>
+                        </div>
+                        <div class="regulator">
+                            <span class="groupon_icon"><img src="assets/images/poper.png" alt=""></span>
+                            <div class="groupon">
+                                <span>团购价</span>
+                                <span>￥{{x.price | int}}</span>
+                                <span>.</span>
+                                <span>{{x.price | fraction}}</span>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            </li>         
+        </ul>
+    </div>
+    <div  class="footer">
+        <a class="right"  ng-click="statement ();">去结算</a>
+        <div class="left" onclick="popup_window_from_bottom();">
+            <div class="shop"><span class="__amount">{{num}}</span></div>
+            <div class="shop_info">
+                <p class="line1">合计:<span class="__total">￥{{total | convert}}</span></p>
+                <p class="line2">不含运费</p>
+            </div>
+        </div>
+    </div>
+    <a class="order_button" href="/orders">
+      订单
+    </a>
+    <div class="__overlay matter"></div>
+    <div class="popup-window-from-bottom">
+        <div class="box">
+            <div class="popup-bottom-title">
+                <div class="del" ng-click="del(commodities);">
+                    <div class="popup_bottom_del">
+                        <span class="del_text" >清空</span>
+                        <span class="del_img"></span>
+                    </div>
+
+                </div>
+                <div class="oder">
+                    <div class="popup_bottom_oder">
+                        <span class="oder_img"></span>
+                        <span class="oder_text">订单详情</span>
+                    </div>
+                </div>
+            </div>
+            <ul  class="cart">
+                <li class="template" ng-repeat="x in commodities" ng-if="!!x.num">
+                    <div class="popup_reduce">
+                        <div class="price">{{x.price | convert}}</div>
+                        <div class="regulator_right">
+                            <a href="javascript:void(0);" ng-click="removeCommodity(x);">-</a>
+                            <span class="center">{{x.num | safenum}}</span>
+                            <a href="javascript:void(0);" ng-click="addCommodity(x);">+</a>
+                        </div>
+                    </div>
+                    <span class="field_title">{{x.title}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+   
+
+  </div>
+</body>
+</html>
