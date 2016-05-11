@@ -4,10 +4,80 @@ var $ = require('jquery-browserify');
 var angular = require('angular');
 var angular_route = require('angular-route');
 var a = require('./modules/a');
-
+var sugar = require('sugar');
 var app = angular.module('app', ['ngRoute']);
 
+app.service('$wxBridge',function($http){
+	var that = this;
+	this.inited = false;
+	this.invoke=function(cb, params, callback){
+		if(that.inited){
+			cb(params, callback);
+			return;
+		}
+		$http.post("xxxxx", [
+			'chooseWXPay', 'onMenuShareAppMessage', 'closeWindow'
+		])
+		.success(function(response){
+			if(!response){
+				return;
+			}
+			if(response.errcode != 'Success'){
+				return;
+			}
+			if(!response.res){
+				return;
+			}
+			if(!!response.res.wxConfig){
+				wx.config(response.res.wxConfig);
+				wx.ready(function(){
+					function onBridgeReady(){
+					  cb(params, callback);
+					}
+					if (typeof WeixinJSBridge == "undefined"){
+						if( document.addEventListener ){
+							document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+						}else if (document.attachEvent){
+							document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+							document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+						}
+					}else{
+						onBridgeReady();
+					}
+				});
+			}
+		});
+		that.inited = true;
+	};
+	this.__closeWindowCallback = function(){
+		//TODO
+	};
+	this.closeWindow=function(){
+		that.invoke(that.__closeWindowCallback);
+	};
+	this.__configShareCallback = function(shareInfo){
+		//TODO
+	};
+	this.configShare=function(shareInfo){
+		that.invoke(that.__configShareCallback, shareInfo);
+	};
+	this.__payCallback = function(payRequest, callback){
+		WeixinJSBridge.invoke(
+			'getBrandWCPayRequest', payRequest,
+			function(res){
+					if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+						callback();
+					}
+			}
+		);
+	};
+	this.pay=function(payRequest, callback){
+		that.invoke(that.__payCallback, payRequest, callback);
+	};
+})
+
 app.service('$data',function($http,$location){
+	
 	var that = this;
 	this.getCode=function(){
 		if(!that.codeId){
@@ -22,13 +92,6 @@ app.service('$data',function($http,$location){
         	that.batchId=params.state;
     	}
 	    return that.batchId;
-    }
-    this.getOrderId=function(){
-    	if(!that.orderId){
-    		var orderid=$location.search();
-    		that.orderId=orderid.useroder;
-    	}
-    	return that.orderId;
     }
 	this.fetchBatchInfo = function(cb){
 
@@ -74,14 +137,13 @@ app.service('$data',function($http,$location){
 			cb(response);
 		});
     };
-    	this.getOrder=function(cb){       
+    	this.getOrder=function(id, cb){       
 		if(!!that.orderInfo){
 			cb(that.orderInfo);
 			return;
 		}
-		$http.get("../assets/json/order.json",{
-			batchId:that.getBatchId(),
-			code:''
+		$http.post("http://yijiayinong.com/api/order",{
+			orderId: id
 		})
 		.success(function(response){
 			that.orderInfo=response;
@@ -128,6 +190,17 @@ app.filter('fraction',function(){
 			}
 		}
 		return price;
+	}
+})
+
+app.filter('date',function(){
+	return function(createTime){
+        var date=new Date();
+        var str='';		
+		if(!!createTime){
+			date=Date.create(createTime);
+		}
+		return date.format('long', 'zh-CN');
 	}
 })
 
@@ -262,7 +335,7 @@ app.controller('IndexController', function($location,$scope, $routeParams, $data
 	}, true)
 });
 
-app.controller('CheckController', function($scope, $routeParams,$data,$location){
+app.controller('CheckController', function($scope, $routeParams,$data,$location,$http){
 	if(!$data.getBatchId()){
 			$location.path("/error");
 			return;
@@ -337,30 +410,30 @@ app.controller('CheckController', function($scope, $routeParams,$data,$location)
 				obj.puchared.push(oder);
 			}
 		}
-		$http.post('',{
-			orderInfo:obj
-		})
-		.success(function(){
-			
+		$http.post('http://yijiayinong.com/api/unifiedOrder',obj)
+		.success(function(response){
+			if(response.errcode=='Success'){
+				if(!!response.res.orderId){
+					$location.path('/order/'+response.res.orderId);
+					return;
+				}
+			}
 		})
 		.error(function(){
 			
 		});
-		alert(JSON.stringify(obj));
 	}
 });
 
 app.controller('OrderController', function($scope, $routeParams,$http,$data,$location){
-	if(!$data.getOrderId()){
+		var id=$routeParams.id;
+		if(!id){
 			$location.path("/error");
-			return;
 		}
-		$data.getOrder(function(response){
-			$scope.order=response.order;
-		   	$scope.pickup=response.pickup;
-		   	$scope.commodityList=response.commodityList;
-		   	$scope.constList=response.constList;
-		});
+		$data.getOrder(id, function(response){
+			$scope.order=response.res.data;
+			$scope.commodities=response.res.data.commodities;
+		});		
 });
 
 app.controller('ShareController', function($scope, $routeParams){
@@ -395,7 +468,7 @@ app.config(function($routeProvider, $locationProvider){
 			templateUrl: 'html/checkout.html',
 			controller: 'CheckController'
 		})
-		.when('/order', {
+		.when('/order/:id', {
 			templateUrl: 'html/order.html',
 			controller: 'OrderController'
 		})

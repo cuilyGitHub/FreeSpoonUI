@@ -17,6 +17,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.5.3",
     "jquery-browserify": "^1.8.1",
+    "sugar": "^1.4.1",
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
