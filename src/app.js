@@ -7,17 +7,23 @@ var a = require('./modules/a');
 var sugar = require('sugar');
 var app = angular.module('app', ['ngRoute']);
 
-app.service('$wxBridge',function($http){
+app.service('$wxBridge',function($http, $location){
 	var that = this;
-	this.inited = false;
+	//this.inited = false;
 	this.invoke=function(cb, params, callback){
-		if(that.inited){
+		alert('1.2');
+		//if(that.inited){
 			cb(params, callback);
-			return;
-		}
-		$http.post("xxxxx", [
-			'chooseWXPay', 'onMenuShareAppMessage', 'closeWindow'
-		])
+			//return;
+		//}
+		//that.inited = true;
+		
+		//alert('1.1');
+		//alert(window.location.href);
+		/*$http.post('http://yijiayinong.com/api/wxConfig', {
+			url: window.location.href,
+			jsApiList: ['chooseWXPay', 'onMenuShareAppMessage', 'closeWindow']
+		})
 		.success(function(response){
 			if(!response){
 				return;
@@ -32,7 +38,8 @@ app.service('$wxBridge',function($http){
 				wx.config(response.res.wxConfig);
 				wx.ready(function(){
 					function onBridgeReady(){
-					  cb(params, callback);
+						alert('onBridgeReady');
+						cb(params, callback);
 					}
 					if (typeof WeixinJSBridge == "undefined"){
 						if( document.addEventListener ){
@@ -46,8 +53,8 @@ app.service('$wxBridge',function($http){
 					}
 				});
 			}
-		});
-		that.inited = true;
+		});*/
+		
 	};
 	this.__closeWindowCallback = function(){
 		//TODO
@@ -62,9 +69,11 @@ app.service('$wxBridge',function($http){
 		that.invoke(that.__configShareCallback, shareInfo);
 	};
 	this.__payCallback = function(payRequest, callback){
+		alert(JSON.stringify(payRequest));
 		WeixinJSBridge.invoke(
 			'getBrandWCPayRequest', payRequest,
 			function(res){
+					alert(res.err_msg);
 					if(res.err_msg == "get_brand_wcpay_request:ok" ) {
 						callback();
 					}
@@ -72,7 +81,18 @@ app.service('$wxBridge',function($http){
 		);
 	};
 	this.pay=function(payRequest, callback){
-		that.invoke(that.__payCallback, payRequest, callback);
+		//alert(window.location.href);
+		//alert(payRequest);
+		//that.invoke(that.__payCallback, payRequest, callback);
+		WeixinJSBridge.invoke(
+			'getBrandWCPayRequest', payRequest,
+			function(res){
+					alert(res.err_msg);
+					if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+						callback();
+					}
+			}
+		);
 	};
 })
 
@@ -138,10 +158,6 @@ app.service('$data',function($http,$location){
 		});
     };
     	this.getOrder=function(id, cb){       
-		if(!!that.orderInfo){
-			cb(that.orderInfo);
-			return;
-		}
 		$http.post("http://yijiayinong.com/api/order",{
 			orderId: id
 		})
@@ -203,11 +219,6 @@ app.filter('date',function(){
 		return date.format('long', 'zh-CN');
 	}
 })
-
-app.controller('MenuController', function($scope, $route, $routeParams, $location){
-	$scope.$route = $route;
-	$scope.state = 1;
-});
 
 app.controller('IndexController', function($location,$scope, $routeParams, $data){
 	if(!$data.getBatchId()){
@@ -425,18 +436,33 @@ app.controller('CheckController', function($scope, $routeParams,$data,$location,
 	}
 });
 
-app.controller('OrderController', function($scope, $routeParams,$http,$data,$location){
+app.controller('OrderController', function($scope, $routeParams,$http,$data,$location,$wxBridge){
 		var id=$routeParams.id;
 		if(!id){
 			$location.path("/error");
 		}
 		$data.getOrder(id, function(response){
 			$scope.order=response.res.data;
+			$scope.status=response.res.data.status;
+			alert($scope.status);
 			$scope.commodities=response.res.data.commodities;
-		});		
+			$scope.payRequest=response.res.payRequest;
+		});	
+		$scope.pay=function(){
+			$wxBridge.pay($scope.payRequest, function(){
+				$scope.isSuccess=true; 
+				$scope.$apply(function(){
+					$location.path("/share/"+id);
+				});
+			});
+		}
 });
 
-app.controller('ShareController', function($scope, $routeParams){
+app.controller('ShareController', function($scope, $routeParams, $location){
+	$scope.jump=function(){
+		alert("jump order");
+		$location.path("/order/"+$routeParams.id);
+	}
 	//$scope.name = 'Page2Controller';
 	//alert(2);
 });
@@ -450,7 +476,6 @@ app.controller('OrdersController', function($scope, $routeParams,$data,$location
 			$scope.orders=response;
 		});
 		$scope.order = function(orderId){
-			alert("11");
 		}
 });
 
@@ -458,7 +483,14 @@ app.controller('ErrorController', function($scope, $routeParams){
 	$scope.name = 'Page3Controller';
 });
 
+
+app.controller('MenuController', function($scope, $route, $routeParams, $location){
+	//alert('MenuController');
+	$scope.$route = $route;
+});
+
 app.config(function($routeProvider, $locationProvider){
+	//alert('config');
 	$routeProvider
 		.when('/', {
 			templateUrl: 'html/index.html',
@@ -472,7 +504,7 @@ app.config(function($routeProvider, $locationProvider){
 			templateUrl: 'html/order.html',
 			controller: 'OrderController'
 		})
-		.when('/share', {
+		.when('/share/:id', {
 			templateUrl: 'html/share.html',
 			controller: 'ShareController'
 		})

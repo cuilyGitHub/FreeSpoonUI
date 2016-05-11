@@ -292,7 +292,7 @@ body {
   width: 100%;
 }
 #Order_details .main .follow .line .stages_one {
-  background: url("../images/tip_y.png") no-repeat left;
+  background: url("../images/tip_g.png") no-repeat left;
   background-size: 200%;
   background-origin: content-box;
   height: 0.5rem;
@@ -302,7 +302,7 @@ body {
   box-sizing: border-box;
 }
 #Order_details .main .follow .line .stages_one_success {
-  background: url("../images/tip_g.png") no-repeat left;
+  background: url("../images/tip_y.png") no-repeat left;
   background-size: 200%;
   background-origin: content-box;
   height: 0.5rem;
