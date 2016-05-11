@@ -114,7 +114,6 @@ app.service('$data',function($http,$location){
 	    return that.batchId;
     }
 	this.fetchBatchInfo = function(cb){
-
 		if(!!that.batchInfo){
 			cb(that.batchInfo);
 			return;
@@ -148,9 +147,8 @@ app.service('$data',function($http,$location){
 			cb(that.ordersInfo);
 			return;
 		}
-		$http.get("../assets/json/orders.json",{
-			batchId:that.getBatchId(),
-			code:''
+		$http.post("http://yijiayinong.com/api/orders",{
+			openId:that.openId
 		})
 		.success(function(response){
 			that.ordersInfo=response;
@@ -463,8 +461,6 @@ app.controller('ShareController', function($scope, $routeParams, $location){
 		alert("jump order");
 		$location.path("/order/"+$routeParams.id);
 	}
-	//$scope.name = 'Page2Controller';
-	//alert(2);
 });
 
 app.controller('OrdersController', function($scope, $routeParams,$data,$location){
@@ -473,9 +469,27 @@ app.controller('OrdersController', function($scope, $routeParams,$data,$location
 			return;
 		}
 		$data.getOrders(function(response){
-			$scope.orders=response;
+			if(!response){
+				$location.path("/error");
+				return;
+			}
+			if(response.errcode!="Success"){
+				$location.path("/error");
+				return;
+			}
+			if(!response.res){
+				$location.path("/error");
+				return;
+			}
+			if(!response.res.data){
+				$location.path("/error");
+				return;
+			}
+			$scope.orders=response.res.data;
+			$scope.id=response.res.data.id;
 		});
-		$scope.order = function(orderId){
+        $scope.details=function(id){
+			$location.path("/order/"+id);
 		}
 });
 
