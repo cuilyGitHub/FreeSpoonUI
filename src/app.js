@@ -128,6 +128,7 @@ app.service('$data',function($http,$location){
 			cb(that.batchInfo);
 			return;
 		}
+		$location.path('/loading');
 		$http.post("http://yijiayinong.com/api/batch", {
 			batchId: that.getBatchId(),
 			code: that.getCode(),
@@ -135,6 +136,7 @@ app.service('$data',function($http,$location){
 		.success(function(response){
 			that.openId=response.res.openId;
 			that.batchInfo = response;
+			$location.path('/');
 			cb(response);
 		});
 	};
@@ -143,6 +145,7 @@ app.service('$data',function($http,$location){
 			cb(that.addressInfo);
 			return;
 		}
+		$location.path('/loading');
 		$http.post("http://yijiayinong.com/api/checkout",{
 			batchId:that.getBatchId(),
 			openId:that.openId,
@@ -150,6 +153,7 @@ app.service('$data',function($http,$location){
 		})
 		.success(function(response){
 			that.addressInfo=response;
+			$location.path('/checkout');
 			cb(response);
 		});
 	};
@@ -158,11 +162,13 @@ app.service('$data',function($http,$location){
 			cb(that.ordersInfo);
 			return;
 		}
+		$location.path('/loading');
 		$http.post("http://yijiayinong.com/api/orders",{
 			openId:that.openId
 		})
 		.success(function(response){
 			that.ordersInfo=response;
+			$location.path('/orders');
 			cb(response);
 		});
     };
@@ -476,7 +482,6 @@ app.controller('OrderController', function($scope, $routeParams,$http,$data,$loc
 		$data.getOrder(id, function(response){
 			$scope.order=response.res.data;
 			$scope.status=response.res.data.status;
-			alert($scope.status);
 			$scope.commodities=response.res.data.commodities;
 			$scope.payRequest=response.res.payRequest;
 		});	
@@ -519,31 +524,26 @@ app.controller('ShareController', function($scope, $routeParams, $location,$http
 	})
 });
 
-app.controller('OrdersController', function($scope, $routeParams,$data,$location){
+app.controller('OrdersController', function($scope, $routeParams,$data,$location,$http,$wxBridge){
 		if(!$data.openId){
 			$location.path("/error");
-			alert("no openId");
 			return;
 		}
 		$data.getOrders(function(response){
 			if(!response){
 				$location.path("/error");
-				alert("no response");
 				return;
 			}
 			if(response.errcode!="Success"){
 				$location.path("/error");
-				alert("no Success");
 				return;
 			}
 			if(!response.res){
 				$location.path("/error");
-				alert("no res");
 				return;
 			}
 			if(!response.res.data){
 				$location.path("/error");
-				alert("no data");
 				return;
 			}
 			$scope.orders=response.res.data;
@@ -552,12 +552,47 @@ app.controller('OrdersController', function($scope, $routeParams,$data,$location
         $scope.details=function(id){
 			$location.path("/order/"+id);
 		}
+		$scope.pay=function(id){
+			$wxBridge.pay($scope.payRequest, function(){
+				$scope.isSuccess=true; 
+				$scope.$apply(function(){
+					$location.path("/share/"+id);
+				});
+			});
+		}
+		$scope.delOrder=function(id){
+			$http.post('http://yijiayinong.com/api/undo',{
+				orderId:id
+			})
+			.success(function(response){
+				$scope.response=response;
+				if(response.errcode=='Success'){
+					$location.path("/");
+					return;
+				}
+				if(response.errcode!='Success'){
+					alert('取消订单失败');
+				}
+			})
+			.error(function(){
+			})
+		}
+		//$scope.$watch('response',function(newValue, oldValue){
+		//	if(!newValue){
+		//		return;
+		//	}
+		//	$scope.orders=response.res.data;
+		//    $scope.length=response.res.data.length;
+		//},true)
 });
 
 app.controller('ErrorController', function($scope, $routeParams){
 	$scope.name = 'Page3Controller';
 });
 
+app.controller('loadController', function($scope, $routeParams){
+	$scope.name = 'Page3Controller';
+});
 
 app.controller('MenuController', function($scope, $route, $routeParams, $location){
 	//alert('MenuController');
@@ -574,12 +609,6 @@ app.config(function($routeProvider, $locationProvider){
 		.when('/checkout', {
 			templateUrl: 'html/checkout.html',
 			controller: 'CheckController',
-			resolve: {
-				response:['$q',function($q,$data){
-					var deferred=$q.defer();
-					$data.getAddress();
-				}]
-			}
 		})
 		.when('/order/:id', {
 			templateUrl: 'html/order.html',
@@ -596,6 +625,10 @@ app.config(function($routeProvider, $locationProvider){
 		.when('/error', {
 			templateUrl: 'html/error.html',
 			controller: 'ErrorController'
+		})
+		.when('/loading', {
+			templateUrl: 'html/loading.html',
+			controller: 'loadController'
 		})
 	$locationProvider.html5Mode(true);
 });

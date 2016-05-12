@@ -36,8 +36,9 @@
 				<div class="footer">
 					<p>共{{o.total}}件商品<span class="total">合计:</span><span class="price">￥{{o.totalFee | convert}}</span><span class="other">(含运费￥0.00)</span></p>
 				   <div class="btn">
-					   <div class="button">取消订单</div>
-					   <div class="button">付款</div>
+					   <!-- <div class="button" ng-click='delOrder(o.id)' ng-if='o.status<1'>取消订单</div> -->
+					   <div class="button" ng-click='pay(o.id)' ng-if='o.status==0'>付款</div>
+					   <div class="button" ng-click="details(o.id)">查看详情</div>
 				   </div>
 			   </div> 
        </div>
