@@ -75,13 +75,24 @@
                 <span class="text">{{order.totalFee| fraction}}</span>
             </div>
         </div>
-    </div>
-    <div class="button">
-        <div class="select">
-		    <a class="text" href="javascript:void(0);" onclick="wx.closeWindow()" ng-if='status>0'>关闭</a>
-            <a class="text" href="javascript:void(0);" ng-click='pay()' ng-if='status==0'>支付</a>
-        </div>
-    </div>
+		<div class="smallButton seat">
+			<div class="select">
+				<a class="text" href="javascript:void(0);" ng-click='delOrder()' ng-if='status==0'>取消订单</a>
+			</div>
+		</div>
+		
+		<div class="smallButton">
+			<div class="select">
+				<a class="text" href="javascript:void(0);" ng-click='pay()' ng-if='status==0'>支付</a>
+			</div>
+		</div>
+		
+		<div class="button">
+			<div class="select">
+				<a class="text" href="javascript:void(0);" onclick="wx.closeWindow()" ng-if='status>0'>关闭</a>
+			</div>
+		</div>
+	 </div>
 </div>
 </body>
 </html>

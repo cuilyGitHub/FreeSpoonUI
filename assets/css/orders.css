@@ -148,6 +148,30 @@ body {
 .fixed {
   position: fixed;
 }
+.smallButton {
+  bottom: 0;
+  width: 50%;
+  z-index: 1100;
+}
+.smallButton .select {
+  height: 0.9rem;
+  background: white;
+}
+.smallButton .select .text {
+  background: #599c3d;
+  margin: 0.1rem 0.1rem;
+  color: white;
+  text-align: center;
+  display: block;
+  height: 0.8rem;
+  line-height: 0.8rem;
+}
+.seat {
+  float: right;
+}
+.seat .select .text {
+  background: #ff9934;
+}
 /*标题通栏*/
 .title {
   background: #f0f2f5;
@@ -255,6 +279,13 @@ body {
   margin-top: 1rem;
   margin-bottom: 0.3rem;
 }
+.main .context {
+  font-size: 0.35rem;
+  font-weight: normal;
+  color: #c8c8c8;
+  margin-left: 30%;
+  margin-top: 80%;
+}
 .main .user {
   height: 1rem;
 }
@@ -304,6 +335,8 @@ body {
 }
 .main .content .imgbox {
   width: 6rem;
+  max-width: 8rem;
+  overflow: hidden;
   height: 1.5rem;
   line-height: 1.5rem;
 }

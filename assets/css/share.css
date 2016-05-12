@@ -148,6 +148,30 @@ body {
 .fixed {
   position: fixed;
 }
+.smallButton {
+  bottom: 0;
+  width: 50%;
+  z-index: 1100;
+}
+.smallButton .select {
+  height: 0.9rem;
+  background: white;
+}
+.smallButton .select .text {
+  background: #599c3d;
+  margin: 0.1rem 0.1rem;
+  color: white;
+  text-align: center;
+  display: block;
+  height: 0.8rem;
+  line-height: 0.8rem;
+}
+.seat {
+  float: right;
+}
+.seat .select .text {
+  background: #ff9934;
+}
 /*标题通栏*/
 .title {
   background: #f0f2f5;

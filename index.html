@@ -6,7 +6,7 @@
     <title></title>
 	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script type="text/javascript">
-		var xmlhttp;
+		/*var xmlhttp;
 		if (window.XMLHttpRequest){
 			xmlhttp=new XMLHttpRequest();
 		} else {
@@ -52,7 +52,7 @@
 			url: window.location.href,
 			jsApiList: ['chooseWXPay', 'onMenuShareAppMessage', 'closeWindow']
 		};
-		xmlhttp.send(JSON.stringify(cfg));
+		xmlhttp.send(JSON.stringify(cfg));*/
     </script>	
     <script type="text/javascript" src="assets/js/app.js"></script>
     <!--<script type="text/javascript" src="assets/js/app.min.js"></script>-->
@@ -69,7 +69,8 @@
         }
     </script>
 </head>
-<body ng-app="app">
+<!--<body ng-app="app">-->
+<body>
 <div ng-controller="MenuController">
 
 <div ng-view></div>

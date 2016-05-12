@@ -11,7 +11,6 @@ app.service('$wxBridge',function($http, $location){
 	var that = this;
 	//this.inited = false;
 	this.invoke=function(cb, params, callback){
-		alert('1.2');
 		//if(that.inited){
 			cb(params, callback);
 			//return;
@@ -63,13 +62,25 @@ app.service('$wxBridge',function($http, $location){
 		that.invoke(that.__closeWindowCallback);
 	};
 	this.__configShareCallback = function(shareInfo){
-		//TODO
+		wx.onMenuShareAppMessage({
+				  title: shareInfo.title, 
+				  desc: shareInfo.desc, 
+				  link: shareInfo.shareUrl, 
+				  imgUrl: shareInfo.imgUrl,
+				  //type: '', 
+				  //dataUrl: '', 
+				  success: function () {
+						  //wx.closeWindow();
+				  },
+				  cancel: function () {
+						  //pass
+				  }
+		   });
 	};
 	this.configShare=function(shareInfo){
 		that.invoke(that.__configShareCallback, shareInfo);
 	};
 	this.__payCallback = function(payRequest, callback){
-		alert(JSON.stringify(payRequest));
 		WeixinJSBridge.invoke(
 			'getBrandWCPayRequest', payRequest,
 			function(res){
@@ -96,8 +107,7 @@ app.service('$wxBridge',function($http, $location){
 	};
 })
 
-app.service('$data',function($http,$location){
-	
+app.service('$data',function($http,$location){	
 	var that = this;
 	this.getCode=function(){
 		if(!that.codeId){
@@ -135,6 +145,7 @@ app.service('$data',function($http,$location){
 		}
 		$http.post("http://yijiayinong.com/api/checkout",{
 			batchId:that.getBatchId(),
+			openId:that.openId,
 			code:''
 		})
 		.success(function(response){
@@ -164,6 +175,15 @@ app.service('$data',function($http,$location){
 			cb(response);
 		});
     };
+		this.getShareInfo=function(cb){
+			$http.post('http://yijiayinong.com/api/shareInfo',{
+				batchId:that.batchId
+			})
+			.success(function(response){
+				that.ShareInfo=response;
+				cb(response);
+			})
+		}
 });
 
 
@@ -218,11 +238,15 @@ app.filter('date',function(){
 	}
 })
 
-app.controller('IndexController', function($location,$scope, $routeParams, $data){
+app.controller('IndexController', function($location,$scope, $routeParams, $data, $wxBridge){
 	if(!$data.getBatchId()){
 			$location.path("/error");
 			return;
 		}
+	$data.getShareInfo(function(response){
+		var shareInfo=response.res.data;
+		$wxBridge.configShare(shareInfo);
+	})
 	$data.fetchBatchInfo(function(response){
 		if(!response){
 			$location.path("/error");
@@ -366,7 +390,17 @@ app.controller('CheckController', function($scope, $routeParams,$data,$location,
 			$location.path("/error");
 			return;
 		}
-		$scope.address=response.res.data;
+		if(!response.res.data.dists){
+			$location.path("/error");
+			return;
+		}
+		if(!!response.res.data.tel){
+			$scope.tel=response.res.data.tel;
+		}
+		if(!!!!response.res.data.nickName){
+			$scope.nickName=response.res.data.nickName;
+		}
+		$scope.address=response.res.data.dists;
 		$scope.submit=function(p){
 			$scope.selectedAddress = p;
 		}
@@ -402,7 +436,7 @@ app.controller('CheckController', function($scope, $routeParams,$data,$location,
 		if(!$scope.selectedAddress){
 			alert("请选择取货地址");
 			return;
-		}	
+		}
 			obj.openid=$data.openId,
 			obj.nickname=$scope.nickName,
 			obj.tel=$scope.tel,
@@ -428,8 +462,7 @@ app.controller('CheckController', function($scope, $routeParams,$data,$location,
 				}
 			}
 		})
-		.error(function(){
-			
+		.error(function(){		
 		});
 	}
 });
@@ -438,6 +471,7 @@ app.controller('OrderController', function($scope, $routeParams,$http,$data,$loc
 		var id=$routeParams.id;
 		if(!id){
 			$location.path("/error");
+			return;
 		}
 		$data.getOrder(id, function(response){
 			$scope.order=response.res.data;
@@ -454,39 +488,66 @@ app.controller('OrderController', function($scope, $routeParams,$http,$data,$loc
 				});
 			});
 		}
+		$scope.delOrder=function(){
+			$http.post('http://yijiayinong.com/api/undo',{
+				orderId:id
+			})
+			.success(function(response){
+				var response=response;
+				if(response.errcode=='Success'){
+					$location.path("/orders");
+					return;
+				}
+				if(response.errcode!='Success'){
+					alert('取消订单失败');
+				}
+			})
+			.error(function(){
+			})
+		}
 });
 
-app.controller('ShareController', function($scope, $routeParams, $location){
+app.controller('ShareController', function($scope, $routeParams, $location,$http){
 	$scope.jump=function(){
-		alert("jump order");
 		$location.path("/order/"+$routeParams.id);
 	}
+	$http.post('http://yijiayinong.com/api/orderAmount',{
+		batchId:$routeParams.id
+	})
+	.success(function(response){
+		$scope.orderAmount=response.res.orderAmount;
+	})
 });
 
 app.controller('OrdersController', function($scope, $routeParams,$data,$location){
 		if(!$data.openId){
 			$location.path("/error");
+			alert("no openId");
 			return;
 		}
 		$data.getOrders(function(response){
 			if(!response){
 				$location.path("/error");
+				alert("no response");
 				return;
 			}
 			if(response.errcode!="Success"){
 				$location.path("/error");
+				alert("no Success");
 				return;
 			}
 			if(!response.res){
 				$location.path("/error");
+				alert("no res");
 				return;
 			}
 			if(!response.res.data){
 				$location.path("/error");
+				alert("no data");
 				return;
 			}
 			$scope.orders=response.res.data;
-			$scope.id=response.res.data.id;
+		    $scope.length=response.res.data.length;
 		});
         $scope.details=function(id){
 			$location.path("/order/"+id);
@@ -512,7 +573,13 @@ app.config(function($routeProvider, $locationProvider){
 		})
 		.when('/checkout', {
 			templateUrl: 'html/checkout.html',
-			controller: 'CheckController'
+			controller: 'CheckController',
+			resolve: {
+				response:['$q',function($q,$data){
+					var deferred=$q.defer();
+					$data.getAddress();
+				}]
+			}
 		})
 		.when('/order/:id', {
 			templateUrl: 'html/order.html',
@@ -533,4 +600,53 @@ app.config(function($routeProvider, $locationProvider){
 	$locationProvider.html5Mode(true);
 });
 
-
+(function initWXConfig(angular){
+	var xmlhttp;
+	if (window.XMLHttpRequest){
+		xmlhttp=new XMLHttpRequest();
+	} else {
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function(){
+		if (xmlhttp.readyState==4 && xmlhttp.status==200){
+			var resText = xmlhttp.responseText;
+			var resObj = (new Function('', 'return ' + resText))();
+			if(!resObj){
+				return;
+			}
+			if(resObj.errcode != 'Success'){
+				return;
+			}
+			if(!resObj.res){
+				return;
+			}
+			if(!!resObj.res.wxConfig){
+				wx.config(resObj.res.wxConfig);
+				wx.ready(function(){
+					function onBridgeReady(){
+						alert('onBridgeReady');
+						//pass
+						angular.bootstrap(document, ['app']);
+					}
+					if (typeof WeixinJSBridge == "undefined"){
+						if( document.addEventListener ){
+							document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+						}else if (document.attachEvent){
+							document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+							document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+						}
+					}else{
+						onBridgeReady();
+					}
+				});
+			}
+		}
+	}
+	xmlhttp.open("POST", "http://yijiayinong.com/api/wxConfig", true);
+	xmlhttp.setRequestHeader("Content-Type","application/json");
+	var cfg = {
+		url: window.location.href,
+		jsApiList: ['chooseWXPay', 'onMenuShareAppMessage', 'closeWindow']
+	};
+	xmlhttp.send(JSON.stringify(cfg));
+})(angular);
