@@ -75,7 +75,7 @@ app.config(function($routeProvider, $locationProvider){
 				}]
 			}
 		})
-		.when('/order/:orderId/:promptPay?', {
+		.when('/order/:orderId', {
 			templateUrl: 'html/order.html',
 			controller: 'OrderController',
 			resolve:{
@@ -96,9 +96,6 @@ app.config(function($routeProvider, $locationProvider){
 					    deferred.resolve(data);
 					});
 					return deferred.promise;
-				}],
-				promptPay: ['$route', function($route){
-					return $route.current.params.promptPay;
 				}]
 			}
 		})

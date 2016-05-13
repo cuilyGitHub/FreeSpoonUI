@@ -170,13 +170,14 @@ module.exports = function(app){
 					alert('支付失败，服务器异常');
 					return;
 				}
-				$location.path('/order/{orderId}/{promptPay}'.assign({orderId: orderId, promptPay: true}));
+				$data.prePromptPay = true;
+				$location.path('/order/{orderId}'.assign({orderId: orderId}));
 			});
 		}
 		
 	});
 
-	app.controller('OrderController', function($scope, $location, $data, $wxBridge, orderInfo, promptPay){
+	app.controller('OrderController', function($scope, $location, $data, $wxBridge, orderInfo){
 		
 			if(!orderInfo || !orderInfo.data || !orderInfo.payRequest){
 				$location.path("/error");
@@ -192,9 +193,10 @@ module.exports = function(app){
 					});
 				});
 			}
-			if(promptPay){
+			if($data.prePromptPay){
 				$scope.pay();
 			}
+			$data.prePromptPay = false;
 			
 			$scope.undo = function(){
 				$data.undo(orderInfo.data.id, function(result){
@@ -234,10 +236,7 @@ module.exports = function(app){
 		$scope.orders = orders;
 		
 		$scope.openOrder = function(orderId, promptPay){
-			if(promptPay){
-				$location.path("/order/{orderId}/{promptPay}".assign({orderId: orderId, promptPay: promptPay}));
-				return;
-			}
+			$data.prePromptPay = promptPay;
 			$location.path("/order/{orderId}".assign({orderId: orderId}));
 		}
 		
