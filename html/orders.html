@@ -15,7 +15,7 @@
   </a>      
    </div>
    <div class="main">
-       <div ng-repeat="o in orders" ng-if='length>0'>
+       <div ng-repeat="o in orders" ng-if='orders.length > 0'>
 			   <div class="user">
 				   <span class="right" ng-if='o.status==0'>待付款</span>
 				   <span class="right" ng-if='o.status==1'>待收货</span>
@@ -28,7 +28,7 @@
 				  
 			   </div>
 			   <div class="content">
-				   <div class="back" ng-click="details(o.id)"></div>
+				   <div class="back" ng-click="openOrder(o.id)"></div>
 				   <div class="imgbox">
 					   <img ng-src="{{pic}}" alt="" ng-repeat="pic in o.pics track by $index">
 				   </div>
@@ -37,12 +37,12 @@
 					<p>共{{o.total}}件商品<span class="total">合计:</span><span class="price">￥{{o.totalFee | convert}}</span><span class="other">(含运费￥0.00)</span></p>
 				   <div class="btn">
 					   <!-- <div class="button" ng-click='delOrder(o.id)' ng-if='o.status<1'>取消订单</div> -->
-					   <div class="button" ng-click='pay(o.id)' ng-if='o.status==0'>付款</div>
-					   <div class="button" ng-click="details(o.id)">查看详情</div>
+					   <div class="button" ng-click='openOrder(o.id, true)' ng-if='o.status==0'>付款</div>
+					   <div class="button" ng-click="openOrder(o.id)">查看详情</div>
 				   </div>
 			   </div> 
        </div>
-	   <div class='context' ng-if='length==0'>您未购买任何商品</div>
+	   <div class='context' ng-if='orders.length == 0'>您未购买任何商品</div>
    </div>
 </body>
 </html>

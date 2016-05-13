@@ -9,7 +9,8 @@ var gulp = require('gulp'),
 	babelify = require('babelify'),
 	source = require('vinyl-source-stream'),
 	ngmin = require('gulp-ngmin'),
-	uglify = require('gulp-uglify');
+	uglify = require('gulp-uglify'),
+	delfile = require('gulp-delete-file');
 
 gulp.task('connect', function(cb){
 	connect.server({
@@ -57,10 +58,19 @@ gulp.task('browserify', function(){
 		.pipe(gulp.dest('./assets/js/'))
 });
 
-gulp.task('uglify', function(){
+gulp.task('remove-min-files', function(){
+	return gulp.src('./assets/js/**/*.min.js')
+		.pipe(delfile({
+			reg: /.*/,
+			deleteMatch: true
+		}));
+});
+
+gulp.task('uglify', ['browserify', 'remove-min-files'], function(){
 	return gulp.src('./assets/js/**/*.js')
 		.pipe(ngmin({dynamic: false}))
-		.pipe(uglify({outSourceMap: false}))
+		//.pipe(uglify({outSourceMap: false}))
+		.pipe(uglify({outSourceMap: true}))
 		.pipe(rename({ basename: 'app', extname: '.min.js'}))
 		.pipe(gulp.dest('./assets/js/'));
 });

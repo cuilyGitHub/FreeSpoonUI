@@ -33,7 +33,7 @@
             <ul>
                 <li ng-repeat="p in address">
                     <span class="true_image" ></span>
-                    <div class="checkbox" ng-class="{checked: p.id == selectedAddress.id}" ng-click="submit(p)">
+                    <div class="checkbox" ng-class="{checked: p.id == selectedAddress.id}" ng-click="selectAddress(p)">
                         <p>{{p.address}}</p>
                     </div>
                 </li>
@@ -58,7 +58,7 @@
         <div class="single_list">
             <span>总计</span>
             <div>
-                <span class="__checkout_total text">{{total | convert}}</span>
+                <span class="__checkout_total text">{{totalPrice | convert}}</span>
             </div>
         </div>
     </div>

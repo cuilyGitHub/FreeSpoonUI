@@ -4,76 +4,43 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title></title>
+	<style type="text/css">
+        .box{
+           
+        }
+        .load{
+                right: 0;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				width: 50px;
+				height: 50px;
+				margin: auto;
+				position: absolute;
+        }
+    </style>
 	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-	<script type="text/javascript">
-		/*var xmlhttp;
-		if (window.XMLHttpRequest){
-			xmlhttp=new XMLHttpRequest();
-		} else {
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.onreadystatechange=function(){
-			if (xmlhttp.readyState==4 && xmlhttp.status==200){
-				resText = xmlhttp.responseText;
-				resObj = (new Function('', 'return ' + resText))();
-				if(!resObj){
-					return;
-				}
-				if(resObj.errcode != 'Success'){
-					return;
-				}
-				if(!resObj.res){
-					return;
-				}
-				if(!!resObj.res.wxConfig){
-					wx.config(resObj.res.wxConfig);
-					wx.ready(function(){
-						function onBridgeReady(){
-							alert('onBridgeReady');
-							//pass
-						}
-						if (typeof WeixinJSBridge == "undefined"){
-							if( document.addEventListener ){
-								document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-							}else if (document.attachEvent){
-								document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-								document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-							}
-						}else{
-							onBridgeReady();
-						}
-					});
-				}
-			}
-		}
-		xmlhttp.open("POST", "http://yijiayinong.com/api/wxConfig", true);
-		xmlhttp.setRequestHeader("Content-Type","application/json");
-		var cfg = {
-			url: window.location.href,
-			jsApiList: ['chooseWXPay', 'onMenuShareAppMessage', 'closeWindow']
-		};
-		xmlhttp.send(JSON.stringify(cfg));*/
-    </script>	
     <script type="text/javascript" src="assets/js/app.js"></script>
-     <!-- <script type="text/javascript" src="assets/js/app.min.js"></script> -->
     <script type="text/javascript">
-	angular.element(document.getElementsByTagName('head')).append(
-		angular.element('<base href="' + window.location.pathname + '" />'));
+		angular.element(document.getElementsByTagName('head')).append(
+			angular.element('<base href="' + window.location.pathname + '" />'));
 
-      var winW = document.documentElement.clientWidth;
+		var winW = document.documentElement.clientWidth;
         var winH = document.documentElement.clientHeight;
-        if(winW>winH){
-            document.documentElement.style.fontSize = winW / 6.4 + "px";
-        }else{
-             document.documentElement.style.fontSize = 50 + "px";
+        if(winW > winH){
+			document.documentElement.style.fontSize = winW / 6.4 + "px";
+        } else {
+			document.documentElement.style.fontSize = 50 + "px";
         }
     </script>
 </head>
 <!--<body ng-app="app">-->
 <body>
 <div ng-controller="MenuController">
-
-<div ng-view></div>
+	<div class="box" ng-if='$rootScope.load'>
+		<img src="../assets/images/loading.gif" alt="" class="load"/>
+	</div>
+	<div ng-view></div>
 </div> 
 </body>
 </html>

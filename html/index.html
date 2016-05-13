@@ -61,11 +61,11 @@
         </ul>
     </div>
     <div  class="footer">
-        <a class="right"  ng-click="statement ();">去结算</a>
+        <a class="right"  ng-click="checkout();">去结算</a>
         <div class="left" onclick="popup_window_from_bottom();">
-            <div class="shop"><span class="__amount">{{num}}</span></div>
+            <div class="shop"><span class="__amount">{{totalNum}}</span></div>
             <div class="shop_info">
-                <p class="line1">合计:<span class="__total">￥{{total | convert}}</span></p>
+                <p class="line1">合计:<span class="__total">￥{{totalPrice | convert}}</span></p>
                 <p class="line2">不含运费</p>
             </div>
         </div>
@@ -77,7 +77,7 @@
     <div class="popup-window-from-bottom">
         <div class="box">
             <div class="popup-bottom-title">
-                <div class="del" ng-click="del(commodities);">
+                <div class="del" ng-click="empty();">
                     <div class="popup_bottom_del">
                         <span class="del_text" >清空</span>
                         <span class="del_img"></span>
