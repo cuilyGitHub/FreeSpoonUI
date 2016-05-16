@@ -59,9 +59,9 @@
                  </div>
             </li>         
         </ul>
-    </div>
+    </div> 
     <div  class="footer">
-        <a class="right"  ng-click="checkout();">去结算</a>
+        <a ng-class="{right:true, buttonStatus:totalNum>0}"  ng-click="checkout();">去结算</a>
         <div class="left" onclick="popup_window_from_bottom();">
             <div class="shop"><span class="__amount">{{totalNum}}</span></div>
             <div class="shop_info">

@@ -35,7 +35,7 @@ module.exports = function(app){
 		return function(val){
 			if(!!val){
 				val = (val % 100);
-				if(val == 0){
+				if(val.toString().length<2){
 					val = '0' + val;
 				}
 			}

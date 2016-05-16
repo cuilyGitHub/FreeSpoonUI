@@ -13,7 +13,8 @@
 	.user{
 		height: @height;
 		.left{
-			width: 4rem;
+			@top_height:0.6rem;
+			width: 5.5rem;
 			height: @height;
 			line-height: @height;
 			img{
@@ -25,8 +26,12 @@
 				border-radius: 50%;
 				margin: (@height - @img_size)/2; 
 			}
-			.text{
-				.font_large_bold;
+			.top{
+				height: @top_height;
+				margin-left: 1rem;
+				line-height: @top_height;
+				.text{
+				.font_large;
 				display:block;
 				max-width: 1.5rem;
 				overflow: hidden;
@@ -35,9 +40,18 @@
     			float: left;
     			margin-right:0.1rem; 
 				}
-			.min_text{
-				.font_normal;
+				.min_text{
+					.font_normal;
+				}
 			}
+			.bottom{
+				.font_small;
+				color:@color_dark_gray;
+				margin-left: 1rem;
+				height: @height - @top_height;
+				line-height: @height - @top_height - 0.1rem;
+			}
+			
 		}
 		.right{
 			@height:1rem;

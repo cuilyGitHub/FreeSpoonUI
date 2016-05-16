@@ -49,9 +49,7 @@ module.exports = function(app){
 		}, true);
 		
 		$scope.checkout = function(){
-			if(!batch.totalNum){
-				alert("请选择商品");
-			} else {
+			if(!!batch.totalNum && batch.totalNum>0){
 				$data.preData = batch;
 				$location.path("/checkout/{batchId}".assign({batchId: batch.id}));
 			}
@@ -198,6 +196,23 @@ module.exports = function(app){
 			}
 			$data.prePromptPay = false;
 			
+			$scope.orderConfirm=function(){
+				var r=confirm('是否取消订单');
+				if(r==true){
+					alert('订单取消成功');
+					$data.undo(orderInfo.data.id, function(result){
+						if(result){
+							$location.path("/orders");
+							return;
+						} else {
+							alert('取消订单失败');
+						}
+					});
+				}else{
+					alert('订单取消失败');
+				}
+			}
+			
 			$scope.undo = function(){
 				$data.undo(orderInfo.data.id, function(result){
 					if(result){
@@ -211,7 +226,7 @@ module.exports = function(app){
 			
 	});
 
-	app.controller('ShareController', function($scope, $location, orderId){
+	app.controller('ShareController', function($scope, $location, $data, orderId){
 		
 		$data.requestOrderAmount(orderId, function(orderAmount){
 			if(!orderAmount){
@@ -226,7 +241,7 @@ module.exports = function(app){
 		
 	});
 
-	app.controller('OrdersController', function($scope, $routeParams,$data,$location,$http,$wxBridge,orders){
+	app.controller('OrdersController', function($scope, $routeParams, $data, $location, $http, $wxBridge, orders){
 		
 		if(!orders){
 			$location.path("/error");
