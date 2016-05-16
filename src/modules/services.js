@@ -104,6 +104,7 @@ module.exports = function(app){
 				}
 				that.openId = data.res.openId;
 				that.lastBatch = data.res.data;
+				that.lastBatchid = data.res.data.id;
 				cb(data.res.data);
 			})
 			.error(function(){
@@ -239,6 +240,10 @@ module.exports = function(app){
 				batchId: batchId
 			})
 			.success(function(data){
+				if(data.res.data){
+					cb(data.res.data);
+					return;
+				}
 				if(!that.basicVerify(data)){
 					cb(null);
 					return;
@@ -254,5 +259,10 @@ module.exports = function(app){
 			});
 		}
 	});
+	
+	app.service('history',function($http, $location){
+		var urlQueue=[];
+		
+	})
 
 }
