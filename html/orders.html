@@ -30,7 +30,9 @@
 			   </div>
 			   <div class="content" ng-click="openOrder(o.id)">
 				   <div class="imgbox">
-					   <img ng-src="{{pic}}" alt="" ng-repeat="pic in o.pics track by $index">
+						<!--<img ng-style="{'background-image':'url('+pic+')','background-size':'cover'}" alt="" ng-repeat="pic in o.pics track by $index">-->
+						<div class='img' ng-style="{'width': '1.5rem', 'height': '1.5rem', 'background-image':'url('+pic+')','background-size':'cover'}" alt="" ng-repeat="pic in o.pics track by $index">
+						</div>
 				   </div>
 			   </div>
 				<div class="footer">
