@@ -44,6 +44,8 @@ module.exports = function(app){
 	app.service('$data', function($http, $location){
 		
 		//this.openId;
+		//this.batchId;
+		
 		this.preData = null;
 		
 		var that = this;
@@ -95,6 +97,10 @@ module.exports = function(app){
 			})
 			.success(function(data){
 				if(!that.basicVerify(data)){
+					cb(null);
+					return;
+				}
+				if(data.res.data.offered.date == 0){
 					cb(null);
 					return;
 				}
@@ -260,8 +266,17 @@ module.exports = function(app){
 		}
 	});
 	
-	app.service('history',function($http, $location){
-		var urlQueue=[];
+	app.service('$history',function($http, $location){
+		this.urlQueue=[];
+		var that=this;
+		
+		this.getHistory=function(){
+			if(that.urlQueue>2){
+				that.urlQueue.shift();
+			}
+			 var getUrl=$location.$$path;
+			 that.urlQueue.unshift(getUrl);
+		}
 		
 	})
 

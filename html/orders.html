@@ -8,11 +8,9 @@
     <title></title>
 </head>
 <body>
-  <a href="/">
     <div class="header">
-      <span class='ico back'></span>
-        <div class="text">我的订单</div> 
-  </a>      
+      <span class='ico' ng-class='{back:true,close:icoStatus}' ng-click='back()'></span>
+        <div class="text">我的订单</div>     
    </div>
    <div class="main">
        <div ng-repeat="o in orders | orderBy:['id','deposit']:true" ng-if='orders.length > 0'>
@@ -30,8 +28,7 @@
 				   </div>
 				  
 			   </div>
-			   <div class="content">
-				   <div class="back" ng-click="openOrder(o.id)"></div>
+			   <div class="content" ng-click="openOrder(o.id)">
 				   <div class="imgbox">
 					   <img ng-src="{{pic}}" alt="" ng-repeat="pic in o.pics track by $index">
 				   </div>

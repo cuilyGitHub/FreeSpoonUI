@@ -10,7 +10,7 @@
 <body>
    <div id="Order_details" class="page">
     <div class="header">
-		<span class='ico close' onclick="wx.closeWindow()"></span>
+		<span class='ico' ng-class='{back:true,close:icoStatus}' ng-click='back()'></span>
         <div class="text">订单详情</div>
     </div>
     <div class="main">
@@ -81,13 +81,13 @@
 			</div>
 		</div>
 		
-		<div class="smallButton">
+		<div class="smallButton ">
 			<div class="select">
 				<a class="text" href="javascript:void(0);" ng-click='pay()' ng-if='order.status==0'>支付</a>
 			</div>
 		</div>
 		
-		<div class="button">
+		<div class="button ">
 			<div class="select">
 				<a class="text" href="javascript:void(0);" onclick="wx.closeWindow()" ng-if='order.status>0'>关闭</a>
 			</div>

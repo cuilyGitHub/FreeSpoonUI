@@ -4,7 +4,7 @@
 
 module.exports = function(app){
 	
-	app.controller('IndexController', function($scope, $location, $data, $wxBridge, batch){
+	app.controller('IndexController', function($scope, $location, $data, $history, $wxBridge, batch){
 		
 		if(!batch){
 			$location.path("/error");
@@ -39,6 +39,8 @@ module.exports = function(app){
 				$(".__amount").css('display', 'none');
 				$('.__overlay').css('display', 'none');
 				$('.popup-window-from-bottom').css('display', 'none');
+				$("#index").css("height", "100%");
+				$("#index").css("overflow", "auto");
 			} else {
 				$(".__amount").css('display', 'block');
 			}
@@ -50,10 +52,16 @@ module.exports = function(app){
 		
 		$scope.checkout = function(){
 			if(!!batch.totalNum && batch.totalNum>0){
+				$history.getHistory();
 				$data.preData = batch;
 				$location.path("/checkout/{batchId}".assign({batchId: batch.id}));
 			}
 		};
+		
+		$scope.jumpOrders=function(){
+			$history.getHistory();
+			$location.path("/orders");
+		}
 		
 		$scope.addCommodity = function(commodity){
 			if(!commodity.num){
@@ -82,11 +90,13 @@ module.exports = function(app){
 					status = false;
 					$('.__overlay').css('display', 'block');
 					$('.popup-window-from-bottom').css("display", "block");
+					$("#index").css("height", "10rem");
 					$("#index").css("overflow", "hidden");
 				} else {
 					status = true;
 					$('.__overlay').css('display', 'none');
 					$('.popup-window-from-bottom').css('display', 'none');
+					$("#index").css("height", "100%");
 					$("#index").css("overflow", "auto");
 				}
 			}
@@ -101,13 +111,21 @@ module.exports = function(app){
 		
 	});
 
-	app.controller('CheckController', function($scope, $location, $data, checkoutInfo){
+	app.controller('CheckController', function($scope, $location, $data, $history, checkoutInfo){
 		
 		if(!$data.openId){
+			$data.preData={
+				title:'参数错误',
+				desc:'参数不存在'
+			}
 			$location.path("/error");
 			return;
 		}
 		if(!checkoutInfo){
+			$data.preData={
+				title:'参数错误',
+				desc:'参数不存在'
+			}
 			$location.path("/error");
 			return;
 		}
@@ -116,17 +134,33 @@ module.exports = function(app){
 		$scope.address = checkoutInfo.dists;
 		
 		$scope.selectAddress = function(p){
-			$scope.selectedAddress = p;
+		$scope.selectedAddress = p;
 		}
 
 		var batch = $data.preData;
 		if(!batch){
+			$data.preData={
+				title:'参数错误',
+				desc:'参数不存在'
+			}
 			$location.path("/error");
 			return;
 		}
 
 		$scope.commodities = batch.commodities;
 		$scope.totalPrice = batch.totalPrice;
+			
+		if($history.urlQueue.length>0){
+			$scope.icoStatus=false;
+			$scope.back=function(){
+				$location.path($history.urlQueue[0]);
+			};
+		}else{
+			$scope.icoStatus=true;
+			$scope.back=function(){
+				alert('关闭');
+			};
+		}
 			
 		$scope.pay = function(commodities){	
 		
@@ -175,15 +209,31 @@ module.exports = function(app){
 		
 	});
 
-	app.controller('OrderController', function($scope, $location, $data, $wxBridge, orderInfo){
+	app.controller('OrderController', function($scope, $location, $data, $history, $wxBridge, orderInfo){
 		
 			if(!orderInfo || !orderInfo.data || !orderInfo.payRequest){
+				$data.preData={
+					title:'参数错误',
+					desc:'参数不存在'
+				}
 				$location.path("/error");
 				return;
 			}
 
 			$scope.order = orderInfo.data;
-						
+			
+			if($history.urlQueue.length>0){
+				$scope.icoStatus=false;
+				$scope.back=function(){
+					$location.path('/orders');
+				};
+			}else{
+				$scope.icoStatus=true;
+				$scope.back=function(){
+					alert('关闭');
+				};
+			}
+			
 			$scope.pay = function(){
 				$wxBridge.pay(orderInfo.payRequest, function(){
 					$scope.$apply(function(){
@@ -226,6 +276,40 @@ module.exports = function(app){
 			
 	});
 
+	app.controller('OrdersController', function($scope, $routeParams, $data, $history,$location, $http, $wxBridge, orders){
+		
+		if(!orders){
+			$data.preData={
+				title:'参数错误',
+				desc:'参数不存在'
+			}
+			$location.path("/error");
+			return;
+		}
+		
+		$scope.orders = orders;
+		
+		 if($history.urlQueue.length>0){
+				 $scope.icoStatus=false;
+				 $scope.back=function(){
+					 $location.path('/');
+				 };
+		 }else{
+			 $scope.icoStatus=true;
+			 $scope.back=function(){
+				 alert('关闭');
+			 };
+		 }
+		
+		
+		$scope.openOrder = function(orderId, promptPay){
+			$history.getHistory();
+			$data.prePromptPay = promptPay;
+			$location.path("/order/{orderId}".assign({orderId: orderId}));
+		}
+		
+	});
+
 	app.controller('ShareController', function($scope, $location, $data, $wxBridge, orderId){
 		
 		$data.requestOrderAmount(orderId, function(orderAmount){
@@ -245,25 +329,18 @@ module.exports = function(app){
 		}
 		
 	});
-
-	app.controller('OrdersController', function($scope, $routeParams, $data, $location, $http, $wxBridge, orders){
-		
-		if(!orders){
-			$location.path("/error");
+	
+	app.controller('ErrorController', function($scope,$data){
+		//TODO
+		if(!$data.preData){
+			$scope.title = '错误',
+			$scope.desc = '未知错误'
 			return;
 		}
+		$scope.title = $data.preData.title;
+		$scope.desc = $data.preData.desc;
 		
-		$scope.orders = orders;
-		
-		$scope.openOrder = function(orderId, promptPay){
-			$data.prePromptPay = promptPay;
-			$location.path("/order/{orderId}".assign({orderId: orderId}));
-		}
-		
-	});
-
-	app.controller('ErrorController', function($scope){
-		//TODO
+		$data.preData = null;
 	});
 
 }

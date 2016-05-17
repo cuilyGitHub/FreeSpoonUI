@@ -41,6 +41,10 @@ app.config(function($routeProvider, $locationProvider){
 					$data.requestBatch(function(data){
 						$rootScope.load = false;
 						if(!data){
+							$data.preData={
+								title:'参数错误',
+								desc:'未知的团购批次！'
+							}
 							$location.path("/error");
 							deferred.resolve(null);
 							return;
@@ -57,6 +61,10 @@ app.config(function($routeProvider, $locationProvider){
 			resolve:{
 				checkoutInfo: ['$q', '$location', '$data', '$rootScope', '$route', function($q, $location, $data, $rootScope, $route){
 					if(!$route.current.params.batchId){
+						$data.preData={
+								title:'参数错误',
+								desc:'参数不存在'
+							}
 						$location.path("/error");
 						return;
 					}
@@ -65,6 +73,10 @@ app.config(function($routeProvider, $locationProvider){
 					$data.requestCheckoutInfo($route.current.params.batchId, function(data){
 						$rootScope.load = false;
 						if(!data){
+							$data.preData={
+								title:'参数错误',
+								desc:'参数不存在'
+							}
 							$location.path("/error");
 							deferred.resolve(null);
 							return;
@@ -81,6 +93,10 @@ app.config(function($routeProvider, $locationProvider){
 			resolve:{
 				orderInfo: ['$q', '$location', '$data', '$rootScope', '$route', function($q, $location, $data, $rootScope, $route){
 					if(!$route.current.params.orderId){
+						$data.preData={
+								title:'参数错误',
+								desc:'参数不存在'
+						}
 						$location.path("/error");
 						return;
 					}
@@ -89,6 +105,10 @@ app.config(function($routeProvider, $locationProvider){
 					$data.requestOrder($route.current.params.orderId, function(data){
 						$rootScope.load = false;
 						if(!data){
+							$data.preData={
+								title:'参数错误',
+								desc:'参数不存在'
+							}
 							$location.path("/error");
 							deferred.resolve(null);
 							return;
@@ -118,6 +138,10 @@ app.config(function($routeProvider, $locationProvider){
 					$data.requestOrders(function(data){
 						$rootScope.load = false;
 						if(!data){
+							$data.preData={
+								title:'参数错误',
+								desc:'参数不存在'
+							}
 							$location.path("/error");
 							deferred.resolve(null);
 							return;

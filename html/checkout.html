@@ -10,10 +10,8 @@
 <body>
     <div id="checkout" class='page'>
     <div class="header">
-        <a href="/">
-        <span class="ico back" ></span>
+        <span class='ico' ng-class='{back:true,close:icoStatus}' ng-click='back()' ></span>
         <div class="text">订单确认</div>
-        </a>
     </div>
     <div class="content">
         <div class="user">
@@ -62,7 +60,7 @@
             </div>
         </div>
     </div>
-    <div id="checkout_footer" class="button">
+    <div id="checkout_footer" class="button fixed">
         <div class="select">
         <a class="text" href="javascript:void(0);" ng-click="pay(commodities);">立即支付</a>
         </div>
