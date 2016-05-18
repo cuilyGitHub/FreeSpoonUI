@@ -155,8 +155,7 @@ app.config(function($routeProvider, $locationProvider){
 		.when('/error', {
 			templateUrl: 'html/error.html',
 			controller: 'ErrorController'
-		});
-		
+		});		
 });
 
 (function initWXConfig(angular){

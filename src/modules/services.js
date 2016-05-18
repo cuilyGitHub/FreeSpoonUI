@@ -264,6 +264,7 @@ module.exports = function(app){
 				cb(null);
 			});
 		}
+		
 	});
 	
 	app.service('$history',function($http, $location){
@@ -278,6 +279,6 @@ module.exports = function(app){
 			 that.urlQueue.unshift(getUrl);
 		}
 		
-	})
+	});
 
 }

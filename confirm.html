@@ -7,9 +7,9 @@
     <title>确认收货</title>
     <link rel="stylesheet" href="assets/css/buttons.css" />
     <link rel="stylesheet" href="assets/css/confirm.css" />
-    <script type="text/javascript" src="assets/js/jquery-1.12.1.min.js"></script>
+    <script type="text/javascript" src="assets/js/confirm.js"></script>
 </head>
-<body>
+<body ng-app='app' ng-controller='MainController'>
   <div class="dialog">
     <div class="header">
       <p class="title">订单确认</p>
@@ -22,23 +22,13 @@
       </ul>
     </div>
     <div class="info ui-grid-a">
-        <div class="ui-block-a">订单号：</div>
-        <div class="ui-block-b">12456789</div>
         <div class="ui-block-a">团购批次：</div>
         <div class="ui-block-b">生鲜购</div>
         <div class="ui-block-a">备注：</div>
         <div class="ui-block-b">无</div>
       </tr>
     </div>
-    <a href="javascript:void(0);" onclick="submit();" class="button button-primary button-rounded">确认</a>
-    <form id="default" action="complete" method="POST">
-      <input type="hidden" name="order_id" value="{{ order.id }}" />
-    </form>
-    <script type="text/javascript">
-      function submit(){
-        $('#default').submit();
-      }
-    </script>
+		<a href="javascript:void(0);" onclick="submit();" class="button button-primary button-rounded">确认</a>
   </div>
 </body>
 </html>

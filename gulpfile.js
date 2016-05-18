@@ -49,7 +49,9 @@ gulp.task('vendor', function(){
 		.pipe(gulp.dest('./assets'));
 });
 
-gulp.task('browserify', function(){
+gulp.task('browserify', ['browserify-app', 'browserify-confirm'], function(){});
+
+gulp.task('browserify-app',function(){
 	return browserify('./src/app.js', { debug: true })
 		.transform(babelify)
 		.bundle()
@@ -57,6 +59,15 @@ gulp.task('browserify', function(){
 		.pipe(rename({ basename: 'app', extname: '.js'}))
 		.pipe(gulp.dest('./assets/js/'))
 });
+
+gulp.task('browserify-confirm',function(){
+	return browserify('./src/confirm.js', { debug: true })
+		.transform(babelify)
+		.bundle()
+		.pipe(source('bundle.js'))
+		.pipe(rename({ basename: 'confirm', extname: '.js'}))
+		.pipe(gulp.dest('./assets/js/'))
+})
 
 gulp.task('remove-min-files', function(){
 	return gulp.src('./assets/js/**/*.min.js')
