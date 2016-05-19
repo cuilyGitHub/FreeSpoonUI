@@ -264,6 +264,53 @@ module.exports = function(app){
 				cb(null);
 			});
 		}
+				
+		this.requestConfirm = function(cb){
+			var state = that.getStateFromUrl();
+			if(!state){
+				cb(null);
+				return;
+			}
+			params = state.split(',');
+			if(params.length != 2){
+				cb(null);
+				return;
+			}
+			var batchId = params[0];
+			var distId = params[1];
+			if(!batchId || !distId){
+				cb(null);
+				return;
+			}
+			var code = that.getWXCodeFromUrl();
+			if(!code){
+				cb(null);
+				return;
+			}
+			$http.post("http://yijiayinong.com/api/confirm", {
+				batchId: batchId,
+				distId: distId,
+				code: code
+			})
+			.success(function(data){
+				if(!that.basicVerify(data)){
+					cb(null);
+					return;
+				}
+				if(data.res.data.offered.date == 0){
+					cb(null);
+					return;
+				}
+				if(!data.res || !data.res.data){
+					cb(null);
+					return;
+				}
+				cb(data.res.data);
+			})
+			.error(function(){
+				cb(null);
+			});
+		};
 		
 	});
 	

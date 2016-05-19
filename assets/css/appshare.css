@@ -1,0 +1,225 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  color: #000;
+}
+html,
+body {
+  font-size: 0.25rem;
+  height: 100%;
+  font-family: '微软雅黑', Helvetica, Tahoma, Arial, '华文细黑', sans-serif;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: 100%;
+}
+/*currency title*/
+.title {
+  height: 1rem;
+  line-height: 1rem;
+  font-size: 0.35rem;
+}
+.title .img {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  float: left;
+}
+.title .material {
+  background: url('../images/appShare/material.png') no-repeat center;
+  background-size: 0.6rem;
+}
+.title .make {
+  background: url('../images/appShare/make.png') no-repeat center;
+  background-size: 0.6rem;
+}
+.title .remind {
+  background: url('../images/appShare/remind.png') no-repeat center;
+  background-size: 0.6rem;
+}
+.header {
+  height: 0.7rem;
+}
+.header .back {
+  width: 0.7rem;
+  height: 0.7rem;
+  background: url('../images/appShare/back.png') no-repeat center;
+  background-size: 0.4rem;
+  margin-left: 0.1rem;
+  margin-top: 0.1rem;
+}
+.header .share {
+  width: 0.7rem;
+  height: 0.7rem;
+  background: url('../images/appShare/share.png') no-repeat center;
+  background-size: 0.4rem;
+  float: right;
+  margin-right: 0.1rem;
+}
+.user {
+  height: 5rem;
+}
+.user .text {
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: 0.7rem;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 0.2rem;
+}
+.user .look {
+  height: 0.5rem;
+  border-top: 1px solid #ccc;
+}
+.user .look .line {
+  width: 2rem;
+  border-top: 1px solid #ccc;
+}
+.user .look .left {
+  margin-left: 0.8rem;
+}
+.user .look .right {
+  float: right;
+  margin-right: 0.8rem;
+}
+.user .look .box {
+  width: 4rem;
+  height: 1rem;
+  line-height: 1rem;
+}
+.user .look .box img {
+  display: block;
+  width: 0.4rem;
+  height: 0.3rem;
+  float: left;
+}
+.user .look .box .see {
+  width: 0.5rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
+}
+.user .look .box .like {
+  width: 0.5rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
+}
+.user .info {
+  height: 1rem;
+  margin: 0.4rem 0.3rem;
+}
+.user .info .leader {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+  overflow: hidden;
+  float: left;
+}
+.user .info .leader img {
+  width: 1rem;
+  height: 1rem;
+}
+.user .info .name {
+  height: 0.5rem;
+  line-height: 0.5rem;
+  margin-left: 1.1rem;
+  font-size: 0.3rem;
+}
+.user .desc {
+  margin: 0.2rem 0.3rem;
+  text-align: left;
+  font-size: 0.35rem;
+  color: #c5c5c5;
+}
+.table {
+  background: #000;
+  height: 3rem;
+}
+.remindContent {
+  height: 3rem;
+  background: #c5c5c5;
+}
+.more {
+  height: 2.5rem;
+}
+.more .leader {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  padding-top: 0.5rem;
+}
+.more .leader img {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+}
+.more p {
+  text-align: center;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  font-size: 0.3rem;
+}
+.menu {
+  margin-left: 0.1rem;
+  height: 3.5rem;
+}
+.menu img {
+  float: left;
+  display: block;
+  width: 2rem;
+  margin-right: 0.1rem;
+}
+.footer {
+  clear: both;
+  height: 1.5rem;
+}
+.footer .box {
+  height: 1rem;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.footer .box .p {
+  height: 0.4rem;
+  text-align: center;
+  font-size: 0.3rem;
+}
+.footer .box .talk {
+  height: 1rem;
+  width: 30%;
+  float: left;
+}
+.footer .box .talk .img {
+  padding-top: 0.1rem;
+  height: 0.5rem;
+  background: url('../images/appShare/talk.png') no-repeat center;
+  background-size: 0.45rem;
+}
+.footer .box .photo {
+  height: 1rem;
+  width: 30%;
+  margin-left: 30%;
+}
+.footer .box .photo .top {
+  padding-top: 0.1rem;
+  height: 0.5rem;
+  background: url('../images/appShare/photo.png') no-repeat center;
+  background-size: 0.45rem;
+}
+.footer .box .collection {
+  height: 1rem;
+  width: 40%;
+  float: right;
+  background: url('../images/appShare/like1.png') no-repeat 30% #ff9934;
+  background-size: 0.6rem;
+  line-height: 1rem;
+}
+.footer .box .collection .collectionTxt {
+  margin-left: 1.3rem;
+  color: white;
+  font-size: 0.4rem;
+}
