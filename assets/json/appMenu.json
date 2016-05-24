@@ -1,0 +1,72 @@
+{
+    "code": 0,
+    "message": "get_success",
+    "result": {
+        "cuisinebooks": {
+                "kBCookBookId": "55DA6A20-E056-4B2F-8AA3-6F5D469EE606",
+                "kBCookSteps": [
+                    {
+                        "kPhotoDescription": "莲藕去皮洗净切薄片，清水滴入一匙白醋浸泡十分钟莲藕不会变色",
+                        "kPhotoHeight": 852,
+                        "kPhotoSerialNum": 0,
+                        "kPhotoUrl": "assets/images/appShare/01.jpg",
+                        "kPhotoWidth": 640
+                    },
+                    {
+                        "kPhotoDescription": "木耳用冷水泡发，荷兰豆去丝掐头去尾洗净，胡萝卜洗净切菱形片",
+                        "kPhotoHeight": 1136,
+                        "kPhotoSerialNum": 1,
+                        "kPhotoUrl": "assets/images/appShare/02.jpg",
+                        "kPhotoWidth": 640
+                    },
+                    {
+                        "kPhotoDescription": "锅中烧水，水热加入一匙盐一匙油分别放入荷兰豆，莲藕，木耳和胡萝卜根据不同食材选择焯水时间",
+                        "kPhotoHeight": 852,
+                        "kPhotoSerialNum": 2,
+                        "kPhotoUrl": "assets/images/appShare/03.jpg",
+                        "kPhotoWidth": 640
+                    }
+                ],
+                "kBCookerId": "13966522596",
+                "kBCreateTime": 1463382789510,
+                "kBDescription": "夏天来了要吃清淡一点",
+                "kBDishName": "荷塘小炒",
+                "kBFavorNums": "0",
+                "kBFollowMadeNums": "",
+                "kBFoodMaterials": [
+                    {
+                        "kBFName": "莲藕",
+                        "kBFPurchaseUrl": "",
+                        "kBFQuantity": "250g",
+                        "kBFSerialNum": 0
+                    },
+                    {
+                        "kBFName": "荷兰豆",
+                        "kBFPurchaseUrl": "",
+                        "kBFQuantity": "100g",
+                        "kBFSerialNum": 1
+                    },
+                    {
+                        "kBFName": "胡萝卜",
+                        "kBFPurchaseUrl": "",
+                        "kBFQuantity": "1根",
+                        "kBFSerialNum": 2
+                    }
+                ],
+
+                "kBFrontCoverUrl": "ff563431af6400c6c86bf9d74318a73b",
+                "kBIconUrl": "assets/images/appShare/leader.jpg",
+                "kBIsPublish": "1",
+                "kBKind": "",
+                "kBNickName": "鸟叔",
+                "kBStepNums": "3",
+                "kBSubKind": "",
+                "kBTags": "",
+                "kBTimeNeeded": "",
+                "kBTips": ["1.莲藕加入一匙白醋使莲藕不易变色。2.焯水时间加入油和盐可以更好的保留蔬菜的营养也可以让菜品色泽更鲜艳。3.焯水时间不宜太长"],
+                "kBTopic": "",
+                "kBVideoUrl": "",
+                "kBVisitNums": ""
+            }
+      }
+}

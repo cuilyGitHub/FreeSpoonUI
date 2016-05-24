@@ -1,0 +1,69 @@
+{
+    "code": 0,
+    "message": "get_success",
+    "result": {
+        "products":{
+                "kPCookerId": "18613838003",
+                "kPCreateTime": 1463133694796,
+                "kPDescription": "好想",
+                "kPDishName": "酸奶香蕉",
+                "kPFollowBookId": "",
+                "kPFrontCoverUrl": "d0eb7c9887e435afbb7e09d636bb1adc",
+                "kPIconUrl": "assets/images/appShare/leader.jpg",
+                "kPIsPublished": "1",
+                "kPKind": "",
+                "kPNickName": "嘟嘟",
+                "kPPhotoNums": "3",
+                "kPPhotos": [
+                    {
+                        "kPhotoDescription": "好想",
+                        "kPhotoHeight": 1500,
+                        "kPhotoSerialNum": 0,
+                        "kPhotoUrl": "assets/images/appShare/01.jpg",
+                        "kPhotoWidth": 1124
+                    },
+                    {
+                        "kPhotoDescription": "你也是",
+                        "kPhotoHeight": 1500,
+                        "kPhotoSerialNum": 1,
+                        "kPhotoUrl": "assets/images/appShare/02.jpg",
+                        "kPhotoWidth": 1124
+                    },
+                    {
+                        "kPhotoDescription": "好",
+                        "kPhotoHeight": 1500,
+                        "kPhotoSerialNum": 2,
+                        "kPhotoUrl": "assets/images/appShare/03.jpg",
+                        "kPhotoWidth": 1124
+                    }
+                ],
+				"kBFoodMaterials": [
+                    {
+                        "kBFName": "莲藕",
+                        "kBFPurchaseUrl": "",
+                        "kBFQuantity": "250g",
+                        "kBFSerialNum": 0
+                    },
+                    {
+                        "kBFName": "荷兰豆",
+                        "kBFPurchaseUrl": "",
+                        "kBFQuantity": "100g",
+                        "kBFSerialNum": 1
+                    },
+                    {
+                        "kBFName": "胡萝卜",
+                        "kBFPurchaseUrl": "",
+                        "kBFQuantity": "1根",
+                        "kBFSerialNum": 2
+                    }
+                ],
+                "kPProuctId": "78C34404-64BA-4241-B38A-CF58272FD884",
+                "kPScore": "",
+                "kPSubKind": "",
+                "kPTags": "",
+                "kPTips": ["1.莲藕加入一匙白醋使莲藕不易变色。2.焯水时间加入油和盐可以更好的保留蔬菜的营养也可以让菜品色泽更鲜艳。3.焯水时间不宜太长"],
+                "kPTopic": ""
+            }
+	
+	}
+}

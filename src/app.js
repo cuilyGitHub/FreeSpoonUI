@@ -31,7 +31,7 @@ app.config(function($routeProvider, $locationProvider){
 	$locationProvider.html5Mode(true);
 	
 	$routeProvider
-		.when('/', {
+		.when('/index', {
 			templateUrl: 'html/index.html',
 			controller: 'IndexController',
 			resolve: {

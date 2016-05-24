@@ -14,14 +14,15 @@
 			document.documentElement.style.fontSize = 50 + "px";
         }
     </script>
+	<script type="text/javascript" src="assets/js/appOpus.js"></script>
 </head>
-<body>
-    <div class="header">
+<body ng-app='app' ng-controller='OpusController'>
+<!--     <div class="header">
 		<div class='share'></div>
 		<div class='back'></div>
-    </div>
+    </div> -->
 	<div class='user'>
-		<p class='text'>荷塘小炒</p>
+		<p class='text'>{{cooks.kPDishName}}</p>
 		<div class='look'>
 			<div class='line left'></div>
 			<div class='box'>
@@ -35,11 +36,11 @@
 			<div class='line right'></div>
 		</div>
 		<div class='info'>
-			<div class='leader'><img src='assets/images/appShare/leader.jpg' alt=''></div>
-			<div class='name'>莉莉</div>
-			<div class='name'>04月06日 17:49</div>
+			<div class='leader'><img ng-src='{{cooks.kPIconUrl}}' alt=''></div>
+			<div class='name'>{{cooks.kPNickName}}</div>
+			<div class='name'>{{cooks.kPCreateTime | date}}</div>
 		</div>
-		<p class='desc'>夏天来了要吃清淡一点</p>
+		<p class='desc'>{{cooks.kBDescription}}</p>
 	</div>
 	<div class='title'>
 		<span class="img material"></span>
@@ -47,21 +48,9 @@
 	</div>
 	<div class='table'>
 		<table class='list'>
-			<tr>
-				<td>莲藕</td>
-				<td>250g</td>
-			</tr>
-			<tr>
-				<td>荷兰豆</td>
-				<td>100g</td>
-			</tr>
-			<tr>
-				<td>胡萝卜</td>
-				<td>一根</td>
-			</tr>
-			<tr>
-				<td>木耳</td>
-				<td>一把</td>
+			<tr ng-repeat='x in cooks.kBFoodMaterials'>
+				<td>{{x.kBFName}}</td>
+				<td>{{x.kBFQuantity}}</td>
 			</tr>
 		</table>
 	</div>
@@ -71,17 +60,9 @@
 	</div>
 	<div class='content'>
 		<ul>
-			<li>
-				<img src='assets/images/appShare/01.jpg' alr=''>
-				<p>1. 莲藕去皮洗净切薄片，清水滴入一匙白醋浸泡十分钟莲藕不会变色</p>
-			</li>
-			<li>
-				<img src='assets/images/appShare/02.jpg' alr=''>
-				<p>2. 木耳用冷水泡发，荷兰豆去丝掐头去尾洗净，胡萝卜洗净切菱形片</p>
-			</li>
-			<li>
-				<img src='assets/images/appShare/03.jpg' alr=''>
-				<p>3. 锅中烧水，水热加入一匙盐一匙油分别放入荷兰豆，莲藕，木耳和胡萝卜根据不同食材选择焯水时间</p>
+			<li ng-repeat='x in cooks.kPPhotos'>
+				<img ng-src='{{x.kPhotoUrl}}' alr=''>
+				<p>{{x.kPhotoSerialNum + 1}}.{{x.kPhotoDescription}}</p>
 			</li>
 		</ul>
 	</div>
@@ -89,7 +70,7 @@
 		<span class="img remind"></span>
 		小贴士
 	</div>
-	<p class='remindContent'>1.莲藕加入一匙白醋使莲藕不易变色。2.焯水时间加入油和盐可以更好的保留蔬菜的营养也可以让菜品色泽更鲜艳。3.焯水时间不宜太长</p>
+	<p class='remindContent' ng-repeat='x in cooks.kBTips'>{{x}}</p>
 	<div class='more'>
 		<div class='line left'></div>
 		<div class='line right'></div>
@@ -101,19 +82,25 @@
 		<img src='assets/images/appShare/2.jpg' alt=''>
 		<img src='assets/images/appShare/3.jpg' alt=''>
 	</div>
-	<div class='footer'>
-		<div class='box'>
-			<div class='talk'>
-				<div class='img'></div>
-				<div class='p'>评论</div>
-			</div>
-			<div class='collection'><span class='collectionTxt'>收藏</span></div>
-			<div class='photo'>
-				<div class='top'></div>
-				<p class='p'>上传作品</p>
-			</div>
-		</div>
-	</div>
+<!-- 	<div class='commentTitle'>TA们都评价了</div>
+	<ul class='commentBox'>
+		<li>
+			<div class='leader'><img src='assets/images/appShare/leader.jpg' alt=''></div>
+			<div class='textB'>大卫</div>
+			<div class='text'>好漂亮呢！</div>
+			<div class='textBottom'>1分钟前</div>
+		</li>
+		<li>
+			<div class='leader'><img src='assets/images/appShare/leader.jpg' alt=''></div>
+			<div class='textB'>猫叔</div>
+			<div class='text'>棒棒的！</div>
+			<div class='textBottom'>一天前</div>
+		</li>
+	</ul>	
+	<div class='comment'>
+		<div class='right'>发布</div>
+		<div class='left'>我想说两句</div>
+	</div> -->
 </div> 
 </body>
 </html>
