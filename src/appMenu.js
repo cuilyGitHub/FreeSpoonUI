@@ -33,11 +33,19 @@ app.controller('MenuController', function($location, $scope, $http){
 		return;
 	}
 	id=JSON.stringify(id);
-	$http.post('http://218.240.151.116:22183/api/user/getsharecuisine',id)
+	$http.post('http://www.yijiayinong.com/cookbook/api/user/getsharecuisine',id)
 	.success(function(data){
 		if(!data.message=='get_success'){
 			return;
 		}
 		$scope.cooks=data.result.cuisinebooks;
-	})
+	});
+
+	$http.post('http://www.yijiayinong.com/cookbook/api/user/getmorecuisine',id)
+	.success(function(data){
+		if(!data.message=='get_success'){
+			return;
+		}
+		$scope.moredata=data.result.cuisinebooks;
+	});
 });

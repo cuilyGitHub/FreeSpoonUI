@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<link rel='stylesheet' type='text/css' href='../assets/css/appshare.css'>
-    <title>菜谱详情</title>	
+    <title>作品详情</title>	
 	 <script type="text/javascript">
 		var winW = document.documentElement.clientWidth;
         var winH = document.documentElement.clientHeight;
@@ -74,13 +74,19 @@
 	<div class='more'>
 		<div class='line left'></div>
 		<div class='line right'></div>
-		<div class='leader'><img src='assets/images/appShare/leader.jpg' alt=''></div>
-		<p>莉莉的更多菜谱</p>
+		<div class='leader'><img ng-src="{{'http://www.yijiayinong.com/cookbook/api/user/getimage?imagemd5='+cooks.kBIconUrl}}" alt=''></div>
+		<p>{{cooks.kPNickName}}更多菜谱</p>
 	</div>
 	<div class='menu'>
-		<img src='assets/images/appShare/1.jpg' alt=''>
-		<img src='assets/images/appShare/2.jpg' alt=''>
-		<img src='assets/images/appShare/3.jpg' alt=''>
+		<table>
+			<tr>
+				<td ng-repeat='m in moredata'>
+				<div class='bg'></div>
+				<span>{{m.kBDishName}}</span>
+				<img ng-src="{{'http://www.yijiayinong.com/cookbook/api/user/getimage?imagemd5='+m.kBFrontCoverUrl}}" alt=''>
+				</td>
+			</tr>
+		</table>
 	</div>
 <!-- 	<div class='commentTitle'>TA们都评价了</div>
 	<ul class='commentBox'>

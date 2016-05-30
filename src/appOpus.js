@@ -26,7 +26,7 @@ app.config(function($locationProvider){
 	});
 });	
 	
-app.controller('OpusController', function($scope, $http){
+app.controller('OpusController', function($location, $scope, $http){
 	var id=$location.search();
 	if(!id.cookerid || !id.cookBookId){
 		alert('id不存在');
@@ -39,5 +39,13 @@ app.controller('OpusController', function($scope, $http){
 			return;
 		}
 		$scope.cooks=data.result.products;
-	})
+	});
+	
+	$http.post('http://www.yijiayinong.com/cookbook/api/user/getmorecuisine',id)
+	.success(function(data){
+		if(!data.message=='get_success'){
+			return;
+		}
+		$scope.moredata=data.result.cuisinebooks;
+	});
 });

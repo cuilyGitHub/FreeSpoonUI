@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<link rel='stylesheet' type='text/css' href='../assets/css/user.css'
+	<link rel='stylesheet' type='text/css' href='../assets/css/delAddress.css'
     <title></title>	
 	 <script type="text/javascript">
 		var winW = document.documentElement.clientWidth;
@@ -17,27 +17,31 @@
 </head>
 <body>
 	<div class="header">
-		<div class="text">个人中心</div>	
+		<span class="ico back"></span>
+		<div class='right'>保存</div>
+		<div class="text">修改地址</div>	
    </div>
    <div class='content'>
 		<ul>
 			<li class='box'>
-				<div class='left text'>我的订单</div>
+				<div class='left'>收货人</div>
+				<input type='text' placeholder='填写收货人姓名'/>
 			</li>
 			<li class='box'>
-				<div class='left adds'>收货地址</div>
+				<div class='left'>联系电话</div>
+				<input type='tel' placeholder='填写联系电话'/>
 			</li>
 			<li class='box'>
-				<div class='left money_ico'>我的余额</div>
-				<div class='money'>￥999</div>
-			</li>
-			<li class='box'>
-				<div class='left phone'>绑定手机</div>
-				<!-- <div class='bound'>去绑定</div> -->
-				<div class='tel'>15209633819</div>
+				<div class='left'>收货地址</div>
+				<input type='text' placeholder='填写收货地址'/>
 			</li>
 		</ul>
    </div>
+   <div  class="button update">
+        <div class="select">
+        <a class="text" href="javascript:void(0);" >删除地址</a>
+        </div>
+    </div>
 </div> 
 </body>
 </html>

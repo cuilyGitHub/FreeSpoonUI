@@ -91,11 +91,13 @@ module.exports = function(app){
 				cb(null);
 				return;
 			}
-			$http.post("http://yijiayinong.com/api/batch", {
-				batchId: batchId,
+			$http.post("http://yijiayinong.com/api/auth/weixin_mp/", {
+			//$http.post("http://yijiayinong.com/api/batch", {
+				//batchId: batchId,
 				code: code,
 			})
 			.success(function(data){
+				console(data);
 				if(!that.basicVerify(data)){
 					cb(null);
 					return;
