@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel='stylesheet' type='text/css' href='../assets/css/register.css'
+    <title></title>	
+	 <script type="text/javascript">
+		var winW = document.documentElement.clientWidth;
+        var winH = document.documentElement.clientHeight;
+        if(winW > winH){
+			document.documentElement.style.fontSize = winW / 6.4 + "px";
+        } else {
+			document.documentElement.style.fontSize = 50 + "px";
+        }
+    </script>
+</head>
+<body>
+	<div class="header">
+		<span class="ico back"></span>
+		<div class="text">绑定手机</div>	
+   </div>
+   <div class='content'>
+		<ul>
+			<li class='box'>
+				<div class='name'>手机号</div>
+				<div class='verifyButton'>获取验证码</div>
+				<input type='tel' placeholder='请输入手机号'>
+			</li>
+			<li class='box'>
+				<div class='name'>验证码</div>
+				<div class='del'></div>
+				<input type='tel' placeholder='请输入验证码'>
+			</li>
+		</ul>
+   </div>
+   <div  class="button update">
+        <div class="select">
+        <a class="text" href="javascript:void(0);" >确定</a>
+        </div>
+    </div>
+</div> 
+</body>
+</html>

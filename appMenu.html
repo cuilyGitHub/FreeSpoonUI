@@ -36,7 +36,7 @@
 			<div class='line right'></div>
 		</div>
 		<div class='info'>
-			<div class='leader'><img src='assets/images/appShare/leader.jpg' alt=''></div>
+			<div class='leader'><img ng-src="{{'http://www.yijiayinong.com/cookbook/api/user/getimage?imagemd5='+cooks.kBIconUrl}}" alt=''></div>
 			<div class='name'>{{cooks.kBNickName}}</div>
 			<div class='name'>{{cooks.kBCreateTime | date}}</div>
 		</div>
@@ -61,7 +61,7 @@
 	<div class='content'>
 		<ul>
 			<li ng-repeat='x in cooks.kBCookSteps'>
-				<img ng-src='{{x.kPhotoUrl}}' alr=''>
+				<img  ng-src="{{'http://www.yijiayinong.com/cookbook/api/user/getimage?imagemd5='+x.kPhotoUrl}}" alr=''>
 				<p>{{x.kPhotoSerialNum + 1}}.{{x.kPhotoDescription}}</p>
 			</li>
 		</ul>
@@ -74,14 +74,21 @@
 	<div class='more'>
 		<div class='line left'></div>
 		<div class='line right'></div>
-		<div class='leader'><img src='assets/images/appShare/leader.jpg' alt=''></div>
-		<p>莉莉的更多菜谱</p>
+		<div class='leader'><img ng-src="{{'http://www.yijiayinong.com/cookbook/api/user/getimage?imagemd5='+cooks.kBIconUrl}}" alt=''></div>
+		<p>{{cooks.kBNickName}}的更多菜谱</p>
 	</div>
-	 <div class='menu'>
-		<img src='assets/images/appShare/1.jpg' alt=''>
-		<img src='assets/images/appShare/2.jpg' alt=''>
-		<img src='assets/images/appShare/3.jpg' alt=''>
-	</div>
+	<table class='menu'>
+		<tr>
+			<!-- <td ng-repeat='m in more' ng-init="myHref='http://www.yijiayinong.com/appMenu.html?'+'CookerId='+m.kBCookerId+'&'+'CookDataId='+m.kBCookBookId"> -->
+			<td ng-repeat='m in more' ng-click='jump(m)'>
+				<a href='http://www.baidu.com' ng-href="{{myHref}}">
+					<span class='disName'>{{m.kBDishName}}</span>
+					<div class='bg'></div>
+					<img ng-src="{{'http://www.yijiayinong.com/cookbook/api/user/getimage?imagemd5='+m.kBFrontCoverUrl}}" alt=''>
+				</a>	
+			</td>
+		</tr>		
+	</table>
 	<!--<div class='footer'>
 		<div class='box'>
 			<div class='talk'>

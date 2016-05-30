@@ -282,72 +282,39 @@ body {
   font-weight: bold;
   color: #ff9934;
 }
-.leader {
-  width: 100%;
-  height: 1.5rem;
-  margin-top: 1rem;
-  background: white;
-  border-bottom: 1px solid #ccc;
-}
-.leader .pop {
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 0.25rem 0.3rem;
-  float: left;
-}
-.leader .pop img {
-  width: 1rem;
-  height: 1rem;
-}
-.leader .nikeName {
-  height: 1.5rem;
-  line-height: 1.5rem;
-  font-size: 0.35rem;
-}
 .content {
-  width: 100%;
+  margin-top: 1rem;
 }
-.content .box .row {
-  width: 100%;
-  height: 1rem;
+.content .box {
   border-bottom: 1px solid #ccc;
 }
-.content .box .row .model {
+.content .box .left {
+  width: 2rem;
   height: 1rem;
   line-height: 1rem;
-  padding-left: 1rem;
-  font-size: 0.3rem;
+  text-align: left;
+  box-sizing: border-box;
+  padding-left: 0.5rem;
+  float: left;
 }
-.content .box .row .model .button {
-  width: 1.5rem;
-  height: 0.6rem;
-  background: #ccc;
-  line-height: 0.6rem;
-  text-align: center;
-  border-radius: 10px;
-  float: right;
-  margin: 0.2rem;
+.content .box .right {
+  min-width: 4rem;
+  height: 1rem;
+  line-height: 1rem;
+  margin-left: 2rem;
+  text-align: left;
+  color: #8E8A8A;
 }
-.content .box .row .model .txt {
-  color: #ff9934;
-  float: right;
-  margin-right: 0.3rem;
+.content .box .long {
+  min-height: 1rem;
+  line-height: 0.4rem;
+  padding: 0.1rem;
+  box-sizing: border-box;
+  color: #8E8A8A;
 }
-.content .box .row .adds {
-  background: url('../images/adds.png') no-repeat 0.25rem;
-  background-size: 0.5rem;
+.update {
+  margin-top: 0.5rem;
 }
-.content .box .row .phone {
-  background: url('../images/phone.png') no-repeat 0.35rem;
-  background-size: 0.3rem;
-}
-.content .box .row .text {
-  background: url('../images/text.png') no-repeat 0.35rem;
-  background-size: 0.35rem;
-}
-.content .box .row .money {
-  background: url('../images/money.png') no-repeat 0.35rem;
-  background-size: 0.4rem;
+.update .select .text {
+  background: #BBB;
 }

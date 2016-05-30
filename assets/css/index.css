@@ -125,6 +125,13 @@ body {
   vertical-align: middle;
   width: 100%;
 }
+.header .right {
+  float: right;
+  color: #599c3d;
+  font-size: 0.3rem;
+  position: absolute;
+  right: 0.3rem;
+}
 /*通用button*/
 .button {
   bottom: 0;

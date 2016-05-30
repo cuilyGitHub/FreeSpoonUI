@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel='stylesheet' type='text/css' href='../assets/css/add.css'
+    <title></title>	
+	 <script type="text/javascript">
+		var winW = document.documentElement.clientWidth;
+        var winH = document.documentElement.clientHeight;
+        if(winW > winH){
+			document.documentElement.style.fontSize = winW / 6.4 + "px";
+        } else {
+			document.documentElement.style.fontSize = 50 + "px";
+        }
+    </script>
+</head>
+<body>
+	<div class="header">
+		<span class="ico back"></span>
+		<span class='right'>保存</span>
+		<div class="text">添加新地址</div>	
+   </div>
+   <div class='content'>
+		<ul>
+			<li class='box'>
+				<div class='text'>收货人</div>
+				<input type='text' name='name' placeholder='请输入'>
+			</li>
+			<li class='box'>
+				<div class='text'>联系电话</div>
+				<input type='tel' name='tel' placeholder='请输入'>
+			</li>
+			<li class='box'>
+				<div class='text'>收货地址</div>
+				<input type='text' name='address' placeholder='请输入'>
+			</li>
+		</ul>
+   </div>
+</div> 
+</body>
+</html>

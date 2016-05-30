@@ -282,72 +282,53 @@ body {
   font-weight: bold;
   color: #ff9934;
 }
-.leader {
-  width: 100%;
-  height: 1.5rem;
-  margin-top: 1rem;
-  background: white;
-  border-bottom: 1px solid #ccc;
-}
-.leader .pop {
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 0.25rem 0.3rem;
-  float: left;
-}
-.leader .pop img {
-  width: 1rem;
-  height: 1rem;
-}
-.leader .nikeName {
-  height: 1.5rem;
-  line-height: 1.5rem;
-  font-size: 0.35rem;
-}
 .content {
-  width: 100%;
+  margin-top: 1rem;
 }
-.content .box .row {
-  width: 100%;
-  height: 1rem;
+.content .box {
+  height: 1.2rem;
   border-bottom: 1px solid #ccc;
+  box-sizing: border-box;
 }
-.content .box .row .model {
-  height: 1rem;
-  line-height: 1rem;
-  padding-left: 1rem;
+.content .box .name {
+  float: left;
+  width: 1.5rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  text-align: center;
   font-size: 0.3rem;
 }
-.content .box .row .model .button {
-  width: 1.5rem;
-  height: 0.6rem;
-  background: #ccc;
-  line-height: 0.6rem;
+.content .box input {
+  width: 3rem;
+  height: 0.7rem;
+  line-height: 0.7rem;
+  border: none;
+  font-size: 0.3rem;
+  margin: 0.25rem 0;
+}
+.content .box .verifyButton {
+  width: 1.7rem;
+  height: 0.7rem;
+  float: right;
+  line-height: 0.7rem;
+  margin: 0.25rem 0.2rem 0.25rem 0;
+  background: #ff9934;
+  color: white;
   text-align: center;
   border-radius: 10px;
-  float: right;
-  margin: 0.2rem;
+  font-size: 0.3rem;
 }
-.content .box .row .model .txt {
-  color: #ff9934;
-  float: right;
-  margin-right: 0.3rem;
-}
-.content .box .row .adds {
-  background: url('../images/adds.png') no-repeat 0.25rem;
+.content .box .del {
+  background: url('../images/verify_del.png') no-repeat center;
   background-size: 0.5rem;
+  float: right;
+  width: 1rem;
+  height: 1rem;
+  margin: 0.1rem 0.2rem;
 }
-.content .box .row .phone {
-  background: url('../images/phone.png') no-repeat 0.35rem;
-  background-size: 0.3rem;
+.update {
+  margin-top: 1rem;
 }
-.content .box .row .text {
-  background: url('../images/text.png') no-repeat 0.35rem;
-  background-size: 0.35rem;
-}
-.content .box .row .money {
-  background: url('../images/money.png') no-repeat 0.35rem;
-  background-size: 0.4rem;
+.update .select .text {
+  background: #ff9934;
 }

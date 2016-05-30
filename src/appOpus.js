@@ -26,14 +26,14 @@ app.config(function($locationProvider){
 	});
 });	
 	
-app.controller('OpusController', function($scope, $http){
+app.controller('OpusController', function($location, $scope, $http){
 	var id=$location.search();
-	if(!id.cookerid || !id.cookBookId){
+	if(!id.CookerId || !id.CookDataId){
 		alert('id不存在');
 		return;
 	}
 	id=JSON.stringify(id);
-	$http.post('http://192.168.211.133:8083/api/user/getshareproduct',id)
+	$http.post('http://www.yijiayinong.com/cookbook/api/user/getshareproduct',id)
 	.success(function(data){
 		if(!data.message=='get_success'){
 			return;
