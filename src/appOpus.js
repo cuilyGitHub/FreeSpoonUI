@@ -28,12 +28,12 @@ app.config(function($locationProvider){
 	
 app.controller('OpusController', function($location, $scope, $http){
 	var id=$location.search();
-	if(!id.cookerid || !id.cookBookId){
+	if(!id.CookDataId || !id.CookDataId){
 		alert('id不存在');
 		return;
 	}
 	id=JSON.stringify(id);
-	$http.post('http://192.168.211.133:8083/api/user/getshareproduct',id)
+	$http.post('http://www.yijiayinong.com/cookbook/api/user/getshareproduct',id)
 	.success(function(data){
 		if(!data.message=='get_success'){
 			return;
@@ -43,9 +43,13 @@ app.controller('OpusController', function($location, $scope, $http){
 	
 	$http.post('http://www.yijiayinong.com/cookbook/api/user/getmorecuisine',id)
 	.success(function(data){
-		if(!data.message=='get_success'){
+		if(data.message!='get_success'){
 			return;
 		}
 		$scope.moredata=data.result.cuisinebooks;
 	});
+	$scope.jump=function(data){
+		$location.search({CookerId:data.kBCookerId,CookDataId:data.kBCookBookId});
+		window.location.reload();
+	}
 });

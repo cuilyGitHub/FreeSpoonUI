@@ -14,7 +14,7 @@
 			document.documentElement.style.fontSize = 50 + "px";
         }
     </script>
-	<script type="text/javascript" src="assets/js/appMenu.js"></script>
+	<script type="text/javascript" src="assets/js/appMenu.min.js"></script>
 </head>
 <body ng-app='app' ng-controller='MenuController'>
 <!--    <div class="header">
@@ -80,7 +80,7 @@
 	<div class='menu'>
 		<table>
 			<tr>
-				<td ng-repeat='m in moredata'>
+				<td ng-repeat='m in moredata' ng-click='jump(m)'>
 				<div class='bg'></div>
 				<span>{{m.kBDishName}}</span>
 				<img ng-src="{{'http://www.yijiayinong.com/cookbook/api/user/getimage?imagemd5='+m.kBFrontCoverUrl}}" alt=''>

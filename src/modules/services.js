@@ -50,6 +50,8 @@ module.exports = function(app){
 		
 		var that = this;
 		
+		this.domain = 'http://yijiayinong.com/api/batch';
+		
 		this.basicVerify = function(data){
 			if(!data || !data.errcode){
 				return false;
@@ -77,6 +79,7 @@ module.exports = function(app){
 		}
 		
 		this.requestBatch = function(cb){
+			var domain='http://yijiayinong.com/api/batch';
 			if(!!that.lastBatch){
 				cb(that.lastBatch);
 				return;
@@ -91,13 +94,13 @@ module.exports = function(app){
 				cb(null);
 				return;
 			}
-			$http.post("http://yijiayinong.com/api/auth/weixin_mp/", {
+			//$http.post("http://yijiayinong.com/api/auth/weixin", {
 			//$http.post("http://yijiayinong.com/api/batch", {
-				//batchId: batchId,
+			$http.post(domain, {	
+				batchId: batchId,
 				code: code,
 			})
 			.success(function(data){
-				console(data);
 				if(!that.basicVerify(data)){
 					cb(null);
 					return;

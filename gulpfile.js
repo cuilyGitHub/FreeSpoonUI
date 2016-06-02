@@ -49,7 +49,7 @@ gulp.task('vendor', function(){
 		.pipe(gulp.dest('./assets'));
 });
 
-gulp.task('browserify', ['browserify-app', 'browserify-confirm','browserify-appMenu','browserify-appOpus'], function(){
+gulp.task('browserify', ['browserify-app' ,'browserify-appMenu', 'browserify-user', 'browserify-appOpus'], function(){
 
 });
 
@@ -62,14 +62,6 @@ gulp.task('browserify-app', function(){
 		.pipe(gulp.dest('./assets/js/'))
 });
 
-gulp.task('browserify-confirm', function(){
-	return browserify('./src/confirm.js', { debug: true })
-		.transform(babelify)
-		.bundle()
-		.pipe(source('bundle.js'))
-		.pipe(rename({ basename: 'confirm', extname: '.js'}))
-		.pipe(gulp.dest('./assets/js/'))
-});
 
 gulp.task('browserify-appMenu', function(){
 	return browserify('./src/appMenu.js', { debug: true })
@@ -77,6 +69,15 @@ gulp.task('browserify-appMenu', function(){
 		.bundle()
 		.pipe(source('bundle.js'))
 		.pipe(rename({ basename: 'appMenu', extname: '.js'}))
+		.pipe(gulp.dest('./assets/js/'))
+});
+
+gulp.task('browserify-user', function(){
+	return browserify('./src/user.js', { debug: true })
+		.transform(babelify)
+		.bundle()
+		.pipe(source('bundle.js'))
+		.pipe(rename({ basename: 'user', extname: '.js'}))
 		.pipe(gulp.dest('./assets/js/'))
 });
 

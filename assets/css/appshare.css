@@ -71,9 +71,6 @@ td {
   float: right;
   margin-right: 0.1rem;
 }
-.user {
-  height: 5rem;
-}
 .user .text {
   height: 1.5rem;
   line-height: 1.5rem;

@@ -48,4 +48,8 @@ app.controller('MenuController', function($location, $scope, $http){
 		}
 		$scope.moredata=data.result.cuisinebooks;
 	});
+	$scope.jump=function(data){
+		$location.search({CookerId:data.kBCookerId,CookDataId:data.kBCookBookId});
+		window.location.reload();
+	}
 });
