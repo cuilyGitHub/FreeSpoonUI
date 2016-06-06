@@ -14,7 +14,6 @@ var registerServices = require('./modules/services');
 var registerFilters = require('./modules/filters');
 var registerControllers = require('./modules/controllers');
 
-
 var app = angular.module('app', ['ngRoute']);
 
 // register angular components

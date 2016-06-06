@@ -2,6 +2,8 @@
 
 'use strict';
 
+var publicValue=require('./publicValue');
+
 module.exports = function(app){
 	
 	app.service('$wxBridge', function($http, $location){
@@ -50,7 +52,7 @@ module.exports = function(app){
 		
 		var that = this;
 		
-		this.domain = 'http://yijiayinong.com/api/batch';
+		//this.domain = 'http://yijiayinong.com/';
 		
 		this.basicVerify = function(data){
 			if(!data || !data.errcode){
@@ -79,7 +81,6 @@ module.exports = function(app){
 		}
 		
 		this.requestBatch = function(cb){
-			var domain='http://yijiayinong.com/api/batch';
 			if(!!that.lastBatch){
 				cb(that.lastBatch);
 				return;
@@ -95,8 +96,7 @@ module.exports = function(app){
 				return;
 			}
 			//$http.post("http://yijiayinong.com/api/auth/weixin", {
-			//$http.post("http://yijiayinong.com/api/batch", {
-			$http.post(domain, {	
+			$http.post(publicValue.domain+"batch", {	
 				batchId: batchId,
 				code: code,
 			})
@@ -128,7 +128,7 @@ module.exports = function(app){
 				cb(null);
 				return;
 			}
-			$http.post("http://yijiayinong.com/api/checkout", {
+			$http.post(publicValue.domain+"checkout", {
 				batchId: batchId,
 				openId: that.openId
 			})
@@ -153,7 +153,7 @@ module.exports = function(app){
 				cb(null);
 				return;
 			}
-			$http.post("http://yijiayinong.com/api/orders", {
+			$http.post(publicValue.domain+"orders", {
 				openId: that.openId
 			})
 			.success(function(data){
@@ -173,7 +173,7 @@ module.exports = function(app){
 		};
 		
 		this.requestOrder = function(orderId, cb){
-			$http.post("http://yijiayinong.com/api/order", {
+			$http.post(publicValue.domain+"order", {
 				orderId: orderId
 			})
 			.success(function(data){
@@ -193,7 +193,7 @@ module.exports = function(app){
 		};
 		
 		this.undo = function(orderId, cb){
-			$http.post("http://yijiayinong.com/api/undo", {
+			$http.post(publicValue.domain+"undo", {
 				orderId: orderId
 			})
 			.success(function(data){
@@ -209,7 +209,7 @@ module.exports = function(app){
 		};
 				
 		this.requestUnifiedOrder = function(requestData, cb){
-			$http.post("http://yijiayinong.com/api/unifiedOrder", requestData)
+			$http.post(publicValue.domain+"unifiedOrder", requestData)
 			.success(function(data){
 				if(!that.basicVerify(data)){
 					cb(null);
@@ -227,7 +227,7 @@ module.exports = function(app){
 		};
 				
 		this.requestOrderAmount = function(orderId, cb){
-			$http.post("http://yijiayinong.com/api/orderAmount", {
+			$http.post(publicValue.domain+"orderAmount", {
 				orderId: orderId
 			})
 			.success(function(data){
@@ -247,7 +247,7 @@ module.exports = function(app){
 		};
 
 		this.getWXShareInfo = function(batchId, cb){
-			$http.post('http://yijiayinong.com/api/shareInfo', {
+			$http.post(publicValue.domain+'shareInfo', {
 				batchId: batchId
 			})
 			.success(function(data){
@@ -292,7 +292,7 @@ module.exports = function(app){
 				cb(null);
 				return;
 			}
-			$http.post("http://yijiayinong.com/api/confirm", {
+			$http.post(publicValue.domain+"confirm", {
 				batchId: batchId,
 				distId: distId,
 				code: code
