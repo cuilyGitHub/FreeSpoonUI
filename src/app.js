@@ -30,6 +30,22 @@ app.config(function($routeProvider, $locationProvider){
 	$locationProvider.html5Mode(true);
 	
 	$routeProvider
+		.when('payment',{
+			templateUrl: 'html/payment.html',
+			controller: 'PaymentController',
+		})
+		.when('record',{
+			templateUrl: 'html/record.html',
+			controller: 'RecordController',
+		})
+		.when('goodsDetails',{
+			templateUrl: 'html/goodsDetails.html',
+			controller: 'GoodsDetailsController',
+		})
+		.when('freeIndex',{
+			templateUrl: 'html/freeIndex.html',
+			controller: 'FreeIndexController',
+		})
 		.when('/', {
 			templateUrl: 'html/index.html',
 			controller: 'IndexController',

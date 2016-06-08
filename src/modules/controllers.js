@@ -206,7 +206,6 @@ module.exports = function(app){
 				$location.path('/order/{orderId}'.assign({orderId: orderId}));
 			});
 		}
-		
 	});
 
 	app.controller('OrderController', function($scope, $location, $data, $history, $wxBridge, orderInfo){

@@ -11,10 +11,8 @@
     <div class="board">
         <div class="left" >
             <div class="sculpture"><img ng-src="{{sponsor.img}}"  alt=""></div>
-            <div class="chief">
-                <p><span>{{sponsor.name}}</span>帮主</p>
-                <span class="chief_in">{{sponsor.note}}</span>
-            </div>
+			<p class='leaderName'><span>{{sponsor.name}}</span>帮主</p>
+			<p class="leaderAddress">上地</p>
         </div> 
         <div class="right" >
             <div class="audio"></div>
@@ -36,10 +34,21 @@
                         </div>
                         <p>{{x.describle}}</p>
                     </div>
-                    <div class="between clearfloat">
+                    <!-- <div class="between clearfloat">
                         <span>已团{{x.commodityCount}}箱</span>
                         <span>已有{{x.peopleCount}}人参团</span>
-                    </div>
+                    </div> -->
+					<div class='buyer'>
+						<div class='right'>999</div>
+						<div class='left'>
+							<div class='headPortrait'><img src='assets/image/headerPri.jpg' alt='' /></div>
+							<div class='headPortrait'><img src='assets/image/headerPri.jpg' alt='' /></div>
+							<div class='headPortrait'><img src='assets/image/headerPri.jpg' alt='' /></div>
+							<div class='headPortrait'><img src='assets/image/headerPri.jpg' alt='' /></div>
+							<div class='headPortrait'><img src='assets/image/headerPri.jpg' alt='' /></div>
+							<div class='headPortrait'><img src='assets/image/headerPri.jpg' alt='' /></div>
+						</div>
+					</div>
                     <div class="last ">
                         <div class="counter">
                             <a class="block left" href="javascript:void(0);" ng-click="removeCommodity(x);">-</a>
@@ -49,11 +58,11 @@
                         <div class="regulator">
                             <span class="groupon_icon"><img src="assets/images/poper.png" alt=""></span>
                             <div class="groupon">
-                                <span>团购价</span>
                                 <span>￥{{x.price | int}}</span>
                                 <span>.</span>
                                 <span>{{x.price | fraction}}</span>
                             </div>
+							<div class='market_price'>999.00</div>
                         </div>
                     </div>
                  </div>
@@ -66,7 +75,7 @@
             <div class="shop"><span class="__amount">{{totalNum}}</span></div>
             <div class="shop_info">
                 <p class="line1">合计:<span class="__total">￥{{totalPrice | convert}}</span></p>
-                <p class="line2">不含运费</p>
+                <!-- <p class="line2">不含运费</p> -->
             </div>
         </div>
     </div>

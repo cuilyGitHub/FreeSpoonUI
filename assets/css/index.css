@@ -74,6 +74,11 @@ body {
   right: 0;
   overflow-y: auto;
 }
+/*通用卡片*/
+.card {
+  margin: 0.2rem 0;
+  background: white;
+}
 /*弹出层遮罩*/
 .matter {
   display: none;
@@ -140,19 +145,15 @@ body {
   width: 100%;
   z-index: 1100;
 }
-.button .select {
-  width: 100%;
-  height: 0.9rem;
-  background: white;
-}
-.button .select .text {
-  background: #599c3d;
-  margin: 0.1rem 0.1rem;
+.button .text {
+  background: #ff9934;
   color: white;
   text-align: center;
   display: block;
-  height: 0.8rem;
-  line-height: 0.8rem;
+  height: 1rem;
+  line-height: 1rem;
+  font-size: 0.35rem;
+  font-weight: normal;
 }
 .fixed {
   position: fixed;
@@ -183,21 +184,28 @@ body {
 }
 /*标题通栏*/
 .title {
+  height: .5rem;
+  line-height: .5rem;
+  padding: .2rem .3rem;
+  font-size: 0.35rem;
+  font-weight: normal;
+}
+.title_old {
   background: #f0f2f5;
   height: 0.5rem;
   line-height: 0.5rem;
   padding: 0.2rem 0.3rem;
 }
-.title span {
+.title_old span {
   display: inline-block;
 }
-.title .adds {
+.title_old .adds {
   background: url("../images/adds.png") no-repeat center;
   background-size: 0.4rem;
   width: 0.4rem;
   height: 0.4rem;
 }
-.title .shop {
+.title_old .shop {
   background: url("../images/1.png") no-repeat center;
   background-size: 0.4rem;
   width: 0.4rem !important;
@@ -205,17 +213,17 @@ body {
   line-height: 0.4rem !important;
   margin: 0.05rem 0;
 }
-.title .message {
+.title_old .message {
   background: url("../images/pop.png") no-repeat center;
   background-size: 0.4rem;
 }
-.title .img {
+.title_old .img {
   width: 0.4rem;
   height: 0.4rem;
   line-height: 0.4rem;
   float: left;
 }
-.title .text {
+.title_old .text {
   height: 0.4rem;
   line-height: 0.4rem;
   font-size: 0.25rem;
@@ -225,7 +233,7 @@ body {
 /*三列列表*/
 .list {
   background: white;
-  margin: 0.2rem 0.25rem;
+  margin: 0 0.25rem;
   border-bottom: 1px solid #CCCCCC;
   padding-bottom: 0.3rem;
 }
@@ -300,9 +308,9 @@ body {
 }
 #index .board .left .sculpture {
   overflow: hidden;
-  width: 0.8rem;
-  height: 0.8rem;
-  margin: 0.2rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin: 0.3rem;
   float: left;
   border-radius: 50%;
 }
@@ -310,27 +318,32 @@ body {
   max-width: 100%;
   height: 100%;
 }
-#index .board .left .chief {
-  height: 1rem;
-  padding: 0.1rem 0;
-}
-#index .board .left .chief p {
+#index .board .left .leaderName {
+  height: 0.7rem;
+  line-height: 0.7rem;
   color: white;
-  margin-top: 0.1rem;
+  margin-top: 0.3rem;
+  font-size: 0.3rem;
+  font-weight: normal;
 }
-#index .board .left .chief p span {
+#index .board .left .leaderName span {
   color: white;
   font-size: 0.3rem;
   margin: 0 0.1rem;
+  font-size: 0.4rem;
+  font-weight: normal;
 }
-#index .board .left .chief .chief_in {
-  padding: 0.1rem 0.1rem 0 0.1rem;
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 45%;
+#index .board .left .leaderAddress {
+  height: 0.7rem;
+  line-height: 0.7rem;
+  font-size: 0.3rem;
+  font-weight: normal;
   color: #c8c8c8;
+  background: url('../images/position.png') no-repeat 5px;
+  background-size: 0.3rem;
+  padding-left: 0.5rem;
+  margin-left: 2rem;
+  margin-bottom: 0.3rem;
 }
 #index .board .right {
   position: absolute;
@@ -361,8 +374,8 @@ body {
   padding: 0rem 0.2rem;
 }
 #index .main ul {
-  margin-top: 1.8rem;
-  margin-bottom: 1.6rem;
+  margin-top: 2.6rem;
+  margin-bottom: 2.4rem;
 }
 #index .main ul li {
   margin-bottom: 0.8rem;
@@ -378,24 +391,20 @@ body {
 #index .main ul li .content {
   padding: 0.3rem 0;
 }
-#index .main ul li .first,
-#index .main ul li .between {
+#index .main ul li .first {
   margin: 0 0.2rem;
 }
-#index .main ul li .first div,
-#index .main ul li .between div {
+#index .main ul li .first div {
   position: relative;
   margin-bottom: 0.2rem;
   overflow: hidden;
 }
-#index .main ul li .first div h1,
-#index .main ul li .between div h1 {
+#index .main ul li .first div h1 {
   font-size: 0.3rem;
   font-weight: bold;
   float: left;
 }
-#index .main ul li .first div span,
-#index .main ul li .between div span {
+#index .main ul li .first div span {
   display: inline-block;
   color: #ff9934;
   font-size: 0.2rem;
@@ -404,22 +413,47 @@ body {
   bottom: 0;
   right: 0;
 }
-#index .main ul li .first p,
-#index .main ul li .between p {
+#index .main ul li .first p {
   font-size: 0.25rem;
   font-weight: normal;
   line-height: 170%;
   color: #6D6B6B;
 }
-#index .main ul li .between {
-  height: 1rem;
-  line-height: 1rem;
+#index .main ul li .buyer {
+  height: 1.2rem;
+  line-height: 1.2rem;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  margin: 0.3rem 0.2rem;
   overflow: hidden;
 }
-#index .main ul li .between span {
+#index .main ul li .buyer .left {
+  min-width: 5rem;
+  max-width: 7rem;
+  height: 1.2rem;
+  overflow: hidden;
+  background: url('../images/sale.png') no-repeat left;
+  background-size: 0.7rem;
+  padding-left: 0.7rem;
+}
+#index .main ul li .buyer .left .headPortrait {
+  width: 0.8rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  float: left;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0.2rem 0.1rem;
+}
+#index .main ul li .buyer .left .headPortrait img {
+  height: 0.8rem;
+}
+#index .main ul li .buyer .right {
+  width: 0.5rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  color: #CCCCCC;
   float: right;
-  margin-left: 0.4rem;
-  color: #ff6600;
 }
 #index .main ul li .last .regulator {
   width: 100%;
@@ -444,7 +478,8 @@ body {
   float: left;
   border-radius: 0 3.5rem 3.5rem 0;
   z-index: 101;
-  padding-right: 0.1rem;
+  padding-right: 0.2rem;
+  margin-right: 0.2rem;
 }
 #index .main ul li .last .regulator .groupon span {
   display: inline-block;
@@ -456,13 +491,18 @@ body {
   font-weight: normal;
 }
 #index .main ul li .last .regulator .groupon span:nth-child(1) {
-  margin-left: 0.1rem;
-}
-#index .main ul li .last .regulator .groupon span:nth-child(2) {
   font-size: 0.35rem;
 }
-#index .main ul li .last .regulator .groupon span:nth-child(3) {
+#index .main ul li .last .regulator .groupon span:nth-child(2) {
   margin: 0 -0.01rem;
+}
+#index .main ul li .last .regulator .market_price {
+  height: 0.8rem;
+  line-height: 1.2rem;
+  font-size: 0.3rem;
+  font-weight: normal;
+  color: #c8c8c8;
+  text-decoration: line-through;
 }
 #index .main ul li .last .counter {
   height: 0.55rem;
@@ -513,7 +553,7 @@ body {
   width: 1rem;
   height: 1rem;
   background: url("../images/shop.png") no-repeat center;
-  background-size: 0.7rem;
+  background-size: 0.6rem;
 }
 #index .footer .left .shop span {
   display: none;
@@ -532,18 +572,17 @@ body {
 }
 #index .footer .left .shop_info {
   width: auto;
-  margin-left: 1.2rem;
-  padding: 0.15rem 0;
-  height: 0.7rem;
+  margin-left: 1rem;
+  padding: -0.25rem 0;
+  height: 1.3rem;
 }
-#index .footer .left .shop_info p.line1 {
-  height: 0.4rem;
-  line-height: 0.4rem;
+#index .footer .left .shop_info .line1 {
+  height: 1rem;
+  line-height: 1rem;
   font-size: 0.3rem;
-  font-size: 0.25rem;
   font-weight: bold;
 }
-#index .footer .left .shop_info p.line2 {
+#index .footer .left .shop_info .line2 {
   height: 0.3rem;
   line-height: 0.3rem;
   font-size: 0.2rem;

@@ -292,39 +292,132 @@ body {
   font-weight: bold;
   color: #ff9934;
 }
-#Payment_fail {
-  height: 100%;
-}
-#Payment_fail .main {
-  background: white;
-  height: 100%;
-}
-#Payment_fail .main .fail_box {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin: -50% -1.25rem;
-  width: 2.5rem;
-}
-#Payment_fail .main .fail_box .error {
-  background: url("../images/fail.png") no-repeat center;
-  background-size: 2rem;
-  height: 2.5rem;
-  padding: 0;
-}
-#Payment_fail .main .fail_box .success {
-  background: url("../images/sussce.png") no-repeat center;
-  background-size: 2rem;
-  height: 2.5rem;
-  padding: 0;
-}
-#Payment_fail .main .fail_box p:first-of-type {
+.time {
+  height: 0.5rem;
+  line-height: 0.5rem;
   text-align: center;
-  font-size: 0.5rem;
+  color: orange;
+  background: #f4fdb7;
+  margin-top: 1rem;
 }
-#Payment_fail .main .fail_box p:last-of-type {
-  text-align: center;
-  margin-top: 0.5rem;
+.head {
+  height: 0.8rem;
+  line-height: 0.8rem;
+  font-size: 0.35rem;
+  font-weight: normal;
+  text-align: left;
+}
+.selected {
+  background: url('../images/3.png') no-repeat center;
+  background-size: 0.5rem;
+  border: none !important;
+}
+.info {
+  margin: 0 0.2rem;
+  height: 2.5rem;
+}
+.info .row {
+  height: 1.25rem;
+  line-height: 1.25rem;
+}
+.info .row .words {
+  font-size: 0.35rem;
+  font-weight: normal;
+}
+.info .row .number {
   font-size: 0.3rem;
   font-weight: normal;
+  float: right;
+  color: #6D6B6B;
+}
+.info .row .money {
+  color: #ff9934;
+}
+.info .border {
+  border-bottom: 1px solid #ccc;
+}
+.balance {
+  height: 2.5rem;
+  background: #CCCCCC;
+  padding: 0.25rem 0;
+  box-sizing: border-box;
+}
+.balance .box {
+  height: 2rem;
+  background: white;
+  padding: 0 0.2rem;
+}
+.balance .box .right {
+  width: 1rem;
+  height: 1.2rem;
+  float: right;
+}
+.balance .box .right span {
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin-top: 0.2rem;
+  float: right;
+}
+.balance .box .left {
+  width: auto;
+  height: 1.2rem;
+  padding-right: 1rem;
+  background: url('../images/balance.png') no-repeat 2% 30%;
+  background-size: 0.7rem;
+}
+.balance .box .left .top {
+  height: 0.6rem;
+  line-height: 0.6rem;
+  margin-left: 1rem;
+  font-size: 0.3rem;
+  font-weight: normal;
+}
+.balance .box .left .bottom {
+  height: 0.6rem;
+  margin-left: 1rem;
+  font-size: 0.2rem;
+  color: #6D6B6B;
+}
+.balance .box .success {
+  background: url('../images/balance_selected.png') no-repeat 2% 30% !important;
+  background-size: 0.7rem !important;
+}
+.balance .box .success .bottom {
+  color: #ff9934 !important;
+}
+.mode {
+  height: 5rem;
+  margin: 0 0.2rem;
+}
+.mode .choose {
+  height: 1.2rem;
+  line-height: 1.2rem;
+  padding: 0.2rem 0;
+  box-sizing: border-box;
+}
+.mode .choose img {
+  height: 0.8rem;
+  float: left;
+}
+.mode .choose span {
+  font-size: 0.3rem;
+  margin-left: 1.1rem;
+  font-weight: normal;
+  display: block;
+  height: 0.8rem;
+  line-height: 0.8rem;
+}
+.mode .choose .SelectionBox {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  float: right;
+  margin: 0.15rem 0;
+}
+.boxColor {
+  background: #ff9934 !important;
 }

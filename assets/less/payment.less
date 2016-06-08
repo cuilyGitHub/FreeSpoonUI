@@ -1,0 +1,131 @@
+@import "global";
+@import "component";
+
+.time{
+	height:0.5rem;
+	line-height:0.5rem;
+	text-align:center;
+	color:orange;
+	background:#f4fdb7;
+	margin-top:1rem;
+}
+
+.head{
+	height:0.8rem;
+	line-height:0.8rem;
+	.font_x_large;
+	text-align:left;
+}
+
+.selected{
+	background:url('../images/3.png') no-repeat center;
+	background-size:0.5rem;
+	border: none !important;
+}
+
+.info{
+	margin:0 0.2rem;
+	height:2.5rem;
+	.row{
+		height:1.25rem;
+		line-height:1.25rem;
+		.words{
+			.font_x_large;
+		}
+		.number{
+			.font_large;
+			float:right;
+			color:@color_dark_gray;
+		}
+		.money{
+			color:@color_orange;
+		}
+	}
+	.border{
+		border-bottom:1px solid #ccc;
+	}
+}
+.balance{
+	height:2.5rem;
+	background:@color_gray;
+	padding:0.25rem 0;
+	box-sizing:border-box;
+	.box{
+		height:2rem;
+		background:white;
+		padding:0 0.2rem;
+		.right{
+			width:1rem;
+			height:1.2rem;
+			float:right;
+			span{
+				display:block;
+				width:0.5rem;
+				height:0.5rem;
+				border-radius:50%;
+				border:1px solid #ccc;
+				margin-top: 0.2rem;
+				float: right;
+			}
+		}
+		.left{
+			width:auto;
+			height:1.2rem;
+			padding-right:1rem;
+			background:url('../images/balance.png') no-repeat 2% 30%;
+			background-size:0.7rem;
+			.top{
+				height: 0.6rem;
+				line-height: 0.6rem;
+				margin-left: 1rem;
+				.font_large;
+			}
+			.bottom{
+				height: 0.6rem;
+				margin-left: 1rem;
+				font-size: 0.2rem;
+				color: @color_dark_gray;
+			}
+		}
+		.success{
+			background:url('../images/balance_selected.png') no-repeat 2% 30% !important;
+			background-size:0.7rem !important;
+			.bottom{
+				color: @color_orange !important;
+			}
+		}
+	}
+}
+.mode{
+	height:5rem;
+	margin: 0 0.2rem;
+	.choose{
+		height:1.2rem;
+		line-height:1.2rem;
+		padding: 0.2rem 0;
+		box-sizing: border-box;
+		img{
+			height:0.8rem;
+			float:left;
+		}
+		span{
+			.font_large;
+			margin-left: 1.1rem;
+			font-weight: normal;
+			display: block;
+			height: 0.8rem;
+			line-height: 0.8rem;
+		}
+		.SelectionBox{
+			width: 0.5rem;
+			height: 0.5rem;
+			border-radius: 50%;
+			border: 1px solid #ccc;
+			float: right;
+			margin: 0.15rem 0;	
+		}
+	}
+}
+.boxColor{
+	background:@color_orange !important;
+}

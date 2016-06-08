@@ -1,0 +1,80 @@
+@import "global";
+@import "component";
+
+.banner{
+	height:5rem;
+	width:100%;
+	display:block;
+}
+.bannerInfo{
+	height:2.5rem;
+	padding: 0.2rem 0.3rem;
+    box-sizing: border-box;
+	.left{
+		height:2.5rem;
+		width:auto;
+		padding-right:1.5rem;
+		.name{
+			.font_x_large_bold;
+			height: 0.6rem;
+			line-height: 0.6rem;
+			display: block;
+			float: left;
+			margin-right:0.1rem;
+		}
+		.single{
+			line-height: 0.3rem !important;
+		}
+		.weight{
+			display: block;
+			height: 0.6rem;
+			line-height: 0.8rem;
+			color: @color_dark_gray;
+		}
+		.unit_price{
+			height: 0.8rem;
+			line-height: 0.8rem;
+			float: left;
+			font-size: 0.3rem;
+			color: @color_orange;
+			margin-right: 0.25rem;
+			margin-top:-0.2rem;
+			span{
+				.font_x_large;
+				color: orange;
+			}
+		}
+		.market_price{
+			height: 0.8rem;
+			line-height: 0.8rem;
+			.font_large;
+			margin-top:-0.2rem;
+		}
+	}
+	.right{
+		height:2.1rem;
+		width:2rem;
+		float:right;
+		span{
+			background:@color_orange;
+			display: block;
+			width: 1.3rem;
+			line-height: 0.5rem;
+			height: 0.5rem;
+			color: white;
+			text-align: center;
+			float:right;
+		}
+	}
+}
+.commandList{
+	img{
+		width: 100%;
+		display: block;
+	}
+	p{
+		margin: 0.2rem 0.15rem;
+		font-size: 0.3rem;
+		color: @color_dark_gray;
+	}
+}

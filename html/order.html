@@ -31,51 +31,78 @@
                 <p>支付方式:<span class="text_margin">微信支付</span></p>
             </div>
         </div>
-        <div class="title">
-            <span class="img message"></span>
-            <span class="text">取货信息</span>
-        </div>
-        <div class="delivery_list">
-			<table>
-				<tr>
-					<td class="message_text">派送员:<td>
-					<td>{{order.nickName}}<td>
-				</tr>
-				<tr>
-					<td class="message_text">派送员电话:<td>
-					<td>{{order.tel}}<td>
-				</tr>
-				<tr>
-					<td class="message_text">取货地址:<td>
-					<td >{{order.address}}<td>
-				</tr>
-			</table>
-        </div>
-        <div class="title">
-            <span class="img shop"></span>
-            <span class="text">商品明细</span>
-        </div>
-        <div>
-            <ul class="list">
-                <li class="row" ng-repeat="c in order.commodities">
-                      <span class="left">{{c.title}}</span>
-                    <span class="right">{{c.quantity}}</span>
-                    <span class="center">￥{{c.price | convert}}</span>
-                </li>
-            </ul>
-        </div>
-        <div class="single_list_border">
-            <p>配送费<span>￥0</span></p>
-        </div>
-        <div class="single_list">
-            <span>总计</span>
-            <div>
-                <span class="text">￥{{order.totalFee| int}}</span>
-                <span class="text">.</span>
-                <span class="text">{{order.totalFee| fraction}}</span>
-            </div>
-        </div>
-		<div class="smallButton seat">
+		<div class='card'>
+			<div class="title">取货信息</div>
+			<!-- <div class="delivery_list">
+				<table>
+					<tr>
+						<td class="message">收货人:</td>
+						<td>莉莉</td>
+					</tr>
+					<tr class='two'>
+						<td class="message bottom">手机号:</td>
+						<td class='bottom'>15209633819</td>
+					</tr>
+					<tr>
+						<td class="message top">配送方式:</td>
+						<td class='top'>送货上门</td>
+					</tr>
+					<tr>
+						<td class="message">取货地址:</td>
+						<td>海定区实验小学东门</td>
+					</tr>
+				</table>
+			</div> -->
+			<div class="delivery_list">
+				<table>
+					<tr>
+						<td class="message ">收货人:</td>
+						<td>莉莉</td>
+					</tr>
+					<tr class='two'>
+						<td class="message bottom">手机号:</td>
+						<td class='bottom'>15209633819</td>
+					</tr>
+					<tr>
+						<td class="message top">配送方式:</td>
+						<td class='top'>上门自提</td>
+					</tr>
+					<tr>
+						<td>自提点地址:</td>
+						<td>海定区实验小学东门</td>
+					</tr>
+					<tr>
+						<td class="message">营业时间:</td>
+						<td>预计3月12日(已短息通知为准)</td>
+					</tr>
+				</table>
+				<div class='phone'></div>
+			</div>
+		</div>
+		<div class='card'>
+			<div class="title">费用明细</div>
+			<div>
+				<ul class="list">
+					<li class="row" ng-repeat="c in order.commodities">
+						  <span class="left">{{c.title}}</span>
+						<span class="right">{{c.quantity}}</span>
+						<span class="center">￥{{c.price | convert}}</span>
+					</li>
+				</ul>
+			</div>
+			<div class="single_list_border">
+				<p>配送费<span>￥0</span></p>
+			</div>
+			<div class="single_list">
+				<span>总计</span>
+				<div>
+					<span class="text">￥{{order.totalFee| int}}</span>
+					<span class="text">.</span>
+					<span class="text">{{order.totalFee| fraction}}</span>
+				</div>
+			</div>
+		</div>
+<!-- 		<div class="smallButton seat">
 			<div class="select">
 				<a class="text" href="javascript:void(0);" ng-click='orderConfirm()' ng-if='order.status==0'>取消订单</a>
 			</div>
@@ -85,14 +112,26 @@
 			<div class="select">
 				<a class="text" href="javascript:void(0);" ng-click='pay()' ng-if='order.status==0'>支付</a>
 			</div>
+		</div> -->
+		<div class='footer'>
+			<span class='btn' ng-click='pay()' ng-if='order.status==0'>去支付</span>
+			<!-- <span class='btn'>确认收货</span> -->
+			<span class='btn' ng-click='orderConfirm()' ng-if='order.status==0'>取消订单</span>
+			<span class='btn'>接龙</span>
 		</div>
 		
-		<div class="button ">
-			<div class="select">
-				<a class="text" href="javascript:void(0);" onclick="wx.closeWindow()" ng-if='order.status>0'>关闭</a>
-			</div>
+ 		<div class="button ">
+			<a class="text" href="javascript:void(0);" onclick="wx.closeWindow()" ng-if='order.status>0'>关闭</a>
 		</div>
 	 </div>
+</div>
+<div class='sharePage' style='display:none'>
+	<div class='bg'></div>
+	<div class='box'>
+		<img src='assets/images/logo.png' alt=''/>
+		<p>恭喜您成为第88位接龙者，快去邀请小伙伴团购提速吧！</p>
+		<div class='shareButton'>接龙到微信群，邀请好友吧！</div>
+	</div>
 </div>
 </body>
 </html>

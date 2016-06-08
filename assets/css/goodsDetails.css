@@ -292,39 +292,81 @@ body {
   font-weight: bold;
   color: #ff9934;
 }
-#Payment_fail {
-  height: 100%;
+.banner {
+  height: 5rem;
+  width: 100%;
+  display: block;
 }
-#Payment_fail .main {
-  background: white;
-  height: 100%;
-}
-#Payment_fail .main .fail_box {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin: -50% -1.25rem;
-  width: 2.5rem;
-}
-#Payment_fail .main .fail_box .error {
-  background: url("../images/fail.png") no-repeat center;
-  background-size: 2rem;
+.bannerInfo {
   height: 2.5rem;
-  padding: 0;
+  padding: 0.2rem 0.3rem;
+  box-sizing: border-box;
 }
-#Payment_fail .main .fail_box .success {
-  background: url("../images/sussce.png") no-repeat center;
-  background-size: 2rem;
+.bannerInfo .left {
   height: 2.5rem;
-  padding: 0;
+  width: auto;
+  padding-right: 1.5rem;
 }
-#Payment_fail .main .fail_box p:first-of-type {
-  text-align: center;
-  font-size: 0.5rem;
+.bannerInfo .left .name {
+  font-size: 0.35rem;
+  font-weight: bold;
+  height: 0.6rem;
+  line-height: 0.6rem;
+  display: block;
+  float: left;
+  margin-right: 0.1rem;
 }
-#Payment_fail .main .fail_box p:last-of-type {
-  text-align: center;
-  margin-top: 0.5rem;
+.bannerInfo .left .single {
+  line-height: 0.3rem !important;
+}
+.bannerInfo .left .weight {
+  display: block;
+  height: 0.6rem;
+  line-height: 0.8rem;
+  color: #6D6B6B;
+}
+.bannerInfo .left .unit_price {
+  height: 0.8rem;
+  line-height: 0.8rem;
+  float: left;
+  font-size: 0.3rem;
+  color: #ff9934;
+  margin-right: 0.25rem;
+  margin-top: -0.2rem;
+}
+.bannerInfo .left .unit_price span {
+  font-size: 0.35rem;
+  font-weight: normal;
+  color: orange;
+}
+.bannerInfo .left .market_price {
+  height: 0.8rem;
+  line-height: 0.8rem;
   font-size: 0.3rem;
   font-weight: normal;
+  margin-top: -0.2rem;
+}
+.bannerInfo .right {
+  height: 2.1rem;
+  width: 2rem;
+  float: right;
+}
+.bannerInfo .right span {
+  background: #ff9934;
+  display: block;
+  width: 1.3rem;
+  line-height: 0.5rem;
+  height: 0.5rem;
+  color: white;
+  text-align: center;
+  float: right;
+}
+.commandList img {
+  width: 100%;
+  display: block;
+}
+.commandList p {
+  margin: 0.2rem 0.15rem;
+  font-size: 0.3rem;
+  color: #6D6B6B;
 }

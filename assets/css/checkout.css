@@ -74,6 +74,11 @@ body {
   right: 0;
   overflow-y: auto;
 }
+/*通用卡片*/
+.card {
+  margin: 0.2rem 0;
+  background: white;
+}
 /*弹出层遮罩*/
 .matter {
   display: none;
@@ -140,19 +145,15 @@ body {
   width: 100%;
   z-index: 1100;
 }
-.button .select {
-  width: 100%;
-  height: 0.9rem;
-  background: white;
-}
-.button .select .text {
-  background: #599c3d;
-  margin: 0.1rem 0.1rem;
+.button .text {
+  background: #ff9934;
   color: white;
   text-align: center;
   display: block;
-  height: 0.8rem;
-  line-height: 0.8rem;
+  height: 1rem;
+  line-height: 1rem;
+  font-size: 0.35rem;
+  font-weight: normal;
 }
 .fixed {
   position: fixed;
@@ -183,21 +184,28 @@ body {
 }
 /*标题通栏*/
 .title {
+  height: .5rem;
+  line-height: .5rem;
+  padding: .2rem .3rem;
+  font-size: 0.35rem;
+  font-weight: normal;
+}
+.title_old {
   background: #f0f2f5;
   height: 0.5rem;
   line-height: 0.5rem;
   padding: 0.2rem 0.3rem;
 }
-.title span {
+.title_old span {
   display: inline-block;
 }
-.title .adds {
+.title_old .adds {
   background: url("../images/adds.png") no-repeat center;
   background-size: 0.4rem;
   width: 0.4rem;
   height: 0.4rem;
 }
-.title .shop {
+.title_old .shop {
   background: url("../images/1.png") no-repeat center;
   background-size: 0.4rem;
   width: 0.4rem !important;
@@ -205,17 +213,17 @@ body {
   line-height: 0.4rem !important;
   margin: 0.05rem 0;
 }
-.title .message {
+.title_old .message {
   background: url("../images/pop.png") no-repeat center;
   background-size: 0.4rem;
 }
-.title .img {
+.title_old .img {
   width: 0.4rem;
   height: 0.4rem;
   line-height: 0.4rem;
   float: left;
 }
-.title .text {
+.title_old .text {
   height: 0.4rem;
   line-height: 0.4rem;
   font-size: 0.25rem;
@@ -225,7 +233,7 @@ body {
 /*三列列表*/
 .list {
   background: white;
-  margin: 0.2rem 0.25rem;
+  margin: 0 0.25rem;
   border-bottom: 1px solid #CCCCCC;
   padding-bottom: 0.3rem;
 }
@@ -284,6 +292,9 @@ body {
   font-weight: bold;
   color: #ff9934;
 }
+body {
+  background: #e5e5e5;
+}
 #checkout {
   height: 100%;
 }
@@ -294,8 +305,8 @@ body {
 }
 #checkout .content .user {
   overflow: hidden;
-  background: white;
-  padding: 0.2rem 0.25rem;
+  background: url('../images/rope.png') no-repeat 0% bottom;
+  padding: 0.2rem 0.3rem;
 }
 #checkout .content .user .sculpture {
   overflow: hidden;
@@ -312,82 +323,110 @@ body {
 }
 #checkout .content .user span {
   display: block;
-  max-width: 2rem;
+  width: 1rem;
+  margin-top: 0.1rem;
+  font-size: 0.3rem;
+  font-weight: normal;
   float: left;
-  height: 0.6rem;
-  line-height: 0.6rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  min-width: 2em;
-  text-align: center;
-  margin: 0 0.3rem;
+}
+#checkout .content .user .new_style {
+  margin-top: 0.1rem;
   font-size: 0.3rem;
   font-weight: normal;
 }
-#checkout .content .user .tel_border {
-  width: 2.5rem;
-  float: left;
-  border: 1px solid #CCCCCC;
-  height: 0.5rem;
-  line-height: 0.5rem;
-  margin: 0.05rem 0;
+#checkout .content .user .right {
+  height: 1.2rem;
+  float: right;
+  background: url('../images/pen.png') no-repeat center;
+  background-size: 0.5rem;
+  width: 1rem;
 }
-#checkout .content .user .tel_border input {
-  margin-left: 0.1rem;
+#checkout .content .box {
+  height: 1rem;
+  line-height: 1rem;
+  margin: 0 0.2rem;
+  font-size: 0.35rem;
+  font-weight: normal;
+}
+#checkout .content .box .sinceTitle {
+  display: block;
+  height: 0.8rem;
+  float: right;
+  font-size: 0.3rem;
+  font-weight: normal;
+  margin-right: 0.3rem;
+}
+#checkout .content .box .deliveryTitle {
+  display: block;
+  height: 0.8rem;
+  float: right;
+  font-size: 0.3rem;
+  font-weight: normal;
+}
+#checkout .content .box .success {
+  border-bottom: 2px solid #ff9934;
+  color: #ff9934;
+}
+#checkout .content .since ul {
+  margin: 0 0.2rem;
+}
+#checkout .content .since ul li:last-child {
   border: none;
-  outline: medium;
-  text-align: left;
+}
+#checkout .content .since ul .row {
+  height: 0.8rem;
+  border-bottom: 1px solid #ccc;
+  padding: 0.2rem 0;
+}
+#checkout .content .since ul .row .circular {
+  width: 0.5rem;
+  height: 0.5rem;
+  margin: 0.15rem 0;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  float: left;
+}
+#checkout .content .since ul .row .sinceAddress {
+  height: 0.4rem;
+  line-height: 0.4rem;
+  padding-left: 0.7rem;
+}
+#checkout .content .since ul .row .sinceAddress span {
+  background: url('../images/positionGray.png') no-repeat left;
+  background-size: 0.25rem;
+  padding-left: 0.3rem;
+  font-size: 0.25rem;
+  font-weight: normal;
+}
+#checkout .content .since ul .row .sinceConent {
+  height: 0.4rem;
+  line-height: 0.4rem;
+  padding-left: 0.7rem;
+}
+#checkout .content .since ul .row .sinceConent span {
+  font-size: 0.2rem;
+  font-weight: normal;
   color: #CCCCCC;
-  width: 2.2rem;
-  vertical-align: middle;
-  font-size: 0.3rem;
-  font-weight: normal;
+  padding-left: 0.3rem;
 }
-#checkout .content .user .new_input_style {
-  width: 2.5rem;
-  border: 1px solid #CCCCCC;
-  height: 0.5rem;
-  line-height: 0.5rem;
-  margin: 0.1rem 1.2rem;
+#checkout .content .since ul .row .sinceConent .left {
+  background: url('../images/clock.png') no-repeat left;
+  background-size: 0.25rem;
 }
-#checkout .content .user .new_input_style input {
-  margin-left: 0.1rem;
-  border: none;
-  outline: medium;
-  text-align: left;
-  scolor: #CCCCCC;
-  width: 2.2rem;
-  vertical-align: middle;
-  font-size: 0.3rem;
-  font-weight: normal;
+#checkout .content .since ul .row .sinceConent .right {
+  margin-left: 0.5rem;
+  background: url('../images/grayPhone.png') no-repeat left;
+  background-size: 0.25rem;
 }
-#checkout .content .address_list ul {
-  background: white;
-  padding: 0.2rem 0.3rem;
-}
-#checkout .content .address_list ul li {
-  color: #c8c8c8;
-  margin-bottom: 0.2rem;
-}
-#checkout .content .address_list ul li .true_image {
-  background: url("../images/3.png") no-repeat left;
-  background-size: 0.3rem;
-  padding-left: 0.5rem;
-  display: none;
-}
-#checkout .content .address_list ul li .checkbox {
-  background: url("../images/2.png") no-repeat left;
-  background-size: 0.3rem;
-  padding-left: 0.5rem;
-}
-#checkout .content .address_list ul li .checkbox p {
-  color: #6D6B6B;
-}
-#checkout .content .address_list ul li .checked {
+#checkout .content .since ul .checked {
   background: url("../images/3.png") no-repeat left !important;
-  background-size: 0.3rem !important;
+  background-size: 0.5rem !important;
+  border: none !important;
 }
-#checkout .content .address_list ul li:last-child {
-  margin-bottom: 0;
+#checkout .content .delivery {
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  font-size: 0.35rem;
+  color: #6d6b6b;
 }

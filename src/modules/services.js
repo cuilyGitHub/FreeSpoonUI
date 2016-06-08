@@ -52,8 +52,6 @@ module.exports = function(app){
 		
 		var that = this;
 		
-		//this.domain = 'http://yijiayinong.com/';
-		
 		this.basicVerify = function(data){
 			if(!data || !data.errcode){
 				return false;

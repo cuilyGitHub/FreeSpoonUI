@@ -292,39 +292,54 @@ body {
   font-weight: bold;
   color: #ff9934;
 }
-#Payment_fail {
-  height: 100%;
+.box {
+  margin-top: 1rem;
+  height: 10rem;
+  padding: 0 0.2rem;
+  box-sizing: border-box;
 }
-#Payment_fail .main {
-  background: white;
-  height: 100%;
+.box li {
+  height: 1.2rem;
+  border-bottom: 1px solid #ccc;
 }
-#Payment_fail .main .fail_box {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin: -50% -1.25rem;
-  width: 2.5rem;
+.box li .left {
+  width: 2rem;
+  height: 1.2rem;
+  float: left;
 }
-#Payment_fail .main .fail_box .error {
-  background: url("../images/fail.png") no-repeat center;
-  background-size: 2rem;
-  height: 2.5rem;
-  padding: 0;
+.box li .left .leader {
+  width: 0.8rem;
+  height: 0.8rem;
+  margin: 0.2rem;
+  border-radius: 50%;
+  overflow: hidden;
+  float: left;
 }
-#Payment_fail .main .fail_box .success {
-  background: url("../images/sussce.png") no-repeat center;
-  background-size: 2rem;
-  height: 2.5rem;
-  padding: 0;
+.box li .left .leader img {
+  width: 1rem;
+  display: block;
 }
-#Payment_fail .main .fail_box p:first-of-type {
-  text-align: center;
-  font-size: 0.5rem;
-}
-#Payment_fail .main .fail_box p:last-of-type {
-  text-align: center;
-  margin-top: 0.5rem;
+.box li .left span {
+  display: block;
+  min-width: 0.8rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  margin: 0.2rem 0;
   font-size: 0.3rem;
   font-weight: normal;
+}
+.box li .center {
+  width: auto;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  padding: 0 3rem 0 2rem;
+  text-align: center;
+  font-size: 0.3rem;
+  font-weight: normal;
+}
+.box li .right {
+  width: auto;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  float: right;
 }

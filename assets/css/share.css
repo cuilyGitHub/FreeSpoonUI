@@ -74,6 +74,11 @@ body {
   right: 0;
   overflow-y: auto;
 }
+/*通用卡片*/
+.card {
+  margin: 0.2rem 0;
+  background: white;
+}
 /*弹出层遮罩*/
 .matter {
   display: none;
@@ -140,19 +145,15 @@ body {
   width: 100%;
   z-index: 1100;
 }
-.button .select {
-  width: 100%;
-  height: 0.9rem;
-  background: white;
-}
-.button .select .text {
-  background: #599c3d;
-  margin: 0.1rem 0.1rem;
+.button .text {
+  background: #ff9934;
   color: white;
   text-align: center;
   display: block;
-  height: 0.8rem;
-  line-height: 0.8rem;
+  height: 1rem;
+  line-height: 1rem;
+  font-size: 0.35rem;
+  font-weight: normal;
 }
 .fixed {
   position: fixed;
@@ -183,21 +184,28 @@ body {
 }
 /*标题通栏*/
 .title {
+  height: .5rem;
+  line-height: .5rem;
+  padding: .2rem .3rem;
+  font-size: 0.35rem;
+  font-weight: normal;
+}
+.title_old {
   background: #f0f2f5;
   height: 0.5rem;
   line-height: 0.5rem;
   padding: 0.2rem 0.3rem;
 }
-.title span {
+.title_old span {
   display: inline-block;
 }
-.title .adds {
+.title_old .adds {
   background: url("../images/adds.png") no-repeat center;
   background-size: 0.4rem;
   width: 0.4rem;
   height: 0.4rem;
 }
-.title .shop {
+.title_old .shop {
   background: url("../images/1.png") no-repeat center;
   background-size: 0.4rem;
   width: 0.4rem !important;
@@ -205,17 +213,17 @@ body {
   line-height: 0.4rem !important;
   margin: 0.05rem 0;
 }
-.title .message {
+.title_old .message {
   background: url("../images/pop.png") no-repeat center;
   background-size: 0.4rem;
 }
-.title .img {
+.title_old .img {
   width: 0.4rem;
   height: 0.4rem;
   line-height: 0.4rem;
   float: left;
 }
-.title .text {
+.title_old .text {
   height: 0.4rem;
   line-height: 0.4rem;
   font-size: 0.25rem;
@@ -225,7 +233,7 @@ body {
 /*三列列表*/
 .list {
   background: white;
-  margin: 0.2rem 0.25rem;
+  margin: 0 0.25rem;
   border-bottom: 1px solid #CCCCCC;
   padding-bottom: 0.3rem;
 }

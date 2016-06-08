@@ -1,0 +1,52 @@
+@import "global";
+@import "component";
+
+.box{
+	margin-top:1rem;
+	height:10rem;
+	padding:0 0.2rem;
+	box-sizing:border-box; 
+	li{
+		height:1.2rem;
+		border-bottom:1px solid #ccc;
+		.left{
+			width:2rem;
+			height:1.2rem;
+			float:left;
+			.leader{
+				width:0.8rem;
+				height:0.8rem;
+				margin:0.2rem;
+				border-radius:50%;
+				overflow:hidden;
+				float:left;
+				img{
+					width:1rem;
+					display:block;
+				}
+			}
+			span{
+				display:block;
+				min-width:0.8rem;
+				height:0.8rem;
+				line-height:0.8rem;
+				margin:0.2rem 0;
+				.font_large;				
+			}
+		}
+		.center{
+			width:auto;
+			height:1.2rem;
+			line-height:1.2rem;
+			padding:0 3rem 0 2rem;
+			text-align:center;
+			.font_large;
+		}
+		.right{
+			width:auto;
+			height:1.2rem;
+			line-height:1.2rem;
+			float:right;
+		}
+	}
+}

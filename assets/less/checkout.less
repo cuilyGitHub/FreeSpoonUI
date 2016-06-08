@@ -1,6 +1,8 @@
 @import "global";
 @import "component";
-
+body{
+	background:@color_misty_gray;
+}
 #checkout {
   height: 100%;
   .content {
@@ -8,103 +10,127 @@
     padding-top: 0;
     margin-top: 1rem;
     .user {
-      @height: 0.9rem;
-      overflow: hidden;
-      background: @color_white;
-      padding: 0.2rem 0.25rem;
-      .sculpture {
-        overflow: hidden;
-        width: 0.6rem;
-        height: 0.6rem;
-        float: left;
-        border-radius: 50%;
-        vertical-align: middle;
-        line-height: 0.6rem;
-        img {
-          max-width: 100%;
-          height: 100%;
-        }
-      }
-      span {
-        display: block;
-        max-width: 2rem;
-        float: left;
-        height: 0.6rem;
-        line-height: 0.6rem;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        min-width: 2em;
-        text-align: center;
-        margin: 0 0.3rem;
-        .font_large;
-      }
-      .tel_border {
-        width: 2.5rem;
-        float: left;
-        border: 1px solid @color_gray;
-        height: 0.5rem;
-        line-height: 0.5rem;
-        margin: 0.05rem 0;
-        input {
-          margin-left: 0.1rem;
-          border: none;
-          outline: medium;
-          text-align: left;
-          color: @color_gray;
-          width: 2.2rem;
-          vertical-align: middle;
-          .font_large;
-        }
-      }
-       .new_input_style {
-          width: 2.5rem;
-          border: 1px solid @color_gray;
-          height: 0.5rem;
-          line-height: 0.5rem;
-          margin: 0.1rem 1.2rem;
-          input {
-            margin-left: 0.1rem;
-            border: none;
-            outline: medium;
-            text-align: left;s
-            color: @color_gray;
-            width: 2.2rem;
-            vertical-align: middle;
-            .font_large;
-          }
-        }
-    }
-          .address_list {
-        ul {
-          background: @color_white;
-          padding: 0.2rem 0.3rem;
-          li {
-            color: @color_smoky_gray;
-            margin-bottom: 0.2rem;
-            .true_image {
-              background: url("../images/3.png") no-repeat left;
-              background-size: 0.3rem;
-              padding-left: 0.5rem;
-              display: none;
-            }
-            .checkbox {
-              background: url("../images/2.png") no-repeat left;
-              background-size: 0.3rem;
-              padding-left: 0.5rem;
-              p {
-                color: @color_dark_gray;
-              }
-            }
-            .checked {
-              background: url("../images/3.png") no-repeat left !important;
-              background-size: 0.3rem !important;
-            }
-            &:last-child {
-              margin-bottom: 0;
-            }
-          }
-        }
-      }
+		@height: 0.9rem;
+		overflow: hidden;
+		background: url('../images/rope.png') no-repeat 0% bottom;
+		padding: 0.2rem 0.3rem;
+		.sculpture {
+			overflow: hidden;
+			width: 0.6rem;
+			height: 0.6rem;
+			float: left;
+			border-radius: 50%;
+			vertical-align: middle;
+			line-height: 0.6rem;
+			img {
+				max-width: 100%;
+				height: 100%;
+			}
+		}
+		span{
+			display:block;
+			width:1rem;
+			margin-top:0.1rem;
+			.font_large;
+			float:left;
+		}
+		.new_style{
+			margin-top:0.1rem;
+			.font_large;
+		}
+		.right{
+			height: 1.2rem;
+			float: right;
+			background: url('../images/pen.png') no-repeat center;
+			background-size: 0.5rem;
+			width: 1rem;
+		}
+    }	
+	.box{
+		height:1rem;
+		line-height:1rem;
+		margin:0 0.2rem;
+		.font_x_large;
+		.sinceTitle{
+			display:block;
+			height:0.8rem;
+			float:right;
+			.font_large;
+			margin-right:0.3rem;
+		}
+		.deliveryTitle{
+			display:block;
+			height:0.8rem;
+			float:right;
+			.font_large;
+		}
+		.success{
+			border-bottom: 2px solid @color_orange;
+			color: @color_orange;
+		}
+	}
+	.since{
+		ul{
+			margin:0 0.2rem;
+			li:last-child{
+				border:none;
+			}
+			.row{
+				height:0.8rem;
+				border-bottom:1px solid #ccc;
+				padding:0.2rem 0;
+				.circular{
+					width:0.5rem;
+					height:0.5rem;
+					margin:0.15rem 0;
+					border-radius:50%;
+					border:1px solid #ccc;
+					float:left;
+				}
+				.sinceAddress{
+					span{
+						background:url('../images/positionGray.png') no-repeat left;
+						background-size:0.25rem;
+						padding-left:0.3rem;
+						.font_normal;
+					}
+					height:0.4rem;
+					line-height:0.4rem;
+					padding-left:0.7rem;
+				}
+				.sinceConent{
+					height:0.4rem;
+					line-height:0.4rem;
+					padding-left:0.7rem;
+					span{
+						.font_small;
+						color:@color_gray;
+						padding-left:0.3rem;
+					}
+					.left{
+						background:url('../images/clock.png') no-repeat left;
+						background-size:0.25rem;
+					}
+					.right{
+						margin-left:0.5rem;
+						background:url('../images/grayPhone.png') no-repeat left;
+						background-size:0.25rem;
+					}
+				}
+			}
+			.checked {
+					background: url("../images/3.png") no-repeat left !important;
+					background-size: 0.5rem !important;
+					border: none !important;
+				}
+			}
+		}
+	.delivery{
+		height: 2rem;
+		line-height: 2rem;
+		text-align: center;
+		font-size: 0.35rem;
+		color: #6d6b6b;
+	}
   }
 }
