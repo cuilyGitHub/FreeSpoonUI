@@ -7,27 +7,45 @@
     <title></title>
 </head>
 <body>
-	<img class='banner' src='assets/image/yangmei_infor.png' alt='' />
-	<div class='bannerInfo'>
-		<div class='right'>
-			<span>12盒/箱</span>
+	<div class='page'>
+		<div class='back page' ng-click='back()'></div>
+		<img class='banner' src='assets/image/yangmei_infor.png' alt='' />
+		<div class='bannerInfo'>
+			<div class='right'>
+				<span class='box'>12盒/箱</span>
+				<div class="regulator_right">
+					<a href="javascript:void(0);" ng-click="removeCommodity(x);">-</a>
+					<span class="center">{{x.num | safenum}}</span>
+					<a href="javascript:void(0);" ng-click="addCommodity(x);">+</a>
+				</div>
+			</div>
+			<div class='left'>
+				<span class='name'>智利车厘子</span><span class='weight'>(每盒13-25粒左右)</span>
+				<div class='single weight'>单粒约20-30g</div>
+				<div class='unit_price'>￥<span>999</span>.00</div>
+				<div class='market_price'>￥999.00</div>
+			</div>
 		</div>
-		<div class='left'>
-			<span class='name'>智利车厘子</span><span class='weight'>(每盒13-25粒左右)</span>
-			<div class='single weight'>单粒约20-30g</div>
-			<div class='unit_price'>￥<span>999</span>.00</div>
-			<div class='market_price'>￥999.00</div>
+		<ul>
+			<li class='commandList'>
+				<img src='assets/image/yangmei_infor.png' alt='' />
+				<p>杨梅属于杨梅科杨梅属小乔木或灌木植物，又称圣生梅、白蒂梅、树梅具有很高的药用和食用价值，在中国华东和湖南、广东、广西、贵州等地区均有分布。杨梅原产中国浙江余姚，1973年余姚境内发掘新石器时代的河姆渡遗址时发现杨梅属花粉，说明在7000多年以前该地区就有杨梅生长。该属有50多个种，中国已知的有杨梅、白杨梅、毛杨梅、青杨梅和矮杨梅，经济栽培主要是杨梅。</p>
+			</li>
+			<li class='commandList'>
+				<img src='assets/image/yangmei_infor.png' alt='' />
+				<p>中国已知的有杨梅、白杨梅、毛杨梅、青杨梅和矮杨梅，经济栽培主要是杨梅。</p>
+			</li>
+		</ul>
+		<div  class="footer">
+			<a ng-class="{right:true, buttonStatus:totalNum>0}"  ng-click="checkout();">去结算</a>
+			<div class="left" onclick="popup_window_from_bottom();">
+				<div class="shop"><span class="__amount">{{totalNum}}</span></div>
+				<div class="shop_info">
+					<p class="line1">合计:<span class="__total">￥{{totalPrice | convert}}</span></p>
+				</div>
+			</div>
 		</div>
 	</div>
-	<ul>
-		<li class='commandList'>
-			<img src='assets/image/yangmei_infor.png' alt='' />
-			<p>杨梅属于杨梅科杨梅属小乔木或灌木植物，又称圣生梅、白蒂梅、树梅具有很高的药用和食用价值，在中国华东和湖南、广东、广西、贵州等地区均有分布。杨梅原产中国浙江余姚，1973年余姚境内发掘新石器时代的河姆渡遗址时发现杨梅属花粉，说明在7000多年以前该地区就有杨梅生长。该属有50多个种，中国已知的有杨梅、白杨梅、毛杨梅、青杨梅和矮杨梅，经济栽培主要是杨梅。</p>
-		</li>
-		<li class='commandList'>
-			<img src='assets/image/yangmei_infor.png' alt='' />
-			<p>中国已知的有杨梅、白杨梅、毛杨梅、青杨梅和矮杨梅，经济栽培主要是杨梅。</p>
-		</li>
-	</ul>
+	
 </body>
 </html>

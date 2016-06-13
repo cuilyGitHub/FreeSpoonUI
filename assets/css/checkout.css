@@ -303,6 +303,12 @@ body {
   padding-top: 0;
   margin-top: 1rem;
 }
+#checkout .content .show {
+  display: blok;
+}
+#checkout .content .hide {
+  display: none;
+}
 #checkout .content .user {
   overflow: hidden;
   background: url('../images/rope.png') no-repeat 0% bottom;
@@ -321,16 +327,24 @@ body {
   max-width: 100%;
   height: 100%;
 }
-#checkout .content .user span {
+#checkout .content .user .write {
+  height: 0.6rem;
+  line-height: 0.6rem;
+}
+#checkout .content .user .write span {
+  height: 0.6rem;
+  line-height: 0.6rem;
   display: block;
   width: 1rem;
-  margin-top: 0.1rem;
   font-size: 0.3rem;
   font-weight: normal;
   float: left;
+  margin-top: 0 !important;
 }
-#checkout .content .user .new_style {
-  margin-top: 0.1rem;
+#checkout .content .user .write input {
+  height: 0.5rem;
+  width: 2rem;
+  border: none;
   font-size: 0.3rem;
   font-weight: normal;
 }
@@ -356,29 +370,23 @@ body {
   font-weight: normal;
   margin-right: 0.3rem;
 }
-#checkout .content .box .deliveryTitle {
-  display: block;
-  height: 0.8rem;
-  float: right;
-  font-size: 0.3rem;
-  font-weight: normal;
-}
 #checkout .content .box .success {
   border-bottom: 2px solid #ff9934;
   color: #ff9934;
 }
-#checkout .content .since ul {
+#checkout .content ul {
+  display: none;
   margin: 0 0.2rem;
 }
-#checkout .content .since ul li:last-child {
+#checkout .content ul li:last-child {
   border: none;
 }
-#checkout .content .since ul .row {
+#checkout .content ul .row {
   height: 0.8rem;
   border-bottom: 1px solid #ccc;
   padding: 0.2rem 0;
 }
-#checkout .content .since ul .row .circular {
+#checkout .content ul .row .circular {
   width: 0.5rem;
   height: 0.5rem;
   margin: 0.15rem 0;
@@ -386,47 +394,57 @@ body {
   border: 1px solid #ccc;
   float: left;
 }
-#checkout .content .since ul .row .sinceAddress {
+#checkout .content ul .row .sinceAddress {
   height: 0.4rem;
   line-height: 0.4rem;
   padding-left: 0.7rem;
 }
-#checkout .content .since ul .row .sinceAddress span {
+#checkout .content ul .row .sinceAddress span {
   background: url('../images/positionGray.png') no-repeat left;
   background-size: 0.25rem;
   padding-left: 0.3rem;
   font-size: 0.25rem;
   font-weight: normal;
 }
-#checkout .content .since ul .row .sinceConent {
+#checkout .content ul .row .sinceConent {
   height: 0.4rem;
   line-height: 0.4rem;
   padding-left: 0.7rem;
 }
-#checkout .content .since ul .row .sinceConent span {
+#checkout .content ul .row .sinceConent span {
   font-size: 0.2rem;
   font-weight: normal;
   color: #CCCCCC;
   padding-left: 0.3rem;
 }
-#checkout .content .since ul .row .sinceConent .left {
+#checkout .content ul .row .sinceConent .left {
   background: url('../images/clock.png') no-repeat left;
   background-size: 0.25rem;
 }
-#checkout .content .since ul .row .sinceConent .right {
+#checkout .content ul .row .sinceConent .right {
   margin-left: 0.5rem;
   background: url('../images/grayPhone.png') no-repeat left;
   background-size: 0.25rem;
 }
-#checkout .content .since ul .checked {
+#checkout .content ul .checked {
   background: url("../images/3.png") no-repeat left !important;
   background-size: 0.5rem !important;
   border: none !important;
 }
 #checkout .content .delivery {
+  display: none;
   height: 2rem;
   line-height: 2rem;
   text-align: center;
   font-size: 0.35rem;
   color: #6d6b6b;
+}
+#checkout .content .select {
+  display: block;
+}
+#checkout .content .select ul {
+  display: block;
+}
+#checkout .content .select p {
+  display: block;
 }

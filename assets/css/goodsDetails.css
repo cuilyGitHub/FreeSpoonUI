@@ -292,6 +292,16 @@ body {
   font-weight: bold;
   color: #ff9934;
 }
+.back {
+  position: absolute;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: url('../images/back.png') no-repeat 40% #e5e5e5;
+  background-size: 0.25rem;
+  top: 0.3rem;
+  left: 0.2rem;
+}
 .banner {
   height: 5rem;
   width: 100%;
@@ -350,8 +360,9 @@ body {
   height: 2.1rem;
   width: 2rem;
   float: right;
+  position: relative;
 }
-.bannerInfo .right span {
+.bannerInfo .right .box {
   background: #ff9934;
   display: block;
   width: 1.3rem;
@@ -361,12 +372,120 @@ body {
   text-align: center;
   float: right;
 }
-.commandList img {
+.bannerInfo .right .regulator_right {
+  position: absolute;
+  bottom: 0.4rem;
+  left: 0.3rem;
+  display: inline-block;
+  float: right;
+  width: 1.4rem;
+}
+.bannerInfo .right .regulator_right a {
+  box-sizing: border-box;
+  display: block;
+  border: 1px solid #ff9934;
+  width: 0.5rem;
+  height: 0.5rem;
+  text-align: center;
+  border-radius: 50%;
+  line-height: 0.5rem;
+  vertical-align: middle;
+  overflow: hidden;
+  float: left;
+}
+.bannerInfo .right .regulator_right span {
+  display: block;
+  width: 0.4rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  vertical-align: middle;
+  float: left;
+  overflow: hidden;
+  text-align: center;
+}
+.bannerInfo .right .regulator_right a:active {
+  background: #ff9934;
+  color: white;
+}
+ul {
+  margin-bottom: 1.4rem;
+}
+ul .commandList img {
   width: 100%;
   display: block;
 }
-.commandList p {
+ul .commandList p {
   margin: 0.2rem 0.15rem;
   font-size: 0.3rem;
   color: #6D6B6B;
+}
+.footer {
+  z-index: 1001;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 1rem;
+  background: white;
+  border-top: 1px solid #CCCCCC;
+}
+.footer .left {
+  background: white;
+  width: auto;
+  margin-right: 2rem;
+  height: 1rem;
+}
+.footer .left .shop {
+  position: relative;
+  float: left;
+  width: 1rem;
+  height: 1rem;
+  background: url("../images/shop.png") no-repeat center;
+  background-size: 0.6rem;
+}
+.footer .left .shop span {
+  display: none;
+  width: 0.4rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  border-radius: 50%;
+  background: #ff9934;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+  top: 0.1rem;
+  right: 0;
+  font-size: 0.2rem;
+}
+.footer .left .shop_info {
+  width: auto;
+  margin-left: 1rem;
+  padding: -0.25rem 0;
+  height: 1.3rem;
+}
+.footer .left .shop_info .line1 {
+  height: 1rem;
+  line-height: 1rem;
+  font-size: 0.3rem;
+  font-weight: bold;
+}
+.footer .left .shop_info .line2 {
+  height: 0.3rem;
+  line-height: 0.3rem;
+  font-size: 0.2rem;
+}
+.footer .right {
+  height: 1rem;
+  float: right;
+  width: 2rem;
+  background: #c8c8c8;
+  text-align: center;
+  font-size: 0.4rem;
+  font-weight: normal;
+  line-height: 1rem;
+  color: white;
+  vertical-align: middle;
+}
+.footer .buttonStatus {
+  background: #ff9934 !important;
 }

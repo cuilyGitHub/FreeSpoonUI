@@ -109,6 +109,14 @@ module.exports = function(app){
 			}
 		}
 		
+		$scope.jump=function(){
+			$location.path("/record");
+		}
+		
+		$scope.goodsDetails=function(){
+			$location.path("/freeIndex");
+		}
+		
 	});
 
 	app.controller('CheckController', function($scope, $location, $data, $history, checkoutInfo){
@@ -206,6 +214,31 @@ module.exports = function(app){
 				$location.path('/order/{orderId}'.assign({orderId: orderId}));
 			});
 		}
+		
+		$scope.isTrue=false;
+		$scope.addInfo=function(){
+			$scope.isTrue = true;
+		}
+		
+		var box=document.getElementById('box');
+		var tip=document.getElementById('tip');
+		var oBox=box.getElementsByTagName("span");
+		var oTip=tip.getElementsByTagName("div");
+		function changeTab(nIndex){
+			for(var i=0;i<oBox.length;i++){
+				oTip[i].className = null;
+				oBox[i].className = 'sinceTitle';
+			}
+			oTip[nIndex].className = "select";
+			oBox[nIndex].className = "sinceTitle success";
+		}
+		for(var i=0;i<oBox.length;i++){
+			oBox[i].index = i;
+			oBox[i].onclick=function(){
+				changeTab(this.index);
+			}
+		}
+		
 	});
 
 	app.controller('OrderController', function($scope, $location, $data, $history, $wxBridge, orderInfo){
@@ -339,5 +372,27 @@ module.exports = function(app){
 		$scope.desc = $data.preData.desc;
 		
 		$data.preData = null;
+	});
+	
+	app.controller('FreeIndexController', function($scope, $data, $location){
+		
+	});
+	
+	app.controller('GoodsDetailsController', function($scope, $data, $location){
+		$scope.back=function(){
+			$location.path("/");
+		};
+		
+		
+	});
+	
+	app.controller('RecordController', function($scope, $data, $location){
+		$scope.back=function(){
+			$location.path("/");
+		};
+	});
+	
+	app.controller('PaymentController', function($scope,$data, $location){
+
 	});
 }

@@ -16,32 +16,47 @@
     <div class="content">
 		<div class='card'>
 			<div class="user">
-				<div class="right"></div>
-				<span>姓名</span>
-				<div class='new_style'>崔丽媛</div>
-				<span >电话</span>
-				<div class='new_style'>15209633819</div>
+				<div class="right" ng-click='addInfo()'></div>
+	 			<div class='write' ng-class="{true:'show',false:'hide'}[isTrue]">
+					<span>姓名</span>
+					<input type='text' placeholder='填写姓名'/>
+				</div>
+				<div class='write' ng-class="{true:'show',false:'hide'}[isTrue]">
+					<span >电话</span>
+					<input type='tel' placeholder='填写电话'/>
+				</div>
+				
+				<div class='write' ng-class="{true:'hide',false:'show'}[isTrue]">
+					<span>姓名</span>
+					<div>崔丽媛</div>
+				</div>
+				<div class='write' ng-class="{true:'hide',false:'show'}[isTrue]">
+					<span >电话</span>
+					<div>15209633819</div>
+				</div>	
 			</div> 
 		</div>
 		<div class='card'>
-			<div class='box'>
-				<span class='deliveryTitle'>送货上门</span>
+			<div id='box' class='box'>
+				<span class='sinceTitle'>送货上门</span>
 				<span class='sinceTitle success'>上门自提</span>
 				<div>配送方式</div>
 			</div>
-			<div class='since'>
-				<ul>
-					<li class='row' ng-repeat="p in address">
-						<div class='circular' ng-class="{checked: p.id == selectedAddress.id}" ng-click="selectAddress(p)"></div>
-						<div class='sinceAddress'><span >{{p.address}}</span></div>
-						<div class='sinceConent'>
-							<span class='left'>09:00-17:00</span>
-							<span class='right'>15209633819</span>
-						</div>
-					</li>
-				</ul>
+			<div id='tip'>
+				<div><p class='delivery'>此功能暂未开放</p></div>
+				<div class='select'>
+					<ul>
+						<li class='row' ng-repeat="p in address">
+							<div class='circular' ng-class="{checked: p.id == selectedAddress.id}" ng-click="selectAddress(p)"></div>
+							<div class='sinceAddress'><span >{{p.address}}</span></div>
+							<div class='sinceConent'>
+								<span class='left'>09:00-17:00</span>
+								<span class='right'>15209633819</span>
+							</div>
+						</li>
+					</ul>
+				</div>
 			</div>
-			<div class='delivery' style='display:none;'>此功能暂未开放</div>
 		</div>
 		<div class='card'>
 			<div class='title'>费用明细</div>

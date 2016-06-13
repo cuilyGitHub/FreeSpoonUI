@@ -293,24 +293,26 @@ body {
   color: #ff9934;
 }
 #index {
-  background: #f0f2f5;
+  background: #e5e5e5;
 }
 #index .board {
+  height: 1.8rem;
   position: fixed;
   top: 0;
-  background: #599c3d;
   width: 100%;
   z-index: 100;
+  background: #e5e5e5;
 }
 #index .board .left {
+  height: 1.8rem;
   width: 100%;
   float: left;
 }
 #index .board .left .sculpture {
   overflow: hidden;
-  width: 1.4rem;
-  height: 1.4rem;
-  margin: 0.3rem;
+  width: 1rem;
+  height: 1rem;
+  margin: 0.4rem 0.2rem;
   float: left;
   border-radius: 50%;
 }
@@ -319,67 +321,72 @@ body {
   height: 100%;
 }
 #index .board .left .leaderName {
-  height: 0.7rem;
-  line-height: 0.7rem;
-  color: white;
+  height: 0.6rem;
+  line-height: 0.6rem;
   margin-top: 0.3rem;
   font-size: 0.3rem;
   font-weight: normal;
+  color: #6D6B6B;
 }
 #index .board .left .leaderName span {
-  color: white;
   font-size: 0.3rem;
   margin: 0 0.1rem;
   font-size: 0.4rem;
   font-weight: normal;
 }
 #index .board .left .leaderAddress {
-  height: 0.7rem;
-  line-height: 0.7rem;
+  height: 0.6rem;
+  line-height: 0.6rem;
   font-size: 0.3rem;
   font-weight: normal;
-  color: #c8c8c8;
+  color: #6D6B6B;
   background: url('../images/position.png') no-repeat 5px;
   background-size: 0.3rem;
   padding-left: 0.5rem;
-  margin-left: 2rem;
+  margin-left: 1.4rem;
   margin-bottom: 0.3rem;
 }
 #index .board .right {
+  height: 1.8rem;
+  line-height: 0.6rem;
+  box-sizing: border-box;
   position: absolute;
   right: 0;
   top: 0;
-  width: 2.5rem;
-  padding: 0.2rem 0.1rem;
+  width: 3.5rem;
+  padding: 0.4rem 0.2rem;
 }
-#index .board .right .audio {
-  width: 0.5rem;
-  height: 0.5rem;
-  background: url("../images/auid.png") no-repeat center;
-  background-size: 0.3rem;
-  -webkit-background-size: 0.3rem;
-  float: left;
-}
-#index .board .right div {
-  color: white;
+#index .board .right .attend,
+#index .board .right .spare {
   text-align: center;
-}
-#index .board .right div span {
-  color: #fff100;
+  float: right;
   font-size: 0.3rem;
+  font-weight: normal;
+}
+#index .board .right .attend span,
+#index .board .right .spare span {
+  color: #ff6600;
   margin: 0 0.05rem;
+}
+#index .board .send {
+  width: 2rem;
+  background: url("../images/car.png") no-repeat left;
+  background-size: 0.35rem;
+  color: #6D6B6B;
+  padding-left: 0.5rem;
+  float: right;
 }
 #index .main {
   overflow: hidden;
-  padding: 0rem 0.2rem;
 }
 #index .main ul {
-  margin-top: 2.6rem;
-  margin-bottom: 2.4rem;
+  margin-top: 1.8rem;
+  margin-bottom: 1.4rem;
 }
 #index .main ul li {
   margin-bottom: 0.8rem;
-  border: 1px solid #CCCCCC;
+  border-bottom: 1px solid #CCCCCC;
+  border-top: 1px solid #CCCCCC;
 }
 #index .main ul li div {
   background: white;
@@ -690,11 +697,14 @@ body {
   margin: 0 0.2em;
   overflow-y: auto;
 }
+#index .popup-window-from-bottom .box .cart li:last-child {
+  border: none;
+}
 #index .popup-window-from-bottom .box .cart li {
   padding: 0.2rem 0;
   border-bottom: 1px solid #CCCCCC;
 }
-#index .popup-window-from-bottom .box .cart li:last-child {
+#index .popup-window-from-bottom .box .cart li li:last-child {
   border-bottom: none;
 }
 #index .popup-window-from-bottom .box .cart .template .field_title {
