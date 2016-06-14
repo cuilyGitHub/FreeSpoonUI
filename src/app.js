@@ -12,14 +12,39 @@ var sugar = require('sugar');
 var utils = require('./modules/utils');
 var registerServices = require('./modules/services');
 var registerFilters = require('./modules/filters');
-var registerControllers = require('./modules/controllers');
+//var registerControllers = require('./modules/controllers');
+
+// controllers modules
+var registerCheckout = require('./modules/controllers/checkout');
+var registerError = require('./modules/controllers/error');
+var registerFreeIndex = require('./modules/controllers/freeIndex');
+var registerGoodsDetails = require('./modules/controllers/goodsDetails');
+var registerIndex = require('./modules/controllers/index');
+var registerOrder = require('./modules/controllers/order');
+var registerOrders = require('./modules/controllers/orders');
+var registerPayMent = require('./modules/controllers/payMent');
+var registerRecord = require('./modules/controllers/record');
+var registerShare = require('./modules/controllers/share');
 
 var app = angular.module('app', ['ngRoute']);
 
 // register angular components
 registerServices(app);
 registerFilters(app);
-registerControllers(app);
+//registerControllers(app);
+
+//register controllers
+registerCheckout(app);
+registerError(app);
+registerFreeIndex(app);
+registerGoodsDetails(app);
+registerIndex(app);
+registerOrder(app);
+registerOrders(app);
+registerPayMent(app);
+registerRecord(app);
+registerShare(app);
+
 
 app.controller('MenuController', function($scope, $route){
 	$scope.$route = $route;

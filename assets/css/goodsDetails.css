@@ -293,7 +293,7 @@ body {
   color: #ff9934;
 }
 .back {
-  position: absolute;
+  position: fixed;
   width: 0.8rem;
   height: 0.8rem;
   border-radius: 50%;
@@ -308,7 +308,7 @@ body {
   display: block;
 }
 .bannerInfo {
-  height: 2.5rem;
+  height: 2.1rem;
   padding: 0.2rem 0.3rem;
   box-sizing: border-box;
 }
@@ -358,7 +358,7 @@ body {
 }
 .bannerInfo .right {
   height: 2.1rem;
-  width: 2rem;
+  width: 1.5rem;
   float: right;
   position: relative;
 }
@@ -375,10 +375,9 @@ body {
 .bannerInfo .right .regulator_right {
   position: absolute;
   bottom: 0.4rem;
-  left: 0.3rem;
   display: inline-block;
   float: right;
-  width: 1.4rem;
+  width: 1.5rem;
 }
 .bannerInfo .right .regulator_right a {
   box-sizing: border-box;

@@ -376,14 +376,20 @@ module.exports = function(app){
 	
 	app.controller('FreeIndexController', function($scope, $data, $location){
 		
+		jQuery(document).ready(function($) {
+			$('.a').unslider({
+				autoplay: true,
+				dots: false,
+				arrows: false,
+			});
+		});
+		
 	});
 	
 	app.controller('GoodsDetailsController', function($scope, $data, $location){
 		$scope.back=function(){
 			$location.path("/");
 		};
-		
-		
 	});
 	
 	app.controller('RecordController', function($scope, $data, $location){

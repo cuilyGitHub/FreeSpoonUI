@@ -303,7 +303,7 @@ body {
 .head {
   height: 0.8rem;
   line-height: 0.8rem;
-  font-size: 0.35rem;
+  font-size: 0.3rem;
   font-weight: normal;
   text-align: left;
 }
@@ -321,12 +321,10 @@ body {
   line-height: 1.25rem;
 }
 .info .row .words {
-  font-size: 0.35rem;
+  font-size: 0.3rem;
   font-weight: normal;
 }
 .info .row .number {
-  font-size: 0.3rem;
-  font-weight: normal;
   float: right;
   color: #6D6B6B;
 }
@@ -372,8 +370,6 @@ body {
   height: 0.6rem;
   line-height: 0.6rem;
   margin-left: 1rem;
-  font-size: 0.3rem;
-  font-weight: normal;
 }
 .balance .box .left .bottom {
   height: 0.6rem;
@@ -403,7 +399,6 @@ body {
   float: left;
 }
 .mode .choose span {
-  font-size: 0.3rem;
   margin-left: 1.1rem;
   font-weight: normal;
   display: block;
