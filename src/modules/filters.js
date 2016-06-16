@@ -48,20 +48,9 @@ module.exports = function(app){
 			val=val/1000;
 			var date = new Date();
 			if(!!val){
-				date = Date.create(val).utc(true);
+				date = Date.create(val).utc(false);
 			}
 			return date.format('long', 'zh-CN');
-		}
-	});
-	
-	app.filter('year',function(){
-		return function(val){
-			val=val/1000;
-			var date = new Date();
-			if(!!val){
-				date = Date.create(val);
-			}
-			return date.format('long', 'ja');
 		}
 	});
 

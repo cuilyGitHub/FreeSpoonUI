@@ -8,25 +8,25 @@ module.exports = function(app){
 			$location.path("/error");
 			return;
 		}
+			
+		// import data
+		$scope.batch = freeIndex_Bacth;
 		
-		jQuery(document).ready(function($) {
+		$scope.jump = function(url){
+			$location.path('/index');
+		}
+
+		setTimeout(function(){
+			alert(111);
+			jQuery(document).ready(function($) {
 				$('.Carousel').unslider({
 					autoplay: true,
 					dots: false,
 					arrows: false,
 				});
-		});
-		
-		// import data
-			$scope.batch = freeIndex_Bacth;
-		
-		$scope.jump = function(url){
-			$location.path('/index');
-		}
-		
-
+			});
+		}, 0);
 		
 			
-				
 	});
 }
