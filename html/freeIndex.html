@@ -18,38 +18,29 @@
 	</div>
 	<div class='box'>
 		<ul>
-			<li class='rows'>
+			<li class='rows' ng-repeat='x in batch'>
 				<div class='banner'>
-					<div class='Subtitle'><span>水果团</span></div>
-					<h1>时令鲜果汇聚产地直达</h1>
+					<div class='Subtitle'><span>{{x.category}}</span></div>
+					<h1>{{x.title}}</h1>
 					<div class='mask'></div>
 					<!-- <img src='assets/image/yangmei_infor.png' alt='' /> -->
-					<div class="a">
+					<div class="Carousel">
 						<ul>
-							<li><img src="1.jpg"></li>
-							<li><img src="2.jpg"></li>
-							<li><img src="3.jpg"></li>
-							<li><img src="4.jpg"></li>
-							<li><img src="5.jpg"></li>
-							<li><img src="6.jpg"></li>
-							<li><img src="7.jpg"></li>
-							<li><img src="8.jpg"></li>
-							<li><img src="9.jpg"></li>
-							<li><img src="10.jpg"></li>
+							<li ng-repeat='img in x.covers'><img ng-src='{{img}}' alt=''></li>
 						</ul>
 					</div>
 				</div>
 				<div class='reseller'>
-					<div class='right'>上地</div>
+					<div class='right'>{{x.location}}</div>
 					<div class='info'>
 						<div class='leader'><img src='assets/image/headerPri.jpg' alt='' /></div>
-						<div class='leaderinfo'><span>小蜜蜂</span>团主</div>
-						<div class='leaderinfo'>截团时间:2016-06-24 24:00:00</div>
+						<div class='leaderinfo'><span>{{x.reseller.name}}</span>团主</div>
+						<div class='leaderinfo'>截团时间:{{x.dead_time | date}}</div>
 					</div> 
 				</div>
 				<div class='purchase'>
-					<div class='productsInfo'>已团成/已有123人团购过</div>
-					<div class='button'>去团购</div>
+					<div class='productsInfo'>已团成/已有{{x.participant_count}}人团购过</div>
+					<div class='button' ng-click='jump(x.url)'>去团购</div>
 				</div>
 			</li>
 			
@@ -64,7 +55,14 @@
 						<div class='statusInfo'>团购已结束</div>
 						<div class='bg'></div>
 					</div>
-					<img src='assets/image/yangmei_infor.png' alt='' />
+					<!-- <img src='assets/image/yangmei_infor.png' alt='' /> -->
+					<div class="Carousel">
+						<ul>
+							<li><img src='1.jpg' alt=''></li>
+							<li><img src='2.jpg' alt=''></li>
+							<li><img src='3.jpg' alt=''></li>
+						</ul>
+					</div>
 				</div>
 				<div class='reseller'>
 					<div class='right'>上地</div>

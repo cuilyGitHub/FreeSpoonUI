@@ -45,11 +45,23 @@ module.exports = function(app){
 
 	app.filter('date',function(){
 		return function(val){
+			val=val/1000;
+			var date = new Date();
+			if(!!val){
+				date = Date.create(val).utc(true);
+			}
+			return date.format('long', 'zh-CN');
+		}
+	});
+	
+	app.filter('year',function(){
+		return function(val){
+			val=val/1000;
 			var date = new Date();
 			if(!!val){
 				date = Date.create(val);
 			}
-			return date.format('long', 'zh-CN');
+			return date.format('long', 'ja');
 		}
 	});
 

@@ -7,12 +7,13 @@ var $ = require('jquery-browserify');
 var angular = require('angular');
 var angular_route = require('angular-route');
 var sugar = require('sugar');
+var ngResource = require('angular-resource');
 
 // local modules
 var utils = require('./modules/utils');
 var registerServices = require('./modules/services');
 var registerFilters = require('./modules/filters');
-//var registerControllers = require('./modules/controllers');
+var registerFactorys = require('./modules/factorys');
 
 // controllers modules
 var registerCheckout = require('./modules/controllers/checkout');
@@ -26,12 +27,12 @@ var registerPayMent = require('./modules/controllers/payMent');
 var registerRecord = require('./modules/controllers/record');
 var registerShare = require('./modules/controllers/share');
 
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('app', ['ngRoute','ngResource']);
 
 // register angular components
 registerServices(app);
 registerFilters(app);
-//registerControllers(app);
+registerFactorys(app);
 
 //register controllers
 registerCheckout(app);
@@ -56,25 +57,47 @@ app.config(function($routeProvider, $locationProvider){
 	
 	$routeProvider
 		.when('/', {
+			templateUrl: 'html/freeIndex.html',
+			controller: 'FreeIndexController',
+			resolve: {
+				freeIndex_Bacth: ['$q', '$location', '$data', '$rootScope', 'bulksRes',  function($q, $location, $data, $rootScope, bulksRes){
+					$rootScope.load = true;
+					var deferred = $q.defer();
+					bulksRes.query({},function(data,headers){
+						deferred.resolve(data);
+					},function(data,headers){
+						deferred.reject(data);
+					});
+					return deferred.promise;
+				}]
+			}
+		})
+		.when('index', {
 			templateUrl: 'html/index.html',
 			controller: 'IndexController',
 			resolve: {
-				batch: ['$q', '$location', '$data', '$rootScope', function($q, $location, $data, $rootScope){
+				batch: ['$q', '$location', '$data', '$rootScope', 'bulksRes',  function($q, $location, $data, $rootScope, bulksRes){
 					$rootScope.load = true;
 					var deferred = $q.defer();
-					$data.requestBatch(function(data){
-						$rootScope.load = false;
-						if(!data){
-							$data.preData={
-								title:'参数错误',
-								desc:'未知的团购批次！'
-							}
-							$location.path("/error");
-							deferred.resolve(null);
-							return;
-						}
+					bulksRes.query({},function(data,headers){
+						console.log(data);
 						deferred.resolve(data);
+					},function(data,headers){
+						deferred.reject(data);
 					});
+					// $data.requestBatch(function(data){
+						// $rootScope.load = false;
+						// if(!data){
+							// $data.preData={
+								// title:'参数错误',
+								// desc:'未知的团购批次！'
+							// }
+							// $location.path("/error");
+							// deferred.resolve(null);
+							// return;
+						// }
+						// deferred.resolve(data);
+					// });
 					return deferred.promise;
 				}]
 			}
