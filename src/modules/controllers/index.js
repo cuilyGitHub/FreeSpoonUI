@@ -10,14 +10,16 @@ module.exports = function(app){
 		}
 		
 		// Configure WeChat share information
-		$data.getWXShareInfo(batch.id, function(shareInfo){
+		/*$data.getWXShareInfo(batch.id, function(shareInfo){
 			$wxBridge.configShare(shareInfo);
-		});
+		});*/
+		
+		$wxBridge.configShare(batch);
 		
 		// import data
-		$scope.commodities = batch.commodities;
-		$scope.sponsor = batch.sponsor;
-		$scope.offered = batch.offered;
+		$scope.batch = batch;
+		$scope.reseller = batch.reseller;
+		$scope.commodities = batch.products;
 
 		// watch commodities (Update totalNum and totalPrice)
 		$scope.$watch('commodities', function(newValue, oldValue){
@@ -30,7 +32,7 @@ module.exports = function(app){
 				var commodity = newValue[i];
 				if(!!commodity.num){
 					totalNum += commodity.num;
-					totalPrice += commodity.num * commodity.price;
+					totalPrice += commodity.num * commodity.unit_price;
 				}
 			}
 			if(!totalNum){

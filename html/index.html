@@ -11,39 +11,34 @@
     <div class="board">
 		<div class="right" >
 			<div class='spare'>剩<span>{{offered.date}}</span>天</div>
-            <div class='attend'>已有<span>{{offered.offeredTotal}}人</span>参团</div>
+            <div class='attend'>已有<span>{{batch.participant_count}}人</span>参团</div>
 			<div class='send'>预计3月25日发货</div>
         </div>
         <div class="left" >
-            <div class="sculpture"><img ng-src="{{sponsor.img}}"  alt=""></div>
-			<p class='leaderName'><span>{{sponsor.name}}</span>团主</p>
-			<p class="leaderAddress">上地</p>
+            <div class="sculpture"><img ng-src="{{reseller.wx_headimgurl}}"  alt=""></div>
+			<p class='leaderName'><span>{{reseller.name}}</span>团主</p>
+			<p class="leaderAddress">{{batch.location}}</p>
         </div> 
         
     </div>
     <div id="move" class="main" >
         <ul>    
             <li ng-repeat="x in commodities">
-                <div ng-click='goodsDetails()'>
-                    <img ng-src="{{x.img}}"  alt="">
+                <div class='banner' ng-click='goodsDetails()'>
+                    <img ng-src="{{x.cover}}"  alt="">
                 </div>
                 <div class="content">
                     <div class="first">
                         <div>
                             <h1>{{x.title}}</h1>
-                            <span>{{x.spec}}</span>
+                            <span>{{x.spec_desc}}/{{x.spec}}</span>
                         </div>
-                        <p>{{x.describle}}</p>
+                        <p>{{x.desc}}</p>
                     </div>
 					<div class='buyer' ng-click='jump()'>
-						<div class='right'>999</div>
+						<div class='right'>{{x.participant_count}}</div>
 						<div class='left'>
-							<div class='headPortrait'><img src='assets/image/headerPri.jpg' alt='' /></div>
-							<div class='headPortrait'><img src='assets/image/headerPri.jpg' alt='' /></div>
-							<div class='headPortrait'><img src='assets/image/headerPri.jpg' alt='' /></div>
-							<div class='headPortrait'><img src='assets/image/headerPri.jpg' alt='' /></div>
-							<div class='headPortrait'><img src='assets/image/headerPri.jpg' alt='' /></div>
-							<div class='headPortrait'><img src='assets/image/headerPri.jpg' alt='' /></div>
+							<div class='headPortrait' ng-repeat='buyer in x.participant_avatars'><img ng-src='{{buyer}}' alt='' /></div>
 						</div>
 					</div>
                     <div class="last ">
@@ -55,11 +50,11 @@
                         <div class="regulator">
                             <span class="groupon_icon"><img src="assets/images/poper.png" alt=""></span>
                             <div class="groupon">
-                                <span>￥{{x.price | int}}</span>
+                                <span>￥{{x.unit_price | int}}</span>
                                 <span>.</span>
-                                <span>{{x.price | fraction}}</span>
+                                <span>{{x.unit_price | fraction}}</span>
                             </div>
-							<div class='market_price'>999.00</div>
+							<div class='market_price'>{{x.market_price | convert}}</div>
                         </div>
                     </div>
                  </div>

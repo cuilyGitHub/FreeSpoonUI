@@ -60,11 +60,13 @@ app.config(function($routeProvider, $locationProvider){
 			templateUrl: 'html/freeIndex.html',
 			controller: 'FreeIndexController',
 			resolve: {
-				freeIndex_Bacth: ['$q', '$location', '$data', '$rootScope', 'bulksRes',  function($q, $location, $data, $rootScope, bulksRes){
+				batch: ['$q', '$location', '$data', '$rootScope', 'bulksRes',  function($q, $location, $data, $rootScope, bulksRes){
 					$rootScope.load = true;
 					var deferred = $q.defer();
-					bulksRes.query({},function(data,headers){
+					bulksRes.query({search:$rootScope.search},function(data,headers){
+						$rootScope.load = false;
 						deferred.resolve(data);
+						//$rootScope.apply();
 					},function(data,headers){
 						deferred.reject(data);
 					});
@@ -72,32 +74,20 @@ app.config(function($routeProvider, $locationProvider){
 				}]
 			}
 		})
-		.when('index', {
+		.when('/index', {
 			templateUrl: 'html/index.html',
 			controller: 'IndexController',
 			resolve: {
-				batch: ['$q', '$location', '$data', '$rootScope', 'bulksRes',  function($q, $location, $data, $rootScope, bulksRes){
+				batch: ['$q', '$location', '$data', '$rootScope', 'bulkRes',  function($q, $location, $data, $rootScope, bulkRes){
 					$rootScope.load = true;
 					var deferred = $q.defer();
-					bulksRes.query({},function(data,headers){
-						console.log(data);
+					bulkRes.get({},function(data,headers){
+						$rootScope.load = false;
 						deferred.resolve(data);
+						console.log(data);
 					},function(data,headers){
 						deferred.reject(data);
 					});
-					// $data.requestBatch(function(data){
-						// $rootScope.load = false;
-						// if(!data){
-							// $data.preData={
-								// title:'参数错误',
-								// desc:'未知的团购批次！'
-							// }
-							// $location.path("/error");
-							// deferred.resolve(null);
-							// return;
-						// }
-						// deferred.resolve(data);
-					// });
 					return deferred.promise;
 				}]
 			}
@@ -205,7 +195,21 @@ app.config(function($routeProvider, $locationProvider){
 		})
 		.when('/record',{
 			templateUrl: 'html/record.html',
-			controller: 'RecordController'
+			controller: 'RecordController',
+			resolve: {
+				batch: ['$q', '$location', '$data', '$rootScope', 'bulkRes',  function($q, $location, $data, $rootScope, bulkRes){
+					$rootScope.load = true;
+					var deferred = $q.defer();
+					bulkRes.get({},function(data,headers){
+						$rootScope.load = false;
+						deferred.resolve(data);
+						console.log(data);
+					},function(data,headers){
+						deferred.reject(data);
+					});
+					return deferred.promise;
+				}]
+			}
 		})
 		.when('/goodsDetails',{
 			templateUrl: 'html/goodsDetails.html',

@@ -9,21 +9,30 @@
     <link rel="stylesheet" href="assets/css/unslider-dots.css">
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="assets/js/unslider-min.js"></script>
-	<!-- <script src="assets/js/unslider.js"></script> -->
     <title></title>
 </head>
 <body>
 	<div class='search'>
-		<div class='cicle'><input type='text'placeholder='搜索团主、商品'/></div>
+		<div class='cicle' >
+			<input type='text' id='cicle' ng-keyup='onkeydown($event)' placeholder="搜索团主、商品" ng-focus="onfocusFn()"/>
+		</div>
 	</div>
-	<div class='box'>
+	<div class='searchBox' ng-if='searchBox'>
+		<span class='content'>没有搜索到您要的商品</span>
+	</div>
+	<div class='box' ng-if='box'>
 		<ul>
-			<li class='rows' ng-repeat='x in batch'>
+			<li class='rows' ng-repeat='x in batch' on-finish-render-filters>
 				<div class='banner'>
-					<div class='Subtitle'><span>{{x.category}}</span></div>
-					<h1>{{x.title}}</h1>
-					<div class='mask'></div>
-					<!-- <img src='assets/image/yangmei_infor.png' alt='' /> -->
+					<!-- <div>
+						<div class='Subtitle'><span>{{x.category}}</span></div>
+						<h1>{{x.title}}</h1>
+						<div class='mask'></div>				
+					</div> -->
+					<div>
+						<div class='statusInfo'>团购已结束</div>
+						<div class='bg'></div>
+					</div>
 					<div class="Carousel">
 						<ul>
 							<li ng-repeat='img in x.covers'><img ng-src='{{img}}' alt=''></li>
@@ -40,41 +49,7 @@
 				</div>
 				<div class='purchase'>
 					<div class='productsInfo'>已团成/已有{{x.participant_count}}人团购过</div>
-					<div class='button' ng-click='jump(x.url)'>去团购</div>
-				</div>
-			</li>
-			
-			<li class='rows'>
-				<div class='banner'>
-					<!-- <div>
-						<div class='Subtitle'><span>水果团</span></div>
-						<h1>时令鲜果汇聚产地直达</h1>
-						<div class='mask'></div>
-					</div> -->
-					<div>
-						<div class='statusInfo'>团购已结束</div>
-						<div class='bg'></div>
-					</div>
-					<!-- <img src='assets/image/yangmei_infor.png' alt='' /> -->
-					<div class="Carousel">
-						<ul>
-							<li><img src='1.jpg' alt=''></li>
-							<li><img src='2.jpg' alt=''></li>
-							<li><img src='3.jpg' alt=''></li>
-						</ul>
-					</div>
-				</div>
-				<div class='reseller'>
-					<div class='right'>上地</div>
-					<div class='info'>
-						<div class='leader'><img src='assets/image/headerPri.jpg' alt='' /></div>
-						<div class='leaderinfo'><span>小蜜蜂</span>团主</div>
-						<div class='leaderinfo'>截团时间:2016-06-24 24:00:00</div>
-					</div> 
-				</div>
-				<div class='purchase'>
-					<div class='productsInfo'>已团成/已有123人团购过</div>
-					<div class='button'>去团购</div>
+					<div class='button' ng-click='jump(x.id)'>去团购</div>
 				</div>
 			</li>
 		</ul>

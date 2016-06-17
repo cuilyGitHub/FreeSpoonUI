@@ -16,10 +16,10 @@ module.exports = function(app){
 		
 		this.configShare = function(shareInfo){
 			wx.onMenuShareAppMessage({
-				title: shareInfo.title, 
-				desc: shareInfo.desc, 
-				link: shareInfo.shareUrl, 
-				imgUrl: shareInfo.imgUrl,
+				title: shareInfo.card_title, 
+				desc: shareInfo.card_desc, 
+				link: shareInfo.card_url, 
+				imgUrl: shareInfo.card_icon,
 				//type: '', 
 				//dataUrl: '', 
 				success: function () {
