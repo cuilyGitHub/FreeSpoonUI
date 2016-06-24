@@ -315,6 +315,7 @@ body {
 .info {
   margin: 0 0.2rem;
   height: 2.5rem;
+  margin-top: 1rem;
 }
 .info .row {
   height: 1.25rem;

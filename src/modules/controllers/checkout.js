@@ -1,32 +1,7 @@
 module.exports = function(app){
 
-	app.controller('CheckController', function($scope, $location, $data, $history, checkoutInfo){
+	app.controller('CheckController', function($scope, $location, $data, $history, $rootScope, batch){
 		
-		if(!$data.openId){
-			$data.preData={
-				title:'参数错误',
-				desc:'参数不存在'
-			}
-			$location.path("/error");
-			return;
-		}
-		if(!checkoutInfo){
-			$data.preData={
-				title:'参数错误',
-				desc:'参数不存在'
-			}
-			$location.path("/error");
-			return;
-		}
-		$scope.tel = checkoutInfo.tel;
-		$scope.nickName = checkoutInfo.nickName;
-		$scope.address = checkoutInfo.dists;
-		
-		$scope.selectAddress = function(p){
-		$scope.selectedAddress = p;
-		}
-
-		var batch = $data.preData;
 		if(!batch){
 			$data.preData={
 				title:'参数错误',
@@ -35,10 +10,24 @@ module.exports = function(app){
 			$location.path("/error");
 			return;
 		}
+		if($rootScope.auth || $rootScope.auth.mob_user){
+			$scope.isTrue = false;
+			$scope.tel = $rootScope.auth.mob_user.mob;
+			$scope.nickName = $rootScope.auth.mob_user.wx_nickname;
+		}else{
+			$scope.isTrue = true;
+		}
+		
+		//选择地址
+		$scope.selectAddress = function(p){
+			$scope.selectedAddress = p;
+		}
 
-		$scope.commodities = batch.commodities;
+		$scope.commodities = batch.products;
 		$scope.totalPrice = batch.totalPrice;
+		$scope.dispatchers = batch.dispatchers;
 			
+		//设置header头左侧按钮状态	
 		if($history.urlQueue.length>0){
 			$scope.icoStatus=false;
 			$scope.back=function(){
@@ -50,7 +39,16 @@ module.exports = function(app){
 				alert('关闭');
 			};
 		}
-			
+		//onblur get mob and name
+		$scope.getMob = function(){
+			$scope.tel = $('#mob')[0].value;
+		}
+		$scope.getName = function(){
+			$scope.nickName = $('#nikeName')[0].value;
+		}
+		
+		
+		//点击支付
 		$scope.pay = function(commodities){	
 		
 			if(!$scope.nickName || $scope.nickName.length == 0){
@@ -67,40 +65,36 @@ module.exports = function(app){
 			}
 			
 			var puchared = [];
-			for(var i = 0; i < batch.commodities.length; i++){
-				var commodity = commodities[i]; 
+			for(var i = 0; i < batch.products.length; i++){
+				var commodity = batch.products[i]; 
 				if(!!commodity.num){
 					puchared.push({
-						id: commodity.id,
-						num: commodity.num
+						product_id: commodity.id,
+						quantity: commodity.num
 					});
 				}
 			}
 			var requestData={
-				openid: $data.openId,
-				nickname: $scope.nickName,
-				tel: $scope.tel,
-				batch_id: batch.id,
-				dist_id: $scope.selectedAddress.id,
-				puchared: puchared,
-				ipaddress: '127.0.0.1'
+				obtain_name: $scope.nickName,
+				obtain_mob: $scope.tel,
+				bulk_id: batch.id,
+				dispatcher_id: $scope.selectedAddress.id,
+				goods: puchared
 			};
-			
-			$data.requestUnifiedOrder(requestData, function(orderId){
-				if(!orderId){
-					alert('支付失败，服务器异常');
-					return;
-				}
-				$data.prePromptPay = true;
-				$location.path('/order/{orderId}'.assign({orderId: orderId}));
+
+			$data.requestUnifiedOrder(requestData, function(data){
+				//$data.prePromptPay = true;
+				$data.ordersData = data;
+				$location.path('/payment');
 			});
 		}
 		
-		$scope.isTrue=false;
 		$scope.addInfo=function(){
 			$scope.isTrue = true;
 		}
 		
+		
+		//配送方式选项卡
 		var box=document.getElementById('box');
 		var tip=document.getElementById('tip');
 		var oBox=box.getElementsByTagName("span");

@@ -9,42 +9,73 @@
 <body>
 	<div class='page'>
 		<div class='back page' ng-click='back()'></div>
-		<img class='banner' src='assets/image/yangmei_infor.png' alt='' />
+		<img class='banner' ng-src='{{batch.cover}}' alt='' />
 		<div class='bannerInfo'>
 			<div class='right'>
-				<span class='box'>12盒/箱</span>
+				<span class='box'>{{batch.spec_desc}}/{{batch.spec}}</span>
 				<div class="regulator_right">
-					<a href="javascript:void(0);" ng-click="removeCommodity(x);">-</a>
-					<span class="center">{{x.num | safenum}}</span>
-					<a href="javascript:void(0);" ng-click="addCommodity(x);">+</a>
+					<a href="javascript:void(0);" ng-click="removeShopCartNum();">-</a>
+					<span class="center">{{shopCartNum | safenum}}</span>
+					<a href="javascript:void(0);" ng-click="addShopCartNum();">+</a>
 				</div>
 			</div>
 			<div class='left'>
-				<span class='name'>智利车厘子</span><span class='weight'>(每盒13-25粒左右)</span>
-				<div class='single weight'>单粒约20-30g</div>
-				<div class='unit_price'>￥<span>999</span>.00</div>
-				<div class='market_price'>￥999.00</div>
+				<span class='name'>{{batch.title}}</span><span class='weight'>({{batch.spec_desc}})</span>
+				<div class='single weight'>{{batch.desc}}</div>
+				<div class='unit_price'>￥<span>{{batch.unit_price | int}}</span>.{{batch.unit_price | fraction}}</div>
+				<div class='market_price'>￥{{batch.market_price | convert}}</div>
 			</div>
 		</div>
 		<ul>
-			<li class='commandList'>
-				<img src='assets/image/yangmei_infor.png' alt='' />
-				<p>杨梅属于杨梅科杨梅属小乔木或灌木植物，又称圣生梅、白蒂梅、树梅具有很高的药用和食用价值，在中国华东和湖南、广东、广西、贵州等地区均有分布。杨梅原产中国浙江余姚，1973年余姚境内发掘新石器时代的河姆渡遗址时发现杨梅属花粉，说明在7000多年以前该地区就有杨梅生长。该属有50多个种，中国已知的有杨梅、白杨梅、毛杨梅、青杨梅和矮杨梅，经济栽培主要是杨梅。</p>
-			</li>
-			<li class='commandList'>
-				<img src='assets/image/yangmei_infor.png' alt='' />
-				<p>中国已知的有杨梅、白杨梅、毛杨梅、青杨梅和矮杨梅，经济栽培主要是杨梅。</p>
+			<li class='commandList' ng-repeat='x in batch.details'>
+				<img ng-src='{{x.image}}' alt='' />
+				<p>{{x.plain}}</p>
 			</li>
 		</ul>
 		<div  class="footer">
-			<a ng-class="{right:true, buttonStatus:totalNum>0}"  ng-click="checkout();">去结算</a>
+			<a ng-class="{right:true, buttonStatus:shopCartData.totalNum>0}"  ng-click="checkout();">选好了</a>
 			<div class="left" onclick="popup_window_from_bottom();">
-				<div class="shop"><span class="__amount">{{totalNum}}</span></div>
+				<div class="shop"><span class="__amount">{{shopCartData.totalNum}}</span></div>
 				<div class="shop_info">
-					<p class="line1">合计:<span class="__total">￥{{totalPrice | convert}}</span></p>
+					<p class="line1">合计:<span class="__total">￥{{shopCartData.totalPrice | convert}}</span></p>
 				</div>
 			</div>
 		</div>
+		
+		<div class="__overlay matter"></div>
+		<div class="popup-window-from-bottom">
+			<div class="box">
+				<div class="popup-bottom-title">
+					<div class="del" ng-click="empty();">
+						<div class="popup_bottom_del">
+							<span class="del_text" >清空</span>
+							<span class="del_img"></span>
+						</div>
+
+					</div>
+					<div class="oder">
+						<div class="popup_bottom_oder">
+							<span class="oder_img"></span>
+							<span class="oder_text">订单详情</span>
+						</div>
+					</div>
+				</div>
+				<ul  class="cart">
+					<li class="template" ng-repeat="x in shopCartData.products" ng-if="!!x.num">
+						<div class="popup_reduce">
+							<div class="price">{{x.price | convert}}</div>
+							<div class="regulator_right">
+								<a href="javascript:void(0);" ng-click="removeCommodity(x);">-</a>
+								<span class="center">{{x.num | safenum}}</span>
+								<a href="javascript:void(0);" ng-click="addCommodity(x);">+</a>
+							</div>
+						</div>
+						<span class="field_title">{{x.title}}</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
 	</div>
 	
 </body>

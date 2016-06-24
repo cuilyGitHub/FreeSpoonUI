@@ -1,8 +1,8 @@
 module.exports = function(app){
 
-	app.controller('OrdersController', function($scope, $routeParams, $data, $history,$location, $http, $wxBridge, orders){
+	app.controller('OrdersController', function($scope, $routeParams, $data, $history,$location, $http, $wxBridge, batch){
 		
-		if(!orders){
+		if(!batch){
 			$data.preData={
 				title:'参数错误',
 				desc:'参数不存在'
@@ -11,7 +11,8 @@ module.exports = function(app){
 			return;
 		}
 		
-		$scope.orders = orders;
+		$scope.orders = batch;
+		
 		
 		 if($history.urlQueue.length>0){
 				 $scope.icoStatus=false;

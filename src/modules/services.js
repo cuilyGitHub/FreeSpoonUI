@@ -43,16 +43,15 @@ module.exports = function(app){
 		
 	});
 
-	app.service('$data', function($http, $location){
+	app.service('$data', function($http, $location, $q, $rootScope){
 		
-		//this.openId;
-		//this.batchId;
+		//this preData
 		
 		this.preData = null;
 		
 		var that = this;
 		
-		this.basicVerify = function(data){
+		/*this.basicVerify = function(data){
 			if(!data || !data.errcode){
 				return false;
 			}
@@ -60,68 +59,17 @@ module.exports = function(app){
 				return false;
 			}
 			return true;
-		}
+		}*/
 		
-		this.getWXCodeFromUrl = function(){
-			var urlParams = $location.search();
-			if(!urlParams){
-				return null;
-			}
-			return urlParams.code;
-		}
-		
-		this.getStateFromUrl = function(){
+		/*this.getStateFromUrl = function(){
 			var urlParams = $location.search();
 			if(!urlParams){
 				return null;
 			}
 			return urlParams.state;
-		}
+		}*/
 		
-		this.requestBatch = function(cb){
-			if(!!that.lastBatch){
-				cb(that.lastBatch);
-				return;
-			}
-			var batchId = that.getStateFromUrl();
-			if(!batchId){
-				cb(null);
-				return;
-			}
-			var code = that.getWXCodeFromUrl();
-			if(!code){
-				cb(null);
-				return;
-			}
-			//$http.post("http://yijiayinong.com/api/auth/weixin", {
-			$http.post(publicValue.domain+"batch", {	
-				batchId: batchId,
-				code: code,
-			})
-			.success(function(data){
-				if(!that.basicVerify(data)){
-					cb(null);
-					return;
-				}
-				if(data.res.data.offered.date == 0){
-					cb(null);
-					return;
-				}
-				if(!data.res || !data.res.data){
-					cb(null);
-					return;
-				}
-				that.openId = data.res.openId;
-				that.lastBatch = data.res.data;
-				that.lastBatchid = data.res.data.id;
-				cb(data.res.data);
-			})
-			.error(function(){
-				cb(null);
-			});
-		};
-		
-		this.requestCheckoutInfo = function(batchId, cb){
+		/*this.requestCheckoutInfo = function(batchId, cb){
 			if(!that.openId){
 				cb(null);
 				return;
@@ -144,7 +92,7 @@ module.exports = function(app){
 			.error(function(){
 				cb(null);
 			});
-		};
+		};*/
 		
 		this.requestOrders = function(cb){
 			if(!that.openId){
@@ -203,24 +151,6 @@ module.exports = function(app){
 			})
 			.error(function(){
 				cb(false);
-			});
-		};
-				
-		this.requestUnifiedOrder = function(requestData, cb){
-			$http.post(publicValue.domain+"unifiedOrder", requestData)
-			.success(function(data){
-				if(!that.basicVerify(data)){
-					cb(null);
-					return;
-				}
-				if(!data.res){
-					cb(null);
-					return;
-				}
-				cb(data.res.orderId);
-			})
-			.error(function(){
-				cb(null);
 			});
 		};
 				
@@ -315,6 +245,54 @@ module.exports = function(app){
 			});
 		};
 		
+		
+		
+		this.bindMob = function(mob, code, cb){
+			var defer = $q.defer();
+			$http({
+				method:'post',
+				url:'http://yijiayinong.com/api/business/bind',
+				data:{
+					mob:mob,
+					code:code
+				},
+				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
+			})
+			.success(function(data){
+				if(!data){
+					cb(null);
+					return;
+				}
+				$rootScope.auth = data;
+				defer.resolve(data);
+				cb(data);
+			})
+			.error(function(data){
+				defer.reject(data);
+				cb(null);
+			});
+			return defer.promise
+		};
+		
+		this.requestUnifiedOrder = function(requestData, cb){
+			$http.post(publicValue.domain+"unifiedOrder", requestData)
+			$http({
+				method:'post',
+				url:'http://yijiayinong.com/api/business/orders/',
+				data:requestData,
+				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
+			})
+			.success(function(data){
+				if(!data){
+					cb(null);
+					return;
+				}
+				cb(data);
+			})
+			.error(function(){
+				cb(null);
+			});
+		};	
 	});
 	
 	app.service('$history',function($http, $location){
@@ -329,6 +307,10 @@ module.exports = function(app){
 			 that.urlQueue.unshift(getUrl);
 		}
 		
+	});
+	
+	app.service('$shopCart',function($http, $location){
+			//save all shopCart data
 	});
 
 }

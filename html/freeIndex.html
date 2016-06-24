@@ -14,11 +14,11 @@
 <body>
 	<div class='search'>
 		<div class='cicle' >
-			<input type='text' id='cicle' ng-keyup='onkeydown($event)' placeholder="搜索团主、商品" ng-focus="onfocusFn()"/>
+			<input type='text' id='cicle' ng-keyup='onkeydown($event)' placeholder="搜索团主、商品" ng-focus="onfocusFn()" value="搜索团主、商品" onblur="if(this.value==''){this.value='搜索团主、商品'}" onfocus="if(this.value=='搜索团主、商品'){this.value=''}"/>
 		</div>
 	</div>
 	<div class='searchBox' ng-if='searchBox'>
-		<span class='content'>没有搜索到您要的商品</span>
+		<span class='content' ng-if = 'content'>没有搜索到您要的商品</span>
 	</div>
 	<div class='box' ng-if='box'>
 		<ul>

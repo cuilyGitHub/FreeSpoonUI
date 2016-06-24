@@ -374,8 +374,10 @@ body {
   border-bottom: 2px solid #ff9934;
   color: #ff9934;
 }
-#checkout .content ul {
+#checkout .content .ads {
   display: none;
+}
+#checkout .content ul {
   margin: 0 0.2rem;
 }
 #checkout .content ul li:last-child {
@@ -383,7 +385,7 @@ body {
 }
 #checkout .content ul .row {
   height: 0.8rem;
-  border-bottom: 1px solid #ccc;
+  line-height: 0.8rem;
   padding: 0.2rem 0;
 }
 #checkout .content ul .row .circular {
@@ -426,6 +428,10 @@ body {
   background: url('../images/grayPhone.png') no-repeat left;
   background-size: 0.25rem;
 }
+#checkout .content ul .detailRow {
+  height: 0.5rem!important;
+  line-height: 0.5rem!important;
+}
 #checkout .content ul .checked {
   background: url("../images/3.png") no-repeat left !important;
   background-size: 0.5rem !important;
@@ -447,4 +453,9 @@ body {
 }
 #checkout .content .select p {
   display: block;
+}
+#checkout .content .list {
+  border-bottom: 0!important;
+  padding-bottom: 0!important;
+  margin: 0 0.45rem!important;
 }

@@ -2,7 +2,7 @@
 
 module.exports = function(app){
 	
-	app.controller('IndexController', function($scope, $location, $data, $history, $wxBridge, batch){
+	app.controller('IndexController', function($scope, $location, $data, $history, $wxBridge, batch, $rootScope, $shopCart){
 		
 		if(!batch){
 			$location.path("/error");
@@ -16,10 +16,14 @@ module.exports = function(app){
 		
 		$wxBridge.configShare(batch);
 		
+		//save all shopCart data
+		$shopCart.shopCartData = batch;
+		
 		// import data
 		$scope.batch = batch;
 		$scope.reseller = batch.reseller;
 		$scope.commodities = batch.products;
+		
 
 		// watch commodities (Update totalNum and totalPrice)
 		$scope.$watch('commodities', function(newValue, oldValue){
@@ -28,6 +32,7 @@ module.exports = function(app){
 			}
 			var totalNum = 0;
 			var totalPrice = 0;
+			
 			for(var i = 0; i < newValue.length; i++){
 				var commodity = newValue[i];
 				if(!!commodity.num){
@@ -35,6 +40,8 @@ module.exports = function(app){
 					totalPrice += commodity.num * commodity.unit_price;
 				}
 			}
+			
+			
 			if(!totalNum){
 				$(".__amount").css('display', 'none');
 				$('.__overlay').css('display', 'none');
@@ -44,6 +51,7 @@ module.exports = function(app){
 			} else {
 				$(".__amount").css('display', 'block');
 			}
+			
 			$scope.totalNum = totalNum;
 			$scope.totalPrice = totalPrice;
 			batch.totalNum = totalNum;
@@ -51,16 +59,32 @@ module.exports = function(app){
 		}, true);
 		
 		$scope.checkout = function(){
-			if(!!batch.totalNum && batch.totalNum>0){
-				$history.getHistory();
-				$data.preData = batch;
-				$location.path("/checkout/{batchId}".assign({batchId: batch.id}));
+			if(!$rootScope.auth || !$rootScope.auth.user){
+				register();
+			}else{
+				register_hide();
+				if(!!batch.totalNum && batch.totalNum>0){
+					$history.getHistory();
+					$data.preData = null;
+					$location.path("/checkout");
+				}
 			}
+			
 		};
 		
-		$scope.jumpOrders=function(){
-			$history.getHistory();
-			$location.path("/orders");
+		//手机注册弹窗
+		function register(){
+			$('.__overlay').css({'display':'block','z-index':'9999'});
+			$('.__register').css({'display':'block','z-index':'9999'});
+			$("#index").css("height", "100vh");
+			$("#index").css("overflow", "hidden");
+		}
+		
+		function register_hide(){
+			$('.__overlay').css({'display':'none','z-index':'0'});
+			$('.__register').css({'display':'none','z-index':'0'});
+			$("#index").css("height", "auth");
+			$("#index").css("overflow", "auto");
 		}
 		
 		$scope.addCommodity = function(commodity){
@@ -80,6 +104,7 @@ module.exports = function(app){
 			}
 		};
 		
+		//手机购物车弹窗
 		(function(status){
 			$('.__overlay').on('click', function(){
 				status = false;
@@ -90,7 +115,7 @@ module.exports = function(app){
 					status = false;
 					$('.__overlay').css('display', 'block');
 					$('.popup-window-from-bottom').css("display", "block");
-					$("#index").css("height", "10rem");
+					$("#index").css("height", "100vh");
 					$("#index").css("overflow", "hidden");
 				} else {
 					status = true;
@@ -109,13 +134,52 @@ module.exports = function(app){
 			}
 		}
 		
-		$scope.jump=function(){
+		$scope.jump=function(id){
+			$rootScope.historys = $scope.commodities[id].history;
 			$location.path("/record");
 		}
 		
-		$scope.goodsDetails=function(){
+		$scope.goodsDetails=function(id){
+			$shopCart.id = id;
+			$rootScope.productsUrl = $scope.commodities[id].url;
 			$location.path("/goodsDetails");
 		}
 		
+		$scope.getCode=function(){
+			//to do
+		}
+		
+		$scope.jumpOrders=function(){
+			if(!$rootScope.auth || !$rootScope.auth.user){
+				register();
+			}else{
+				register_hide();
+				$data.preData = null;
+				$history.getHistory();
+				$location.path("/orders");
+			}
+			
+		}
+		
+		$scope.postMob=function(mob,code){
+			var mob = $(".__mob")[0].value;
+			var code = $(".__code")[0].value;
+			if(!mob){
+				alert('请填写手机号');
+				return;
+			}
+			if(!code){
+				alert('请填写验证码');
+				return;
+			}
+
+			$data.bindMob(mob,code,function(data){
+				if(!data){
+					alert('用户注册失败');
+					return;
+				}
+				register_hide();
+			});
+		}
 	});
 }

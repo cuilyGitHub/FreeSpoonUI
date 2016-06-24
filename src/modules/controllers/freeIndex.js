@@ -3,7 +3,7 @@ module.exports = function(app){
 	app.controller('FreeIndexController', function($route,$scope, $data, $location, $history, batch, $rootScope){
 		$scope.searchBox = false;
 		$scope.box = true;
-		console.log(batch);
+		$scope.content = false;
 			
 		if(!batch){
 			$location.path("/error");
@@ -13,7 +13,13 @@ module.exports = function(app){
 		// import data
 		$scope.batch = batch;
 		
+		if(batch.length == 0){
+			$scope.searchBox = true;
+			$scope.content = true;
+		}
+		
 		$scope.jump = function(stateId){
+			$rootScope.id = stateId;
 			$location.path("/index") ;
 		}
 		
@@ -26,7 +32,7 @@ module.exports = function(app){
 			var keycode = window.event?e.keyCode:e.which;
 			if(keycode == 13){
 				$rootScope.search = 'search=' + $('#cicle')[0].value;
-				$location.path('/');
+				$location.path('/freeIndex');
 				$route.reload();
 			}
 		}

@@ -13,13 +13,13 @@
 			<div class="text">成交记录</div>
 		</div>
 		<ul class='box'>
-			<li>
+			<li ng-repeat='x in batch'>
 				<div class='left'>
-					<div class='leader'><img src='assets/image/headerPri.jpg' alt=''/></div>
-					<span>查理</span>
+					<div class='leader'><img ng-src='{{x.wx_headimgurl}}' alt=''/></div>
+					<span>{{x.name}}</span>
 				</div>
-				<div class='right'>2016-05-24 12:33:23</span></div>
-				<div class='center'>5箱</div>
+				<div class='right'>{{x.create_time | date}}</span></div>
+				<div class='center'>{{x.quantity}}{{x.spec}}</div>
 			</li>
 		</ul>
 	</div>

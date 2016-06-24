@@ -1,17 +1,18 @@
 module.exports = function(app){
 
-		app.controller('OrderController', function($scope, $location, $data, $history, $wxBridge, orderInfo){
+		app.controller('OrderController', function($scope, $location, $data, $history, $wxBridge, batch){
 		
-			if(!orderInfo || !orderInfo.data || !orderInfo.payRequest){
+			/*if(!orderInfo || !orderInfo.data || !orderInfo.payRequest){
 				$data.preData={
 					title:'参数错误',
 					desc:'参数不存在'
 				}
 				$location.path("/error");
 				return;
-			}
+			}*/
 
-			$scope.order = orderInfo.data;
+			$scope.order = batch;
+			$scope.dispatcher = batch.dispatcher;
 			
 			if($history.urlQueue.length>0){
 				$scope.icoStatus=false;

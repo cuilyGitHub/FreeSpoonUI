@@ -314,6 +314,8 @@ body {
   border-radius: 50%;
   overflow: hidden;
   float: left;
+  background: url("../images/user.png") no-repeat center;
+  background-size: 1rem;
 }
 .box li .left .leader img {
   width: 1rem;
@@ -327,6 +329,9 @@ body {
   margin: 0.2rem 0;
   font-size: 0.3rem;
   font-weight: normal;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .box li .center {
   width: auto;

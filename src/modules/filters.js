@@ -54,4 +54,14 @@ module.exports = function(app){
 		}
 	});
 
+	app.filter('short_date',function(){
+		return function(val){
+			val=val/1000;
+			var date = new Date();
+			if(!!val){
+				date = Date.create(val).utc(false);
+			}
+			return date.format('short', 'ja');
+		}
+	});
 }

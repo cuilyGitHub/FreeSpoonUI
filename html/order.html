@@ -57,11 +57,11 @@
 				<table>
 					<tr>
 						<td class="message ">收货人:</td>
-						<td>莉莉</td>
+						<td>{{order.obtain_name}}</td>
 					</tr>
 					<tr class='two'>
 						<td class="message bottom">手机号:</td>
-						<td class='bottom'>15209633819</td>
+						<td class='bottom'>{{order.obtain_mob}}</td>
 					</tr>
 					<tr>
 						<td class="message top">配送方式:</td>
@@ -69,11 +69,11 @@
 					</tr>
 					<tr>
 						<td>自提点地址:</td>
-						<td>海定区实验小学东门</td>
+						<td>{{dispatcher.address}}</td>
 					</tr>
 					<tr>
 						<td class="message">营业时间:</td>
-						<td>预计3月12日(已短息通知为准)</td>
+						<td>预计{{dispatcher.opening_time}}-{{dispatcher.closing_time}}(已短息通知为准)</td>
 					</tr>
 				</table>
 				<div class='phone'></div>
@@ -83,7 +83,7 @@
 			<div class="title">费用明细</div>
 			<div>
 				<ul class="list">
-					<li class="row" ng-repeat="c in order.commodities">
+					<li class="row" ng-repeat="c in order.goods">
 						  <span class="left">{{c.title}}</span>
 						<span class="right">{{c.quantity}}</span>
 						<span class="center">￥{{c.price | convert}}</span>
@@ -96,9 +96,9 @@
 			<div class="single_list">
 				<span>总计</span>
 				<div>
-					<span class="text">￥{{order.totalFee| int}}</span>
+					<span class="text">￥{{order.total_fee| int}}</span>
 					<span class="text">.</span>
-					<span class="text">{{order.totalFee| fraction}}</span>
+					<span class="text">{{order.total_fee| fraction}}</span>
 				</div>
 			</div>
 		</div>

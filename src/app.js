@@ -26,6 +26,7 @@ var registerOrders = require('./modules/controllers/orders');
 var registerPayMent = require('./modules/controllers/payMent');
 var registerRecord = require('./modules/controllers/record');
 var registerShare = require('./modules/controllers/share');
+var registerAuth = require('./modules/controllers/auth');
 
 var app = angular.module('app', ['ngRoute','ngResource']);
 
@@ -45,32 +46,49 @@ registerOrders(app);
 registerPayMent(app);
 registerRecord(app);
 registerShare(app);
-
+registerAuth(app);
 
 app.controller('MenuController', function($scope, $route){
 	$scope.$route = $route;
 });
 
-app.config(function($routeProvider, $locationProvider){
-	
+app.config(function($routeProvider, $locationProvider,$httpProvider){
 	$locationProvider.html5Mode(true);
 	
 	$routeProvider
+		//get token
 		.when('/', {
+			templateUrl: 'html/auth.html',
+			controller: 'AuthController',
+			resolve: {
+				auth: ['$q', '$location', '$rootScope','authRes', function($q, $location,$rootScope,authRes){
+						var code = $location.search().code;
+						var deferred = $q.defer();
+						authRes.save({},{code:code},function(data,headers){
+							$rootScope.load = false;
+							deferred.resolve(data);
+						},function(data,headers){
+							deferred.reject(data);
+						});
+						return deferred.promise;
+				}]
+			}
+		})
+		//
+		.when('/freeIndex', {
 			templateUrl: 'html/freeIndex.html',
 			controller: 'FreeIndexController',
 			resolve: {
-				batch: ['$q', '$location', '$data', '$rootScope', 'bulksRes',  function($q, $location, $data, $rootScope, bulksRes){
-					$rootScope.load = true;
-					var deferred = $q.defer();
-					bulksRes.query({search:$rootScope.search},function(data,headers){
-						$rootScope.load = false;
-						deferred.resolve(data);
-						//$rootScope.apply();
-					},function(data,headers){
-						deferred.reject(data);
-					});
-					return deferred.promise;
+				batch: ['$q', '$location', '$data','$rootScope', 'bulksRes', function($q, $location, $data, $rootScope, bulksRes){
+						$rootScope.load = true;
+						var deferred = $q.defer();
+						bulksRes.charge({search:$rootScope.search},function(data,headers){
+							$rootScope.load = false;
+							deferred.resolve(data);
+						},function(data,headers){
+							deferred.reject(data);
+						});
+						return deferred.promise;	
 				}]
 			}
 		})
@@ -78,56 +96,65 @@ app.config(function($routeProvider, $locationProvider){
 			templateUrl: 'html/index.html',
 			controller: 'IndexController',
 			resolve: {
-				batch: ['$q', '$location', '$data', '$rootScope', 'bulkRes',  function($q, $location, $data, $rootScope, bulkRes){
+				batch: ['$q', '$location', '$data', '$rootScope', 'bulkRes', '$shopCart', function($q, $location, $data, $rootScope, bulkRes, $shopCart){
 					$rootScope.load = true;
 					var deferred = $q.defer();
-					bulkRes.get({},function(data,headers){
+					if($shopCart.shopCartData && $rootScope.id == $shopCart.shopCartData.id){
+						$rootScope.load = false;
+						deferred.resolve($shopCart.shopCartData);
+						return deferred.promise;
+					}else{
+						bulkRes.charge({batch:$rootScope.id},function(data,headers){
+							$rootScope.load = false;
+							deferred.resolve(data);
+						},function(data,headers){
+							deferred.reject(data);
+						});
+						return deferred.promise;
+					}
+				}]
+			}
+		})
+		.when('/checkout', {
+			templateUrl: 'html/checkout.html',
+			controller: 'CheckController',
+			resolve: {
+				batch: ['$q', '$location', '$data', '$rootScope', 'bulkRes', '$shopCart', function($q, $location, $data, $rootScope, bulkRes, $shopCart){
+					$rootScope.load = true;
+					var deferred = $q.defer();
+					if($shopCart.shopCartData && $rootScope.id == $shopCart.shopCartData.id){
+						$rootScope.load = false;
+						deferred.resolve($shopCart.shopCartData);
+						return deferred.promise;
+					}else{
+						bulkRes.charge({batch:$rootScope.id},function(data,headers){
+							$rootScope.load = false;
+							deferred.resolve(data);
+						},function(data,headers){
+							deferred.reject(data);
+						});
+						return deferred.promise;
+					}
+				}]
+			}
+		})
+		.when('/order', {
+			templateUrl: 'html/order.html',
+			controller: 'OrderController',
+			resolve: {
+				batch: ['$q', '$location', '$data', '$rootScope', 'order', function($q, $location, $data, $rootScope, order){
+					$rootScope.load = true;
+					var deferred = $q.defer();
+					order.charge({},function(data){
 						$rootScope.load = false;
 						deferred.resolve(data);
-						console.log(data);
 					},function(data,headers){
 						deferred.reject(data);
 					});
 					return deferred.promise;
 				}]
 			}
-		})
-		.when('/checkout/:batchId', {
-			templateUrl: 'html/checkout.html',
-			controller: 'CheckController',
-			resolve:{
-				checkoutInfo: ['$q', '$location', '$data', '$rootScope', '$route', function($q, $location, $data, $rootScope, $route){
-					if(!$route.current.params.batchId){
-						$data.preData={
-								title:'参数错误',
-								desc:'参数不存在'
-							}
-						$location.path("/error");
-						return;
-					}
-					$rootScope.load = true;
-					var deferred = $q.defer();
-					$data.requestCheckoutInfo($route.current.params.batchId, function(data){
-						$rootScope.load = false;
-						if(!data){
-							$data.preData={
-								title:'参数错误',
-								desc:'参数不存在'
-							}
-							$location.path("/error");
-							deferred.resolve(null);
-							return;
-						}
-					    deferred.resolve(data);
-					});
-					return deferred.promise;
-				}]
-			}
-		})
-		.when('/order/:orderId', {
-			templateUrl: 'html/order.html',
-			controller: 'OrderController',
-			resolve:{
+			/*resolve:{
 				orderInfo: ['$q', '$location', '$data', '$rootScope', '$route', function($q, $location, $data, $rootScope, $route){
 					if(!$route.current.params.orderId){
 						$data.preData={
@@ -154,7 +181,7 @@ app.config(function($routeProvider, $locationProvider){
 					});
 					return deferred.promise;
 				}]
-			}
+			}*/
 		})
 		.when('/share/:orderId', {
 			templateUrl: 'html/share.html',
@@ -168,22 +195,15 @@ app.config(function($routeProvider, $locationProvider){
 		.when('/orders', {
 			templateUrl: 'html/orders.html',
 			controller: 'OrdersController',
-			resolve:{
-				orders: ['$q', '$location', '$data', '$rootScope', function($q, $location, $data, $rootScope){
+			resolve: {
+				batch: ['$q', '$location', '$data', '$rootScope', 'orders', function($q, $location, $data, $rootScope, orders){
 					$rootScope.load = true;
 					var deferred = $q.defer();
-					$data.requestOrders(function(data){
+					orders.charge({},function(data){
 						$rootScope.load = false;
-						if(!data){
-							$data.preData={
-								title:'参数错误',
-								desc:'参数不存在'
-							}
-							$location.path("/error");
-							deferred.resolve(null);
-							return;
-						}
-					    deferred.resolve(data);
+						deferred.resolve(data);
+					},function(data,headers){
+						deferred.reject(data);
 					});
 					return deferred.promise;
 				}]
@@ -191,19 +211,18 @@ app.config(function($routeProvider, $locationProvider){
 		})
 		.when('/payment',{
 			templateUrl: 'html/payment.html',
-			controller: 'PaymentController'
+			controller: 'PaymentController',
 		})
 		.when('/record',{
 			templateUrl: 'html/record.html',
 			controller: 'RecordController',
 			resolve: {
-				batch: ['$q', '$location', '$data', '$rootScope', 'bulkRes',  function($q, $location, $data, $rootScope, bulkRes){
+				batch: ['$q', '$location', '$data', '$rootScope', 'historys',  function($q, $location, $data, $rootScope, historys){
 					$rootScope.load = true;
 					var deferred = $q.defer();
-					bulkRes.get({},function(data,headers){
+					historys.charge({},function(data){
 						$rootScope.load = false;
 						deferred.resolve(data);
-						console.log(data);
 					},function(data,headers){
 						deferred.reject(data);
 					});
@@ -213,11 +232,20 @@ app.config(function($routeProvider, $locationProvider){
 		})
 		.when('/goodsDetails',{
 			templateUrl: 'html/goodsDetails.html',
-			controller: 'GoodsDetailsController'
-		})
-		.when('/freeIndex',{
-			templateUrl: 'html/freeIndex.html',
-			controller: 'FreeIndexController'
+			controller: 'GoodsDetailsController',
+			resolve: {
+				batch: ['$q', '$location', '$data', '$rootScope', 'products', function($q, $location, $data, $rootScope, products){
+					$rootScope.load = true;
+					var deferred = $q.defer();
+					products.charge({},function(data){
+						$rootScope.load = false;
+						deferred.resolve(data);
+					},function(data,headers){
+						deferred.reject(data);
+					});
+					return deferred.promise;
+				}]
+			}
 		})
 		.when('/error', {
 			templateUrl: 'html/error.html',
@@ -267,5 +295,5 @@ app.config(function($routeProvider, $locationProvider){
 			//TODO
 		}
 	});
-	
 })(angular);
+
