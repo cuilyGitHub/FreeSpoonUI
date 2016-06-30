@@ -11,17 +11,18 @@
 		<div class='back page' ng-click='back()'></div>
 		<img class='banner' ng-src='{{batch.cover}}' alt='' />
 		<div class='bannerInfo'>
-			<div class='right'>
+			<div class='oneline'>
 				<span class='box'>{{batch.spec_desc}}/{{batch.spec}}</span>
+				<span class='name'>{{batch.title}}</span>
+				<span class='weight'>({{batch.spec_desc}})</span>
+			</div>
+			<p class='twoline'>{{batch.desc}}</p>
+			<div class='threeline'>
 				<div class="regulator_right">
 					<a href="javascript:void(0);" ng-click="removeShopCartNum();">-</a>
 					<span class="center">{{shopCartNum | safenum}}</span>
 					<a href="javascript:void(0);" ng-click="addShopCartNum();">+</a>
 				</div>
-			</div>
-			<div class='left'>
-				<span class='name'>{{batch.title}}</span><span class='weight'>({{batch.spec_desc}})</span>
-				<div class='single weight'>{{batch.desc}}</div>
 				<div class='unit_price'>￥<span>{{batch.unit_price | int}}</span>.{{batch.unit_price | fraction}}</div>
 				<div class='market_price'>￥{{batch.market_price | convert}}</div>
 			</div>

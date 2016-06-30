@@ -307,13 +307,50 @@ body {
   line-height: 1.3rem;
   font-size: 0.3rem;
   text-align: center;
+  padding-left: 0.8rem;
 }
-.content .box input {
-  border: none;
-  height: 1rem;
-  line-height: 1rem;
-  width: 4rem;
-  max-width: 6rem;
-  margin: 0.15rem 0;
+.content .box .text {
+  background: url('../images/text.png') no-repeat 15%;
+  background-size: 0.35rem;
+}
+.content .box .adds {
+  background: url('../images/adds.png') no-repeat 12%;
+  background-size: 0.5rem;
+}
+.content .box .money_ico {
+  background: url('../images/money.png') no-repeat 13%;
+  background-size: 0.5rem;
+}
+.content .box .phone {
+  background: url('../images/phone.png') no-repeat 15%;
+  background-size: 0.35rem;
+}
+.content .box .tel {
+  height: 1.3rem;
+  line-height: 1.3rem;
+  font-size: 0.3rem;
+  text-align: center;
+  float: right;
+  margin-right: 0.3rem;
+}
+.content .box .money {
+  width: 1.5rem;
+  height: 1.3rem;
+  line-height: 1.3rem;
+  font-size: 0.3rem;
+  text-align: center;
+  color: #ff9934;
+  float: right;
+}
+.content .box .bound {
+  width: 1.8rem;
+  height: 0.7rem;
+  line-height: 0.7rem;
+  margin: 0.3rem 0;
+  text-align: center;
+  float: right;
+  background: #CCCCCC;
+  border-radius: 10px;
+  margin-right: 0.2rem;
   font-size: 0.3rem;
 }

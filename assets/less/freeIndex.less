@@ -4,8 +4,6 @@
 body{
 	background:@color_gray;
 }
-
-
 .search{
 	width:100%;
 	height:1rem;
@@ -59,7 +57,6 @@ body{
 		.rows{
 			background:@color_white;
 			margin-bottom:0.2rem;
-			padding: 0.2rem 0.2rem 0 0.2rem;
 			.banner{
 				height:4rem;
 				position:relative;
@@ -113,6 +110,7 @@ body{
 			.reseller{
 				height:1.5rem;
 				border-bottom:1px solid #ccc;
+				padding:0 0.2rem;
 				.info{
 					width:auto;
 					height:1.2rem;
@@ -122,9 +120,11 @@ body{
 						height:1.2rem;
 						border-radius:50%;
 						overflow:hidden;
+						background: url("../images/user.png") no-repeat center;
+						background-size: 1.2rem;
 						float:left;
 						img{
-							height:1.5rem;
+							height:1.2rem;
 						}
 					}
 					.leaderinfo{
@@ -149,7 +149,7 @@ body{
 			}
 			.purchase{
 				height: 1.2rem;
-				padding: 0.2rem 0;
+				padding: 0.2rem;
 				box-sizing: border-box;
 				.button{
 					width:2rem;
@@ -160,6 +160,9 @@ body{
 					text-align:center;
 					color:@color_white;
 					border-radius:10px;
+				}
+				.gray{
+					background:@color_smoky_gray !important;
 				}
 				.productsInfo{
 					width:4rem;

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<link rel='stylesheet' type='text/css' href='../assets/css/user.css'/>
+	<link rel='stylesheet' type='text/css' href='../assets/css/user_center.css'/>
     <title></title>	
 	 <script type="text/javascript">
 		var winW = document.documentElement.clientWidth;
@@ -21,20 +21,21 @@
 	</div>
 	<div class='content'>
 		<ul>
-			<li class='box'>
+			<li class='box' ng-click='orders()'>
 				<div class='left text'>我的订单</div>
 			</li>
-			<li class='box'>
+			<li class='box' ng-click='address()'>
 				<div class='left adds'>收货地址</div>
 			</li>
 			<li class='box'>
 				<div class='left money_ico'>我的余额</div>
-				<div class='money'>￥999</div>
+				<div class='money'  ng-if='data.mob_user.balance'>￥{{user.balance | convert}}</div>
+				<div class='money' ng-if='!data.mob_user.balance'>￥0</div>
 			</li>
 			<li class='box'>
 				<div class='left phone'>绑定手机</div>
-				<!-- <div class='bound'>去绑定</div> -->
-				<div class='tel'>15209633819</div>
+				<div class='bound' ng-click='phone()' ng-if='!data.mob_user.mob'>去绑定</div>
+				<div class='tel' ng-if='data.mob_user.mob'>{{data.mob_user.mob}}</div>
 			</li>
 		</ul>
 	</div>

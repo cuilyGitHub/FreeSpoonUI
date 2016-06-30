@@ -1,20 +1,23 @@
 module.exports = function(app){
 
-	app.controller('ShareController', function($scope, $location, $data, $wxBridge, orderId){
+	app.controller('ShareController', function($scope, $location, $data, $wxBridge, $rootScope, orderId){
 		
-		$data.requestOrderAmount(orderId, function(orderAmount){
-			if(!orderAmount){
-				orderAmount = 'X';
+		/*$data.orderRequest($rootScope.orderUrl, function(data){
+			if(!data){
+				$data.preData={
+					title:'参数错误',
+					desc:'参数不存在'
+				}
+				$location.path("/error");
+				return;
 			}
-			$scope.orderAmount = orderAmount;
-			$data.getWXShareInfo($data.lastBatchid, function(shareInfo){
-				shareInfo.title=shareInfo.title+'(我是第'+$scope.orderAmount+'位接龙者)';
-				$wxBridge.configShare(shareInfo);
-			});
-		});
+			return data;
+		});*/
+		$scope.reseller = $data.reseller
+		
 		
 		$scope.jump = function(){
-			$location.path("/order/{orderId}".assign({orderId: orderId}));
+			$location.path("/order");
 		}
 		
 	});

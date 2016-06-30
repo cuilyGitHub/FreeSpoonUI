@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<link rel='stylesheet' type='text/css' href='../assets/css/delAddress.css'
+	<link rel='stylesheet' type='text/css' href='../assets/css/bound_phone.css'
     <title></title>	
 	 <script type="text/javascript">
 		var winW = document.documentElement.clientWidth;
@@ -17,29 +17,26 @@
 </head>
 <body>
 	<div class="header">
-		<span class="ico back"></span>
-		<div class='right'>保存</div>
-		<div class="text">修改地址</div>	
+		<span class="ico back" ng-click='back()'></span>
+		<div class="text">绑定手机</div>	
    </div>
    <div class='content'>
 		<ul>
 			<li class='box'>
-				<div class='left'>收货人</div>
-				<input type='text' placeholder='填写收货人姓名'/>
+				<div class='left'>手机号</div>
+				<div class='getCode' ng-click='getCode()'>获取验证码</div>
+				<input class='__mob' type='tel' placeholder='请输入手机号'>
 			</li>
 			<li class='box'>
-				<div class='left'>联系电话</div>
-				<input type='tel' placeholder='填写联系电话'/>
-			</li>
-			<li class='box'>
-				<div class='left'>收货地址</div>
-				<input type='text' placeholder='填写收货地址'/>
+				<div class='left'>验证码</div>
+				<div class='delCode' ng-click='delCode()'></div>
+				<input class='__code' type='tel' placeholder='请输入验证码'>
 			</li>
 		</ul>
    </div>
    <div  class="button update">
         <div class="select">
-        <a class="text" href="javascript:void(0);" >删除地址</a>
+        <a class="text" href="javascript:void(0);" ng-click='postMob()'>确定</a>
         </div>
     </div>
 </div> 

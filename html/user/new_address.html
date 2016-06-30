@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<link rel='stylesheet' type='text/css' href='../assets/css/newAddress.css'
+	<link rel='stylesheet' type='text/css' href='../assets/css/new_address.css'
     <title></title>	
 	 <script type="text/javascript">
 		var winW = document.documentElement.clientWidth;
@@ -17,23 +17,23 @@
 </head>
 <body>
 	<div class="header">
-		<span class="ico back"></span>
-		<div class='right'>保存</div>
+		<span class="ico back" ng-click='back()'></span>
+		<div class='right' ng-click='post_info()'>保存</div>
 		<div class="text">添加新地址</div>	
    </div>
    <div class='content'>
 		<ul>
 			<li class='box'>
 				<div class='left'>收货人</div>
-				<input type='text' placeholder='请输入'/>
+				<input class='__name' type='text' placeholder='请输入'/>
 			</li>
 			<li class='box'>
 				<div class='left'>联系电话</div>
-				<input type='tel' placeholder='请输入'/>
+				<input class='__tel' type='tel' placeholder='请输入'/>
 			</li>
 			<li class='box'>
 				<div class='left'>收货地址</div>
-				<input type='text' placeholder='请输入'/>
+				<input  class='__address' type='text' placeholder='请输入'/>
 			</li>
 		</ul>
    </div>

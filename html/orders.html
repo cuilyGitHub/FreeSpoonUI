@@ -19,16 +19,18 @@
 				   <span class="right" ng-if='o.status==1'>待收货</span>
 				   <span class="right" ng-if='o.status==2'>订单已完成</span>
 				   <div class="left">
-					   <img ng-src="{{o.reseller.wx_headimgurl}}" alt="">
+					   <div class='leaderImg'>
+							<img ng-src="{{o.reseller.wx_headimgurl}}" alt="">
+					   </div>  
 					   <div class='top'>
 						   <span class="text">{{o.reseller.name}}</span>
 						   <span class="min_text">团主</span>
 					   </div>
-					   <div class='bottom'>下单时间：{{o.createTime | date}}</div>
+					   <div class='bottom'>下单时间：{{o.create_time | date}}</div>
 				   </div>
 				  
 			   </div>
-			   <div class="content" ng-click="openOrder(o.id)">
+			   <div class="content" ng-click="openOrder(o.url)">
 				   <div class="imgbox">
 						<!--<img ng-style="{'background-image':'url('+pic+')','background-size':'cover'}" alt="" ng-repeat="pic in o.pics track by $index">-->
 						<div class='img' ng-style="{'width': '1.5rem', 'height': '1.5rem', 'background-image':'url('+pic+')','background-size':'cover'}" alt="" ng-repeat="pic in o.covers track by $index">
@@ -38,9 +40,9 @@
 				<div class="footer">
 					<p>共{{o.count}}件商品<span class="total">合计:</span><span class="price">￥{{o.total_fee | convert}}</span><span class="other">(含运费￥0.00)</span></p>
 				   <div class="btn">
-					   <div class="button" ng-click='openOrder(o.id)' ng-if='o.status<1'>取消订单</div>
-					   <div class="button" ng-click='openOrder(o.id, true)' ng-if='o.status==0'>付款</div>
-					   <div class="button" ng-click="openOrder(o.id)" ng-if='o.status>=1'>查看详情</div>
+					   <div class="button" ng-click='openOrder(o.url)' ng-if='o.status<1'>取消订单</div>
+					   <div class="button" ng-click='goPay(o.url, true)' ng-if='o.status==0'>付款</div>
+					   <div class="button" ng-click="openOrder(o.url)" ng-if='o.status>=1'>查看详情</div>
 				   </div>
 			   </div> 
        </div>

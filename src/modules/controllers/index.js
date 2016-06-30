@@ -8,12 +8,7 @@ module.exports = function(app){
 			$location.path("/error");
 			return;
 		}
-		
-		// Configure WeChat share information
-		/*$data.getWXShareInfo(batch.id, function(shareInfo){
-			$wxBridge.configShare(shareInfo);
-		});*/
-		
+				
 		$wxBridge.configShare(batch);
 		
 		//save all shopCart data
@@ -22,8 +17,20 @@ module.exports = function(app){
 		// import data
 		$scope.batch = batch;
 		$scope.reseller = batch.reseller;
+		$data.reseller = batch.reseller;
 		$scope.commodities = batch.products;
+		$scope.overDay= batch.dead_time - batch.standard_time;
 		
+		//计算时间
+		(function(){
+			var start_time=batch.standard_time/1000;
+			var dead_time = batch.dead_time/1000;
+			var val = (dead_time - start_time)/1000;
+			var day = Math.floor(val/(24*60*60));
+			var hour = Math.floor((val-day*24*60*60)/3600);
+			$scope.day = day;
+			$scope.hour = hour;
+		})();
 
 		// watch commodities (Update totalNum and totalPrice)
 		$scope.$watch('commodities', function(newValue, oldValue){
@@ -40,7 +47,6 @@ module.exports = function(app){
 					totalPrice += commodity.num * commodity.unit_price;
 				}
 			}
-			
 			
 			if(!totalNum){
 				$(".__amount").css('display', 'none');
@@ -109,6 +115,7 @@ module.exports = function(app){
 			$('.__overlay').on('click', function(){
 				status = false;
 				window.popup_window_from_bottom();
+				register_hide();
 			});
 			window.popup_window_from_bottom = function(){
 				if(status && batch.totalNum > 0){
@@ -145,10 +152,6 @@ module.exports = function(app){
 			$location.path("/goodsDetails");
 		}
 		
-		$scope.getCode=function(){
-			//to do
-		}
-		
 		$scope.jumpOrders=function(){
 			if(!$rootScope.auth || !$rootScope.auth.user){
 				register();
@@ -161,19 +164,31 @@ module.exports = function(app){
 			
 		}
 		
-		$scope.postMob=function(mob,code){
-			var mob = $(".__mob")[0].value;
-			var code = $(".__code")[0].value;
-			if(!mob){
+		
+		
+		$scope.getCode=function(){
+			$scope.mob = $(".__mob")[0].value;
+			if(!$scope.mob){
 				alert('请填写手机号');
 				return;
 			}
-			if(!code){
+			$data.mobCode_Request($scope.mob,function(){
+				alert('验证码已发送至您的手机！')
+			});
+		}
+		
+		$scope.postMob=function(){	
+			$scope.mob = $(".__mob")[0].value;
+			$scope.code = $(".__code")[0].value;
+			if(!$scope.mob){
+				alert('请填写手机号');
+				return;
+			}
+			if(!$scope.code){
 				alert('请填写验证码');
 				return;
 			}
-
-			$data.bindMob(mob,code,function(data){
+			$data.bindMob($scope.mob,$scope.code,function(data){
 				if(!data){
 					alert('用户注册失败');
 					return;

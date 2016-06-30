@@ -1,9 +1,11 @@
 module.exports = function(app){
 	
+	//user sign in root
 	app.factory('authRes',function($resource){
 		return $resource('http://yijiayinong.com/api/business/weixin');
 	});
 	
+	//团购列表
 	app.factory('bulksRes',['$resource', '$rootScope', function($resource, $rootScope){	
 		return $resource('http://yijiayinong.com/api/business/bulks/?:search',{search:'@search'},{
 			'charge':{
@@ -17,6 +19,7 @@ module.exports = function(app){
 		
 	}]);
 	
+	//团购详情
 	app.factory('bulkRes',['$resource','$rootScope',function($resource, $rootScope){
 		return $resource('http://yijiayinong.com/api/business/bulks/:batch',{batch:'@batch'},{
 			'charge':{
@@ -29,6 +32,7 @@ module.exports = function(app){
 		});
 	}]);
 
+	//checkout页详情
 	app.factory('products',['$resource','$rootScope',function($resource, $rootScope){
 		return $resource($rootScope.productsUrl,{batch:'@batch'},{
 			'charge':{
@@ -41,6 +45,7 @@ module.exports = function(app){
 		});
 	}]);
 
+	//购买历史记录
 	app.factory('historys',['$resource','$rootScope',function($resource, $rootScope){
 		return $resource($rootScope.historys,{batch:'@batch'},{
 			'charge':{
@@ -52,19 +57,8 @@ module.exports = function(app){
 			}
 		});
 	}]);
-	
-	app.factory('order',['$resource','$rootScope',function($resource, $rootScope){
-		return $resource($rootScope.ordersUrl,{batch:'@batch'},{
-			'charge':{
-				method:'get',
-				isArray:false,
-				headers:{
-					'Authorization':'JWT '+ $rootScope.auth.token
-				}
-			}
-		});
-	}]);
-	
+		
+	//订单列表页	
 	app.factory('orders',['$resource','$rootScope',function($resource, $rootScope){
 		return $resource('http://yijiayinong.com/api/business/orders/',{},{
 			'charge':{
@@ -77,8 +71,22 @@ module.exports = function(app){
 		});
 	}]);
 	
+	//地址列表页	
+	app.factory('address',['$resource','$rootScope',function($resource, $rootScope){
+		return $resource('http://yijiayinong.com/api/business/shippingaddresses/',{},{
+			'charge':{
+				method:'get',
+				isArray:true,
+				headers:{
+					'Authorization':'JWT '+ $rootScope.auth.token
+				}
+			}
+		});
+	}]);
+	
+	//微信支付payRequest
 	app.factory('payRequest',['$resource','$rootScope',function($resource, $rootScope){
-		return $resource($rootScope.requestUrl,{balance:'@balance'},{
+		return $resource($rootScope.requestUrl,{},{
 			'charge':{
 				method:'get',
 				isArray:false,

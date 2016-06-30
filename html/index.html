@@ -10,7 +10,8 @@
   <div id="index">
     <div class="board">
 		<div class="right" >
-			<div class='spare'>剩<span>{{offered.date}}</span>天</div>
+			<div class='spare' ng-if='day>0'>剩<span>{{day}}</span>天</div>
+			<div class='spare' ng-if='day<=0'>剩<span>{{hour}}</span>小时</div>
             <div class='attend'>已有<span>{{batch.participant_count}}人</span>参团</div>
 			<div class='send'>预计{{batch.arrived_time | short_date}}发货</div>
         </div>
@@ -122,7 +123,7 @@
 				</li>
 			</ul>
 	   </div>
-	   <div class='button_sure' ng-click='postMob($scope.mob,$scope.code)'>注册</div>
+	   <div class='button_sure' ng-click='postMob()'>注册</div>
 	</div>
 	
   </div>

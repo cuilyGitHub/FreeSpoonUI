@@ -83,8 +83,8 @@ module.exports = function(app){
 			};
 
 			$data.requestUnifiedOrder(requestData, function(data){
-				//$data.prePromptPay = true;
 				$data.ordersData = data;
+				$rootScope.orderUrl = data.url;
 				$location.path('/payment');
 			});
 		}

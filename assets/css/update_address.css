@@ -292,178 +292,47 @@ body {
   font-weight: bold;
   color: #ff9934;
 }
-body {
-  background: #e5e5e5;
+.content {
+  margin-top: 1rem;
 }
-#Order_details {
-  height: 100%;
+.content .no_address {
+  font-size: 0.35rem;
+  color: #ccc;
+  margin-top: 60%;
+  margin-left: 30%;
 }
-#Order_details .main {
-  margin: 1rem 0 1.2rem 0;
-}
-#Order_details .main .follow {
-  position: relative;
-  overflow: hidden;
-  background: white;
-  padding: 0.4rem 0.2rem 0.25rem 0.2rem;
-}
-#Order_details .main .follow span {
-  display: inline-block;
-}
-#Order_details .main .follow .follow_tip {
-  width: 100%;
-  height: 0.5rem;
-  padding: 0 5%;
+.content .box {
+  height: 2rem;
+  border-bottom: 1px solid #ccc;
+  padding: 0.3rem 0 0.3rem 0.3rem;
   box-sizing: border-box;
 }
-#Order_details .main .follow .follow_tip .follow_left {
-  float: left;
-  width: 33.33333333%;
-  text-align: left;
+.content .box .left {
+  height: 1.4rem;
+  margin-right: 1.5rem;
 }
-#Order_details .main .follow .follow_tip .follow_center {
-  width: 33.33333333%;
-  margin: auto;
-  text-align: center;
+.content .box .left .top {
+  height: 0.7rem;
+  line-height: 0.7rem;
 }
-#Order_details .main .follow .follow_tip .follow_right {
+.content .box .left p {
+  height: 0.7rem;
+  color: #ccc;
+}
+.content .box .left .text {
+  margin-left: 0.3rem;
+}
+.content .box .right {
+  height: 1.4rem;
   float: right;
-  width: 33.33333333%;
-  text-align: right;
-}
-#Order_details .main .follow .line {
-  height: 0.5rem;
-  width: 100%;
-}
-#Order_details .main .follow .line .stages_one {
-  background: url("../images/tip_g.png") no-repeat left;
-  background-size: 200%;
-  background-origin: content-box;
-  height: 0.5rem;
-  width: 30%;
-  float: left;
-  padding-left: 10%;
-  box-sizing: border-box;
-}
-#Order_details .main .follow .line .stages_one_success {
-  background: url("../images/tip_y.png") no-repeat left;
-  background-size: 200%;
-  background-origin: content-box;
-  height: 0.5rem;
-  width: 30%;
-  float: left;
-  padding-left: 10%;
-  box-sizing: border-box;
-}
-#Order_details .main .follow .line .stages_two {
-  background: url("../images/tip_ch.png") no-repeat center;
-  background-size: 100%;
-  height: 0.5rem;
-  width: 40%;
-  float: left;
-}
-#Order_details .main .follow .line .stages_two_success {
-  background: url("../images/tip_cy.png") no-repeat center;
-  background-size: 100%;
-  height: 0.5rem;
-  width: 40%;
-  float: left;
-}
-#Order_details .main .follow .line .stages_three {
-  background: url("../images/tip_g.png") no-repeat left;
-  background-size: 200%;
-  background-origin: content-box;
-  height: 0.5rem;
-  width: 30%;
-  float: right;
-  padding-left: 10%;
-  box-sizing: border-box;
-  transform: rotateY(180deg);
-  -webkit-transform: rotateY(180deg);
-  -moz-transform: rotateY(180deg);
-}
-#Order_details .main .follow .line .stages_three_success {
-  background: url("../images/tip_y.png") no-repeat left;
-  background-size: 200% ;
-  background-origin: content-box;
-  height: 0.5rem;
-  width: 30%;
-  float: right;
-  padding-left: 10%;
-  box-sizing: border-box;
-  transform: rotateY(180deg);
-  -webkit-transform: rotateY(180deg);
-  -moz-transform: rotateY(180deg);
-}
-#Order_details .main .follow .follow_text {
-  margin-top: 0.3rem;
-  border-top: 1px solid #e5e5e5;
-  padding-top: 0.2rem;
-}
-#Order_details .main .follow .follow_text p {
-  color: #6D6B6B;
-  padding: 0.1rem 0.3rem;
-}
-#Order_details .main .follow .follow_text p .text_margin {
-  color: #6D6B6B;
-  margin: 0 0.15rem;
-}
-#Order_details .main .delivery_list {
-  position: relative;
-  padding: 0 0.3rem 0.2rem 0.3rem;
-}
-#Order_details .main .delivery_list table {
-  border-collapse: collapse;
-  width: 100%;
-}
-#Order_details .main .delivery_list table tr {
-  height: 0.5rem;
-}
-#Order_details .main .delivery_list table tr td {
-  color: #6D6B6B;
-}
-#Order_details .main .delivery_list table tr .message {
-  width: 1.5rem;
-}
-#Order_details .main .delivery_list table tr .top {
-  padding-top: 0.2rem;
-}
-#Order_details .main .delivery_list table tr .bottom {
-  padding-bottom: 0.2rem;
-  color: #6D6B6B;
-}
-#Order_details .main .delivery_list table .two {
-  border-bottom: 1px solid #e5e5e5;
-}
-#Order_details .main .delivery_list .phone {
+  background: url('../images/pen.png') no-repeat center;
+  background-size: 0.5rem;
   width: 1rem;
-  height: 1rem;
-  background: url('../images/greenPhone.png') no-repeat center;
-  background-size: 0.4rem;
-  position: absolute;
-  right: 0.5rem;
-  bottom: 0.5rem;
 }
-#Order_details .main .footer {
-  width: 100%;
-  height: 1.2rem;
-  position: fixed;
-  background: white;
-  bottom: 0;
-  border-top: 1px solid #ccc;
+.update {
+  margin-top: 0.5rem;
 }
-#Order_details .main .footer .btn {
-  display: block;
-  width: 1.4rem;
-  height: 0.6rem;
-  line-height: 0.6rem;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  float: right;
-  margin: 0.3rem 0.3rem 0.3rem 0;
-  text-align: center;
-}
-#Order_details .main .footer span:active {
+.update .select .text {
   background: #ff9934;
-  color: white;
+  font-size: 0.3rem;
 }

@@ -24,12 +24,12 @@
 		<ul>
 			<li class='rows' ng-repeat='x in batch' on-finish-render-filters>
 				<div class='banner'>
-					<!-- <div>
+					<div ng-if='x.status >= 0'>
 						<div class='Subtitle'><span>{{x.category}}</span></div>
 						<h1>{{x.title}}</h1>
 						<div class='mask'></div>				
-					</div> -->
-					<div>
+					</div>
+					<div ng-if='x.status < 0'>
 						<div class='statusInfo'>团购已结束</div>
 						<div class='bg'></div>
 					</div>
@@ -42,14 +42,15 @@
 				<div class='reseller'>
 					<div class='right'>{{x.location}}</div>
 					<div class='info'>
-						<div class='leader'><img src='assets/image/headerPri.jpg' alt='' /></div>
+						<div class='leader'><img ng-src='{{x.reseller.wx_headimgurl}}' alt='' /></div>
 						<div class='leaderinfo'><span>{{x.reseller.name}}</span>团主</div>
 						<div class='leaderinfo'>截团时间:{{x.dead_time | date}}</div>
 					</div> 
 				</div>
 				<div class='purchase'>
 					<div class='productsInfo'>已团成/已有{{x.participant_count}}人团购过</div>
-					<div class='button' ng-click='jump(x.id)'>去团购</div>
+					<div class='button' ng-click='jump(x.id)' ng-if='x.status >= 0'>去团购</div>
+					<div class='button gray' ng-if='x.status < 0'>去团购</div>
 				</div>
 			</li>
 		</ul>

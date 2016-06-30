@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<link rel='stylesheet' type='text/css' href='../assets/css/updateAddress.css'/>
+	<link rel='stylesheet' type='text/css' href='../assets/css/update_address.css'/>
     <title></title>	
 	  <script type="text/javascript">
 		var winW = document.documentElement.clientWidth;
@@ -17,37 +17,26 @@
 </head>
 <body>
 	<div class="header">
-		<a href='/newAddress'>
-			<span class="ico back"></span>
+			<span class="ico back" ng-click='back()'></span>
 			<div class="text">收货地址</div>
-		</a>	
 	</div>
    <div class='content'>
-		<ul>
-			<li class='box'>
-				<div class='right'></div>
+		<div class='no_address' ng-if='!data'>暂无任何收货地址</div>
+		<ul ng-if='data'>
+			<li class='box' ng-repeat='x in data'>
+				<div class='right' ng-click='revise_address(x.id)'></div>
 				<div class='left'>
 					<div class='top'>
-						<span>逆旅者</span>
-						<span class='text'>15209633819</span>
+						<span>{{x.name}}</span>
+						<span class='text'>{{x.mob}}</span>
 					</div>
-					<p>北京市海淀区上地七街汇众大厦2号楼713北京市海淀区上地七街汇众大厦2号楼713</p>
-				</div>	
-			</li>
-			<li class='box'>
-				<div class='right'></div>
-				<div class='left'>
-					<div class='top'>
-						<span>逆旅者</span>
-						<span class='text'>15209633819</span>
-					</div>
-					<p>北京市海淀区上地七街汇众大厦2号楼713</p>
+					<p>{{x.address}}</p>
 				</div>	
 			</li>
 		</ul>
    </div>
    <div  class="button update fixed">
-        <div class="select">
+        <div class="select" ng-click='add_address()'>
         <a class="text" href="javascript:void(0);" >添加新地址</a>
         </div>
     </div>

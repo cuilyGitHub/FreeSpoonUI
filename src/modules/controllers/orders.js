@@ -1,6 +1,6 @@
 module.exports = function(app){
 
-	app.controller('OrdersController', function($scope, $routeParams, $data, $history,$location, $http, $wxBridge, batch){
+	app.controller('OrdersController', function($scope, $routeParams, $data, $history,$location, $http, $wxBridge, $rootScope, batch){
 		
 		if(!batch){
 			$data.preData={
@@ -17,7 +17,7 @@ module.exports = function(app){
 		 if($history.urlQueue.length>0){
 				 $scope.icoStatus=false;
 				 $scope.back=function(){
-					 $location.path('/');
+					 $location.path('/index');
 				 };
 		 }else{
 			 $scope.icoStatus=true;
@@ -27,10 +27,18 @@ module.exports = function(app){
 		 }
 		
 		
-		$scope.openOrder = function(orderId, promptPay){
+		$scope.openOrder = function(orderUrl){		
 			$history.getHistory();
-			$data.prePromptPay = promptPay;
-			$location.path("/order/{orderId}".assign({orderId: orderId}));
+			$rootScope.orderUrl = orderUrl;
+			//$rootScope.orderId = order.id;
+			//$data.prePromptPay = promptPay;
+			$location.path("/order");
+		}
+		
+		$scope.goPay = function(orderUrl){		
+			$history.getHistory();
+			$rootScope.orderUrl = orderUrl;
+			$location.path("/payment");
 		}
 		
 	});

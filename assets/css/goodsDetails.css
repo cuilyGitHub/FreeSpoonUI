@@ -308,62 +308,27 @@ body {
   display: block;
 }
 .bannerInfo {
-  height: 2.1rem;
   padding: 0.2rem 0.3rem;
   box-sizing: border-box;
 }
-.bannerInfo .left {
-  height: 2.5rem;
-  width: auto;
-  padding-right: 1.5rem;
+.bannerInfo .oneline {
+  height: 0.8rem;
 }
-.bannerInfo .left .name {
+.bannerInfo .oneline .name {
   font-size: 0.35rem;
   font-weight: bold;
-  height: 0.6rem;
-  line-height: 0.6rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
   display: block;
   float: left;
   margin-right: 0.1rem;
 }
-.bannerInfo .left .single {
-  line-height: 0.3rem !important;
+.bannerInfo .oneline .weight {
+  display: table-cell;
+  vertical-align: bottom;
+  height: 0.6rem;
 }
-.bannerInfo .left .weight {
-  display: block;
-  line-height: 0.8rem;
-  color: #6D6B6B;
-}
-.bannerInfo .left .unit_price {
-  height: 0.8rem;
-  line-height: 0.8rem;
-  float: left;
-  font-size: 0.3rem;
-  color: #ff9934;
-  margin-right: 0.25rem;
-  margin-top: -0.2rem;
-}
-.bannerInfo .left .unit_price span {
-  font-size: 0.35rem;
-  font-weight: normal;
-  color: orange;
-}
-.bannerInfo .left .market_price {
-  height: 0.8rem;
-  line-height: 0.8rem;
-  font-size: 0.3rem;
-  font-weight: normal;
-  margin-top: -0.2rem;
-  color: #c8c8c8;
-  text-decoration: line-through;
-}
-.bannerInfo .right {
-  height: 2.1rem;
-  width: 1.5rem;
-  float: right;
-  position: relative;
-}
-.bannerInfo .right .box {
+.bannerInfo .oneline .box {
   background: #ff9934;
   display: block;
   width: 1.3rem;
@@ -372,16 +337,23 @@ body {
   color: white;
   text-align: center;
   float: right;
-  padding: 0 0.1rem;
+  margin: 0.15rem 0;
 }
-.bannerInfo .right .regulator_right {
-  position: absolute;
-  bottom: 0.4rem;
-  display: inline-block;
+.bannerInfo .twoline {
+  color: #6D6B6B;
+  line-height: 0.35rem;
+}
+.bannerInfo .threeline {
+  height: 0.8rem;
+}
+.bannerInfo .threeline .regulator_right {
   float: right;
   width: 1.5rem;
+  height: 0.8rem;
+  padding: 0.15rem 0;
+  box-sizing: border-box;
 }
-.bannerInfo .right .regulator_right a {
+.bannerInfo .threeline .regulator_right a {
   box-sizing: border-box;
   display: block;
   border: 1px solid #ff9934;
@@ -394,7 +366,7 @@ body {
   overflow: hidden;
   float: left;
 }
-.bannerInfo .right .regulator_right span {
+.bannerInfo .threeline .regulator_right span {
   display: block;
   width: 0.4rem;
   height: 0.5rem;
@@ -404,9 +376,31 @@ body {
   overflow: hidden;
   text-align: center;
 }
-.bannerInfo .right .regulator_right a:active {
+.bannerInfo .threeline .regulator_right a:active {
   background: #ff9934;
   color: white;
+}
+.bannerInfo .threeline .unit_price {
+  height: 0.8rem;
+  line-height: 0.8rem;
+  float: left;
+  font-size: 0.3rem;
+  color: #ff9934;
+  margin-right: 0.25rem;
+}
+.bannerInfo .threeline .unit_price span {
+  font-size: 0.35rem;
+  font-weight: normal;
+  color: orange;
+}
+.bannerInfo .threeline .market_price {
+  height: 0.62rem;
+  display: table-cell;
+  vertical-align: bottom;
+  font-size: 0.3rem;
+  font-weight: normal;
+  color: #c8c8c8;
+  text-decoration: line-through;
 }
 ul {
   margin-bottom: 1.4rem;

@@ -17,14 +17,20 @@
 			width: 5.5rem;
 			height: @height;
 			line-height: @height;
-			img{
+			.leaderImg{
 				@img_size:0.7rem;
 				width: @img_size;
 				height: @img_size;
-				background: yellow;
+				background: url("../images/user.png") no-repeat center;
+				background-size: 0.6rem;
 				float: left;
 				border-radius: 50%;
-				margin: (@height - @img_size)/2; 
+				margin: (@height - @img_size)/2;
+				overflow: hidden;
+				border: 1px solid #c8c8c8;
+				img{
+					
+				}
 			}
 			.top{
 				height: @top_height;

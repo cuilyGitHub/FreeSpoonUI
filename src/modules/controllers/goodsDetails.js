@@ -113,7 +113,6 @@ module.exports = function(app){
 			}else{
 				register_hide();
 				if(!!$shopCart.shopCartData.totalNum && $shopCart.shopCartData.totalNum>0){
-					alert(1);
 					$history.getHistory();
 					$data.preData = batch;
 					$location.path("/checkout");

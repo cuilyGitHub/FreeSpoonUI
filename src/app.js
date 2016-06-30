@@ -141,32 +141,11 @@ app.config(function($routeProvider, $locationProvider,$httpProvider){
 		.when('/order', {
 			templateUrl: 'html/order.html',
 			controller: 'OrderController',
-			resolve: {
-				batch: ['$q', '$location', '$data', '$rootScope', 'order', function($q, $location, $data, $rootScope, order){
+			resolve:{
+				batch: ['$q', '$location', '$data', '$rootScope', function($q, $location, $data, $rootScope){
 					$rootScope.load = true;
 					var deferred = $q.defer();
-					order.charge({},function(data){
-						$rootScope.load = false;
-						deferred.resolve(data);
-					},function(data,headers){
-						deferred.reject(data);
-					});
-					return deferred.promise;
-				}]
-			}
-			/*resolve:{
-				orderInfo: ['$q', '$location', '$data', '$rootScope', '$route', function($q, $location, $data, $rootScope, $route){
-					if(!$route.current.params.orderId){
-						$data.preData={
-								title:'参数错误',
-								desc:'参数不存在'
-						}
-						$location.path("/error");
-						return;
-					}
-					$rootScope.load = true;
-					var deferred = $q.defer();
-					$data.requestOrder($route.current.params.orderId, function(data){
+					$data.orderRequest($rootScope.orderUrl, function(data){
 						$rootScope.load = false;
 						if(!data){
 							$data.preData={
@@ -181,9 +160,9 @@ app.config(function($routeProvider, $locationProvider,$httpProvider){
 					});
 					return deferred.promise;
 				}]
-			}*/
+			}
 		})
-		.when('/share/:orderId', {
+		.when('/share', {
 			templateUrl: 'html/share.html',
 			controller: 'ShareController',
 			resolve: {
@@ -212,6 +191,26 @@ app.config(function($routeProvider, $locationProvider,$httpProvider){
 		.when('/payment',{
 			templateUrl: 'html/payment.html',
 			controller: 'PaymentController',
+			resolve:{
+				batch: ['$q', '$location', '$data', '$rootScope', function($q, $location, $data, $rootScope){
+					$rootScope.load = true;
+					var deferred = $q.defer();
+					$data.orderRequest($rootScope.orderUrl, function(data){
+						$rootScope.load = false;
+						if(!data){
+							$data.preData={
+								title:'参数错误',
+								desc:'参数不存在'
+							}
+							$location.path("/error");
+							deferred.resolve(null);
+							return;
+						}
+					    deferred.resolve(data);
+					});
+					return deferred.promise;
+				}]
+			}
 		})
 		.when('/record',{
 			templateUrl: 'html/record.html',
@@ -260,18 +259,15 @@ app.config(function($routeProvider, $locationProvider,$httpProvider){
 	};
 	$.ajax({
 		type: 'POST',
-		url: 'http://yijiayinong.com/api/wxConfig',
+		url: 'http://yijiayinong.com/api/business/wxConfig',
 		contentType: 'application/json; charset=utf-8',
 		data: JSON.stringify(cfg),
 		dataType: 'json',
 		success: function(data){
-			if(!data || data.errcode != 'Success'){
+			if(!data){
 				return;
 			}
-			if(!data.res || !data.res.wxConfig){
-				return;
-			}
-			wx.config(data.res.wxConfig);
+			wx.config(data);
 			wx.ready(function(){
 				function onBridgeReady(){
 					angular.bootstrap(document, ['app']);

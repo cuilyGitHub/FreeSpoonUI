@@ -1,15 +1,15 @@
 module.exports = function(app){
 
-		app.controller('OrderController', function($scope, $location, $data, $history, $wxBridge, batch){
+		app.controller('OrderController', function($scope, $location, $data, $history, $wxBridge, $route, batch, $rootScope){
 		
-			/*if(!orderInfo || !orderInfo.data || !orderInfo.payRequest){
+			if(!batch || !$data.payRequest){
 				$data.preData={
 					title:'参数错误',
 					desc:'参数不存在'
 				}
 				$location.path("/error");
 				return;
-			}*/
+			}
 
 			$scope.order = batch;
 			$scope.dispatcher = batch.dispatcher;
@@ -27,12 +27,18 @@ module.exports = function(app){
 			}
 			
 			$scope.pay = function(){
-				$wxBridge.pay(orderInfo.payRequest, function(){
+				$wxBridge.pay($data.wx_pay_request, function(){
 					$scope.$apply(function(){
-						$location.path("/share/{orderId}".assign({orderId: orderInfo.data.id}));
+						$location.path("/share");
 					});
+					$route.reload();
 				});
 			}
+			
+			$scope.goShare = function(){
+				$location.path("/share");
+			};
+			
 			if($data.prePromptPay){
 				$scope.pay();
 			}
@@ -41,29 +47,13 @@ module.exports = function(app){
 			$scope.orderConfirm=function(){
 				var r=confirm('是否取消订单');
 				if(r==true){
-					alert('订单取消成功');
-					$data.undo(orderInfo.data.id, function(result){
-						if(result){
-							$location.path("/orders");
-							return;
-						} else {
-							alert('取消订单失败');
-						}
+					$data.orderDel($rootScope.orderUrl,function(){
+						alert('订单取消成功');
+						$location.path("/orders");
 					});
 				}else{
 					alert('订单取消失败');
 				}
-			}
-			
-			$scope.undo = function(){
-				$data.undo(orderInfo.data.id, function(result){
-					if(result){
-						$location.path("/orders");
-						return;
-					} else {
-						alert('取消订单失败');
-					}
-				});
 			}
 			
 	});
