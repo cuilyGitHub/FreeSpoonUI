@@ -38,7 +38,7 @@ module.exports = function(app){
 					return;
 				}else{
 					$rootScope.auth = data;
-					$location.path("/uder_center");
+					$location.path("/user_center");
 				}
 			});
 		}

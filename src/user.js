@@ -6,7 +6,7 @@
 var $ = require('jquery-browserify');
 var angular = require('angular');
 var angular_route = require('angular-route');
-//var sugar = require('sugar');
+var sugar = require('sugar');
 var ngResource = require('angular-resource');
 
 // controllers modules
@@ -17,6 +17,8 @@ var registerFilters = require('./modules/filters');
 // controllers modules
 var registerOrders = require('./modules/controllers/orders');
 var registerError = require('./modules/controllers/error');
+var registerOrder = require('./modules/controllers/order');
+var registerPayMent = require('./modules/controllers/payMent');
 
 var register_user_center = require('./modules/user_controllers/user_center');
 var register_update_address = require('./modules/user_controllers/update_address');
@@ -35,6 +37,8 @@ registerFilters(app);
 //register controllers
 registerOrders(app);
 registerError(app);
+registerOrder(app);
+registerPayMent(app);
 
 register_user_center(app);
 register_update_address(app);
@@ -110,6 +114,52 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 						deferred.resolve(data);
 					},function(data,headers){
 						deferred.reject(data);
+					});
+					return deferred.promise;
+				}]
+			}
+		})
+		.when('/order', {
+			templateUrl: 'html/order.html',
+			controller: 'OrderController',
+			resolve:{
+				batch: ['$q', '$location', '$data', '$rootScope', function($q, $location, $data, $rootScope){
+					$rootScope.load = true;
+					var deferred = $q.defer();
+					$data.orderRequest($rootScope.orderUrl, function(data){
+						$rootScope.load = false;
+						if(!data){
+							$data.preData={
+								title:'参数错误',
+								desc:'参数不存在'
+							}
+							$location.path("/error");
+							deferred.resolve(null);
+							return;
+						}
+					    deferred.resolve(data);
+					});
+					return deferred.promise;
+				}]
+			}
+		})
+		.when('/payment',{
+			templateUrl: 'html/payment.html',
+			controller: 'PaymentController',
+			resolve:{
+				batch: ['$q', '$location', '$data', '$rootScope', function($q, $location, $data, $rootScope){
+					var deferred = $q.defer();
+					$data.orderRequest($rootScope.orderUrl, function(data){
+						if(!data){
+							$data.preData={
+								title:'参数错误',
+								desc:'参数不存在'
+							}
+							$location.path("/error");
+							deferred.resolve(null);
+							return;
+						}
+					    deferred.resolve(data);
 					});
 					return deferred.promise;
 				}]

@@ -306,6 +306,22 @@ module.exports = function(app){
 			});
 		};	
 		
+		this.put_address = function(address_id, address_info, cb){
+			$http({
+				method:'put',
+				url:'http://yijiayinong.com/api/business/shippingaddresses/'+address_id+'/',
+				data:address_info,
+				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
+			})
+			.success(function(data){
+				if(!data){
+					cb(null);
+					return;
+				}
+				cb(data);
+			});
+		};	
+		
 	});
 	
 	//保存上一页记录

@@ -22,7 +22,7 @@ module.exports = function(app){
 		 }else{
 			 $scope.icoStatus=true;
 			 $scope.back=function(){
-				 alert('关闭');
+				 wx.closeWindow();
 			 };
 		 }
 		

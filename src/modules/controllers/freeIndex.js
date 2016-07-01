@@ -23,9 +23,22 @@ module.exports = function(app){
 			$location.path("/index") ;
 		}
 		
-		$scope.onfocusFn = function(){
+		$scope.focus = function(){
+			var val = $('#cicle')[0].value;
+			if(val == '搜索团主、商品'){
+				$('#cicle')[0].value='';
+			}
 			$scope.searchBox = true;
 			$scope.box = false;
+		}
+		
+		$scope.blur = function(){
+			var val = $('#cicle')[0].value;
+			if(!val){
+				$('#cicle')[0].value = '搜索团主、商品';
+				$scope.box = true;
+				$route.reload();
+			}
 		}
 		
 		$scope.onkeydown = function(e){

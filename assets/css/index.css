@@ -770,7 +770,7 @@ body {
 #index .register {
   display: none;
   width: 5rem;
-  height: 4rem;
+  height: 3rem;
   background: white;
   position: absolute;
   top: 0;
@@ -778,36 +778,38 @@ body {
   left: 0;
   right: 0;
   margin: auto;
-  border-radius: 10px;
   padding: 0.2rem;
 }
 #index .register .content {
   width: 100%;
-  height: 3rem;
+  height: 2rem;
 }
 #index .register .content .box {
   width: 100%;
-  height: 1.5rem;
-  line-height: 1.5rem;
+  height: 1rem;
+  line-height: 1rem;
 }
 #index .register .content .box .left {
   float: left;
-  margin-right: 0.1rem;
+  margin: 0 0.2rem;
 }
 #index .register .content .box .getCode {
   width: 1.5rem;
   float: right;
-  height: 0.8rem;
-  line-height: 0.8rem;
+  height: 0.6rem;
+  line-height: 0.6rem;
   background: orange;
   color: white;
   text-align: center;
-  margin: 0.35rem 0;
+  margin: 0.2rem 0;
   border-radius: 10px;
 }
 #index .register .content .box input {
-  width: 2.5rem;
+  width: 2rem;
   height: 0.5rem;
+}
+#index .register .content .box .mob {
+  width: 3.5rem !important;
 }
 #index .register .button_sure {
   height: 0.8rem;
@@ -818,4 +820,5 @@ body {
   font-weight: normal;
   color: white;
   text-align: center;
+  margin: 0.1rem 0;
 }

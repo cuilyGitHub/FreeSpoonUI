@@ -3,17 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<link rel='stylesheet' type='text/css' href='../assets/css/update_address.css'/>
+	<link rel='stylesheet' type='text/css' href='../assets/css/update_address.min.css'/>
     <title></title>	
-	  <script type="text/javascript">
-		var winW = document.documentElement.clientWidth;
-        var winH = document.documentElement.clientHeight;
-        if(winW > winH){
-			document.documentElement.style.fontSize = winW / 6.4 + "px";
-        } else {
-			document.documentElement.style.fontSize = 50 + "px";
-        }
-    </script>
 </head>
 <body>
 	<div class="header">
@@ -21,7 +12,7 @@
 			<div class="text">收货地址</div>
 	</div>
    <div class='content'>
-		<div class='no_address' ng-if='!data'>暂无任何收货地址</div>
+		<div class='no_address' ng-if='data.length == 0'>暂无任何收货地址</div>
 		<ul ng-if='data'>
 			<li class='box' ng-repeat='x in data'>
 				<div class='right' ng-click='revise_address(x.id)'></div>

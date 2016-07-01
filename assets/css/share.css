@@ -308,6 +308,7 @@ body {
   height: 1rem;
   line-height: 25px;
   margin: 0.5rem 0.6rem 0.5rem 0.4rem;
+  padding-right: 0.5rem;
 }
 #Payment_success .share p span {
   font-size: 0.25rem;

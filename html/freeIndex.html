@@ -14,7 +14,7 @@
 <body>
 	<div class='search'>
 		<div class='cicle' >
-			<input type='text' id='cicle' ng-keyup='onkeydown($event)' placeholder="搜索团主、商品" ng-focus="onfocusFn()" value="搜索团主、商品" onblur="if(this.value==''){this.value='搜索团主、商品'}" onfocus="if(this.value=='搜索团主、商品'){this.value=''}"/>
+			<input type='text' id='cicle' ng-keyup='onkeydown($event)' value="搜索团主、商品" ng-focus="focus()" ng-blur="blur()"/>
 		</div>
 	</div>
 	<div class='searchBox' ng-if='searchBox'>

@@ -28,13 +28,12 @@ module.exports = function(app){
 			address_info.name = name;
 			address_info.mob = tel;
 			address_info.address = address;
-			console.log(address_info);
 			$data.add_address(address_info,function(data){
 				if(!data){
 					alert('地址添加失败');
 					return;
 				}
-				$location.path('uer_center');
+				$location.path('update_address');
 			});
 		}
 		

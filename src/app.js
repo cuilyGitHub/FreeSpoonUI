@@ -74,7 +74,6 @@ app.config(function($routeProvider, $locationProvider,$httpProvider){
 				}]
 			}
 		})
-		//
 		.when('/freeIndex', {
 			templateUrl: 'html/freeIndex.html',
 			controller: 'FreeIndexController',
