@@ -10,13 +10,21 @@ var gulp = require('gulp'),
 	source = require('vinyl-source-stream'),
 	ngmin = require('gulp-ngmin'),
 	uglify = require('gulp-uglify'),
-	delfile = require('gulp-delete-file');
+	delfile = require('gulp-delete-file'),
+	modRewrite = require('connect-modrewrite');
 
 gulp.task('connect', function(cb){
 	connect.server({
 		root: '.',
 		livereload: true,
-		port:80
+		port:80,
+		middleware: function(){
+			return [
+				modRewrite([
+					'(.*)\\.html /index.html' 
+				])
+			];
+		}
 	});
 	cb();
 });
