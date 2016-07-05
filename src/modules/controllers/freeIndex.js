@@ -10,6 +10,18 @@ module.exports = function(app){
 			return;
 		}
 			
+		if($history.urlQueue.length>0){
+				 $scope.icoStatus=false;
+				 $scope.back=function(){
+					 $location.path('/index');
+				 };
+		 }else{
+			 $scope.icoStatus=true;
+			 $scope.back=function(){
+				 wx.closeWindow();
+			 };
+		 }	
+			
 		// import data
 		$scope.batch = batch;
 		
@@ -37,7 +49,6 @@ module.exports = function(app){
 			if(!val){
 				$('#cicle')[0].value = '搜索团主、商品';
 				$scope.box = true;
-				$route.reload();
 			}
 		}
 		

@@ -1,6 +1,6 @@
 module.exports = function(app){
 	
-	app.controller('PaymentController',['payRequest', '$rootScope', '$scope', '$data', '$location', 'batch', function(payRequest, $rootScope, $scope, $data, $location, batch){
+	app.controller('PaymentController',['payRequest', '$rootScope', '$scope', '$data', '$location', '$history', 'batch', function(payRequest, $rootScope, $scope, $data, $location, $history, batch){
 		if(!batch){
 			$data.preData={
 				title:'参数错误',
@@ -14,7 +14,11 @@ module.exports = function(app){
 			var batch = batch;
 		}
 		
-		
+		$scope.back=function(){
+			if($history.urlQueue.length>0){
+				$location.path($history.urlQueue[0]);
+			}
+		};
 		
 		$scope.data = batch;
 		$scope.balance = $rootScope.auth.user.balance;
@@ -58,9 +62,6 @@ module.exports = function(app){
 
 		}
 		
-		$scope.back=function(){
-			$location.path("/checkout");
-		}
 	}]);
 
 }

@@ -49,7 +49,7 @@ gulp.task('vendor', function(){
 		.pipe(gulp.dest('./assets'));
 });
 
-gulp.task('browserify', ['browserify-app' ,'browserify-appMenu', 'browserify-user', 'browserify-appOpus'], function(){
+gulp.task('browserify', ['browserify-app' ,'browserify-recipes', 'browserify-user', 'browserify-dishs'], function(){
 
 });
 
@@ -63,12 +63,12 @@ gulp.task('browserify-app', function(){
 });
 
 
-gulp.task('browserify-appMenu', function(){
-	return browserify('./src/appMenu.js', { debug: true })
+gulp.task('browserify-recipes', function(){
+	return browserify('./src/recipes.js', { debug: true })
 		.transform(babelify)
 		.bundle()
 		.pipe(source('bundle.js'))
-		.pipe(rename({ basename: 'appMenu', extname: '.js'}))
+		.pipe(rename({ basename: 'recipes', extname: '.js'}))
 		.pipe(gulp.dest('./assets/js/'))
 });
 
@@ -81,12 +81,12 @@ gulp.task('browserify-user', function(){
 		.pipe(gulp.dest('./assets/js/'))
 });
 
-gulp.task('browserify-appOpus', function(){
-	return browserify('./src/appOpus.js', { debug: true })
+gulp.task('browserify-dishs', function(){
+	return browserify('./src/dishs.js', { debug: true })
 		.transform(babelify)
 		.bundle()
 		.pipe(source('bundle.js'))
-		.pipe(rename({ basename: 'appOpus', extname: '.js'}))
+		.pipe(rename({ basename: 'dishs', extname: '.js'}))
 		.pipe(gulp.dest('./assets/js/'))
 });
 

@@ -303,7 +303,6 @@ body {
   left: 0.2rem;
 }
 .banner {
-  height: 5rem;
   width: 100%;
   display: block;
 }
@@ -323,11 +322,6 @@ body {
   float: left;
   margin-right: 0.1rem;
 }
-.bannerInfo .oneline .weight {
-  display: table-cell;
-  vertical-align: bottom;
-  height: 0.6rem;
-}
 .bannerInfo .oneline .box {
   background: #ff9934;
   display: block;
@@ -338,6 +332,9 @@ body {
   text-align: center;
   float: right;
   margin: 0.15rem 0;
+}
+.bannerInfo .weight {
+  margin-bottom: 0.1rem;
 }
 .bannerInfo .twoline {
   color: #6D6B6B;

@@ -12,13 +12,21 @@ module.exports = function(app){
 		}
 		
 		$scope.orders = batch;
+	
 		
 		
-		 if($history.urlQueue.length>0){
-				 $scope.icoStatus=false;
-				 $scope.back=function(){
-					 $location.path('/index');
-				 };
+		if($history.urlQueue.length>0){
+			if($history.urlQueue[0] == '/checkout'){
+				$scope.icoStatus=false;
+				$scope.back=function(){
+					$location.path('/index');
+				};
+			}else{
+				$scope.icoStatus=false;
+					$scope.back=function(){
+						$location.path($history.urlQueue[0]);
+					};
+			} 
 		 }else{
 			 $scope.icoStatus=true;
 			 $scope.back=function(){
@@ -28,7 +36,7 @@ module.exports = function(app){
 		
 		
 		$scope.openOrder = function(orderUrl){		
-			$history.getHistory();
+			//$history.getHistory();
 			$rootScope.orderUrl = orderUrl;
 			//$rootScope.orderId = order.id;
 			//$data.prePromptPay = promptPay;
@@ -36,7 +44,8 @@ module.exports = function(app){
 		}
 		
 		$scope.goPay = function(orderUrl){		
-			$history.getHistory();
+			//记录当前页面
+			//$history.getHistory();
 			$rootScope.orderUrl = orderUrl;
 			$location.path("/payment");
 		}

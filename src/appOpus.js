@@ -13,7 +13,7 @@ app.filter('date',function(){
 		return function(val){
 			var date = new Date();
 			if(!!val){
-				date = Date.create(val);
+				date = Date.create(val)/1000;
 			}
 			return date.format('long', 'zh-CN');
 		}

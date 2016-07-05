@@ -26,19 +26,10 @@ module.exports = function(app){
 		$scope.commodities = batch.products;
 		$scope.totalPrice = batch.totalPrice;
 		$scope.dispatchers = batch.dispatchers;
-			
-		//设置header头左侧按钮状态	
-		if($history.urlQueue.length>0){
-			$scope.icoStatus=false;
-			$scope.back=function(){
-				$location.path($history.urlQueue[0]);
-			};
-		}else{
-			$scope.icoStatus=true;
-			$scope.back=function(){
-				alert('关闭');
-			};
-		}
+				
+		$scope.back=function(){
+			$location.path('/index');
+		};
 		//onblur get mob and name
 		$scope.getMob = function(){
 			$scope.tel = $('#mob')[0].value;
@@ -83,6 +74,10 @@ module.exports = function(app){
 			};
 
 			$data.requestUnifiedOrder(requestData, function(data){
+				//记录当前页面
+				$history.getHistory();
+				console.log($history.urlQueue);
+				
 				$data.ordersData = data;
 				$rootScope.orderUrl = data.url;
 				$location.path('/payment');

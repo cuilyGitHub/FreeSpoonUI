@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>菜谱详情</title>	
+	<link rel='stylesheet' type='text/css' href='assets/css/appshare.css'>
+	<script type="text/javascript">
+		var winW = document.documentElement.clientWidth;
+        var winH = document.documentElement.clientHeight;
+        if(winW > winH){
+			document.documentElement.style.fontSize = winW / 6.4 + "px";
+        } else {
+			document.documentElement.style.fontSize = 50 + "px";
+        }
+    </script>
+	<script type="text/javascript" src="assets/js/recipes.js"></script>
+</head>
+<body ng-app='app' ng-controller='MenuController'>
+<!--    <div class="header">
+		<div class='share'></div>
+		<div class='back'></div>
+    </div> -->
+	<div class='user'>
+		<p class='text'>{{cooks.kBDishName}}</p>
+		<div class='look'>
+			<div class='line left'></div>
+			<div class='box'>
+				<div class='see'>
+					<img src='assets/images/appShare/see.png' alt=''>999
+				</div>
+				<div class='like'>
+					<img src='assets/images/appShare/like.png' alt=''>666
+				</div>
+			</div>
+			<div class='line right'></div>
+		</div>
+		<div class='info'>
+			<div class='leader'><img ng-src="{{'http://www.yijiayinong.com/cookbook/api/user/getimage?imagemd5='+cooks.kBIconUrl}}" alt=''></div>
+			<div class='name'>{{cooks.kBNickName}}</div>
+			<div class='name'>{{cooks.kBCreateTime | date}}</div>
+		</div>
+		<p class='desc'>{{cooks.kBDescription}}</p>
+	</div>
+	<div class='title'>
+		<span class="img material"></span>
+		用料
+	</div>
+	<div class='table'>
+		<table class='list'>
+			<tr ng-repeat='x in cooks.kBFoodMaterials'>
+				<td>{{x.kBFName}}</td>
+				<td>{{x.kBFQuantity}}</td>
+			</tr>
+		</table>
+	</div>
+	<div class='title'>
+		<span class="img make"></span>
+		做法
+	</div>
+	<div class='content'>
+		<ul>
+			<li ng-repeat='x in cooks.kBCookSteps'>
+				<img ng-src="{{'http://www.yijiayinong.com/cookbook/api/user/getimage?imagemd5='+x.kPhotoUrl}}" alr=''>
+				<p>{{x.kPhotoSerialNum + 1}}.{{x.kPhotoDescription}}</p>
+			</li>
+		</ul>
+	</div>
+	<div class='title'>
+		<span class="img remind"></span>
+		小贴士
+	</div>
+	<p class='remindContent' ng-repeat='x in cooks.kBTips'>{{x}}</p>
+	<div class='more'>
+		<div class='line left'></div>
+		<div class='line right'></div>
+		<div class='leader'><img ng-src="{{'http://www.yijiayinong.com/cookbook/api/user/getimage?imagemd5='+cooks.kBIconUrl}}" alt=''></div>
+		<p>{{cooks.kBNickName}}的更多菜谱</p>
+	</div>
+	<div class='menu'>
+		<table>
+			<tr>
+				<td ng-repeat='m in moredata' ng-click='jump(m)'>
+				<div class='bg'></div>
+				<span>{{m.kBDishName}}</span>
+				<img ng-src="{{'http://www.yijiayinong.com/cookbook/api/user/getimage?imagemd5='+m.kBFrontCoverUrl}}" alt=''>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<!--<div class='footer'>
+		<div class='box'>
+			<div class='talk'>
+				<div class='img'></div>
+				<div class='p'>评论</div>
+			</div>
+			<div class='collection'><span class='collectionTxt'>收藏</span></div>
+			<div class='photo'>
+				<div class='top'></div>
+				<p class='p'>上传作品</p>
+			</div>
+		</div>
+	</div> -->
+</body>
+</html>

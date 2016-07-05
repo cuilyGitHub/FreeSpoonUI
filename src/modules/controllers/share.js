@@ -1,6 +1,6 @@
 module.exports = function(app){
 
-	app.controller('ShareController', function($scope, $location, $data, $wxBridge, $rootScope, orderId){
+	app.controller('ShareController', function($scope, $location, $data, $wxBridge, $rootScope){
 		
 		/*$data.orderRequest($rootScope.orderUrl, function(data){
 			if(!data){

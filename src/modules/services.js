@@ -2,8 +2,6 @@
 
 'use strict';
 
-var publicValue=require('./publicValue');
-
 module.exports = function(app){
 	
 	app.service('$wxBridge', function($http, $location){
@@ -43,7 +41,7 @@ module.exports = function(app){
 		
 	});
 
-	app.service('$data', function($http, $location, $q, $rootScope){
+	app.service('$data', function($q, $http, $location, $rootScope){
 		
 		//this preData
 		//this Resellers (团主信息) from index.js
@@ -52,30 +50,6 @@ module.exports = function(app){
 		this.preData = null;
 		
 		var that = this;
-
-		this.getWXShareInfo = function(batchId, cb){
-			$http.post(publicValue.domain+'shareInfo', {
-				batchId: batchId
-			})
-			.success(function(data){
-				if(data.res.data){
-					cb(data.res.data);
-					return;
-				}
-				if(!that.basicVerify(data)){
-					cb(null);
-					return;
-				}
-				if(!data.res || !data.res.data){
-					cb(null);
-					return;
-				}
-				cb(data.res.data);
-			})
-			.error(function(){
-				cb(null);
-			});
-		}
 				
 		this.requestConfirm = function(cb){
 			var state = that.getStateFromUrl();
@@ -328,10 +302,9 @@ module.exports = function(app){
 	app.service('$history',function($http, $location){
 		this.urlQueue=[];
 		var that=this;
-		
 		this.getHistory=function(){
-			if(that.urlQueue>2){
-				that.urlQueue.shift();
+			if(that.urlQueue.length>0){
+				 that.urlQueue.shift();
 			}
 			 var getUrl=$location.$$path;
 			 that.urlQueue.unshift(getUrl);

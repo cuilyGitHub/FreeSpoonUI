@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="stylesheet" href="assets/css/goodsDetails.css">
+    <link rel="stylesheet" href="assets/css/goodsDetails.min.css">
     <title></title>
 </head>
 <body>
@@ -12,9 +12,11 @@
 		<img class='banner' ng-src='{{batch.cover}}' alt='' />
 		<div class='bannerInfo'>
 			<div class='oneline'>
-				<span class='box'>{{batch.spec_desc}}/{{batch.spec}}</span>
+				<span class='box'>{{batch.spec_desc}}</span>
 				<span class='name'>{{batch.title}}</span>
-				<span class='weight'>({{batch.spec_desc}})</span>
+			</div>
+			<div class='weight'>
+				<span>({{batch.spec_desc}})</span>
 			</div>
 			<p class='twoline'>{{batch.desc}}</p>
 			<div class='threeline'>
@@ -30,7 +32,7 @@
 		<ul>
 			<li class='commandList' ng-repeat='x in batch.details'>
 				<img ng-src='{{x.image}}' alt='' />
-				<p>{{x.plain}}</p>
+				<!--<p>{{x.plain}}</p>-->
 			</li>
 		</ul>
 		<div  class="footer">

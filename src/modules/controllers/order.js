@@ -14,9 +14,10 @@ module.exports = function(app){
 			$scope.order = batch;
 			$scope.dispatcher = batch.dispatcher;
 			
-			if($history.urlQueue.length>0){
+			/*if($history.urlQueue.length>0){
 				$scope.icoStatus=false;
 				$scope.back=function(){
+					//$history.urlQueue.length = 0;
 					$location.path('/orders');
 				};
 			}else{
@@ -24,7 +25,12 @@ module.exports = function(app){
 				$scope.back=function(){
 					alert('关闭');
 				};
-			}
+			}*/
+			
+			$scope.back=function(){
+					$location.path('/orders');
+				};
+			
 			
 			$scope.pay = function(){
 				$wxBridge.pay($data.wx_pay_request, function(){

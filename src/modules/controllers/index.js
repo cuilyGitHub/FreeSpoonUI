@@ -158,6 +158,7 @@ module.exports = function(app){
 			}else{
 				register_hide();
 				$data.preData = null;
+				//记录当前页面
 				$history.getHistory();
 				$location.path("/orders");
 			}
