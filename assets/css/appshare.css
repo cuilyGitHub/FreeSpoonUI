@@ -130,10 +130,11 @@ td {
   border-radius: 50%;
   overflow: hidden;
   float: left;
+  background: url(../images/user.png) center no-repeat;
+  background-size: 1rem;
 }
 .user .info .leader img {
   width: 1rem;
-  height: 1rem;
 }
 .user .info .name {
   height: 0.5rem;
@@ -190,6 +191,8 @@ td {
   position: absolute;
   left: 42%;
   top: 20%;
+  background: url(../images/user.png) center no-repeat;
+  background-size: 1rem;
 }
 .more .leader img {
   display: block;
@@ -242,7 +245,7 @@ td {
 }
 .menu table td img {
   display: block;
-  width: 100%;
+  width: 32.5%;
   height: 3rem;
 }
 .footer {

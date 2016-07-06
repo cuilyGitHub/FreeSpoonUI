@@ -46,6 +46,8 @@ module.exports = function(app){
 		//this preData
 		//this Resellers (团主信息) from index.js
 		//this address_id from update_address.js
+		//this recipesId from recipes.js
+		//this dishsId from dishs.js
 		
 		this.preData = null;
 		
@@ -127,6 +129,73 @@ module.exports = function(app){
 			return defer.promise
 		};
 		
+		//get token
+		this.authRes = function(cb){
+			if($rootScope.auth){
+				cb($rootScope.auth);
+				return;
+			}else{
+				var code = $location.search().code;
+				if(!code){
+					alert('code不存在');
+					return;
+				}
+				$http.post('http://yijiayinong.com/api/business/weixin',{code:code})
+				.success(function(data){
+				if(!data){
+					cb(null);
+					return;
+				}
+					cb(data)
+				})
+				.error(function(){
+					cb(null);
+				});
+			}
+			
+		}
+		
+		//团购列表
+		this.bulksRes = function(search,cb){
+		$http({
+				method:'get',
+				url:'http://yijiayinong.com/api/business/bulks/',
+				params:{
+					'search':search
+				},
+				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
+			})
+			.success(function(data){
+				if(!data){
+					cb(null);
+					return;
+				}
+				cb(data);
+			})
+			.error(function(){
+				cb(null);
+			});
+		}
+		
+		//团购详情
+		this.bulkRes = function(batch,cb){
+		$http({
+				method:'get',
+				url:'http://yijiayinong.com/api/business/bulks/'+batch,
+				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
+			})
+			.success(function(data){
+				if(!data){
+					cb(null);
+					return;
+				}
+				cb(data);
+			})
+			.error(function(){
+				cb(null);
+			});
+		}
+		
 		//post services post order data
 		this.requestUnifiedOrder = function(requestData, cb){
 			$http({
@@ -167,10 +236,10 @@ module.exports = function(app){
 		};	
 		
 		//get order data
-		this.orderRequest = function(orderUrl, cb){
+		this.orderRequest = function(orderId, cb){
 			$http({
 				method:'get',
-				url:orderUrl,
+				url:'http://yijiayinong.com/api/business/orders/'+orderId,
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
 			.success(function(data){
@@ -183,10 +252,10 @@ module.exports = function(app){
 		};	
 		
 		//delete order data
-		this.orderDel = function(orderUrl, cb){
+		this.orderDel = function(orderId, cb){
 			$http({
 				method:'delete',
-				url:orderUrl,
+				url:'http://yijiayinong.com/api/business/orders/'+orderId,
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
 			.success(function(data){

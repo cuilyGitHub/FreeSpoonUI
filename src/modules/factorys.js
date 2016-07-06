@@ -2,36 +2,10 @@ module.exports = function(app){
 	
 	//user sign in root
 	app.factory('authRes',function($resource){
+		alert(5);
 		return $resource('http://yijiayinong.com/api/business/weixin');
 	});
 	
-	//团购列表
-	app.factory('bulksRes',['$resource', '$rootScope', function($resource, $rootScope){	
-		return $resource('http://yijiayinong.com/api/business/bulks/?:search',{search:'@search'},{
-			'charge':{
-				method:'get',
-				isArray:true,
-				headers:{
-					'Authorization':'JWT '+ $rootScope.auth.token
-				}
-			}
-		});
-		
-	}]);
-	
-	//团购详情
-	app.factory('bulkRes',['$resource','$rootScope',function($resource, $rootScope){
-		return $resource('http://yijiayinong.com/api/business/bulks/:batch',{batch:'@batch'},{
-			'charge':{
-				method:'get',
-				isArray:false,
-				headers:{
-					'Authorization':'JWT '+ $rootScope.auth.token
-				}
-			}
-		});
-	}]);
-
 	//checkout页详情
 	app.factory('products',['$resource','$rootScope',function($resource, $rootScope){
 		return $resource($rootScope.productsUrl,{batch:'@batch'},{

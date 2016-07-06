@@ -35,18 +35,18 @@ module.exports = function(app){
 		 }
 		
 		
-		$scope.openOrder = function(orderUrl){		
+		$scope.openOrder = function(orderId){		
 			//$history.getHistory();
-			$rootScope.orderUrl = orderUrl;
+			$rootScope.orderId = orderId;
 			//$rootScope.orderId = order.id;
 			//$data.prePromptPay = promptPay;
 			$location.path("/order");
 		}
 		
-		$scope.goPay = function(orderUrl){		
+		$scope.goPay = function(orderId){		
 			//记录当前页面
 			//$history.getHistory();
-			$rootScope.orderUrl = orderUrl;
+			$rootScope.orderId = orderId;
 			$location.path("/payment");
 		}
 		

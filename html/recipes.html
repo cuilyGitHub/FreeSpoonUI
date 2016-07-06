@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>菜谱详情</title>	
+	<link rel='stylesheet' type='text/css' href='assets/css/appshare.css'>
+</head>
+<body>
+<!--    <div class="header">
+		<div class='share'></div>
+		<div class='back'></div>
+    </div> -->
+	<div class='user'>
+		<p class='text'>{{cooks.name}}</p>
+		<div class='look'>
+			<div class='line left'></div>
+			<div class='box'>
+				<div class='see'>
+					<img src='assets/images/appShare/see.png' alt=''>0
+				</div>
+				<div class='like'>
+					<img src='assets/images/appShare/like.png' alt=''>0
+				</div>
+			</div>
+			<div class='line right'></div>
+		</div>
+		<div class='info'>
+			<div class='leader'><img ng-src="{{cooks.user.wx_headimgurl}}" alt=''></div>
+			<div class='name'>{{cooks.user.name}}</div>
+			<div class='name'>{{cooks.user.create_time | date}}</div>
+		</div>
+		<p class='desc'>{{cooks.desc}}</p>
+	</div>
+	<div class='title'>
+		<span class="img material"></span>
+		用料
+	</div>
+	<div class='table'>
+		<table class='list'>
+			<tr ng-repeat='x in cooks.ingredients'>
+				<td>{{x.name}}</td>
+				<td>{{x.quantity}}</td>
+			</tr>
+		</table>
+	</div>
+	<div class='title'>
+		<span class="img make"></span>
+		做法
+	</div>
+	<div class='content'>
+		<ul>
+			<li ng-repeat='x in cooks.steps'>
+				<img ng-src="{{x.image}}" alt=''>
+				<p>{{x.seq}}.{{x.plain}}</p>
+			</li>
+		</ul>
+	</div>
+	<div class='title'>
+		<span class="img remind"></span>
+		小贴士
+	</div>
+	<p class='remindContent' ng-repeat='x in cooks.tips'>{{x}}</p>
+	<div class='more'>
+		<div class='line left'></div>
+		<div class='line right'></div>
+		<div class='leader'><img ng-src="{{cooks.user.wx_headimgurl}}" alt=''></div>
+		<p>{{cooks.user.name}}的更多菜谱</p>
+	</div>
+	<div class='menu'>
+		<table>
+			<tr>
+				<td ng-repeat='m in cooks.more' ng-click='jump(m.id)' >
+				<div class='bg'></div>
+				<span>{{m.name}}</span>
+				<div ng-style="{'height': '3rem', 'background-image':'url('+m.cover+')','background-size':'cover'}"></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<!--<div class='footer'>
+		<div class='box'>
+			<div class='talk'>
+				<div class='img'></div>
+				<div class='p'>评论</div>
+			</div>
+			<div class='collection'><span class='collectionTxt'>收藏</span></div>
+			<div class='photo'>
+				<div class='top'></div>
+				<p class='p'>上传作品</p>
+			</div>
+		</div>
+	</div> -->
+</body>
+</html>
