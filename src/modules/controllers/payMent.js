@@ -47,10 +47,10 @@ module.exports = function(app){
 			}else if($scope.isSuccess){
 				$data.payRequest($rootScope.requestUrl, $rootScope.balance, function(data){
 					if(data.require_third_party_payment){
-						$data.wx_pay_request = data.pay_request_json;
+						$data.wx_pay_request = data.pay_request_json;	
 						$data.prePromptPay = true;
 					}
-					$location.path('/share');
+					$location.path('/order');
 				});
 			}else{
 				$data.payRequest($rootScope.requestUrl, $rootScope.balance, function(data){

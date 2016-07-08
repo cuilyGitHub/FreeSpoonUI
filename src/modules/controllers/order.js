@@ -10,7 +10,7 @@ module.exports = function(app){
 				$location.path("/error");
 				return;
 			}
-
+			
 			$scope.order = batch;
 			$scope.dispatcher = batch.dispatcher;
 			
@@ -53,7 +53,7 @@ module.exports = function(app){
 			$scope.orderConfirm=function(){
 				var r=confirm('是否取消订单');
 				if(r==true){
-					$data.orderDel($rootScope.orderUrl,function(){
+					$data.orderDel($rootScope.orderId,function(){
 						alert('订单取消成功');
 						$location.path("/orders");
 					});

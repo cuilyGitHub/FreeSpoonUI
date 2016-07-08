@@ -2,7 +2,6 @@ module.exports = function(app){
 	
 	//user sign in root
 	app.factory('authRes',function($resource){
-		alert(5);
 		return $resource('http://yijiayinong.com/api/business/weixin');
 	});
 	

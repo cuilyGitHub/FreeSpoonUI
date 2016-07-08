@@ -1,11 +1,17 @@
 module.exports = function(app){
 
-	app.controller('bound_phone_controller', function($scope, $location, $data, $rootScope){
-		
-		alert('bound_phone');
-
-		$scope.back = function(){
-			$location.path("/user_center");
+	app.controller('bound_phone_controller', function($scope, $location, $data, $rootScope, $history){
+			
+		if($history.urlQueue.length>0){
+			$scope.icoStatus=false;
+			$scope.back=function(){
+				$location.path($history.urlQueue[0]);
+			};
+		 }else{
+			 $scope.icoStatus=true;
+			 $scope.back=function(){
+				 wx.closeWindow();
+			 };
 		}
 		
 		$scope.delCode = function(){
@@ -38,6 +44,9 @@ module.exports = function(app){
 				if(!data){
 					alert('用户注册失败');
 					return;
+				}else if($scope.icoStatus){
+					$rootScope.auth = data;
+					$location.path("/orders");
 				}else{
 					$rootScope.auth = data;
 					$location.path("/user_center");

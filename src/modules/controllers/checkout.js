@@ -1,6 +1,6 @@
 module.exports = function(app){
 
-	app.controller('CheckController', function($scope, $location, $data, $history, $rootScope, batch){
+	app.controller('CheckController', function($scope, $location, $data, $history, $rootScope, $wxBridge, batch){
 		
 		if(!batch){
 			$data.preData={
@@ -18,6 +18,9 @@ module.exports = function(app){
 			$scope.isTrue = true;
 		}
 		
+		//配置微信分享
+		$wxBridge.configShare(batch);
+		
 		//选择地址
 		$scope.selectAddress = function(p){
 			$scope.selectedAddress = p;
@@ -30,12 +33,39 @@ module.exports = function(app){
 		$scope.back=function(){
 			$location.path('/index');
 		};
+		
 		//onblur get mob and name
+		
+		$scope.focus = function(){
+			var name = $('#nikeName')[0].value;
+			var mob = $('#mob')[0].value;
+			if(name == '填写姓名'){
+				$('#nikeName')[0].value='';
+			}
+			if(mob == '填写电话'){
+				$('#mob')[0].value='';
+			}
+		}
+		
+		$scope.addInfo=function(){
+			$scope.isTrue = true;
+			$('#nikeName')[0].value = null;
+			$('#mob')[0].value = null;
+		}
+		
 		$scope.getMob = function(){
-			$scope.tel = $('#mob')[0].value;
+			if($('#mob')[0].value){
+				$scope.tel = $('#mob')[0].value;
+			}else{
+				$('#mob')[0].value = $scope.tel;
+			}
 		}
 		$scope.getName = function(){
-			$scope.nickName = $('#nikeName')[0].value;
+			if($('#nikeName')[0].value){
+				$scope.nickName = $('#nikeName')[0].value;
+			}else{
+				$('#nikeName')[0].value = $scope.nickName;
+			}
 		}
 		
 		
@@ -76,17 +106,12 @@ module.exports = function(app){
 			$data.requestUnifiedOrder(requestData, function(data){
 				//记录当前页面
 				$history.getHistory();
-				console.log($history.urlQueue);
-				
 				$data.ordersData = data;
-				$rootScope.orderUrl = data.url;
+				$rootScope.orderId = data.id;
 				$location.path('/payment');
 			});
 		}
 		
-		$scope.addInfo=function(){
-			$scope.isTrue = true;
-		}
 		
 		
 		//配送方式选项卡

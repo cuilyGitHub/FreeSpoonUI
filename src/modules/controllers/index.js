@@ -8,7 +8,8 @@ module.exports = function(app){
 			$location.path("/error");
 			return;
 		}
-				
+		
+		//配置微信分享
 		$wxBridge.configShare(batch);
 		
 		//save all shopCart data
@@ -164,8 +165,6 @@ module.exports = function(app){
 			}
 			
 		}
-		
-		
 		
 		$scope.getCode=function(){
 			$scope.mob = $(".__mob")[0].value;

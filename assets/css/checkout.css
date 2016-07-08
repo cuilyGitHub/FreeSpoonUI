@@ -403,7 +403,7 @@ body {
 }
 #checkout .content ul .row .sinceAddress span {
   background: url('../images/positionGray.png') no-repeat left;
-  background-size: 0.25rem;
+  background-size: 0.20rem;
   padding-left: 0.3rem;
   font-size: 0.25rem;
   font-weight: normal;
@@ -421,12 +421,12 @@ body {
 }
 #checkout .content ul .row .sinceConent .left {
   background: url('../images/clock.png') no-repeat left;
-  background-size: 0.25rem;
+  background-size: 0.2rem;
 }
 #checkout .content ul .row .sinceConent .right {
   margin-left: 0.5rem;
   background: url('../images/grayPhone.png') no-repeat left;
-  background-size: 0.25rem;
+  background-size: 0.2rem;
 }
 #checkout .content ul .detailRow {
   height: 0.5rem!important;

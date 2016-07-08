@@ -18,6 +18,7 @@ module.exports = function(app){
 		
 		$scope.jump = function(){
 			$location.path("/order");
+			$data.prePromptPay = false;
 		}
 		
 	});

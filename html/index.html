@@ -39,7 +39,7 @@
 					<div class='buyer' ng-click='jump(this.$index)'>
 						<div class='right'>{{x.participant_count}}</div>
 						<div class='left'>
-							<div class='headPortrait' ng-repeat='buyer in x.participant_avatars'><img ng-src='{{buyer}}' alt='' /></div>
+							<div class='headPortrait' ng-repeat='buyer in x.participant_avatars track by $index'><img ng-src='{{buyer}}' alt='' /></div>
 						</div>
 					</div>
                     <div class="last ">

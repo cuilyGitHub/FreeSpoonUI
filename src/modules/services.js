@@ -156,13 +156,29 @@ module.exports = function(app){
 		}
 		
 		//团购列表
-		this.bulksRes = function(search,cb){
+		this.bulksRes = function(cb){
 		$http({
 				method:'get',
 				url:'http://yijiayinong.com/api/business/bulks/',
-				params:{
-					'search':search
-				},
+				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
+			})
+			.success(function(data){
+				if(!data){
+					cb(null);
+					return;
+				}
+				cb(data);
+			})
+			.error(function(){
+				cb(null);
+			});
+		}
+		
+		//search list
+		this.searchRes = function(search,cb){
+		$http({
+				method:'get',
+				url:'http://yijiayinong.com/api/business/bulks/?'+search+'/',
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
 			.success(function(data){
@@ -181,7 +197,7 @@ module.exports = function(app){
 		this.bulkRes = function(batch,cb){
 		$http({
 				method:'get',
-				url:'http://yijiayinong.com/api/business/bulks/'+batch,
+				url:'http://yijiayinong.com/api/business/bulks/'+batch+'/',
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
 			.success(function(data){
@@ -195,6 +211,25 @@ module.exports = function(app){
 				cb(null);
 			});
 		}
+		
+		//订单列表页
+		this.requestOrders = function(cb){
+			$http({
+				method:'get',
+				url:'http://yijiayinong.com/api/business/orders/',
+				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
+			})
+			.success(function(data){
+				if(!data){
+					cb(null);
+					return;
+				}
+				cb(data);
+			})
+			.error(function(){
+				cb(null);
+			});
+		};	
 		
 		//post services post order data
 		this.requestUnifiedOrder = function(requestData, cb){
@@ -214,7 +249,7 @@ module.exports = function(app){
 			.error(function(){
 				cb(null);
 			});
-		};	
+		};
 		
 		//get weixin pay interface 
 		this.payRequest = function(requestUrl, balanceStatus, cb){
@@ -239,7 +274,7 @@ module.exports = function(app){
 		this.orderRequest = function(orderId, cb){
 			$http({
 				method:'get',
-				url:'http://yijiayinong.com/api/business/orders/'+orderId,
+				url:'http://yijiayinong.com/api/business/orders/'+orderId+'/',
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
 			.success(function(data){
@@ -255,7 +290,7 @@ module.exports = function(app){
 		this.orderDel = function(orderId, cb){
 			$http({
 				method:'delete',
-				url:'http://yijiayinong.com/api/business/orders/'+orderId,
+				url:'http://yijiayinong.com/api/business/orders/'+orderId+'/',
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
 			.success(function(data){
@@ -271,7 +306,7 @@ module.exports = function(app){
 		this.mobCode_Request = function(mob, cb){
 			$http({
 				method:'get',
-				url:'http://yijiayinong.com/api/business/sms/'+mob,
+				url:'http://yijiayinong.com/api/business/sms/'+mob+'/',
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
 			.success(function(data){
@@ -286,7 +321,7 @@ module.exports = function(app){
 		this.userRequest = function(code,cb){
 			$http({
 				method:'get',
-				url:'http://yijiayinong.com/api/auth/user',
+				url:'http://yijiayinong.com/api/auth/user/',
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
 			.success(function(data){
@@ -321,7 +356,7 @@ module.exports = function(app){
 		this.get_address = function(address_id, cb){
 			$http({
 				method:'get',
-				url:'http://yijiayinong.com/api/business/shippingaddresses/'+address_id,
+				url:'http://yijiayinong.com/api/business/shippingaddresses/'+address_id+'/',
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
 			.success(function(data){
@@ -337,7 +372,7 @@ module.exports = function(app){
 		this.del_address = function(address_id, cb){
 			$http({
 				method:'delete',
-				url:'http://yijiayinong.com/api/business/shippingaddresses/'+address_id,
+				url:'http://yijiayinong.com/api/business/shippingaddresses/'+address_id+'/',
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
 			.success(function(data){

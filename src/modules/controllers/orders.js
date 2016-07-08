@@ -1,7 +1,7 @@
 module.exports = function(app){
 
 	app.controller('OrdersController', function($scope, $routeParams, $data, $history,$location, $http, $wxBridge, $rootScope, batch){
-		
+				
 		if(!batch){
 			$data.preData={
 				title:'参数错误',
@@ -45,7 +45,7 @@ module.exports = function(app){
 		
 		$scope.goPay = function(orderId){		
 			//记录当前页面
-			//$history.getHistory();
+			$history.getHistory();
 			$rootScope.orderId = orderId;
 			$location.path("/payment");
 		}

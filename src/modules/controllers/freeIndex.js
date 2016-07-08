@@ -9,6 +9,22 @@ module.exports = function(app){
 			$location.path("/error");
 			return;
 		}
+		
+		//配置微信分享
+		wx.onMenuShareAppMessage({
+			title: '我是标题', 
+			desc: '我是描述', 
+			link: 'http://yijiayinong.com/api/business/redirect?state=', 
+			imgUrl: 'http://yijiayinong.com/media/images/product/2016/06/22/2_rHFaGMq.jpg',
+				//type: '', 
+				//dataUrl: '', 
+			success: function () {
+				//TODO
+			},
+			cancel: function () {
+				//TODO
+			}
+		});
 			
 		if($history.urlQueue.length>0){
 				 $scope.icoStatus=false;

@@ -17,10 +17,10 @@
 			<input type='text' id='cicle' ng-keyup='onkeydown($event)' value="搜索团主、商品" ng-focus="focus()" ng-blur="blur()"/>
 		</div>
 	</div>
-	<div class='searchBox' ng-if='searchBox'>
+	<div class='searchBox' ng-class="{true:'show',false:'hide'}[searchBox]">
 		<span class='content' ng-if = 'content'>没有搜索到您要的商品</span>
 	</div>
-	<div class='box' ng-if='box'>
+	<div class='box' ng-class="{true:'show',false:'hide'}[box]">
 		<ul>
 			<li class='rows' ng-repeat='x in batch' on-finish-render-filters>
 				<div class='banner'>

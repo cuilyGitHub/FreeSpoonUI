@@ -1,8 +1,6 @@
 module.exports = function(app){
 
 	app.controller('user_center_controller', function($scope, $location, $rootScope, $history, auth){
-		alert('22222'); 
-
 
 		if(!auth){
 			$location.path("/error");
@@ -14,31 +12,37 @@ module.exports = function(app){
 			$location.path('/error') ;
 			return;
 		}
-
-		/*alert('user_controlller');
-		$location.path('/update_address');
-		alert('user_controlller_1111');
-		return;*/
 			
 		//import data
 		if($rootScope.auth){
 			$scope.data = $rootScope.auth;
 		}
 		
+		wx.onMenuShareAppMessage({
+			title: '我是标题', 
+			desc: '我是描述', 
+			link: 'http://yijiayinong.com/api/business/redirect?state=', 
+			imgUrl: 'http://yijiayinong.com/media/images/product/2016/06/22/2_rHFaGMq.jpg',
+				//type: '', 
+				//dataUrl: '', 
+			success: function () {
+				//TODO
+			},
+			cancel: function () {
+				//TODO
+			}
+		});
 		
-		
-		$scope.address = function(){
-			alert(1);
-			alert(JSON.stringify($rootScope.auth));
+		$scope.address = function(){;
 			if(!$rootScope.auth.user){
 				$location.path("/bound_phone");
 				return;
 			}
 			$location.path("/update_address");
-			alert(JSON.stringify($rootScope.auth.user));
 		}
 		
 		$scope.phone = function(){
+			$history.getHistory();
 			$location.path("/bound_phone");
 		}
 		

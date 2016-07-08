@@ -74,8 +74,9 @@ app.controller('MenuController', function($scope, $route){
 	$scope.$route = $route;
 });
 
-app.config(function($routeProvider, $locationProvider,$httpProvider){
+app.config(function($routeProvider, $locationProvider,$httpProvider,$resourceProvider){
 	$locationProvider.html5Mode(true);
+	$resourceProvider.defaults.stripTrailingSlashes = false;
 	
 	$routeProvider
 		//get token
@@ -84,7 +85,6 @@ app.config(function($routeProvider, $locationProvider,$httpProvider){
 			controller: 'AuthController',
 			resolve: {
 				auth: ['$q', '$location', '$rootScope','authRes', function($q, $location,$rootScope,authRes){
-						alert('auth');
 						$rootScope.load = true;
 						var code = $location.search().code;
 						var deferred = $q.defer();
@@ -104,22 +104,26 @@ app.config(function($routeProvider, $locationProvider,$httpProvider){
 			resolve: {
 				batch: ['$q', '$location', '$data','$rootScope',  function($q, $location, $data, $rootScope){
 						$rootScope.load = true;
-						alert('1');
 						var deferred = $q.defer();
 						$data.authRes(function(data){
-							alert(2);
-								if(!data){
-									$data.preData={
-										title:'参数错误',
-										desc:'参数不存在'
-									}
-									$location.path("/error");
-									return;
+							if(!data){
+								$data.preData={
+									title:'参数错误',
+									desc:'参数不存在'
 								}
-								$rootScope.auth = data;
-								$data.bulksRes($rootScope.search,function(data){
+								$location.path("/error");
+								return;
+							}
+							$rootScope.auth = data;
+							if($rootScope.search){
+								$data.searchRes($rootScope.search,function(data){
 									deferred.resolve(data);
 								})
+							}else{
+								$data.bulksRes(function(data){
+									deferred.resolve(data);
+								})
+							}
 						});
 						return deferred.promise;
 						
@@ -158,7 +162,7 @@ app.config(function($routeProvider, $locationProvider,$httpProvider){
 			templateUrl: 'html/checkout.html',
 			controller: 'CheckController',
 			resolve: {
-				batch: ['$q', '$location', '$data', '$rootScope', 'bulkRes', '$shopCart', function($q, $location, $data, $rootScope, bulkRes, $shopCart){
+				batch: ['$q', '$location', '$data', '$rootScope', '$shopCart', function($q, $location, $data, $rootScope, $shopCart){
 					$rootScope.load = true;
 					var deferred = $q.defer();
 					if($shopCart.shopCartData && $rootScope.id == $shopCart.shopCartData.id){
@@ -166,12 +170,9 @@ app.config(function($routeProvider, $locationProvider,$httpProvider){
 						deferred.resolve($shopCart.shopCartData);
 						return deferred.promise;
 					}else{
-						bulkRes.charge({batch:$rootScope.id},function(data,headers){
-							$rootScope.load = false;
-							deferred.resolve(data);
-						},function(data,headers){
-							deferred.reject(data);
-						});
+						$data.bulkRes($rootScope.id,function(data){
+								deferred.resolve(data);
+						})
 						return deferred.promise;
 					}
 				}]
@@ -194,9 +195,13 @@ app.config(function($routeProvider, $locationProvider,$httpProvider){
 							return;
 						}
 						$rootScope.auth = data;
+						if(!$rootScope.auth.user){
+							$location.path('/bound_phone');
+							return;
+						}
 						if(!$rootScope.orderId){
 							$rootScope.orderId = $location.search().state;
-						}	
+						}
 						$data.orderRequest($rootScope.orderId, function(data){
 							$rootScope.load = false;
 							if(!data){
@@ -228,14 +233,36 @@ app.config(function($routeProvider, $locationProvider,$httpProvider){
 			templateUrl: 'html/orders.html',
 			controller: 'OrdersController',
 			resolve: {
-				batch: ['$q', '$location', '$data', '$rootScope', 'orders', function($q, $location, $data, $rootScope, orders){
+				batch: ['$q', '$location', '$data', '$rootScope', function($q, $location, $data, $rootScope){
 					$rootScope.load = true;
 					var deferred = $q.defer();
-					orders.charge({},function(data){
-						$rootScope.load = false;
-						deferred.resolve(data);
-					},function(data,headers){
-						deferred.reject(data);
+					$data.authRes(function(data){
+						if(!data){
+							$data.preData={
+								title:'参数错误',
+								desc:'参数不存在'
+							}
+							$location.path("/error");
+							return;
+						}
+						$rootScope.auth = data;
+						if(!$rootScope.auth.user){
+							$location.path('/bound_phone');
+							return;
+						}
+						$data.requestOrders(function(data){
+							$rootScope.load = false;
+							if(!data){
+								$data.preData={
+									title:'参数错误',
+									desc:'参数不存在'
+								}
+								$location.path("/error");
+								deferred.resolve(null);
+								return;
+							}
+							deferred.resolve(data);
+						});	
 					});
 					return deferred.promise;
 				}]
@@ -248,7 +275,7 @@ app.config(function($routeProvider, $locationProvider,$httpProvider){
 				batch: ['$q', '$location', '$data', '$rootScope', function($q, $location, $data, $rootScope){
 					$rootScope.load = true;
 					var deferred = $q.defer();
-					$data.orderRequest($rootScope.orderUrl, function(data){
+					$data.orderRequest($rootScope.orderId, function(data){
 						$rootScope.load = false;
 						if(!data){
 							$data.preData={
@@ -305,18 +332,13 @@ app.config(function($routeProvider, $locationProvider,$httpProvider){
 			controller: 'user_center_controller',
 			resolve: {
 				auth: ['$q', '$location', '$rootScope','authRes', function($q, $location,$rootScope,authRes){
-					alert('123');
-					alert('_user');
 						var code = $location.search().code;
 						var deferred = $q.defer();
 						if($rootScope.auth){
-							alert('_user_1');
 							deferred.resolve($rootScope.auth);
 							return deferred.promise;
 						}else{
-							alert('_user_2');
 							authRes.save({},{code:code},function(data){
-								console.log(data);
 								deferred.resolve(data);
 							},function(data,headers){
 								deferred.reject(data);
@@ -332,16 +354,12 @@ app.config(function($routeProvider, $locationProvider,$httpProvider){
 			controller: 'update_address_controller',
 			resolve: {
 				data: ['$q', 'address', function($q, address){
-					alert(1);
 					var deferred = $q.defer();
 					address.charge({},function(data){
-					alert(JSON.stringify(data));
 						deferred.resolve(data);
 					},function(data){
-					alert(JSON.stringify(data));
 						deferred.resolve(data);
 					});
-					alert(4);
 					return deferred.promise;
 				}]
 			}

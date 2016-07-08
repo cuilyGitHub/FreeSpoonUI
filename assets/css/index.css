@@ -449,6 +449,8 @@ body {
   border-radius: 50%;
   overflow: hidden;
   margin: 0.2rem 0.1rem;
+  background: url(../images/user.png) center no-repeat;
+  background-size: 0.8rem;
 }
 #index .main ul li .buyer .left .headPortrait img {
   height: 0.8rem;
