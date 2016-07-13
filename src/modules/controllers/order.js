@@ -1,6 +1,6 @@
 module.exports = function(app){
 
-		app.controller('OrderController', function($scope, $location, $data, $history, $wxBridge, $route, batch, $rootScope){
+		app.controller('OrderController', function($scope, $location, $data, $wxBridge, $route, batch, $rootScope){
 		
 			if(!batch || !$data.payRequest){
 				$data.preData={
@@ -11,25 +11,15 @@ module.exports = function(app){
 				return;
 			}
 			
+			$rootScope.title = '订单详情';
+			
+			$scope.payment = $rootScope.payment;
 			$scope.order = batch;
 			$scope.dispatcher = batch.dispatcher;
 			
-			/*if($history.urlQueue.length>0){
-				$scope.icoStatus=false;
-				$scope.back=function(){
-					//$history.urlQueue.length = 0;
-					$location.path('/orders');
-				};
-			}else{
-				$scope.icoStatus=true;
-				$scope.back=function(){
-					alert('关闭');
-				};
-			}*/
-			
 			$scope.back=function(){
-					$location.path('/orders');
-				};
+				$location.path('/orders');
+			};
 			
 			
 			$scope.pay = function(){
@@ -39,6 +29,10 @@ module.exports = function(app){
 					});
 					$route.reload();
 				});
+			}
+			
+			$scope.payment = function(){
+				$location.path("/payment");
 			}
 			
 			$scope.goShare = function(){

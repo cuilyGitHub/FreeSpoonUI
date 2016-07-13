@@ -45,7 +45,24 @@
 			</div>
 		</div>
 		
-		<div class="__overlay matter"></div>
+		<div class="__overlay matter">
+			<div class='__register register' ng-click='$event.stopPropagation();'>
+				<div class='content'>
+					<ul>
+						<li class='box'>
+							<div class='left'>手机号</div>
+							<input class='__mob mob' type='tel' placeholder='请输入手机号'>
+						</li>
+						<li class='box'>
+							<div class='left'>验证码</div>
+							<div class='getCode' ng-click='getCode()'>获取验证码</div>
+							<input class='__code' type='tel' placeholder='请输入验证码'>
+						</li>
+					</ul>
+				</div>
+			<div class='button_sure' ng-click='postMob()'>注册</div>
+			</div>
+		</div>
 		<div class="popup-window-from-bottom">
 			<div class="box">
 				<div class="popup-bottom-title">

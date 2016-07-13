@@ -1,6 +1,6 @@
 module.exports = function(app){
 
-	app.controller('AuthController', function($route,$scope, $data, $location, $history, auth, $rootScope){
+	app.controller('AuthController', function($route,$scope, $data, $location, auth, $rootScope){
 		if(!auth){
 			$location.path("/error");
 			return;

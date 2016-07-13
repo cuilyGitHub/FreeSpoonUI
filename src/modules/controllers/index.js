@@ -2,7 +2,7 @@
 
 module.exports = function(app){
 	
-	app.controller('IndexController', function($scope, $location, $data, $history, $wxBridge, batch, $rootScope, $shopCart){
+	app.controller('IndexController', function($scope, $location, $data, $wxBridge, batch, $rootScope, $shopCart){
 		
 		if(!batch){
 			$location.path("/error");
@@ -21,6 +21,8 @@ module.exports = function(app){
 		$data.reseller = batch.reseller;
 		$scope.commodities = batch.products;
 		$scope.overDay= batch.dead_time - batch.standard_time;
+		
+		$rootScope.title = batch.title;
 		
 		//计算时间
 		(function(){
@@ -71,7 +73,6 @@ module.exports = function(app){
 			}else{
 				register_hide();
 				if(!!batch.totalNum && batch.totalNum>0){
-					$history.getHistory();
 					$data.preData = null;
 					$location.path("/checkout");
 				}
@@ -143,13 +144,13 @@ module.exports = function(app){
 		}
 		
 		$scope.jump=function(id){
-			$rootScope.historys = $scope.commodities[id].history;
+			$rootScope.productsId = $scope.commodities[id].id;
 			$location.path("/record");
 		}
 		
 		$scope.goodsDetails=function(id){
 			$shopCart.id = id;
-			$rootScope.productsUrl = $scope.commodities[id].url;
+			$rootScope.productsId = $scope.commodities[id].id;
 			$location.path("/goodsDetails");
 		}
 		
@@ -159,8 +160,6 @@ module.exports = function(app){
 			}else{
 				register_hide();
 				$data.preData = null;
-				//记录当前页面
-				$history.getHistory();
 				$location.path("/orders");
 			}
 			

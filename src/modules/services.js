@@ -178,7 +178,7 @@ module.exports = function(app){
 		this.searchRes = function(search,cb){
 		$http({
 				method:'get',
-				url:'http://yijiayinong.com/api/business/bulks/?'+search+'/',
+				url:'http://yijiayinong.com/api/business/bulks/?'+search,
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
 			.success(function(data){
@@ -198,6 +198,47 @@ module.exports = function(app){
 		$http({
 				method:'get',
 				url:'http://yijiayinong.com/api/business/bulks/'+batch+'/',
+				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
+			})
+			.success(function(data){
+				if(!data){
+					cb(null);
+					return;
+				}
+				cb(data);
+			})
+			.error(function(){
+				cb(null);
+			});
+		}
+		
+		//商品详情
+		this.products = function(productsId,cb){
+		$http({
+				method:'get',
+				url:'http://yijiayinong.com/api/business/products/'+productsId+'/',
+				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
+			})
+			.success(function(data){
+				if(!data){
+					cb(null);
+					return;
+				}
+				cb(data);
+			})
+			.error(function(){
+				cb(null);
+			});
+		}
+		
+		//成交记录
+		this.historys= function(productsId,cb){
+		$http({
+				method:'get',
+				url:'http://yijiayinong.com/api/business/purchasedproducthistorys/',
+				params:{
+					'product_id':productsId
+				},
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
 			.success(function(data){
@@ -399,20 +440,6 @@ module.exports = function(app){
 				cb(data);
 			});
 		};	
-		
-	});
-	
-	//保存上一页记录
-	app.service('$history',function($http, $location){
-		this.urlQueue=[];
-		var that=this;
-		this.getHistory=function(){
-			if(that.urlQueue.length>0){
-				 that.urlQueue.shift();
-			}
-			 var getUrl=$location.$$path;
-			 that.urlQueue.unshift(getUrl);
-		}
 		
 	});
 	

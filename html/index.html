@@ -7,7 +7,7 @@
     <title></title>
 </head>
 <body>
-  <div id="index">
+  <div id="index" class='page'>
     <div class="board">
 		<div class="right" >
 			<div class='spare' ng-if='day>0'>剩<span>{{day}}</span>天</div>
@@ -32,9 +32,9 @@
                     <div class="first">
                         <div>
                             <h1>{{x.title}}</h1>
-                            <span>{{x.spec_desc}}/{{x.spec}}</span>
+                            <span>{{x.spec_desc}}</span>
                         </div>
-                        <p>{{x.desc}}</p>
+                        <p ng-click='goodsDetails(this.$index)'>{{x.desc}}</p>
                     </div>
 					<div class='buyer' ng-click='jump(this.$index)'>
 						<div class='right'>{{x.participant_count}}</div>
@@ -75,7 +75,24 @@
     <span class="order_button"  ng-click='jumpOrders()'>
       订单
     </span>
-    <div class="__overlay matter"></div>
+    <div class="__overlay matter">
+		<div class='__register register' ng-click='$event.stopPropagation();'>
+			<div class='content'>
+			<ul>
+				<li class='box'>
+					<div class='left'>手机号</div>
+					<input class='__mob mob' type='tel' placeholder='请输入手机号'>
+				</li>
+				<li class='box'>
+					<div class='left'>验证码</div>
+					<div class='getCode' ng-click='getCode()'>获取验证码</div>
+					<input class='__code' type='tel' placeholder='请输入验证码'>
+				</li>
+			</ul>
+			</div>
+			<div class='button_sure' ng-click='postMob()'>注册</div>
+		</div>
+	</div>
     <div class="popup-window-from-bottom">
         <div class="box">
             <div class="popup-bottom-title">
@@ -108,23 +125,6 @@
             </ul>
         </div>
     </div>
-	
-	<div class='__register register'>
-		<div class='content'>
-			<ul>
-				<li class='box'>
-					<div class='left'>手机号</div>
-					<input class='__mob mob' type='tel' placeholder='请输入手机号'>
-				</li>
-				<li class='box'>
-					<div class='left'>验证码</div>
-					<div class='getCode' ng-click='getCode()'>获取验证码</div>
-					<input class='__code' type='tel' placeholder='请输入验证码'>
-				</li>
-			</ul>
-	   </div>
-	   <div class='button_sure' ng-click='postMob()'>注册</div>
-	</div>
 	
   </div>
 </body>

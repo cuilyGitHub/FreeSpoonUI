@@ -1,14 +1,16 @@
 module.exports = function(app){
 
-	app.controller('FreeIndexController', function($route,$scope, $data, $location, $history, batch, $rootScope){
-		$scope.searchBox = false;
-		$scope.box = true;
-		$scope.content = false;
+	app.controller('FreeIndexController', function($route,$scope, $data, $location, batch, $rootScope){
 			
 		if(!batch){
 			$location.path("/error");
 			return;
 		}
+		$scope.searchBox = false;
+		$scope.box = true;
+		$scope.content = false;
+		
+		$rootScope.title = '一家一农';
 		
 		//配置微信分享
 		wx.onMenuShareAppMessage({
@@ -26,18 +28,6 @@ module.exports = function(app){
 			}
 		});
 			
-		if($history.urlQueue.length>0){
-				 $scope.icoStatus=false;
-				 $scope.back=function(){
-					 $location.path('/index');
-				 };
-		 }else{
-			 $scope.icoStatus=true;
-			 $scope.back=function(){
-				 wx.closeWindow();
-			 };
-		 }	
-			
 		// import data
 		$scope.batch = batch;
 		
@@ -46,14 +36,25 @@ module.exports = function(app){
 			$scope.content = true;
 		}
 		
-		$scope.jump = function(stateId){
-			$rootScope.id = stateId;
+		$scope.jump = function(data){
+			
+			$rootScope.id = data.id;
+			if(data.status<0){
+				alert('此团购已过期');
+				return;
+			}
 			$location.path("/index") ;
+		}
+		
+		$scope.cancel = function(){
+			$rootScope.search = null;
+			$location.path("/freeIndex");
+			$route.reload();
 		}
 		
 		$scope.focus = function(){
 			var val = $('#cicle')[0].value;
-			if(val == '搜索团主、商品'){
+			if(val){
 				$('#cicle')[0].value='';
 			}
 			$scope.searchBox = true;
@@ -65,7 +66,9 @@ module.exports = function(app){
 			if(!val){
 				$('#cicle')[0].value = '搜索团主、商品';
 				$scope.box = true;
+				return;
 			}
+			$('#cicle')[0].value = val
 		}
 		
 		$scope.onkeydown = function(e){
@@ -76,10 +79,15 @@ module.exports = function(app){
 				$route.reload();
 			}
 		}
+		
+		$scope.more = function(){
+			console.log('look more');
+		}
 
 		$scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
           //下面是在ng-repeat render完成后执行的js
           $('.Carousel').unslider({
+				//animation: 2,
 				autoplay: true,
 				dots: false,
 				arrows: false,

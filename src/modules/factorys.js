@@ -6,7 +6,7 @@ module.exports = function(app){
 	});
 	
 	//checkout页详情
-	app.factory('products',['$resource','$rootScope',function($resource, $rootScope){
+	/*app.factory('products',['$resource','$rootScope',function($resource, $rootScope){
 		return $resource($rootScope.productsUrl,{batch:'@batch'},{
 			'charge':{
 				method:'get',
@@ -16,20 +16,7 @@ module.exports = function(app){
 				}
 			}
 		});
-	}]);
-
-	//购买历史记录
-	app.factory('historys',['$resource','$rootScope',function($resource, $rootScope){
-		return $resource($rootScope.historys,{batch:'@batch'},{
-			'charge':{
-				method:'get',
-				isArray:true,
-				headers:{
-					'Authorization':'JWT '+ $rootScope.auth.token
-				}
-			}
-		});
-	}]);
+	}]);*/
 		
 	//订单列表页	
 	app.factory('orders',['$resource','$rootScope',function($resource, $rootScope){

@@ -1,6 +1,6 @@
 module.exports = function(app){
 
-	app.controller('user_center_controller', function($scope, $location, $rootScope, $history, auth){
+	app.controller('user_center_controller', function($scope, $location, $rootScope, auth){
 
 		if(!auth){
 			$location.path("/error");
@@ -12,6 +12,8 @@ module.exports = function(app){
 			$location.path('/error') ;
 			return;
 		}
+		
+		$rootScope.title = '个人中心';
 			
 		//import data
 		if($rootScope.auth){
@@ -42,13 +44,10 @@ module.exports = function(app){
 		}
 		
 		$scope.phone = function(){
-			$history.getHistory();
 			$location.path("/bound_phone");
 		}
 		
-		$scope.orders = function(){
-			//记录当前页面
-			$history.getHistory();			
+		$scope.orders = function(){		
 			if(!$rootScope.auth.user){
 				$location.path("/bound_phone");
 				return;

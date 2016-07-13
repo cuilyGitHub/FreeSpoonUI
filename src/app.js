@@ -134,7 +134,7 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 			templateUrl: 'html/index.html',
 			controller: 'IndexController',
 			resolve: {
-				batch: ['$q', '$location', '$data','$rootScope',  function($q, $location, $data, $rootScope){
+				batch: ['$q', '$location', '$data','$rootScope', '$shopCart',  function($q, $location, $data, $rootScope, $shopCart){
 					$rootScope.load = true;
 					var deferred = $q.defer();
 					$data.authRes(function(data){
@@ -151,8 +151,27 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 								$rootScope.id = $location.search().state;
 							}
 							$data.bulkRes($rootScope.id,function(data){
+								if($shopCart.shopCartData &&$shopCart.shopCartData.id === data.id){
+									deferred.resolve($shopCart.shopCartData);
+									return;
+								}
 								deferred.resolve(data);
 							})
+					});
+					return deferred.promise;
+				}]
+			}
+		})
+		.when('/goodsDetails',{
+			templateUrl: 'html/goodsDetails.html',
+			controller: 'GoodsDetailsController',
+			resolve: {
+				batch: ['$q', '$location', '$data', '$rootScope', function($q, $location, $data, $rootScope){
+					var deferred = $q.defer();
+					$data.products($rootScope.productsId,function(data){
+						deferred.resolve(data);
+					},function(data,headers){
+						deferred.reject(data);
 					});
 					return deferred.promise;
 				}]
@@ -169,6 +188,7 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 						$rootScope.load = false;
 						deferred.resolve($shopCart.shopCartData);
 						return deferred.promise;
+						
 					}else{
 						$data.bulkRes($rootScope.id,function(data){
 								deferred.resolve(data);
@@ -224,8 +244,22 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 			templateUrl: 'html/share.html',
 			controller: 'ShareController',
 			resolve: {
-				orderId: ['$route', function($route){
-					return $route.current.params.orderId;
+				batch: ['$q', '$location', '$data', '$rootScope', function($q, $location, $data, $rootScope){
+					var deferred = $q.defer();
+					$data.orderRequest($rootScope.orderId, function(data){
+						$rootScope.load = false;
+						if(!data){
+							$data.preData={
+								title:'参数错误',
+								desc:'参数不存在'
+							}
+							$location.path("/error");
+							deferred.resolve(null);
+							return;
+						}
+						deferred.resolve(data);
+					});	
+					return deferred.promise;
 				}]
 			}
 		})
@@ -296,28 +330,9 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 			templateUrl: 'html/record.html',
 			controller: 'RecordController',
 			resolve: {
-				batch: ['$q', '$location', '$data', '$rootScope', 'historys',  function($q, $location, $data, $rootScope, historys){
-					$rootScope.load = true;
+				batch: ['$q', '$location', '$data', '$rootScope', function($q, $location, $data, $rootScope){
 					var deferred = $q.defer();
-					historys.charge({},function(data){
-						$rootScope.load = false;
-						deferred.resolve(data);
-					},function(data,headers){
-						deferred.reject(data);
-					});
-					return deferred.promise;
-				}]
-			}
-		})
-		.when('/goodsDetails',{
-			templateUrl: 'html/goodsDetails.html',
-			controller: 'GoodsDetailsController',
-			resolve: {
-				batch: ['$q', '$location', '$data', '$rootScope', 'products', function($q, $location, $data, $rootScope, products){
-					$rootScope.load = true;
-					var deferred = $q.defer();
-					products.charge({},function(data){
-						$rootScope.load = false;
+					$data.historys($rootScope.productsId,function(data){
 						deferred.resolve(data);
 					},function(data,headers){
 						deferred.reject(data);

@@ -1,6 +1,6 @@
 module.exports = function(app){
 	
-	app.controller('PaymentController',['payRequest', '$rootScope', '$scope', '$data', '$location', '$history', 'batch', function(payRequest, $rootScope, $scope, $data, $location, $history, batch){
+	app.controller('PaymentController',['payRequest', '$rootScope', '$scope', '$data', '$location', 'batch', function(payRequest, $rootScope, $scope, $data, $location, batch){
 		if(!batch){
 			$data.preData={
 				title:'参数错误',
@@ -14,17 +14,14 @@ module.exports = function(app){
 			var batch = batch;
 		}
 		
-		$scope.back=function(){
-			if($history.urlQueue.length>0){
-				$location.path($history.urlQueue[0]);
-			}
-		};
+		$rootScope.title = '在线支付';
 		
 		$scope.data = batch;
 		$scope.balance = $rootScope.auth.user.balance;
 		
 		$rootScope.orderUrl = batch.url;
 		$rootScope.requestUrl = batch.wx_pay_request;
+		
 		
 		$scope.payBalance=function(){
 			if(!$scope.balance &&　$scope.balance == 0){
@@ -49,13 +46,18 @@ module.exports = function(app){
 					if(data.require_third_party_payment){
 						$data.wx_pay_request = data.pay_request_json;	
 						$data.prePromptPay = true;
+						$rootScope.payment = '微信支付';
+						$location.path('/order');
+						return;
 					}
-					$location.path('/order');
+					$rootScope.payment = '零钱支付';
+					$location.path('/share');
 				});
 			}else{
 				$data.payRequest($rootScope.requestUrl, $rootScope.balance, function(data){
 					$data.wx_pay_request = data.pay_request_json;
 					$data.prePromptPay = true;
+					$rootScope.payment = '微信支付';
 					$location.path('/order');
 				});
 			}

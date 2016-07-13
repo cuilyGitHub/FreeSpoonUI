@@ -1,11 +1,13 @@
 module.exports = function(app){
 
-	app.controller('new_address_controller', function($scope, $location, $data){
+	app.controller('new_address_controller', function($scope, $location, $rootScope, $data){
 		
 		$scope.back = function(){
 			$location.path("/update_address");
 		}
 		
+		$rootScope.title = '添加地址';
+				
 		$scope.post_info = function(){
 			var name = $('.__name')[0].value;
 			var tel = $('.__tel')[0].value;
@@ -17,6 +19,10 @@ module.exports = function(app){
 			}
 			if(!tel){
 				alert('请填写电话');
+				return;
+			}
+			if(tel.length != 11){
+				alert('请填写正确的电话号码');
 				return;
 			}
 			if(!address){

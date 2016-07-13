@@ -8,11 +8,11 @@
 </head>
 <body>
 	<div class='page'>
-		<div class="header">
+		<!--<div class="header">
 			<span class='ico back' ng-click='back()'></span>
 			<div class="text">成交记录</div>
-		</div>
-		<ul class='box'>
+		</div>-->
+		<!--<ul class='box'>
 			<li ng-repeat='x in batch'>
 				<div class='left'>
 					<div class='leader'><img ng-src='{{x.wx_headimgurl}}' alt=''/></div>
@@ -21,7 +21,16 @@
 				<div class='right'>{{x.create_time | date}}</span></div>
 				<div class='center'>{{x.quantity}}{{x.spec}}</div>
 			</li>
-		</ul>
+		</ul>-->
+	
+		<table class='box'>
+			<tr ng-repeat='x in batch'>
+				<td class='leader'><img ng-src='{{x.wx_headimgurl}}' alt=''/></td>
+				<td>{{x.name}}</td>
+				<td>{{x.quantity}}{{x.spec}}</td>
+				<td>{{x.create_time | date}}</td>
+			</tr>
+		</table>
 	</div>
 	
 </body>

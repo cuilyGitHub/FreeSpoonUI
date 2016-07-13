@@ -1,6 +1,6 @@
 module.exports = function(app){
 
-	app.controller('ShareController', function($scope, $location, $data, $wxBridge, $rootScope){
+	app.controller('ShareController', function($scope, $location, $data, $wxBridge, $rootScope, batch){
 		
 		/*$data.orderRequest($rootScope.orderUrl, function(data){
 			if(!data){
@@ -13,8 +13,7 @@ module.exports = function(app){
 			}
 			return data;
 		});*/
-		$scope.reseller = $data.reseller
-		
+		$scope.seq = batch.seq;
 		
 		$scope.jump = function(){
 			$location.path("/order");

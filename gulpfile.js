@@ -12,7 +12,7 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	delfile = require('gulp-delete-file'),
 	modRewrite = require('connect-modrewrite');
-	imagemin = require('gulp imagemin'),
+	//imagemin = require('gulp imagemin'),
 
 gulp.task('connect', function(cb){
 	connect.server({
@@ -36,7 +36,7 @@ gulp.task('connect', function(cb){
 	cb();
 });
 
-gulp.task('img',function(){
+/*gulp.task('img',function(){
 	return gulp.src('./assets/image/*')
 	.pipe(imagemin({
 		progressive:true,
@@ -45,7 +45,7 @@ gulp.task('img',function(){
 	}))
 	.pipe(gulp.dest('./assets/image/'))
 	.pipe(notify({message:'img task ok'}));
-});
+});*/
 
 gulp.task('reload', ['less', 'browserify'], function(){
 	return gulp.src(['./*.html', './assets/**/*', './src/**/*'])

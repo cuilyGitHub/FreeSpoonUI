@@ -76,7 +76,8 @@ body {
 }
 /*通用卡片*/
 .card {
-  margin: 0.2rem 0;
+  /*margin:0.2rem 0;*/
+  margin-bottom: 0.2rem;
   background: white;
 }
 /*弹出层遮罩*/
@@ -85,8 +86,7 @@ body {
   position: fixed;
   height: 100%;
   width: 100%;
-  background: #000;
-  opacity: .26;
+  background: rgba(0, 0, 0, 0.26);
   z-index: 1000;
   top: 0;
   bottom: 1.7rem;
@@ -623,4 +623,59 @@ ul .commandList p {
 .popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right a:active {
   background: #ff9934;
   color: white;
+}
+.register {
+  display: none;
+  width: 5rem;
+  height: 3rem;
+  background: white;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 0.2rem;
+}
+.register .content {
+  width: 100%;
+  height: 2rem;
+}
+.register .content .box {
+  width: 100%;
+  height: 1rem;
+  line-height: 1rem;
+}
+.register .content .box .left {
+  float: left;
+  margin: 0 0.2rem;
+}
+.register .content .box .getCode {
+  width: 1.5rem;
+  float: right;
+  height: 0.6rem;
+  line-height: 0.6rem;
+  background: orange;
+  color: white;
+  text-align: center;
+  margin: 0.2rem 0;
+  border-radius: 10px;
+}
+.register .content .box input {
+  width: 2rem;
+  height: 0.5rem;
+}
+.register .content .box .mob {
+  width: 3.5rem !important;
+}
+.register .button_sure {
+  height: 0.8rem;
+  line-height: 0.8rem;
+  width: 100%;
+  background: #ff9934;
+  font-size: 0.4rem;
+  font-weight: normal;
+  color: white;
+  text-align: center;
+  margin: 0.1rem 0;
 }

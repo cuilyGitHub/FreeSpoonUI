@@ -3,26 +3,27 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>我是团购列表</title>
     <link rel="stylesheet" href="assets/css/freeIndex.min.css">
 	
 	<link rel="stylesheet" href="assets/css/unslider.css">
     <link rel="stylesheet" href="assets/css/unslider-dots.css">
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="assets/js/unslider-min.js"></script>
-    <title></title>
 </head>
 <body>
 	<div class='search'>
+		<div class='cancel' ng-class="{true:'show',false:'hide'}[searchBox]" ng-click='cancel()'>取消</div>
 		<div class='cicle' >
 			<input type='text' id='cicle' ng-keyup='onkeydown($event)' value="搜索团主、商品" ng-focus="focus()" ng-blur="blur()"/>
 		</div>
 	</div>
 	<div class='searchBox' ng-class="{true:'show',false:'hide'}[searchBox]">
-		<span class='content' ng-if = 'content'>没有搜索到您要的商品</span>
+		<span class='content' ng-if = 'content'>暂未找到匹配的团购活动</span>
 	</div>
 	<div class='box' ng-class="{true:'show',false:'hide'}[box]">
 		<ul>
-			<li class='rows' ng-repeat='x in batch' on-finish-render-filters>
+			<li class='rows' ng-repeat='x in batch' ng-click='jump(x)' on-finish-render-filters>
 				<div class='banner'>
 					<div ng-if='x.status >= 0'>
 						<div class='Subtitle'><span>{{x.category}}</span></div>
@@ -48,13 +49,12 @@
 					</div> 
 				</div>
 				<div class='purchase'>
+					<div class='button' ng-class="{true:'',false:'gray'}[x.status >= 0]">去参团</div>
 					<div class='productsInfo'>已团成/已有{{x.participant_count}}人团购过</div>
-					<div class='button' ng-click='jump(x.id)' ng-if='x.status >= 0'>去团购</div>
-					<div class='button gray' ng-if='x.status < 0'>去团购</div>
 				</div>
 			</li>
 		</ul>
 	</div>
-	<div class='footer'></div>
+	<!--<div class='footer' ng-click='more()'>查看更多</div>-->
 </body>
 </html>

@@ -1,7 +1,7 @@
 module.exports = function(app){
 
-	app.controller('CheckController', function($scope, $location, $data, $history, $rootScope, $wxBridge, batch){
-		
+	app.controller('CheckController', function($scope, $location, $data, $rootScope, $wxBridge, batch){
+
 		if(!batch){
 			$data.preData={
 				title:'参数错误',
@@ -10,10 +10,15 @@ module.exports = function(app){
 			$location.path("/error");
 			return;
 		}
-		if($rootScope.auth || $rootScope.auth.mob_user){
+		
+		if(batch.recent_obtain_name || batch.recent_obtain_mob){
 			$scope.isTrue = false;
-			$scope.tel = $rootScope.auth.mob_user.mob;
-			$scope.nickName = $rootScope.auth.mob_user.wx_nickname;
+			$scope.tel = batch.recent_obtain_mob;
+			$scope.nickName = batch.recent_obtain_name;
+			
+			$('#nikeName')[0].value=batch.recent_obtain_name;
+			$('#mob')[0].value=batch.recent_obtain_mob;
+			
 		}else{
 			$scope.isTrue = true;
 		}
@@ -26,6 +31,8 @@ module.exports = function(app){
 			$scope.selectedAddress = p;
 		}
 
+		$rootScope.title = '订单确认';
+		
 		$scope.commodities = batch.products;
 		$scope.totalPrice = batch.totalPrice;
 		$scope.dispatchers = batch.dispatchers;
@@ -33,24 +40,15 @@ module.exports = function(app){
 		$scope.back=function(){
 			$location.path('/index');
 		};
-		
-		//onblur get mob and name
-		
-		$scope.focus = function(){
-			var name = $('#nikeName')[0].value;
-			var mob = $('#mob')[0].value;
-			if(name == '填写姓名'){
-				$('#nikeName')[0].value='';
-			}
-			if(mob == '填写电话'){
-				$('#mob')[0].value='';
-			}
-		}
-		
+
 		$scope.addInfo=function(){
 			$scope.isTrue = true;
-			$('#nikeName')[0].value = null;
-			$('#mob')[0].value = null;
+			if($('#nikeName')[0].value == batch.recent_obtain_name){
+				$('#nikeName')[0].value=batch.recent_obtain_name;
+			}
+			if($('#mob')[0].value == batch.recent_obtain_mob){
+				$('#mob')[0].value=batch.recent_obtain_mob;
+			}
 		}
 		
 		$scope.getMob = function(){
@@ -104,11 +102,9 @@ module.exports = function(app){
 			};
 
 			$data.requestUnifiedOrder(requestData, function(data){
-				//记录当前页面
-				$history.getHistory();
 				$data.ordersData = data;
 				$rootScope.orderId = data.id;
-				$location.path('/payment');
+				$location.path('/payment').replace();
 			});
 		}
 		

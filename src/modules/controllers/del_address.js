@@ -1,6 +1,6 @@
 module.exports = function(app){
 
-	app.controller('del_address_controller', function($scope, $location, $data, data){
+	app.controller('del_address_controller', function($scope, $location, $data, $rootScope, data){
 		
 		if(!data){
 			$data.preData={
@@ -10,6 +10,8 @@ module.exports = function(app){
 			$location.path("/error");
 			return;
 		}
+		
+		$rootScope.title = '修改地址';
 		
 		if(data.name){
 			$('.__name')[0].value = data.name;

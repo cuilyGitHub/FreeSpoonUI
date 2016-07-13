@@ -1,18 +1,8 @@
 module.exports = function(app){
 
-	app.controller('bound_phone_controller', function($scope, $location, $data, $rootScope, $history){
-			
-		if($history.urlQueue.length>0){
-			$scope.icoStatus=false;
-			$scope.back=function(){
-				$location.path($history.urlQueue[0]);
-			};
-		 }else{
-			 $scope.icoStatus=true;
-			 $scope.back=function(){
-				 wx.closeWindow();
-			 };
-		}
+	app.controller('bound_phone_controller', function($scope, $location, $data, $rootScope){
+		
+		$rootScope.title = '绑定手机';
 		
 		$scope.delCode = function(){
 			$(".__code")[0].value = '';

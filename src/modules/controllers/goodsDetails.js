@@ -1,12 +1,14 @@
 module.exports = function(app){
 
-	app.controller('GoodsDetailsController', function($scope, $data, $location, batch, $shopCart, $rootScope, $history){
-		console.log($shopCart);
-		 
+	app.controller('GoodsDetailsController', function($scope, $data, $location, batch, $shopCart, $rootScope){
+	 
 		if(!batch){
 			$location.path("/error");
 			return;
 		}
+		
+		$rootScope.title = '商品详情';
+		
 		//from server api
 		$scope.batch = batch;
 		
@@ -113,7 +115,6 @@ module.exports = function(app){
 			}else{
 				register_hide();
 				if(!!$shopCart.shopCartData.totalNum && $shopCart.shopCartData.totalNum>0){
-					$history.getHistory();
 					$data.preData = batch;
 					$location.path("/checkout");
 				}
@@ -146,6 +147,38 @@ module.exports = function(app){
 		$scope.back=function(){
 			$location.path("/index");
 		};
+		
+		$scope.postMob=function(){	
+			$scope.mob = $(".__mob")[0].value;
+			$scope.code = $(".__code")[0].value;
+			if(!$scope.mob){
+				alert('请填写手机号');
+				return;
+			}
+			if(!$scope.code){
+				alert('请填写验证码');
+				return;
+			}
+			$data.bindMob($scope.mob,$scope.code,function(data){
+				if(!data){
+					alert('用户注册失败');
+					return;
+				}
+				register_hide();
+			});
+		}
+		
+		$scope.getCode=function(){
+			$scope.mob = $(".__mob")[0].value;
+			if(!$scope.mob){
+				alert('请填写手机号');
+				return;
+			}
+			$data.mobCode_Request($scope.mob,function(){
+				alert('验证码已发送至您的手机！')
+			});
+		}
+		
 	});
 
 }
