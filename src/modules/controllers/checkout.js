@@ -32,8 +32,10 @@ module.exports = function(app){
 		}
 
 		$rootScope.title = '订单确认';
-		
+	
 		$scope.commodities = batch.products;
+		//$scope.price = batch.products.unit_price * atch.products.num;
+		
 		$scope.totalPrice = batch.totalPrice;
 		$scope.dispatchers = batch.dispatchers;
 				

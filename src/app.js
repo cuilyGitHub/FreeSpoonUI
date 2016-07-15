@@ -167,8 +167,10 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 			controller: 'GoodsDetailsController',
 			resolve: {
 				batch: ['$q', '$location', '$data', '$rootScope', function($q, $location, $data, $rootScope){
+					$rootScope.load = true;
 					var deferred = $q.defer();
 					$data.products($rootScope.productsId,function(data){
+						$rootScope.load = false;
 						deferred.resolve(data);
 					},function(data,headers){
 						deferred.reject(data);
@@ -245,6 +247,7 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 			controller: 'ShareController',
 			resolve: {
 				batch: ['$q', '$location', '$data', '$rootScope', function($q, $location, $data, $rootScope){
+					$rootScope.load = true;
 					var deferred = $q.defer();
 					$data.orderRequest($rootScope.orderId, function(data){
 						$rootScope.load = false;
@@ -331,8 +334,10 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 			controller: 'RecordController',
 			resolve: {
 				batch: ['$q', '$location', '$data', '$rootScope', function($q, $location, $data, $rootScope){
+					$rootScope.load = true;
 					var deferred = $q.defer();
 					$data.historys($rootScope.productsId,function(data){
+						$rootScope.load = false;
 						deferred.resolve(data);
 					},function(data,headers){
 						deferred.reject(data);
@@ -347,6 +352,7 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 			controller: 'user_center_controller',
 			resolve: {
 				auth: ['$q', '$location', '$rootScope','authRes', function($q, $location,$rootScope,authRes){
+						$rootScope.load = true;
 						var code = $location.search().code;
 						var deferred = $q.defer();
 						if($rootScope.auth){
@@ -354,6 +360,7 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 							return deferred.promise;
 						}else{
 							authRes.save({},{code:code},function(data){
+								$rootScope.load = false;
 								deferred.resolve(data);
 							},function(data,headers){
 								deferred.reject(data);

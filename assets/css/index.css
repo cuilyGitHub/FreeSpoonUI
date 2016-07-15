@@ -186,7 +186,7 @@ body {
 .title {
   height: .5rem;
   line-height: .5rem;
-  padding: .2rem .3rem;
+  padding: .2rem;
   font-size: 0.35rem;
   font-weight: normal;
 }
@@ -233,12 +233,15 @@ body {
 /*三列列表*/
 .list {
   background: white;
-  margin: 0 0.25rem;
-  border-bottom: 1px solid #CCCCCC;
-  padding-bottom: 0.3rem;
+  margin: 0 0.2rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+.list li:last-child {
+  border: none !important;
 }
 .list .row {
-  padding: 0.1rem 0;
+  padding: .15rem 0;
+  border-bottom: 1px solid #e5e5e5;
 }
 .list .row span {
   display: inline-block;
@@ -261,18 +264,18 @@ body {
 .single_list_border {
   font-size: 0.25rem;
   font-weight: normal;
-  margin: 0.2rem 0.3rem;
-  height: 0.6rem;
-  border-bottom: 1px solid #CCCCCC;
-  line-height: 0.6rem;
-  padding-bottom: 0.2rem;
+  margin: 0 0.2rem;
+  height: 0.7rem;
+  border-bottom: 1px solid #e5e5e5;
+  line-height: 0.7rem;
 }
 .single_list_border p span {
   display: inline-block;
   float: right;
 }
+/*单行2列列表,无底部边框*/
 .single_list {
-  padding: 0.2rem 0.3rem;
+  padding: 0.05rem 0.2rem;
   font-size: 0.25rem;
   font-weight: bold;
   height: 0.6rem;
@@ -296,23 +299,22 @@ body {
   background: #e5e5e5;
 }
 #index .board {
-  height: 1.8rem;
-  position: fixed;
+  height: 1.4rem;
   top: 0;
   width: 100%;
   z-index: 100;
   background: #e5e5e5;
 }
 #index .board .left {
-  height: 1.8rem;
+  height: 1.4rem;
   width: 100%;
   float: left;
 }
 #index .board .left .sculpture {
   overflow: hidden;
-  width: 1rem;
-  height: 1rem;
-  margin: 0.4rem 0.2rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  margin: 0.3rem 0.2rem;
   float: left;
   border-radius: 50%;
   background: url("../images/user.png") no-repeat center;
@@ -323,9 +325,9 @@ body {
   height: 100%;
 }
 #index .board .left .leaderName {
-  height: 0.6rem;
-  line-height: 0.6rem;
-  margin-top: 0.3rem;
+  height: 0.46666667rem;
+  line-height: 0.46666667rem;
+  margin-top: 0.2rem;
   color: #6D6B6B;
 }
 #index .board .left .leaderName span {
@@ -334,18 +336,17 @@ body {
   font-weight: normal;
 }
 #index .board .left .leaderAddress {
-  height: 0.6rem;
-  line-height: 0.6rem;
+  height: 0.46666667rem;
+  line-height: 0.46666667rem;
   color: #6D6B6B;
-  background: url('../images/position.png') no-repeat 5px;
+  background: url('../images/position.png') no-repeat 10px;
   background-size: 0.25rem;
-  padding-left: 0.4rem;
-  margin-left: 1.4rem;
+  padding-left: 0.5rem;
+  margin-left: 1rem;
   margin-bottom: 0.3rem;
 }
 #index .board .right {
-  height: 1.8rem;
-  line-height: 0.6rem;
+  height: 1.4rem;
   box-sizing: border-box;
   position: absolute;
   right: 0.2rem;
@@ -356,9 +357,10 @@ body {
 #index .board .right .spare {
   height: 0.6rem;
   line-height: 0.6rem;
-  margin-top: 0.3rem;
+  margin-top: 0.1rem;
   text-align: center;
   float: right;
+  margin-right: 0.1rem;
 }
 #index .board .right .attend span,
 #index .board .right .spare span {
@@ -368,7 +370,7 @@ body {
 #index .board .send {
   height: 0.6rem;
   line-height: 0.6rem;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.1rem;
   background: url("../images/car.png") no-repeat left;
   background-size: 0.35rem;
   color: #6D6B6B;
@@ -379,11 +381,10 @@ body {
   overflow: hidden;
 }
 #index .main ul {
-  margin-top: 1.8rem;
   margin-bottom: 1.4rem;
 }
 #index .main ul li {
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.2rem;
   border-bottom: 1px solid #CCCCCC;
   border-top: 1px solid #CCCCCC;
 }
@@ -411,13 +412,16 @@ body {
   float: left;
 }
 #index .main ul li .first div span {
-  display: inline-block;
-  color: #ff9934;
+  display: block;
+  width: 1.2rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  text-align: center;
+  color: white;
+  float: right;
+  background: #ff9934;
   font-size: 0.2rem;
   font-weight: normal;
-  position: absolute;
-  bottom: 0;
-  right: 0;
 }
 #index .main ul li .first p {
   font-size: 0.25rem;
@@ -459,7 +463,7 @@ body {
   width: 0.5rem;
   height: 1.2rem;
   line-height: 1.2rem;
-  color: #CCCCCC;
+  font-size: 0.3rem;
   float: right;
 }
 #index .main ul li .last .regulator {
@@ -804,7 +808,6 @@ body {
   color: white;
   text-align: center;
   margin: 0.2rem 0;
-  border-radius: 10px;
 }
 #index .register .content .box input {
   width: 2rem;

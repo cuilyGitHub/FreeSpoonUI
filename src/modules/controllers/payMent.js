@@ -47,10 +47,12 @@ module.exports = function(app){
 						$data.wx_pay_request = data.pay_request_json;	
 						$data.prePromptPay = true;
 						$rootScope.payment = '微信支付';
+						$rootScope.balanc_total = $scope.balance;
 						$location.path('/order');
 						return;
 					}
 					$rootScope.payment = '零钱支付';
+					$rootScope.balanc_total = batch.total_fee;
 					$location.path('/share');
 				});
 			}else{
@@ -58,6 +60,7 @@ module.exports = function(app){
 					$data.wx_pay_request = data.pay_request_json;
 					$data.prePromptPay = true;
 					$rootScope.payment = '微信支付';
+					$rootScope.balanc_total = 0;
 					$location.path('/order');
 				});
 			}

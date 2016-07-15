@@ -2,13 +2,15 @@
 @import "component";
 .main{
 	@height:1rem;
-	/*margin-top: @height;*/
-	margin-bottom: 0.3rem;
+	height:100vh;
+	padding-bottom: 0.3rem;
+	box-sizing:border-box;
+	background:@color_misty_gray;
 	.context{
 		.font_x_large;
 		color:@color_smoky_gray;
-		margin-left:30%;
-		margin-top:80%;
+		padding-left:30%;
+		padding-top:50%;
 	}
 	.user{
 		height: @height;
@@ -96,7 +98,6 @@
 		@box_height:1.8rem;
 		@height:0.6rem;
 		height:@box_height;
-		border-bottom: 1px solid #ccc;
 		p{
 			margin-left:0.2rem; 
 			height: @height;

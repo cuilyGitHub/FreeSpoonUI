@@ -144,10 +144,6 @@ module.exports = function(app){
 			}
 		}
 		
-		$scope.back=function(){
-			$location.path("/index");
-		};
-		
 		$scope.postMob=function(){	
 			$scope.mob = $(".__mob")[0].value;
 			$scope.code = $(".__code")[0].value;

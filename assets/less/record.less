@@ -11,8 +11,7 @@
 		height:1.2rem;
 		border-bottom:1px solid #ccc;
 		.left{
-			min-width:2.3rem;
-			max-width:3.3rem;
+			width:1.2rem;
 			height:1.2rem;
 			float:left;
 			.leader{
@@ -29,48 +28,33 @@
 					display:block;
 				}
 			}
-			span{
-				display:block;
-				max-width:1rem;
-				height:0.8rem;
-				line-height:0.8rem;
-				margin:0.2rem 0;
-				.font_large;
-				overflow: hidden;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-			}
 		}
 		.center{
+			.name,.time{
+				height:0.6rem;
+				line-height:0.4rem;
+				box-sizing: border-box;
+			}
+			.name{
+				padding-top:0.2rem;
+			}
+			.time{
+				padding-bottom:0.2rem;
+			}
 			width:auto;
 			height:1.2rem;
 			line-height:1.2rem;
-			padding:0 3rem 0 2rem;
-			text-align:center;
-			.font_large;
+			box-sizing: border-box;
+			padding: 0 0.8rem 0 1.2rem;
 		}
 		.right{
-			width:auto;
+			width:0.8rem;
 			height:1.2rem;
 			line-height:1.2rem;
 			float:right;
+			text-align: right;
+			box-sizing: border-box;
+			padding: 0 0.2rem;
 		}
 	}
-	.leader{
-				width:0.8rem;
-				height:0.8rem;
-				margin:0.2rem;
-				border-radius:50%;
-				overflow:hidden;
-				float:left;
-				background: url("../images/user.png") no-repeat center;
-				background-size: 1rem;
-				img{
-					width:0.8rem;
-					display:block;
-				}
-			}
-			td{
-				text-align:center;
-			}
 }

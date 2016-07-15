@@ -127,7 +127,7 @@
 .title{
     height: .5rem;
     line-height: .5rem;
-    padding: .2rem .3rem;
+    padding: .2rem;
     .font_x_large;
 }
 
@@ -178,11 +178,14 @@
 /*三列列表*/
 .list {
   background:@color_white;
-  margin:0 0.25rem;
-  border-bottom: 1px solid @color_gray;
-  padding-bottom: 0.3rem;
+  margin:0 0.2rem;
+  border-bottom: 1px solid @color_misty_gray;
+  li:last-child{
+	border:none !important;
+  }
   .row {
-    padding: 0.1rem 0;
+	padding: .15rem 0;
+    border-bottom: 1px solid @color_misty_gray;
     span {
       display: inline-block;
 	  color:@color_dark_gray;
@@ -206,11 +209,10 @@
 /*单行2列列表*/
 .single_list_border{
   .font_normal;
-  margin: 0.2rem 0.3rem;
-  height: 0.6rem;
-  border-bottom: 1px solid @color_gray;
-  line-height: 0.6rem;
-  padding-bottom: 0.2rem;
+  margin:0 0.2rem;
+  height: 0.7rem;
+  border-bottom: 1px solid @color_misty_gray;
+  line-height: 0.7rem;
   p {
     span {
       display: inline-block;
@@ -218,8 +220,9 @@
     }
   }
 }
+/*单行2列列表,无底部边框*/
 .single_list{
-  padding: 0.2rem 0.3rem;
+  padding: 0.05rem 0.2rem;
   .font_normal_bold;
   height: 0.6rem;
   line-height: 0.6rem;

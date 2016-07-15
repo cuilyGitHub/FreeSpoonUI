@@ -14,10 +14,10 @@ module.exports = function(app){
 		
 		//配置微信分享
 		wx.onMenuShareAppMessage({
-			title: '我是标题', 
-			desc: '我是描述', 
+			title: '一家一农', 
+			desc: '每周团购深海野生海鲜，新鲜水果，种类齐全，品质至上', 
 			link: 'http://yijiayinong.com/api/business/redirect?state=', 
-			imgUrl: 'http://yijiayinong.com/media/images/product/2016/06/22/2_rHFaGMq.jpg',
+			imgUrl: 'http://yijiayinong.com/assets/images/logo.png',
 				//type: '', 
 				//dataUrl: '', 
 			success: function () {
@@ -40,7 +40,6 @@ module.exports = function(app){
 			
 			$rootScope.id = data.id;
 			if(data.status<0){
-				alert('此团购已过期');
 				return;
 			}
 			$location.path("/index") ;
@@ -59,16 +58,16 @@ module.exports = function(app){
 			}
 			$scope.searchBox = true;
 			$scope.box = false;
+			$('.cicle').css('width','75%');
 		}
 		
 		$scope.blur = function(){
 			var val = $('#cicle')[0].value;
 			if(!val){
 				$('#cicle')[0].value = '搜索团主、商品';
-				$scope.box = true;
 				return;
 			}
-			$('#cicle')[0].value = val
+			$('#cicle')[0].value = val;
 		}
 		
 		$scope.onkeydown = function(e){

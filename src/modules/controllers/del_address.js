@@ -23,15 +23,22 @@ module.exports = function(app){
 			$('.__address')[0].value = data.address;
 		}
 		
-		$scope.back = function(){
-			$location.path("/update_address");
-		}
-		
 		$scope.del = function(){
-			$data.del_address($data.address_id,function(data){
+			
+			var r=confirm('是否删除地址');
+				if(r==true){
+					$data.del_address($data.address_id,function(data){
+						alert('地址删除成功');
+						$location.path('/update_address');
+					});
+				}else{
+					alert('地址删除失败');
+			}
+			
+			/*$data.del_address($data.address_id,function(data){
 				alert('地址删除成功');
 				$location.path('/update_address');
-			});
+			});*/
 		}
 		
 		$scope.post_info = function(){

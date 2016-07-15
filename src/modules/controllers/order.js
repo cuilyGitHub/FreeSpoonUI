@@ -13,7 +13,8 @@ module.exports = function(app){
 			
 			$rootScope.title = '订单详情';
 			
-			$scope.payment = $rootScope.payment;
+			$scope.paymentText = $rootScope.payment;
+			$scope.balance = $rootScope.balanc_total;
 			$scope.order = batch;
 			$scope.dispatcher = batch.dispatcher;
 			
@@ -53,6 +54,18 @@ module.exports = function(app){
 					});
 				}else{
 					alert('订单取消失败');
+				}
+			}
+			
+			$scope.del = function(){
+				var d=confirm('是否删除订单');
+				if(d==true){
+					$data.orderDel($rootScope.orderId,function(){
+						alert('删除订单成功');
+						$location.path("/orders");
+					});
+				}else{
+					alert('删除订单失败');
 				}
 			}
 			

@@ -1,16 +1,6 @@
 @import "global";
 @import "component";
 
-.back{
-	position: fixed;
-    width: 0.8rem;
-    height: 0.8rem;
-    border-radius: 50%;
-	background: url('../images/back.png') no-repeat 40% #e5e5e5;
-    background-size: 0.25rem;
-    top: 0.3rem;
-    left: 0.2rem;
-}
 .banner{
 	width:100%;
 	display:block;
@@ -37,11 +27,8 @@
 			color: white;
 			text-align: center;
 			float:right;
-			margin: 0.15rem 0;
+			margin: 0.1rem 0 0.2rem 0;
 		}
-	}
-	.weight{
-		margin-bottom:0.1rem;
 	}
 	.twoline{
 		color: @color_dark_gray;
@@ -60,13 +47,11 @@
 				display: block;
 				border: 1px solid @color_orange;
 				width: 0.5rem;
-				height: 0.5rem;
 				text-align: center;
 				border-radius: 50%;
 				line-height: 0.5rem;
-				vertical-align: middle;
-				overflow: hidden;
 				float: left;
+				font-size:0.35rem;
 			}
 			span {
 				display: block;
@@ -117,80 +102,6 @@ ul{
 			font-size: 0.3rem;
 			color: @color_dark_gray;
 		}
-	}
-}
-
-.footer {
-	@footer_height:1rem;
-	z-index: 1001;
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-	height: @footer_height;
-	background: white;
-	border-top: 1px solid @color_gray;
-	.left {
-		background: @color_white;
-		width: auto;
-		margin-right: 2rem;
-		height: @footer_height;
-		.shop {
-			position: relative;
-			float: left;
-			width: @footer_height;
-			height: @footer_height;
-			background: url("../images/shop.png") no-repeat center;
-			background-size: @footer_height - 0.4rem;
-			span {
-				display: none;
-				width: @footer_height - 0.6rem;
-				height: @footer_height - 0.6rem;
-				line-height: @footer_height - 0.6rem;
-				border-radius: 50%;
-				background: @color_orange;
-				color: @color_white;
-				text-align: center;
-				vertical-align: middle;
-				position: absolute;
-				top: 0.1rem;
-				right: 0;
-				font-size: @footer_height - 0.8rem;
-			}
-		}
-		.shop_info {
-			width: auto;
-			@height: @footer_height - 0.2rem;
-			margin-left: @footer_height - 0.2rem + 0.2rem;
-			@line1_height: 1rem;
-			@line2_height: 0.3rem;
-			@padding-top: (@height - @line1_height - @line2_height) / 2;
-			padding: @padding-top 0;
-			height: @height - @padding-top * 2;
-			.line1 {
-				height: @line1_height;
-				line-height: @line1_height;
-				.font_large_bold;
-			}
-			.line2 {
-				height: @line2_height;
-				line-height: @line2_height;
-				font-size: @line2_height - 0.1rem;
-			}
-		}
-	}
-	.right {
-		height: @footer_height;
-		float: right;
-		width: 2rem;
-		background: @color_smoky_gray ;
-		text-align: center;
-		.font_xx_large;
-		line-height: @footer_height;
-		color: @color_white;
-		vertical-align: middle;
-	}
-	.buttonStatus{
-		background: @color_orange!important;
 	}
 }
 
@@ -370,7 +281,6 @@ ul{
 				color: white;
 				text-align: center;
 				margin: 0.2rem 0;
-				border-radius: 10px;
 			}
 			input{
 				width: 2rem;
@@ -390,5 +300,80 @@ ul{
 		color:@color_white;
 		text-align:center;
 		margin:0.1rem 0;
+	}
+}
+
+
+.footer {
+	@footer_height:1rem;
+	z-index: 1001;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: @footer_height;
+	background: white;
+	border-top: 1px solid @color_gray;
+	.left {
+		background: @color_white;
+		width: auto;
+		margin-right: 2rem;
+		height: @footer_height;
+		.shop {
+			position: relative;
+			float: left;
+			width: @footer_height;
+			height: @footer_height;
+			background: url("../images/shop.png") no-repeat center;
+			background-size: @footer_height - 0.4rem;
+			span {
+				display: none;
+				width: @footer_height - 0.6rem;
+				height: @footer_height - 0.6rem;
+				line-height: @footer_height - 0.6rem;
+				border-radius: 50%;
+				background: @color_orange;
+				color: @color_white;
+				text-align: center;
+				vertical-align: middle;
+				position: absolute;
+				top: 0.1rem;
+				right: 0;
+				font-size: @footer_height - 0.8rem;
+			}
+		}
+		.shop_info {
+			width: auto;
+			@height: @footer_height - 0.2rem;
+			margin-left: @footer_height - 0.2rem + 0.2rem;
+			@line1_height: 1rem;
+			@line2_height: 0.3rem;
+			@padding-top: (@height - @line1_height - @line2_height) / 2;
+			padding: @padding-top 0;
+			height: @height - @padding-top * 2;
+			.line1 {
+				height: @line1_height;
+				line-height: @line1_height;
+				.font_large_bold;
+			}
+			.line2 {
+				height: @line2_height;
+				line-height: @line2_height;
+				font-size: @line2_height - 0.1rem;
+			}
+		}
+	}
+	.right {
+		height: @footer_height;
+		float: right;
+		width: 2rem;
+		background: @color_smoky_gray ;
+		text-align: center;
+		.font_xx_large;
+		line-height: @footer_height;
+		color: @color_white;
+		vertical-align: middle;
+	}
+	.buttonStatus{
+		background: @color_orange!important;
 	}
 }

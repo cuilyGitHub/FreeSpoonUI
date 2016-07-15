@@ -43,10 +43,10 @@
 				<div>配送方式</div>
 			</div>
 			<div id='tip'>
-				<div><p class='delivery'>此功能暂未开放</p></div>
+				<!--<div><p class='delivery'>此功能暂未开放</p></div>-->
 				<div class='select'>
-					<ul class='ads'>
-						<li class='row' ng-repeat="p in dispatchers">
+					<ul>
+						<li class='address_row' ng-repeat="p in dispatchers">
 							<div class='circular' ng-class="{checked: p.id == selectedAddress.id}" ng-click="selectAddress(p)"></div>
 							<div class='sinceAddress'><span >{{p.address}}</span></div>
 							<div class='sinceConent'>
@@ -62,9 +62,9 @@
 			<div class='title'>费用明细</div>
 			<div>
 				<ul class="__checkout_detail list">
-					<li class="row detailRow" ng-repeat="x in commodities" ng-if="!!x.num">
-						<span class="__field_checkout_title left">{{this.$index+1}}.{{x.title}}</span>
-						<span class="__field_checkout_quantity right">￥{{x.unit_price | convert}}</span>
+					<li class="row" ng-repeat="x in commodities" ng-if="!!x.num">
+						<span class="__field_checkout_title left">{{$index+1}}.{{x.title}}</span>
+						<span class="__field_checkout_quantity right">￥{{x.num * x.unit_price | convert}}</span>
 						<span class="__field_checkout_price center">x{{x.num}}</span>
 					</li>
 				</ul>

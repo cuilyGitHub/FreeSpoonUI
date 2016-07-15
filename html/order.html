@@ -23,8 +23,8 @@
             </div>
             <div class="follow_text">
                 <p>订单号:<span class="text_margin">{{order.id}}</span></p>
-                <p>下单时间:<span class="text_margin">{{order.createTime | date}}</span></p>
-                <p>支付方式:<span class="text_margin">{{payment}}</span></p>
+                <p>下单时间:<span class="text_margin">{{order.create_time | date}}</span></p>
+                <p>支付方式:<span class="text_margin">{{paymentText}}</span></p>
             </div>
         </div>
 		<div class='card'>
@@ -69,7 +69,7 @@
 					</tr>
 					<tr>
 						<td class="message">营业时间:</td>
-						<td>预计{{dispatcher.opening_time}}-{{dispatcher.closing_time}}(以短信通知为准)</td>
+						<td>预计{{dispatcher.opening_time}}时到{{dispatcher.closing_time}}时(以短信通知为准)</td>
 					</tr>
 				</table>
 				<a class='phone' ng-href='tel://{{dispatcher.mob}}'></a>
@@ -79,15 +79,18 @@
 			<div class="title">费用明细</div>
 			<div>
 				<ul class="list">
-					<li class="row" ng-repeat="c in order.goods">
-						<span class="left">{{this.$index+1}}.{{c.title}}</span>
-						<span class="right">￥{{c.unit_price | convert}}</span>
+					<li class="row" ng-repeat="c in order.goods" ng-if='!x.num'>
+						<span class="left">{{$index+1}}.{{c.title}}</span>
+						<span class="right">￥{{c.quantity * c.unit_price | convert}}</span>
 						<span class="center">x{{c.quantity}}</span>
 					</li>
 				</ul>
 			</div>
 			<div class="single_list_border">
 				<p>配送费<span>￥0</span></p>
+			</div>
+			<div class="single_list_border">
+				<p>余额扣款<span>- ￥{{balance | convert}}</span></p>
 			</div>
 			<div class="single_list">
 				<span>总计</span>
@@ -99,8 +102,10 @@
 			</div>
 		</div>
 		<div class='footer'>
-			<span class='btn' ng-click='payment()' ng-if='order.status==0'>去支付</span>
+			<span class='btn' ng-click='payment()' ng-if='order.status==0'>立即支付</span>
 			<!-- <span class='btn'>确认收货</span> -->
+			<!-- <span class='btn'>查看物流</span> -->
+			<span class='btn' ng-if='order.status>0' ng-click='del()'>删除订单</span>
 			<span class='btn' ng-click='orderConfirm()' ng-if='order.status==0'>取消订单</span>
 			<span class='btn' ng-click='goShare()' ng-if='order.status>0'>接龙</span>
 		</div>

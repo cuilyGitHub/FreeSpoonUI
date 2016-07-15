@@ -2,10 +2,6 @@ module.exports = function(app){
 
 	app.controller('new_address_controller', function($scope, $location, $rootScope, $data){
 		
-		$scope.back = function(){
-			$location.path("/update_address");
-		}
-		
 		$rootScope.title = '添加地址';
 				
 		$scope.post_info = function(){

@@ -186,7 +186,7 @@ body {
 .title {
   height: .5rem;
   line-height: .5rem;
-  padding: .2rem .3rem;
+  padding: .2rem;
   font-size: 0.35rem;
   font-weight: normal;
 }
@@ -233,12 +233,15 @@ body {
 /*三列列表*/
 .list {
   background: white;
-  margin: 0 0.25rem;
-  border-bottom: 1px solid #CCCCCC;
-  padding-bottom: 0.3rem;
+  margin: 0 0.2rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+.list li:last-child {
+  border: none !important;
 }
 .list .row {
-  padding: 0.1rem 0;
+  padding: .15rem 0;
+  border-bottom: 1px solid #e5e5e5;
 }
 .list .row span {
   display: inline-block;
@@ -261,18 +264,18 @@ body {
 .single_list_border {
   font-size: 0.25rem;
   font-weight: normal;
-  margin: 0.2rem 0.3rem;
-  height: 0.6rem;
-  border-bottom: 1px solid #CCCCCC;
-  line-height: 0.6rem;
-  padding-bottom: 0.2rem;
+  margin: 0 0.2rem;
+  height: 0.7rem;
+  border-bottom: 1px solid #e5e5e5;
+  line-height: 0.7rem;
 }
 .single_list_border p span {
   display: inline-block;
   float: right;
 }
+/*单行2列列表,无底部边框*/
 .single_list {
-  padding: 0.2rem 0.3rem;
+  padding: 0.05rem 0.2rem;
   font-size: 0.25rem;
   font-weight: bold;
   height: 0.6rem;
@@ -304,8 +307,7 @@ body {
   border-bottom: 1px solid #ccc;
 }
 .box li .left {
-  min-width: 2.3rem;
-  max-width: 3.3rem;
+  width: 1.2rem;
   height: 1.2rem;
   float: left;
 }
@@ -323,47 +325,31 @@ body {
   width: 0.8rem;
   display: block;
 }
-.box li .left span {
-  display: block;
-  max-width: 1rem;
-  height: 0.8rem;
-  line-height: 0.8rem;
-  margin: 0.2rem 0;
-  font-size: 0.3rem;
-  font-weight: normal;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
 .box li .center {
   width: auto;
   height: 1.2rem;
   line-height: 1.2rem;
-  padding: 0 3rem 0 2rem;
-  text-align: center;
-  font-size: 0.3rem;
-  font-weight: normal;
+  box-sizing: border-box;
+  padding: 0 0.8rem 0 1.2rem;
+}
+.box li .center .name,
+.box li .center .time {
+  height: 0.6rem;
+  line-height: 0.4rem;
+  box-sizing: border-box;
+}
+.box li .center .name {
+  padding-top: 0.2rem;
+}
+.box li .center .time {
+  padding-bottom: 0.2rem;
 }
 .box li .right {
-  width: auto;
+  width: 0.8rem;
   height: 1.2rem;
   line-height: 1.2rem;
   float: right;
-}
-.box .leader {
-  width: 0.8rem;
-  height: 0.8rem;
-  margin: 0.2rem;
-  border-radius: 50%;
-  overflow: hidden;
-  float: left;
-  background: url("../images/user.png") no-repeat center;
-  background-size: 1rem;
-}
-.box .leader img {
-  width: 0.8rem;
-  display: block;
-}
-.box td {
-  text-align: center;
+  text-align: right;
+  box-sizing: border-box;
+  padding: 0 0.2rem;
 }
