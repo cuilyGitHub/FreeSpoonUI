@@ -24,6 +24,16 @@ module.exports = function(app){
 			$location.path("/order");
 		}
 		
+		$scope.openShare = function(orderId){	
+			if(batch.status<0){
+				alert('生成订单失败');
+				return;
+			}
+			$rootScope.orderId = orderId;
+			$rootScope.share = true;
+			$location.path("/share");
+		}
+		
 		$scope.goPay = function(orderId){
 			if(batch.status<0){
 				alert('生成订单失败');

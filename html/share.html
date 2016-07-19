@@ -13,15 +13,22 @@
         <p>恭喜您成为第{{seq}}位接龙者，快去邀请小伙伴参团吧!<span>请点击右上角<span class="more"></span>分享</span></p>
         <div class="arrow"></div>
     </div>
-    <div class="main">
+   <div class="main" ng-class="{true:'hide',false:''}[isHide]">
         <div class="success_box">
             <div></div>
             <p>支付成功</p>
         </div>
     </div>
-    <div class="button fixed">
+    <div class="button fixed" ng-class="{true:'hide',false:''}[isHide]">
          <div class="select">
          <a class="text" ng-click="jump()">前往订单详情</a>
+         </div> 
+    </div>
+	
+	<div class="share_logo" ng-class="{true:'',false:'hide'}[isHide]"></div>
+	<div class="button fixed" ng-class="{true:'',false:'hide'}[isHide]">
+         <div class="select">
+         <a class="text green" ng-click="close()">关闭</a>
          </div> 
     </div>
 </div>

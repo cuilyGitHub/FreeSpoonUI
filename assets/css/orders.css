@@ -327,6 +327,9 @@ body {
   overflow: hidden;
   border: 1px solid #c8c8c8;
 }
+.main .user .left .leaderImg img {
+  width: 0.7rem;
+}
 .main .user .left .top {
   height: 0.6rem;
   margin-left: 1rem;

@@ -2,6 +2,9 @@
 @import "component";
 #Payment_success{
   height: 100%;
+  .hide{
+	display:none;
+  }
   .share{
     font-size: 0.3rem;
     background: @color_misty_gray;
@@ -50,12 +53,21 @@
         background: url("../images/sussce.png") no-repeat center;
         background-size: 2rem;
         height: 2.5rem;
-        padding: 0;
+		margin-top: 1rem;
       }
       p:first-of-type{
         text-align: center;
         .font_xxx_large;
       }
     }
+  }
+  .share_logo{
+	height:5.5rem;
+	background: @color_white;
+	background: url("../images/share_logo.png") no-repeat center;
+	background-size: 3rem;
+  }
+  .green{
+	background:@color_green !important;
   }
 }

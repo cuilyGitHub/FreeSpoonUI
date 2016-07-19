@@ -34,7 +34,6 @@ module.exports = function(app){
 		$rootScope.title = '订单确认';
 	
 		$scope.commodities = batch.products;
-		//$scope.price = batch.products.unit_price * atch.products.num;
 		
 		$scope.totalPrice = batch.totalPrice;
 		$scope.dispatchers = batch.dispatchers;
@@ -54,6 +53,9 @@ module.exports = function(app){
 		}
 		
 		$scope.getMob = function(){
+			if(!$('#nikeName')[0].value){
+				return;
+			}
 			if($('#mob')[0].value){
 				$scope.tel = $('#mob')[0].value;
 			}else{
@@ -61,6 +63,9 @@ module.exports = function(app){
 			}
 		}
 		$scope.getName = function(){
+			if(!$('#nikeName')[0].value){
+				return;
+			}
 			if($('#nikeName')[0].value){
 				$scope.nickName = $('#nikeName')[0].value;
 			}else{

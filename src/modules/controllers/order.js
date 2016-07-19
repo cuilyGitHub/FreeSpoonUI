@@ -37,6 +37,7 @@ module.exports = function(app){
 			}
 			
 			$scope.goShare = function(){
+				$rootScope.share = true;
 				$location.path("/share");
 			};
 			

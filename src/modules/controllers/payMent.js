@@ -53,6 +53,7 @@ module.exports = function(app){
 					}
 					$rootScope.payment = '零钱支付';
 					$rootScope.balanc_total = batch.total_fee;
+					$rootScope.share = false;
 					$location.path('/share');
 				});
 			}else{

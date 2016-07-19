@@ -298,6 +298,9 @@ body {
 #Payment_success {
   height: 100%;
 }
+#Payment_success .hide {
+  display: none;
+}
 #Payment_success .share {
   font-size: 0.3rem;
   background: #e5e5e5;
@@ -348,10 +351,19 @@ body {
   background: url("../images/sussce.png") no-repeat center;
   background-size: 2rem;
   height: 2.5rem;
-  padding: 0;
+  margin-top: 1rem;
 }
 #Payment_success .main .success_box p:first-of-type {
   text-align: center;
   font-size: 0.5rem;
   font-weight: normal;
+}
+#Payment_success .share_logo {
+  height: 5.5rem;
+  background: white;
+  background: url("../images/share_logo.png") no-repeat center;
+  background-size: 3rem;
+}
+#Payment_success .green {
+  background: #599c3d !important;
 }

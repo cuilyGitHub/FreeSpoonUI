@@ -2,22 +2,32 @@ module.exports = function(app){
 
 	app.controller('ShareController', function($scope, $location, $data, $wxBridge, $rootScope, batch){
 		
-		/*$data.orderRequest($rootScope.orderUrl, function(data){
-			if(!data){
-				$data.preData={
-					title:'参数错误',
-					desc:'参数不存在'
-				}
-				$location.path("/error");
-				return;
+		wx.onMenuShareAppMessage({
+			title: batch.card_title, 
+			desc: '我是第'+batch.seq+'位接龙者，大家快来参团吧!', 
+			link: batch.card_url, 
+			imgUrl: batch.card_icon,
+				//type: '', 
+				//dataUrl: '', 
+			success: function () {
+				//TODO
+			},
+			cancel: function () {
+				//TODO
 			}
-			return data;
-		});*/
+		});
+		
+		$scope.isHide = $rootScope.share;
+		
 		$scope.seq = batch.seq;
 		
 		$scope.jump = function(){
 			$location.path("/order");
 			$data.prePromptPay = false;
+		}
+		
+		$scope.close = function(){
+			$wxBridge.closeWindow();
 		}
 		
 	});

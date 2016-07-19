@@ -70,16 +70,14 @@ gulp.task('run', ['compile', 'connect', 'watch']);
 
 gulp.task('compile', ['less', 'browserify']);
 
+gulp.task('prod',['less','uglify']);
+
 gulp.task('vendor', function(){
 	return gulp.src('./vendor/**/*')
 		.pipe(gulp.dest('./assets'));
 });
 
-gulp.task('browserify', ['browserify-app'], function(){
-
-});
-
-gulp.task('browserify-app', function(){
+gulp.task('browserify', function(){
 	return browserify('./src/app.js', { debug: true })
 		.transform(babelify)
 		.bundle()

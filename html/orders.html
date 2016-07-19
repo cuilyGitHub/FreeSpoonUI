@@ -42,6 +42,7 @@
 				   <div class="btn">
 					   <div class="button" ng-click='openOrder(o.id)' ng-if='o.status<1'>取消订单</div>
 					   <div class="button" ng-click='openOrder(o.id)' ng-if='o.status>=1'>删除订单</div>
+					   <div class="button" ng-click='openShare(o.id)' ng-if='o.status>=1'>接龙</div>
 					   <div class="button" ng-click='goPay(o.id, true)' ng-if='o.status==0'>立即支付</div>
 				   </div>
 			   </div> 

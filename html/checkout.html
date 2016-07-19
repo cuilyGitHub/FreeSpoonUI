@@ -19,11 +19,11 @@
 				<div class="right" ng-click='addInfo()'></div>
 	 			<div class='write' ng-class="{true:'show',false:'hide'}[isTrue]">
 					<span>姓名</span>
-					<input type='text' id='nikeName' value="填写姓名" ng-blur='getName()'/>
+					<input type='text' id='nikeName' placeholder ="填写姓名" ng-blur='getName()'/>
 				</div>
 				<div class='write' ng-class="{true:'show',false:'hide'}[isTrue]">
 					<span >电话</span>
-					<input type='tel' id='mob'  value="填写电话" ng-blur='getMob()'/>
+					<input type='tel' id='mob'  placeholder ="填写电话" ng-blur='getMob()'/>
 				</div>
 				
 				<div class='write' ng-class="{true:'hide',false:'show'}[isTrue]">
@@ -63,7 +63,7 @@
 			<div>
 				<ul class="__checkout_detail list">
 					<li class="row" ng-repeat="x in commodities" ng-if="!!x.num">
-						<span class="__field_checkout_title left">{{$index+1}}.{{x.title}}</span>
+						<span class="__field_checkout_title left">{{!!x.num ? $index + 1: $index}}.{{x.title}}</span>
 						<span class="__field_checkout_quantity right">￥{{x.num * x.unit_price | convert}}</span>
 						<span class="__field_checkout_price center">x{{x.num}}</span>
 					</li>
