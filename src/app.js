@@ -430,8 +430,8 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 		jsApiList: ['chooseWXPay', 'onMenuShareAppMessage', 'closeWindow']
 	};
 	$.ajax({
-		type: 'POST',
-		url: 'http://yijiayinong.com/api/business/wxConfig',
+		type: 'post',
+		url: 'http://api.yijiayinong.com/v1/business/wxConfig',
 		contentType: 'application/json; charset=utf-8',
 		data: JSON.stringify(cfg),
 		dataType: 'json',

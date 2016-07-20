@@ -2,7 +2,7 @@ module.exports = function(app){
 	
 	//user sign in root
 	app.factory('authRes',function($resource){
-		return $resource('http://yijiayinong.com/api/business/weixin');
+		return $resource('http://api.yijiayinong.com/v1/business/weixin');
 	});
 	
 	//checkout页详情
@@ -20,7 +20,7 @@ module.exports = function(app){
 		
 	//订单列表页	
 	app.factory('orders',['$resource','$rootScope',function($resource, $rootScope){
-		return $resource('http://yijiayinong.com/api/business/orders/',{},{
+		return $resource('http://api.yijiayinong.com/v1/business/orders/',{},{
 			'charge':{
 				method:'get',
 				isArray:true,
@@ -33,7 +33,7 @@ module.exports = function(app){
 	
 	//地址列表页	
 	app.factory('address',['$resource','$rootScope',function($resource, $rootScope){
-		return $resource('http://yijiayinong.com/api/business/shippingaddresses/',{},{
+		return $resource('http://api.yijiayinong.com/v1/business/shippingaddresses/',{},{
 			'charge':{
 				method:'get',
 				isArray:true,

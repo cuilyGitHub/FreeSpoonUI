@@ -42,6 +42,7 @@ module.exports = function(app){
 			};
 			
 			if($data.prePromptPay){
+				$rootScope.share = false;
 				$scope.pay();
 			}
 			$data.prePromptPay = false;
