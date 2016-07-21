@@ -80,7 +80,7 @@
 			<div>
 				<ul class="list">
 					<li class="row" ng-repeat="c in order.goods" ng-if='!x.num'>
-						<span class="left">{{$index+1}}.{{c.title}}</span>
+						<span class="left">{{c.title}}</span>
 						<span class="right">￥{{c.quantity * c.unit_price | convert}}</span>
 						<span class="center">x{{c.quantity}}</span>
 					</li>

@@ -361,7 +361,7 @@ body {
 #Payment_success .share_logo {
   height: 5.5rem;
   background: white;
-  background: url("../images/share_logo.png") no-repeat center;
+  background: url("../images/logo_green.png") no-repeat center;
   background-size: 3rem;
 }
 #Payment_success .green {

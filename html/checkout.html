@@ -50,7 +50,7 @@
 							<div class='circular' ng-class="{checked: p.id == selectedAddress.id}" ng-click="selectAddress(p)"></div>
 							<div class='sinceAddress'><span >{{p.address}}</span></div>
 							<div class='sinceConent'>
-								<span class='left'>{{p.opening_time}}-{{p.closing_time}}</span>
+								<span class='left'>{{p.opening_time}}点-{{p.closing_time}}点</span>
 								<span class='right'>{{p.mob}}</span>
 							</div>
 						</li>
@@ -63,7 +63,7 @@
 			<div>
 				<ul class="__checkout_detail list">
 					<li class="row" ng-repeat="x in commodities" ng-if="!!x.num">
-						<span class="__field_checkout_title left">{{!!x.num ? $index + 1: $index}}.{{x.title}}</span>
+						<span class="__field_checkout_title left">{{x.title}}</span>
 						<span class="__field_checkout_quantity right">￥{{x.num * x.unit_price | convert}}</span>
 						<span class="__field_checkout_price center">x{{x.num}}</span>
 					</li>
