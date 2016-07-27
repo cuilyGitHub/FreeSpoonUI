@@ -5,7 +5,7 @@ module.exports = function(app){
 		function getDdata(){
 			$http({
 					method:'get',
-					url:'http://yijiayinong.com/api/business/recipes/'+recipesId,
+					url:'http://api.yijiayinong.com/api/business/recipes/'+recipesId,
 					headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 				})
 			.success(function(data){

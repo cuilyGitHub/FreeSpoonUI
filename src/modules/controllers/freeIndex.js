@@ -16,8 +16,8 @@ module.exports = function(app){
 		wx.onMenuShareAppMessage({
 			title: '一家一农', 
 			desc: '每周团购深海野生海鲜，新鲜水果，种类齐全，品质至上', 
-			link: 'http://yijiayinong.com/api/business/redirect?state=', 
-			imgUrl: 'http://yijiayinong.com/assets/images/logo.png',
+			link: 'http://dev.yijiayinong.com/api/business/redirect?state=', 
+			imgUrl: 'http://dev.yijiayinong.com/assets/images/logo.png',
 				//type: '', 
 				//dataUrl: '', 
 			success: function () {
