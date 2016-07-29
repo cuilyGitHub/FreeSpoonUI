@@ -24,6 +24,9 @@ module.exports = function(app){
 		
 		$rootScope.title = batch.title;
 		
+		$scope.mob = '';
+		$scope.code = '';
+		
 		//计算时间
 		(function(){
 			var start_time=batch.standard_time/1000;
@@ -52,13 +55,12 @@ module.exports = function(app){
 			}
 			
 			if(!totalNum){
-				$(".__amount").css('display', 'none');
-				$('.__overlay').css('display', 'none');
-				$('.popup-window-from-bottom').css('display', 'none');
-				$("#index").css("height", "100%");
-				$("#index").css("overflow", "auto");
+				$scope.isMatter = false;
+				$scope.isPopup = false;
+				$scope.isAmount = false;
+				$scope.isHeight = false;
 			} else {
-				$(".__amount").css('display', 'block');
+				$scope.isAmount = true;
 			}
 			
 			$scope.totalNum = totalNum;
@@ -71,7 +73,6 @@ module.exports = function(app){
 			if(!$rootScope.auth || !$rootScope.auth.user){
 				register();
 			}else{
-				register_hide();
 				if(!!batch.totalNum && batch.totalNum>0){
 					$data.preData = null;
 					$location.path("/checkout");
@@ -82,17 +83,13 @@ module.exports = function(app){
 		
 		//手机注册弹窗
 		function register(){
-			$('.__overlay').css({'display':'block','z-index':'9999'});
-			$('.__register').css({'display':'block','z-index':'9999'});
-			$("#index").css("height", "100vh");
-			$("#index").css("overflow", "hidden");
+			$scope.isShow = true;
+			$scope.isHeight = true;
 		}
 		
-		function register_hide(){
-			$('.__overlay').css({'display':'none','z-index':'0'});
-			$('.__register').css({'display':'none','z-index':'0'});
-			$("#index").css("height", "auth");
-			$("#index").css("overflow", "auto");
+		$scope.register_hide = function(){
+			$scope.isShow = false;
+			$scope.isHeight = false;
 		}
 		
 		$scope.addCommodity = function(commodity){
@@ -112,26 +109,22 @@ module.exports = function(app){
 			}
 		};
 		
-		//手机购物车弹窗
 		(function(status){
-			$('.__overlay').on('click', function(){
+			$scope.hide = function(){
 				status = false;
-				window.popup_window_from_bottom();
-				register_hide();
-			});
-			window.popup_window_from_bottom = function(){
-				if(status && batch.totalNum > 0){
+				$scope.popup();
+			}
+			$scope.popup = function(){
+				if(status && $shopCart.shopCartData.totalNum > 0){
 					status = false;
-					$('.__overlay').css('display', 'block');
-					$('.popup-window-from-bottom').css("display", "block");
-					$("#index").css("height", "100vh");
-					$("#index").css("overflow", "hidden");
+					$scope.isMatter = true;
+					$scope.isPopup = true;
+					$scope.isHeight = true;
 				} else {
 					status = true;
-					$('.__overlay').css('display', 'none');
-					$('.popup-window-from-bottom').css('display', 'none');
-					$("#index").css("height", "100%");
-					$("#index").css("overflow", "auto");
+					$scope.isMatter = false;
+					$scope.isPopup = false;
+					$scope.isHeight = false;
 				}
 			}
 		})(true);
@@ -158,7 +151,6 @@ module.exports = function(app){
 			if(!$rootScope.auth || !$rootScope.auth.user){
 				register();
 			}else{
-				register_hide();
 				$data.preData = null;
 				$location.path("/orders");
 			}
@@ -166,7 +158,6 @@ module.exports = function(app){
 		}
 		
 		$scope.getCode=function(){
-			$scope.mob = $(".__mob")[0].value;
 			if(!$scope.mob){
 				alert('请填写手机号');
 				return;
@@ -177,8 +168,6 @@ module.exports = function(app){
 		}
 		
 		$scope.postMob=function(){	
-			$scope.mob = $(".__mob")[0].value;
-			$scope.code = $(".__code")[0].value;
 			if(!$scope.mob){
 				alert('请填写手机号');
 				return;
@@ -192,7 +181,7 @@ module.exports = function(app){
 					alert('用户注册失败');
 					return;
 				}
-				register_hide();
+				$scope.register_hide();
 			});
 		}
 	});

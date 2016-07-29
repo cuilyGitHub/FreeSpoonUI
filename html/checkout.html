@@ -19,20 +19,20 @@
 				<div class="right" ng-click='addInfo()'></div>
 	 			<div class='write' ng-class="{true:'show',false:'hide'}[isTrue]">
 					<span>姓名</span>
-					<input type='text' id='nikeName' placeholder ="填写姓名" ng-blur='getName()'/>
+					<input type='text' id='nikeName' placeholder ="填写姓名" ng-blur='getName()' ng-model='name'/>
 				</div>
 				<div class='write' ng-class="{true:'show',false:'hide'}[isTrue]">
 					<span >电话</span>
-					<input type='tel' id='mob'  placeholder ="填写电话" ng-blur='getMob()'/>
+					<input type='tel' id='mob'  placeholder ="填写电话" ng-blur='getMob()' ng-model='mob'/>
 				</div>
 				
 				<div class='write' ng-class="{true:'hide',false:'show'}[isTrue]">
 					<span>姓名</span>
-					<div>{{nickName}}</div>
+					<div>{{name}}</div>
 				</div>
 				<div class='write' ng-class="{true:'hide',false:'show'}[isTrue]">
 					<span >电话</span>
-					<div>{{tel}}</div>
+					<div>{{mob}}</div>
 				</div>	
 			</div> 
 		</div>

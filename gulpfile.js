@@ -11,8 +11,43 @@ var gulp = require('gulp'),
 	ngmin = require('gulp-ngmin'),
 	uglify = require('gulp-uglify'),
 	delfile = require('gulp-delete-file'),
-	modRewrite = require('connect-modrewrite');
-	//imagemin = require('gulp imagemin'),
+	modRewrite = require('connect-modrewrite'),
+	minimist = require('minimist'),
+	gutil = require('gulp-util');
+	
+	
+gulp.task('help',function(){
+	console.log('gulp help		gulp参数说明');
+	console.log('gulp uglify		压缩文件');
+	console.log('gulp run --env	production	用于生产环境');
+});
+
+var knowOptions = {
+	string:'env',
+	default:{
+		env:process.env.NODE_ENV || 'development'
+	}
+};
+
+var options = minimist(process.argv.slice(2), knowOptions);
+
+function string_src(filename, string) {
+  var src = require('stream').Readable({ objectMode: true })
+  src._read = function () {
+    this.push(new gutil.File({ cwd: "", base: "", path: filename, contents: new Buffer(string) }))
+    this.push(null)
+  }
+  return src
+}
+
+gulp.task('constants',function(){
+	var myConfig = require('./config.json');
+	var envConfig = myConfig[options.env];
+	var conConfig = 'module.exports = function(app){appconfig = ' + JSON.stringify(envConfig)+'}';
+	return string_src("config.js", conConfig)
+      .pipe(gulp.dest('./src/modules/'))
+})
+
 
 gulp.task('connect', function(cb){
 	connect.server({
@@ -36,16 +71,6 @@ gulp.task('connect', function(cb){
 	cb();
 });
 
-/*gulp.task('img',function(){
-	return gulp.src('./assets/image/*')
-	.pipe(imagemin({
-		progressive:true,
-		svgoPlugins:[{removeViewBox:false}],
-		use:[pngcrush()]
-	}))
-	.pipe(gulp.dest('./assets/image/'))
-	.pipe(notify({message:'img task ok'}));
-});*/
 
 gulp.task('reload', ['less', 'browserify'], function(){
 	return gulp.src(['./*.html', './assets/**/*', './src/**/*'])
@@ -66,11 +91,11 @@ gulp.task('watch-js', function(){
 	gulp.watch(['./src/**/*.js'], ['reload']);
 });
 
-gulp.task('run', ['compile', 'connect', 'watch']);
+gulp.task('run', ['constants','compile', 'connect', 'watch']);
 
 gulp.task('compile', ['less', 'browserify']);
 
-gulp.task('prod',['less','uglify']);
+gulp.task('prod',['constants','less','uglify']);
 
 gulp.task('vendor', function(){
 	return gulp.src('./vendor/**/*')

@@ -190,46 +190,6 @@ body {
   font-size: 0.35rem;
   font-weight: normal;
 }
-.title_old {
-  background: #f0f2f5;
-  height: 0.5rem;
-  line-height: 0.5rem;
-  padding: 0.2rem 0.3rem;
-}
-.title_old span {
-  display: inline-block;
-}
-.title_old .adds {
-  background: url("../images/adds.png") no-repeat center;
-  background-size: 0.4rem;
-  width: 0.4rem;
-  height: 0.4rem;
-}
-.title_old .shop {
-  background: url("../images/1.png") no-repeat center;
-  background-size: 0.4rem;
-  width: 0.4rem !important;
-  height: 0.4rem !important;
-  line-height: 0.4rem !important;
-  margin: 0.05rem 0;
-}
-.title_old .message {
-  background: url("../images/pop.png") no-repeat center;
-  background-size: 0.4rem;
-}
-.title_old .img {
-  width: 0.4rem;
-  height: 0.4rem;
-  line-height: 0.4rem;
-  float: left;
-}
-.title_old .text {
-  height: 0.4rem;
-  line-height: 0.4rem;
-  font-size: 0.25rem;
-  font-weight: bold;
-  margin-left: 0.1rem;
-}
 /*三列列表*/
 .list {
   background: white;
@@ -295,110 +255,71 @@ body {
   font-weight: bold;
   color: #ff9934;
 }
-.banner {
+/*手机登陆弹窗*/
+.phone_matter {
+  display: none;
+  z-index: 9999;
+  position: fixed;
+  height: 100%;
   width: 100%;
-  display: block;
+  background: rgba(0, 0, 0, 0.26);
+  top: 0;
+  bottom: 1.7rem;
 }
-.bannerInfo {
-  padding: 0.2rem 0.3rem;
-  box-sizing: border-box;
+.phone_matter .register {
+  width: 5rem;
+  height: 3rem;
+  background: white;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 0.2rem;
 }
-.bannerInfo .oneline {
-  height: 0.8rem;
+.phone_matter .register .content {
+  width: 100%;
+  height: 2rem;
 }
-.bannerInfo .oneline .name {
-  font-size: 0.35rem;
-  font-weight: bold;
-  height: 0.8rem;
-  line-height: 0.8rem;
-  display: block;
+.phone_matter .register .content .box {
+  width: 100%;
+  height: 1rem;
+  line-height: 1rem;
+}
+.phone_matter .register .content .box .left {
   float: left;
-  margin-right: 0.1rem;
+  margin: 0 0.2rem;
 }
-.bannerInfo .oneline .box {
-  background: #ff9934;
-  display: block;
-  width: 1.3rem;
-  line-height: 0.5rem;
-  height: 0.5rem;
-  color: white;
-  text-align: center;
-  float: right;
-  margin: 0.1rem 0 0.2rem 0;
-}
-.bannerInfo .twoline {
-  color: #6D6B6B;
-  line-height: 0.35rem;
-}
-.bannerInfo .threeline {
-  height: 0.8rem;
-}
-.bannerInfo .threeline .regulator_right {
-  float: right;
+.phone_matter .register .content .box .getCode {
   width: 1.5rem;
-  height: 0.8rem;
-  padding: 0.15rem 0;
-  box-sizing: border-box;
-}
-.bannerInfo .threeline .regulator_right a {
-  box-sizing: border-box;
-  display: block;
-  border: 1px solid #ff9934;
-  width: 0.5rem;
-  text-align: center;
-  border-radius: 50%;
-  line-height: 0.5rem;
-  float: left;
-  font-size: 0.35rem;
-}
-.bannerInfo .threeline .regulator_right span {
-  display: block;
-  width: 0.4rem;
-  height: 0.5rem;
-  line-height: 0.5rem;
-  vertical-align: middle;
-  float: left;
-  overflow: hidden;
-  text-align: center;
-}
-.bannerInfo .threeline .regulator_right a:active {
-  background: #ff9934;
+  float: right;
+  height: 0.6rem;
+  line-height: 0.6rem;
+  background: orange;
   color: white;
+  text-align: center;
+  margin: 0.2rem 0;
 }
-.bannerInfo .threeline .unit_price {
+.phone_matter .register .content .box input {
+  width: 2rem;
+  height: 0.5rem;
+}
+.phone_matter .register .content .box .mob {
+  width: 3.5rem !important;
+}
+.phone_matter .register .button_sure {
   height: 0.8rem;
   line-height: 0.8rem;
-  float: left;
-  font-size: 0.3rem;
-  color: #ff9934;
-  margin-right: 0.25rem;
-}
-.bannerInfo .threeline .unit_price span {
-  font-size: 0.35rem;
-  font-weight: normal;
-  color: orange;
-}
-.bannerInfo .threeline .market_price {
-  height: 0.62rem;
-  display: table-cell;
-  vertical-align: bottom;
-  font-size: 0.3rem;
-  font-weight: normal;
-  color: #c8c8c8;
-  text-decoration: line-through;
-}
-ul {
-  margin-bottom: 1.4rem;
-}
-ul .commandList img {
   width: 100%;
-  display: block;
+  background: #ff9934;
+  font-size: 0.4rem;
+  font-weight: normal;
+  color: white;
+  text-align: center;
+  margin: 0.1rem 0;
 }
-ul .commandList p {
-  margin: 0.2rem 0.15rem;
-  font-size: 0.3rem;
-  color: #6D6B6B;
-}
+/*购物车弹窗*/
 .popup-window-from-bottom {
   display: none;
   background: white;
@@ -542,59 +463,119 @@ ul .commandList p {
   background: #ff9934;
   color: white;
 }
-.register {
-  display: none;
-  width: 5rem;
-  height: 3rem;
-  background: white;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  padding: 0.2rem;
+.show {
+  display: block !important;
 }
-.register .content {
+.hide {
+  display: none !important;
+}
+.set_height {
+  height: 100vh !important;
+  overflow: hidden !important;
+}
+.banner {
   width: 100%;
-  height: 2rem;
+  display: block;
 }
-.register .content .box {
-  width: 100%;
-  height: 1rem;
-  line-height: 1rem;
+.bannerInfo {
+  padding: 0.2rem 0.3rem;
+  box-sizing: border-box;
 }
-.register .content .box .left {
-  float: left;
-  margin: 0 0.2rem;
+.bannerInfo .oneline {
+  height: 0.8rem;
 }
-.register .content .box .getCode {
-  width: 1.5rem;
-  float: right;
-  height: 0.6rem;
-  line-height: 0.6rem;
-  background: orange;
-  color: white;
-  text-align: center;
-  margin: 0.2rem 0;
-}
-.register .content .box input {
-  width: 2rem;
-  height: 0.5rem;
-}
-.register .content .box .mob {
-  width: 3.5rem !important;
-}
-.register .button_sure {
+.bannerInfo .oneline .name {
+  font-size: 0.35rem;
+  font-weight: bold;
   height: 0.8rem;
   line-height: 0.8rem;
-  width: 100%;
+  display: block;
+  float: left;
+  margin-right: 0.1rem;
+}
+.bannerInfo .oneline .box {
   background: #ff9934;
-  font-size: 0.4rem;
-  font-weight: normal;
+  display: block;
+  width: 1.3rem;
+  line-height: 0.5rem;
+  height: 0.5rem;
   color: white;
   text-align: center;
-  margin: 0.1rem 0;
+  float: right;
+  margin: 0.1rem 0 0.2rem 0;
+}
+.bannerInfo .twoline {
+  color: #6D6B6B;
+  line-height: 0.35rem;
+}
+.bannerInfo .threeline {
+  height: 0.8rem;
+}
+.bannerInfo .threeline .regulator_right {
+  float: right;
+  width: 1.5rem;
+  height: 0.8rem;
+  padding: 0.15rem 0;
+  box-sizing: border-box;
+}
+.bannerInfo .threeline .regulator_right a {
+  box-sizing: border-box;
+  display: block;
+  border: 1px solid #ff9934;
+  width: 0.5rem;
+  text-align: center;
+  border-radius: 50%;
+  line-height: 0.5rem;
+  float: left;
+  font-size: 0.35rem;
+}
+.bannerInfo .threeline .regulator_right span {
+  display: block;
+  width: 0.4rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  vertical-align: middle;
+  float: left;
+  overflow: hidden;
+  text-align: center;
+}
+.bannerInfo .threeline .regulator_right a:active {
+  background: #ff9934;
+  color: white;
+}
+.bannerInfo .threeline .unit_price {
+  height: 0.8rem;
+  line-height: 0.8rem;
+  float: left;
+  font-size: 0.3rem;
+  color: #ff9934;
+  margin-right: 0.25rem;
+}
+.bannerInfo .threeline .unit_price span {
+  font-size: 0.35rem;
+  font-weight: normal;
+  color: orange;
+}
+.bannerInfo .threeline .market_price {
+  height: 0.62rem;
+  display: table-cell;
+  vertical-align: bottom;
+  font-size: 0.3rem;
+  font-weight: normal;
+  color: #c8c8c8;
+  text-decoration: line-through;
+}
+ul {
+  margin-bottom: 1.4rem;
+}
+ul .commandList img {
+  width: 100%;
+  display: block;
+}
+ul .commandList p {
+  margin: 0.2rem 0.15rem;
+  font-size: 0.3rem;
+  color: #6D6B6B;
 }
 .footer {
   z-index: 1001;

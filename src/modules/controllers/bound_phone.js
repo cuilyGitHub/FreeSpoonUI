@@ -3,13 +3,14 @@ module.exports = function(app){
 	app.controller('bound_phone_controller', function($scope, $location, $data, $rootScope){
 		
 		$rootScope.title = '绑定手机';
+		$scope.mob = '';
+		$scope.code = '';
 		
 		$scope.delCode = function(){
-			$(".__code")[0].value = '';
+			$scope.code = '';
 		}
 		
 		$scope.getCode=function(){
-			$scope.mob = $(".__mob")[0].value;
 			if(!$scope.mob){
 				alert('请填写手机号');
 				return;
@@ -20,8 +21,6 @@ module.exports = function(app){
 		}
 		
 		$scope.postMob=function(){	
-			$scope.mob = $(".__mob")[0].value;
-			$scope.code = $(".__code")[0].value;
 			if(!$scope.mob){
 				alert('请填写手机号');
 				return;

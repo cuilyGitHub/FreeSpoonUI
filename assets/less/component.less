@@ -123,56 +123,13 @@
 		}
   }
 }
+
 /*标题通栏*/
 .title{
     height: .5rem;
     line-height: .5rem;
     padding: .2rem;
     .font_x_large;
-}
-
-.title_old {
-  @height: 0.5rem;
-  background: @color_light_gray;
-  height: @height;
-  line-height:@height;
-  line-height: @height;
-  padding:0.2rem 0.3rem;
-  span {
-    display: inline-block;
-  }
-  	 .adds{
-      background:url("../images/adds.png") no-repeat center;
-      background-size:@height - 0.1rem;
-	   width: @height - 0.1rem;
-      height: @height - 0.1rem;
-    }
-    .shop{
-      @shop_height:@height - 0.1rem;
-      background:url("../images/1.png") no-repeat center;
-      background-size:@height - 0.1rem;
-	  width: @shop_height !important;
-      height: @shop_height !important;
-      line-height: @height - 0.1rem !important;
-      margin:(@height - @shop_height)/2rem 0;
-	  
-    }
-	 .message{
-      background: url("../images/pop.png") no-repeat center;
-      background-size: @height - 0.1rem;
-    }
-  .img {
-    width: @height - 0.1rem;
-    height: @height - 0.1rem;
-    line-height: @height - 0.1rem;
-    float: left;
-  }
-  .text {
-    height: @height - 0.1rem;
-    line-height: @height - 0.1rem;
-    .font_normal_bold;
-    margin-left: 0.1rem;
-  }
 }
 
 /*三列列表*/
@@ -220,6 +177,7 @@
     }
   }
 }
+
 /*单行2列列表,无底部边框*/
 .single_list{
   padding: 0.05rem 0.2rem;
@@ -237,4 +195,214 @@
 	  color:@color_orange;
     }
   }
+}
+
+/*手机登陆弹窗*/
+.phone_matter{
+	display:none;
+	z-index:9999;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	background: rgba(0,0,0,0.26);
+	top: 0;
+	bottom: 1.7rem;
+	.register{
+		width:5rem;
+		height:3rem;
+		background:white;
+		position:absolute;
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+		margin:auto;
+		padding:0.2rem;
+		.content{
+			width:100%;
+			height:2rem;
+			.box{
+				width:100%;
+				height:1rem;
+				line-height:1rem;
+				.left{
+					float: left;
+					margin: 0 0.2rem;
+				}
+				.getCode{
+					width: 1.5rem;
+					float: right;
+					height: 0.6rem;
+					line-height: 0.6rem;
+					background: orange;
+					color: white;
+					text-align: center;
+					margin: 0.2rem 0;
+				}
+				input{
+					width: 2rem;
+					height: 0.5rem;
+				}
+				.mob{
+					width:3.5rem !important;
+				}
+			}
+		}
+		.button_sure{
+			height:0.8rem;
+			line-height:0.8rem;
+			width:100%;
+			background:@color_orange;
+			.font_xx_large;
+			color:@color_white;
+			text-align:center;
+			margin:0.1rem 0;
+		}
+	}
+}
+
+/*购物车弹窗*/
+.popup-window-from-bottom {
+	display: none;
+	background: white;
+	position: fixed;
+	bottom: 0;
+	z-index: 1001;
+	width: 100%;
+	margin-bottom: 1rem;
+	.box {
+		@height: 0.6rem;
+		margin: 0.25rem 0.2rem 0 0.2rem;
+		.popup-bottom-title {
+			height: @height;
+			padding-right: 0.1rem;
+			background: @color_light_gray;
+			.oder {
+				width: auto;
+				height: @height;
+				.popup_bottom_oder {
+					padding: 0.1rem;
+					.oder_img {
+						display: inline-block;
+						width: @height - 0.2rem;
+						height: @height - 0.2rem;
+						background: url("../images/book.png") no-repeat center;
+						background-size: 0.4rem;
+						float: left;
+					}
+					.oder_text {
+						margin-left: 0.1rem;
+						display: inline-block;
+						.font_large_bold;
+						text-align: center;
+						vertical-align: middle;
+					}
+				}
+			}
+			.del {
+				float: right;
+				width: 1.5rem;
+				height: @height;
+				.popup_bottom_del {
+					height: 0.4rem;
+					padding: 0.1rem;
+					.del_img {
+						display: inline-block;
+						background: url("../images/del.png") no-repeat center;
+						width: @height - 0.2rem;
+						height: @height - 0.2rem;
+						background-size: 0.4rem;
+						float: right;
+					}
+					.del_text {
+						line-height: 0.4rem;
+						display: inline-block;
+						.font_small;
+						text-align: center;
+						vertical-align: middle;
+						float: right;
+					}
+				}
+			}
+		}
+		.cart {
+			max-height: 3.6rem;
+			margin: 0 0.2em;
+			overflow-y: auto;
+			li:last-child{
+				border:none;
+			}
+			li {
+				padding: 0.2rem 0;
+				border-bottom: 1px solid @color_gray;
+				li:last-child {
+					border-bottom: none;
+				}
+			}
+			.template {
+				.field_title {
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					display: block;
+					width: auto;
+					margin-right: 3rem;
+					overflow: hidden;
+					line-height: 0.5rem;
+					height: 0.5rem;
+					vertical-align: middle;
+				}
+				.popup_reduce {
+					width: 2.5rem;
+					float: right;
+					height: 0.5rem;
+					text-align: center;
+					vertical-align: middle;
+					line-height: 0.5rem;
+					margin-right: 0.1rem;
+					.field_price {
+						display: inline-block;
+					}
+					.price {
+						height: 0.5rem;
+						text-align: left;
+						line-height: 0.5rem;
+						vertical-align: middle;
+						width: 1.1rem;
+						float: left;
+					}
+					.regulator_right {
+						display: inline-block;
+						float: right;
+						width: 1.4rem;
+						a {
+							box-sizing: border-box;
+							display: block;
+							border: 1px solid @color_orange;
+							width: 0.5rem;
+							height: 0.5rem;
+							text-align: center;
+							border-radius: 50%;
+							line-height: 0.5rem;
+							vertical-align: middle;
+							overflow: hidden;
+							float: left;
+						}
+						span {
+							display: block;
+							width: 0.4rem;
+							height: 0.5rem;
+							line-height: 0.5rem;
+							vertical-align: middle;
+							float: left;
+							overflow: hidden;
+						}
+						a:active {
+							background: @color_orange;
+							color: @color_white;
+						}
+					}
+				}
+			}
+		}
+	}
 }

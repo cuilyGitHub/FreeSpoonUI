@@ -1,0 +1,8 @@
+{
+  "development": {
+    "apiUrl": "http://dev.yijiayinong.com/v1/"
+  },
+  "production": {
+    "apiUrl": "http://api.yijiayinong.com/v1/"
+  }
+}

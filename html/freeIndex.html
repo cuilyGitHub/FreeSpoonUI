@@ -4,18 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<title>我是团购列表</title>
-    <link rel="stylesheet" href="assets/css/freeIndex.min.css">
-	
-	<link rel="stylesheet" href="assets/css/unslider.css">
-    <link rel="stylesheet" href="assets/css/unslider-dots.css">
-    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="assets/js/unslider-min.js"></script>
+    <link rel="stylesheet" type='text/css' href="assets/css/freeIndex.min.css">
+	<link rel="stylesheet" type='text/css' href="assets/css/slider-def.css">
 </head>
 <body>
 	<div class='search'>
 		<div class='cancel' ng-class="{true:'show',false:'hide'}[searchBox]" ng-click='cancel()'>取消</div>
-		<div class='cicle' >
-			<input type='text' id='cicle' ng-keyup='onkeydown($event)' value="搜索团主、商品" ng-focus="focus()" ng-blur="blur()"/>
+		<div class='cicle' ng-class="{true:'set_width',false:''}[setWidth]">
+			<input type='text' id='cicle' ng-keyup='onkeydown($event)' placeholder="搜索团主、商品" ng-focus="focus()" ng-blur="blur()" ng-model='val'/>
 		</div>
 	</div>
 	<div class='searchBox' ng-class="{true:'show',false:'hide'}[searchBox]">
@@ -34,10 +30,10 @@
 						<div class='statusInfo'>团购已结束</div>
 						<div class='bg'></div>
 					</div>
-					<div class="Carousel">
-						<ul>
-							<li ng-repeat='img in x.covers'><img ng-src='{{img}}' alt=''></li>
-						</ul>
+					<div id="slider">
+						<div class="slides">
+							<img class="slider" ng-repeat='img in x.covers' ng-src='{{img}}' alt='' ng-style="{'height':'4rem'}">
+						</div>
 					</div>
 				</div>
 				<div class='reseller'>

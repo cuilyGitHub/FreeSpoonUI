@@ -13,11 +13,8 @@ module.exports = function(app){
 		
 		if(batch.recent_obtain_name || batch.recent_obtain_mob){
 			$scope.isTrue = false;
-			$scope.tel = batch.recent_obtain_mob;
-			$scope.nickName = batch.recent_obtain_name;
-			
-			$('#nikeName')[0].value=batch.recent_obtain_name;
-			$('#mob')[0].value=batch.recent_obtain_mob;
+			$scope.mob = batch.recent_obtain_mob;
+			$scope.name = batch.recent_obtain_name;
 			
 		}else{
 			$scope.isTrue = true;
@@ -44,44 +41,22 @@ module.exports = function(app){
 
 		$scope.addInfo=function(){
 			$scope.isTrue = true;
-			if($('#nikeName')[0].value == batch.recent_obtain_name){
-				$('#nikeName')[0].value=batch.recent_obtain_name;
+			if($scope.name == batch.recent_obtain_name){
+				$scope.name=batch.recent_obtain_name;
 			}
-			if($('#mob')[0].value == batch.recent_obtain_mob){
-				$('#mob')[0].value=batch.recent_obtain_mob;
+			if($scope.mob == batch.recent_obtain_mob){
+				$scope.mob=batch.recent_obtain_mob;
 			}
-		}
-		
-		$scope.getMob = function(){
-			if(!$('#nikeName')[0].value){
-				return;
-			}
-			if($('#mob')[0].value){
-				$scope.tel = $('#mob')[0].value;
-			}else{
-				$('#mob')[0].value = $scope.tel;
-			}
-		}
-		$scope.getName = function(){
-			if(!$('#nikeName')[0].value){
-				return;
-			}
-			if($('#nikeName')[0].value){
-				$scope.nickName = $('#nikeName')[0].value;
-			}else{
-				$('#nikeName')[0].value = $scope.nickName;
-			}
-		}
-		
+		}		
 		
 		//点击支付
 		$scope.pay = function(commodities){	
 		
-			if(!$scope.nickName || $scope.nickName.length == 0){
+			if(!$scope.name || $scope.name.length == 0){
 				alert("昵称不存在");
 				return;
 			}
-			if(!$scope.tel || $scope.tel.length == 0){
+			if(!$scope.mob || $scope.mob.length!=11){
 				alert("电话不存在");
 				return;
 			}
@@ -101,8 +76,8 @@ module.exports = function(app){
 				}
 			}
 			var requestData={
-				obtain_name: $scope.nickName,
-				obtain_mob: $scope.tel,
+				obtain_name: $scope.name,
+				obtain_mob: $scope.mob,
 				bulk_id: batch.id,
 				dispatcher_id: $scope.selectedAddress.id,
 				goods: puchared

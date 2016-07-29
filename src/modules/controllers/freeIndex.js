@@ -16,7 +16,7 @@ module.exports = function(app){
 		wx.onMenuShareAppMessage({
 			title: '一家一农', 
 			desc: '每周团购深海野生海鲜，新鲜水果，种类齐全，品质至上', 
-			link: 'http://dev.yijiayinong.com/api/business/redirect?state=', 
+			link: appconfig.apiUrl+'business/redirect?state=', 
 			imgUrl: 'http://dev.yijiayinong.com/assets/images/logo.png',
 				//type: '', 
 				//dataUrl: '', 
@@ -30,6 +30,7 @@ module.exports = function(app){
 			
 		// import data
 		$scope.batch = batch;
+		$scope.val = '';
 		
 		if(batch.length == 0){
 			$scope.searchBox = true;
@@ -51,29 +52,18 @@ module.exports = function(app){
 			$route.reload();
 		}
 		
+		var cicle = document.getElementById('cicle');
+		
 		$scope.focus = function(){
-			var val = $('#cicle')[0].value;
-			if(val){
-				$('#cicle')[0].value='';
-			}
 			$scope.searchBox = true;
 			$scope.box = false;
-			$('.cicle').css('width','75%');
-		}
-		
-		$scope.blur = function(){
-			var val = $('#cicle')[0].value;
-			if(!val){
-				$('#cicle')[0].value = '搜索团主、商品';
-				return;
-			}
-			$('#cicle')[0].value = val;
+			$scope.setWidth = true;
 		}
 		
 		$scope.onkeydown = function(e){
 			var keycode = window.event?e.keyCode:e.which;
 			if(keycode == 13){
-				$rootScope.search = 'search=' + $('#cicle')[0].value;
+				$rootScope.search = 'search=' + $scope.val;
 				$location.path('/freeIndex');
 				$route.reload();
 			}
@@ -82,32 +72,6 @@ module.exports = function(app){
 		$scope.more = function(){
 			console.log('look more');
 		}
-
-		$scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
-          //下面是在ng-repeat render完成后执行的js
-          $('.Carousel').unslider({
-				//animation: 2,
-				autoplay: true,
-				dots: false,
-				arrows: false,
-			});
-		});
-		
 	});
 	
-	app.directive('onFinishRenderFilters', function ($timeout) {
-		return {
-			restrict: 'A',
-			link: function(scope, element, attr) {
-				if (scope.$last === true) {
-					$timeout(function() {
-						scope.$emit('ngRepeatFinished');
-					});
-				}
-			}
-		};
-	});
-
-
-
 }

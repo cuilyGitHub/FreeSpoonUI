@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="stylesheet" href="assets/css/goodsDetails.min.css">
+    <link rel="stylesheet" type='text/css' href="assets/css/goodsDetails.css">
     <title></title>
 </head>
 <body>
-	<div class='page'>
+	<div class='page' ng-class="{true:'set_height',false:''}[isHeight]">
 		<img class='banner' ng-src='{{batch.cover}}' alt='' />
 		<div class='bannerInfo'>
 			<div class='oneline'>
@@ -32,33 +32,34 @@
 		</ul>
 		<div  class="footer">
 			<a ng-class="{right:true, buttonStatus:shopCartData.totalNum>0}"  ng-click="checkout();">选好了</a>
-			<div class="left" onclick="popup_window_from_bottom();">
-				<div class="shop"><span class="__amount">{{shopCartData.totalNum}}</span></div>
+			<div class="left" ng-click='popup()'>
+				<div class="shop"><span ng-class="{true:'show',false:'hide'}[isAmount]">{{shopCartData.totalNum}}</span></div>
 				<div class="shop_info">
 					<p class="line1">合计:<span class="__total">￥{{shopCartData.totalPrice | convert}}</span></p>
 				</div>
 			</div>
 		</div>
 		
-		<div class="__overlay matter">
-			<div class='__register register' ng-click='$event.stopPropagation();'>
+		<div class="phone_matter" ng-class="{true:'show',false:'hide'}[isRegister]" ng-click='register_hide()'>
+			<div class='register' ng-click='$event.stopPropagation();'>
 				<div class='content'>
 					<ul>
 						<li class='box'>
 							<div class='left'>手机号</div>
-							<input class='__mob mob' type='tel' placeholder='请输入手机号'>
+							<input class='mob' type='tel' placeholder='请输入手机号' ng-model='mob'>
 						</li>
 						<li class='box'>
 							<div class='left'>验证码</div>
 							<div class='getCode' ng-click='getCode()'>获取验证码</div>
-							<input class='__code' type='tel' placeholder='请输入验证码'>
+							<input type='tel' placeholder='请输入验证码' ng-model='code'>
 						</li>
 					</ul>
 				</div>
-			<div class='button_sure' ng-click='postMob()'>确定</div>
+				<div class='button_sure' ng-click='postMob()'>确定</div>
 			</div>
 		</div>
-		<div class="popup-window-from-bottom">
+		<div class='matter' ng-class="{true:'show',false:'hide'}[isMatter]" ng-click='hide()'></div>
+		<div class="popup-window-from-bottom" ng-class="{true:'show',false:'hide'}[isPopup]">
 			<div class="box">
 				<div class="popup-bottom-title">
 					<div class="del" ng-click="empty();">

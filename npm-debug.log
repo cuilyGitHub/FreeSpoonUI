@@ -1,0 +1,26 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'help', 'json' ]
+2 info using npm@2.15.8
+3 info using node@v4.4.7
+4 verbose stack Error: spawn man ENOENT
+4 verbose stack     at exports._errnoException (util.js:873:11)
+4 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:178:32)
+4 verbose stack     at onErrorNT (internal/child_process.js:344:16)
+4 verbose stack     at nextTickCallbackWith2Args (node.js:442:9)
+4 verbose stack     at process._tickCallback (node.js:356:17)
+5 verbose cwd /FreeSpoonUI
+6 error Linux 3.16.0-30-generic
+7 error argv "/usr/bin/nodejs" "/usr/bin/npm" "help" "json"
+8 error node v4.4.7
+9 error npm  v2.15.8
+10 error file man
+11 error path man
+12 error code ENOENT
+13 error errno ENOENT
+14 error syscall spawn man
+15 error enoent spawn man ENOENT
+15 error enoent This is most likely not a problem with npm itself
+15 error enoent and is related to npm not being able to find a file.
+15 error enoent
+15 error enoent Check if the file 'man' is present.
+16 verbose exit [ 1, true ]

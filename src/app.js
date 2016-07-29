@@ -3,7 +3,7 @@
 'use strict';
 
 //import require components
-var $ = require('jquery-browserify');
+//var $ = require('jquery-browserify');
 var angular = require('angular');
 var angular_route = require('angular-route');
 var sugar = require('sugar');
@@ -11,6 +11,7 @@ var ngResource = require('angular-resource');
 
 // local modules
 var utils = require('./modules/utils');
+var config = require('./modules/config');
 var registerServices = require('./modules/services');
 var registerFilters = require('./modules/filters');
 var registerFactorys = require('./modules/factorys');
@@ -42,6 +43,7 @@ var register_dishs = require('./modules/controllers/dishs');
 var app = angular.module('app', ['ngRoute','ngResource']);
 
 // register angular components
+config(app)
 registerServices(app);
 registerFilters(app);
 registerFactorys(app);
@@ -424,14 +426,81 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 		});		
 });
 
+function createXMLHTTPRequest(){
+	var xmlHttpRequest;
+	if(window.XMLHttpRequest){
+		xmlHttpRequest = new XMLHttpRequest();
+		if (xmlHttpRequest.overrideMimeType) {     
+			xmlHttpRequest.overrideMimeType("text/xml");     
+		}     
+	} else if (window.ActiveXObject) {   
+		var activexName = [ "MSXML2.XMLHTTP", "Microsoft.XMLHTTP" ];     
+		for ( var i = 0; i < activexName.length; i++) {     
+			try {          
+				xmlHttpRequest = new ActiveXObject(activexName[i]);   
+				if(xmlHttpRequest){  
+					break;  
+				}  
+			} catch (e) {     
+			}     
+		}     
+	}     
+	return xmlHttpRequest;  
+}
+
 (function initWXConfig(angular){
+	var cfg = {
+		url: window.location.href,
+		jsApiList: ['chooseWXPay', 'onMenuShareAppMessage', 'closeWindow']
+	};
+	
+	cfg=JSON.stringify(cfg);
+	
+	var xhr = createXMLHTTPRequest();
+	 
+	 if(xhr){
+		xhr.open('POST',appconfig.apiUrl+'business/wxConfig',true)
+		xhr.setRequestHeader("Content-Type","application/json; charset=utf-8;");
+		xhr.onreadystatechange = function(){
+			var XMLHttpReq = xhr;
+			if(XMLHttpReq.readyState == 4){
+				if(XMLHttpReq.status == 200){
+					var data = XMLHttpReq.responseText;
+					if(!data){
+						return;
+					}
+					wx.config(data);
+					wx.ready(function(){
+						function onBridgeReady(){
+							angular.bootstrap(document, ['app']);
+						}
+						if (typeof WeixinJSBridge == "undefined"){
+							if( document.addEventListener ){
+								document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+							}else if (document.attachEvent){
+								document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+								document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+							}
+						}else{
+							onBridgeReady();
+						}
+					});
+					console.log(XMLHttpReq.responseText);
+				}
+			}
+		}
+		xhr.send(cfg);
+	 }
+})(angular)
+
+/*(function initWXConfig(angular){
 	var cfg = {
 		url: window.location.href,
 		jsApiList: ['chooseWXPay', 'onMenuShareAppMessage', 'closeWindow']
 	};
 	$.ajax({
 		type: 'post',
-		url: 'http://api.yijiayinong.com/v1/business/wxConfig',
+		url: appconfig.apiUrl+'business/wxConfig',
 		contentType: 'application/json; charset=utf-8',
 		data: JSON.stringify(cfg),
 		dataType: 'json',
@@ -463,5 +532,5 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 			//TODO
 		}
 	});
-})(angular);
+})(angular);*/
 
