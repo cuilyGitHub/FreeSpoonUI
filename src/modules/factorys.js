@@ -2,7 +2,7 @@ module.exports = function(app){
 	
 	//user sign in root
 	app.factory('authRes',function($resource){
-		return $resource(appconfig.apiUrl+'business/weixin');
+		return $resource(appconfig+'business/weixin');
 	});
 	
 	//checkout页详情
@@ -20,7 +20,7 @@ module.exports = function(app){
 		
 	//订单列表页	
 	app.factory('orders',['$resource','$rootScope',function($resource, $rootScope){
-		return $resource(appconfig.apiUrl+'business/orders/',{},{
+		return $resource(appconfig+'business/orders/',{},{
 			'charge':{
 				method:'get',
 				isArray:true,
@@ -33,7 +33,7 @@ module.exports = function(app){
 	
 	//地址列表页	
 	app.factory('address',['$resource','$rootScope',function($resource, $rootScope){
-		return $resource(appconfig.apiUrl+'business/shippingaddresses/',{},{
+		return $resource(appconfig+'business/shippingaddresses/',{},{
 			'charge':{
 				method:'get',
 				isArray:true,

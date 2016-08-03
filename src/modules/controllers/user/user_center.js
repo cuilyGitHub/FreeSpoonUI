@@ -1,6 +1,6 @@
 module.exports = function(app){
 
-	app.controller('user_center_controller', function($scope, $location, $rootScope, auth){
+	app.controller('user_center_controller', function($scope, $location, $rootScope, $wxBridge, auth){
 
 		if(!auth){
 			$location.path("/error");
@@ -20,20 +20,14 @@ module.exports = function(app){
 			$scope.data = $rootScope.auth;
 		}
 		
-		wx.onMenuShareAppMessage({
-			title: '一家一农', 
-			desc: '每周团购深海野生海鲜，新鲜水果，种类齐全，品质至上', 
-			link: appconfig.apiUrl+'business/redirect?state=', 
-			imgUrl: 'http://dev.yijiayinong.com/assets/images/logo.png',
-				//type: '', 
-				//dataUrl: '', 
-			success: function () {
-				//TODO
-			},
-			cancel: function () {
-				//TODO
-			}
-		});
+		//配置微信分享
+		var shareInfo = {
+			card_title:'一家一农',
+			card_desc:'每周团购深海野生海鲜，新鲜水果，种类齐全，品质至上',
+			card_url:appconfig.apiUrl+'business/redirect?state=',
+			card_icon:'http://dev.yijiayinong.com/assets/images/logo.png'
+		};
+		$wxBridge.configShare(shareInfo);
 		
 		$scope.address = function(){;
 			if(!$rootScope.auth.user){

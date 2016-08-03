@@ -22,14 +22,14 @@ gulp.task('help',function(){
 	console.log('gulp run --env	production	用于生产环境');
 });
 
-var knowOptions = {
+/*var knowOptions = {
 	string:'env',
 	default:{
 		env:process.env.NODE_ENV || 'development'
 	}
 };
 
-var options = minimist(process.argv.slice(2), knowOptions);
+var options = minimist(process.argv.slice(2), knowOptions);*/
 
 function string_src(filename, string) {
   var src = require('stream').Readable({ objectMode: true })
@@ -41,8 +41,9 @@ function string_src(filename, string) {
 }
 
 gulp.task('constants',function(){
-	var myConfig = require('./config.json');
-	var envConfig = myConfig[options.env];
+	//var myConfig = require('./config.json');
+	//var envConfig = myConfig[options.env];
+	var envConfig = process.env.SERVICE_API_URL;
 	var conConfig = 'module.exports = function(app){appconfig = ' + JSON.stringify(envConfig)+'}';
 	return string_src("config.js", conConfig)
       .pipe(gulp.dest('./src/modules/'))

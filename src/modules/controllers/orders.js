@@ -1,6 +1,6 @@
 module.exports = function(app){
 
-	app.controller('OrdersController', function($scope, $routeParams, $data, $location, $http, $wxBridge, $rootScope, batch){
+	app.controller('OrdersController', function($scope, $route, $data, $location, $rootScope, batch){
 				
 		if(!batch){
 			$data.preData={
@@ -14,15 +14,43 @@ module.exports = function(app){
 		$scope.orders = batch;
 	
 		$rootScope.title = '我的订单';
+		
+		$scope.orderConfirm=function(orderId){
+				var r=confirm('是否取消订单');
+				if(r==true){
+					$data.orderDel(orderId,function(){
+						alert('订单取消成功');
+						 $route.reload();
+					});
+				}else{
+					alert('订单取消失败');
+				}
+			}
+			
+		$scope.del = function(orderId){
+			var d=confirm('是否删除订单');
+			if(d==true){
+				$data.orderDel(orderId,function(){
+					alert('删除订单成功');
+					 $route.reload();
+				});
+			}else{
+				alert('删除订单失败');
+			}
+		}
+		
+		
+		
+		
 	
-		$scope.openOrder = function(orderId){	
+		/*$scope.openOrder = function(orderId){	
 			if(batch.status<0){
 				alert('生成订单失败');
 				return;
 			}
 			$rootScope.orderId = orderId;
 			$location.path("/order");
-		}
+		}*/
 		
 		$scope.openShare = function(orderId){	
 			if(batch.status<0){

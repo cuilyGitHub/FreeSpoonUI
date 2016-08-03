@@ -1,13 +1,7 @@
 module.exports = function(app){
 	
 	app.controller('PaymentController',['payRequest', '$rootScope', '$scope', '$data', '$location', 'batch', function(payRequest, $rootScope, $scope, $data, $location, batch){
-		if(!batch){
-			$data.preData={
-				title:'参数错误',
-				desc:'参数不存在'
-			}
-			$location.path("/error");
-		}
+		
 		if($data.ordersData ){
 			var batch = $data.ordersData;
 		}else{
@@ -28,13 +22,18 @@ module.exports = function(app){
 				return;
 			}
 				$scope.isSelected = !$scope.isSelected;
+				console.log($scope.isSelected);
 				$scope.isSuccess = !$scope.isSuccess;
-				$rootScope.balance='1';
+				if($scope.isSelected){
+					$rootScope.balance='1';
+				}
 		}
 		
 		$scope.wx_Method=function(){
 			$scope.isWx = !$scope.isWx;
-			$rootScope.balance='0';
+			if(!$scope.isSelected){
+				$rootScope.balance='0';
+			}	
 		}
 	
 		$scope.pay_wx = function(){

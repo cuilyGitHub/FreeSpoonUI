@@ -5,9 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title ng-bind='title'></title>
 	<style type="text/css">
-        .box{
-           
-        }
+		body{
+			margin:0 !important;
+		}
+		.load_bg{
+			width:100vw;
+			height:100vh;
+			opacity:0.3;
+		}
         .load{
                 right: 0;
 		 		top: 0;
@@ -17,6 +22,7 @@
 				height: 50px;
 				margin: auto;
 				position: absolute;
+				z-index: 99999;
         }
     </style>
 	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
@@ -37,7 +43,7 @@
 <!--<body ng-app="app">-->
 <body>
 <div ng-controller="MenuController">
-	<div class="box" ng-if='$rootScope.load'>
+	<div class='load_bg' ng-if='load'>
 		<img src="../assets/images/loading.gif" alt="" class="load"/>
 	</div>
 	<div ng-view></div>
