@@ -43,14 +43,14 @@ module.exports = function(app){
 		
 		
 	
-		/*$scope.openOrder = function(orderId){	
+		$scope.openOrder = function(orderId){	
 			if(batch.status<0){
 				alert('生成订单失败');
 				return;
 			}
 			$rootScope.orderId = orderId;
 			$location.path("/order");
-		}*/
+		}
 		
 		$scope.openShare = function(orderId){	
 			if(batch.status<0){
