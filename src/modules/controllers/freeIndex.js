@@ -23,11 +23,17 @@ module.exports = function(app){
 			
 		// import data
 		$scope.batch = batch;
-		$scope.val = '';
+		
+		if($rootScope.search_val){
+			$scope.val = $rootScope.search_val;
+		}else{
+			$scope.val = '';
+		}
 		
 		if(batch.length == 0){
 			$scope.searchBox = true;
 			$scope.content = true;
+			$scope.setWidth = true;
 		}
 		
 		$scope.jump = function(data){
@@ -54,6 +60,7 @@ module.exports = function(app){
 		}
 		
 		$scope.onkeydown = function(e){
+			$rootScope.search_val = $scope.val;
 			var keycode = window.event?e.keyCode:e.which;
 			if(keycode == 13){
 				$rootScope.search = 'search=' + $scope.val;
@@ -65,6 +72,7 @@ module.exports = function(app){
 		$scope.more = function(){
 			console.log('look more');
 		}
+		
 	});
 	
 }

@@ -1,1 +1,1 @@
-module.exports = function(app){appconfig = "http://dev.yijiayinong.com/v1/"}
+module.exports = function(app){appconfig = undefined}

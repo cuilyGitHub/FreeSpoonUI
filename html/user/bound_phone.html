@@ -15,7 +15,7 @@
 		<ul>
 			<li class='box'>
 				<div class='left'>手机号</div>
-				<div class='getCode' ng-click='getCode()'>获取验证码</div>
+				<div class='getCode' ng-click='getCode()' ng-class="{true:'but_null',false:''}[paraclass]" ng-bind='paracont'></div>
 				<input type='tel' placeholder='请输入手机号' ng-model='mob'>
 			</li>
 			<li class='box'>

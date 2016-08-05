@@ -301,6 +301,9 @@ body {
   text-align: center;
   margin: 0.2rem 0;
 }
+.phone_matter .register .content .box .but_null {
+  background: #ccc;
+}
 .phone_matter .register .content .box input {
   width: 2rem;
   height: 0.5rem;
@@ -498,6 +501,9 @@ body {
   float: right;
   border-radius: 10px;
   color: white;
+}
+.content .box .but_null {
+  background: #ccc;
 }
 .content .box .delCode {
   background: url('../images/verify_del.png') no-repeat center;

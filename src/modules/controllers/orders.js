@@ -39,22 +39,14 @@ module.exports = function(app){
 			}
 		}
 		
-		
-		
-		
-	
 		$scope.openOrder = function(orderId){	
-			if(batch.status<0){
-				alert('生成订单失败');
-				return;
-			}
 			$rootScope.orderId = orderId;
 			$location.path("/order");
 		}
 		
-		$scope.openShare = function(orderId){	
-			if(batch.status<0){
-				alert('生成订单失败');
+		$scope.openShare = function(orderId,index){	
+			if(batch[index].bulk_status<0){
+				alert('团购已过期');
 				return;
 			}
 			$rootScope.orderId = orderId;
@@ -62,9 +54,9 @@ module.exports = function(app){
 			$location.path("/share");
 		}
 		
-		$scope.goPay = function(orderId){
-			if(batch.status<0){
-				alert('生成订单失败');
+		$scope.goPay = function(orderId,status){
+			if(status == -1){
+				alert('订单已过期');
 				return;
 			}			
 			$rootScope.orderId = orderId;

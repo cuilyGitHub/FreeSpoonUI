@@ -16,24 +16,15 @@
     <div class="content">
 		<div class='card'>
 			<div class="user">
-				<div class="right" ng-click='addInfo()'></div>
-	 			<div class='write' ng-class="{true:'show',false:'hide'}[isTrue]">
+				<!--<div class="right" ng-click='addInfo()'></div>-->
+	 			<div class='write'>
 					<span>姓名</span>
-					<input type='text' id='nikeName' placeholder ="填写姓名" ng-blur='getName()' ng-model='name'/>
+					<input type='text' id='nikeName' placeholder ="填写姓名" ng-model='name'/>
 				</div>
-				<div class='write' ng-class="{true:'show',false:'hide'}[isTrue]">
+				<div class='write'>
 					<span >电话</span>
-					<input type='tel' id='mob'  placeholder ="填写电话" ng-blur='getMob()' ng-model='mob'/>
+					<input type='tel' id='mob'  placeholder ="填写电话" ng-model='mob'/>
 				</div>
-				
-				<div class='write' ng-class="{true:'hide',false:'show'}[isTrue]">
-					<span>姓名</span>
-					<div>{{name}}</div>
-				</div>
-				<div class='write' ng-class="{true:'hide',false:'show'}[isTrue]">
-					<span >电话</span>
-					<div>{{mob}}</div>
-				</div>	
 			</div> 
 		</div>
 		<div class='card'>

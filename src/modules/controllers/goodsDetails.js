@@ -1,6 +1,6 @@
 module.exports = function(app){
 
-	app.controller('GoodsDetailsController', function($scope, $data, $location, batch, $shopCart, $rootScope){
+	app.controller('GoodsDetailsController', function($scope, $data, $location, batch, $shopCart, $rootScope, $interval){
 	 
 		if(!batch){
 			$location.path("/error");
@@ -10,6 +10,10 @@ module.exports = function(app){
 		$rootScope.title = '商品详情';
 		$scope.mob = '';
 		$scope.code = '';
+		
+		//phone message code
+		$scope.paracont = '获取验证码';
+		$scope.paraevent = false;
 		
 		//from server api
 		$scope.batch = batch;
@@ -157,13 +161,34 @@ module.exports = function(app){
 			});
 		}
 		
+		//手机验证码
 		$scope.getCode=function(){
+			var second = 60;
+			var	timePromise = undefined;
 			if(!$scope.mob){
 				alert('请填写手机号');
 				return;
 			}
+			if($scope.paraevent){
+				return;
+			}
 			$data.mobCode_Request($scope.mob,function(){
-				alert('验证码已发送至您的手机！')
+				timePromise = $interval(function(){
+					if(second<=0){
+						$interval.cancel(timePromise);
+						timePromise = undefined;
+						
+						second = 60;
+						$scope.paracont = "获取验证码";
+						$scope.paraclass = false;
+						$scope.paraevent = false;  
+					}else{
+						$scope.paracont = second + "s后重试";  
+						$scope.paraclass = true;
+						$scope.paraevent = true;
+						second--;  
+					}
+				},1000,100);
 			});
 		}
 		

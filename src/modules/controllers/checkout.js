@@ -11,34 +11,26 @@ module.exports = function(app){
 			return;
 		}
 		
-		if(batch.recent_obtain_name || batch.recent_obtain_mob){
-			$scope.isTrue = false;
-			$scope.mob = batch.recent_obtain_mob;
-			$scope.name = batch.recent_obtain_name;
-			
-		}else{
-			$scope.isTrue = true;
-		}
-		
 		//配置微信分享
 		$wxBridge.configShare(batch);
 		
-		//选择地址
-		$scope.selectAddress = function(p){
-			$scope.selectedAddress = p;
-		}
+		
 
 		$rootScope.title = '订单确认';
 	
 		$scope.commodities = batch.products;
-		
 		$scope.totalPrice = batch.totalPrice;
 		$scope.dispatchers = batch.dispatchers;
-				
-		$scope.back=function(){
-			$location.path('/index');
-		};
-
+		$scope.mob = batch.recent_obtain_mob;
+		$scope.name = batch.recent_obtain_name;
+		
+		//选择地址
+		$scope.selectedAddress = batch.dispatchers[0];
+		$scope.selectAddress = function(p){
+			$scope.selectedAddress = p;
+		}
+		
+		
 		$scope.addInfo=function(){
 			$scope.isTrue = true;
 			if($scope.name == batch.recent_obtain_name){

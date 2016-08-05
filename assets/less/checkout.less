@@ -8,18 +8,11 @@ body{
   .content {
 	margin-bottom: 1rem;
     padding-top: 0;
-    /*margin-top: 1rem;*/
-	.show{
-			display:blok;
-		}
-	.hide{
-			display:none;
-		}
     .user {
 		@height: 0.9rem;
 		overflow: hidden;
 		background: url('../images/rope.png') no-repeat 0% bottom;
-		padding: 0.2rem;
+		padding: 0.2rem 0.2rem 0.3rem 0.2rem;
 		.sculpture {
 			overflow: hidden;
 			width: 0.6rem;
@@ -46,7 +39,8 @@ body{
 				margin-top:0 !important;
 			}
 			input{
-				height:0.5rem;
+				.font_large;
+				height:0.6rem;
 				border:none;
 			}
 		}
@@ -107,18 +101,18 @@ body{
 				line-height:0.4rem;
 				padding-left:0.7rem;
 				span{
-					.font_small;
+					.font_normal;
 					color:@color_gray;
 					padding-left:0.3rem;
 				}
 				.left{
 					background:url('../images/clock.png') no-repeat left;
-					background-size:0.2rem;
+					background-size:0.25rem;
 				}
 				.right{
 					margin-left:0.5rem;
 					background:url('../images/grayPhone.png') no-repeat left;
-					background-size:0.2rem;
+					background-size:0.25rem;
 				}
 			}
 		}

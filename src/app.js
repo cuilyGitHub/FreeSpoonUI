@@ -3,10 +3,8 @@
 'use strict';
 
 //import require components
-//var $ = require('jquery-browserify');
 var angular = require('angular');
 var angular_route = require('angular-route');
-var sugar = require('sugar');
 var ngResource = require('angular-resource');
 
 // local modules
@@ -74,6 +72,7 @@ register_dishs(app);
 
 app.controller('MenuController', function($rootScope,$scope, $route){
 	$scope.$route = $route;
+	$rootScope.load = false;
 });
 
 app.config(function($routeProvider, $locationProvider,$httpProvider,$resourceProvider){
@@ -86,11 +85,9 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 			controller: 'AuthController',
 			resolve: {
 				auth: ['$q', '$location', '$rootScope','authRes', function($q, $location,$rootScope,authRes){
-						$rootScope.load = true;
 						var code = $location.search().code;
 						var deferred = $q.defer();
 						authRes.save({},{code:code},function(data,headers){
-							$rootScope.load = false;
 							deferred.resolve(data);
 						},function(data,headers){
 							deferred.reject(data);

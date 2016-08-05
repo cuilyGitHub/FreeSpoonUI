@@ -14,15 +14,15 @@ module.exports = function(app){
 			$rootScope.title = '订单详情';
 			
 			$scope.paymentText = $rootScope.payment;
-			$scope.balance = $rootScope.balanc_total;
 			$scope.order = batch;
 			$scope.dispatcher = batch.dispatcher;
 			
-			$scope.back=function(){
-				$location.path('/orders');
-			};
-			
-			
+			if(!batch.payrequest || !batch.payrequest.use_balance == 1){
+				$scope.balance =0;			
+			}else{
+				$scope.balance = batch.payrequest.balance_fee;
+			}
+		
 			$scope.pay = function(){
 				$wxBridge.pay($data.wx_pay_request, function(){
 					$scope.$apply(function(){
@@ -33,10 +33,18 @@ module.exports = function(app){
 			}
 			
 			$scope.payment = function(){
+				if(batch.status == -1){
+					alert('团购已过期');
+					return;
+				}
 				$location.path("/payment");
 			}
 			
 			$scope.goShare = function(){
+				if(batch.bulk_status<0){
+					alert('团购已过期');
+					return;
+				}
 				$rootScope.share = true;
 				$location.path("/share");
 			};

@@ -16,51 +16,49 @@ module.exports = function(app){
 		$rootScope.orderUrl = batch.url;
 		$rootScope.requestUrl = batch.wx_pay_request;
 		
+		if($scope.balance){
+			$scope.isSuccess = true;
+			$scope.isSelected = true;
+		}
+		if(!$scope.balance){
+			$scope.isWx = true;
+		}
 		
 		$scope.payBalance=function(){
 			if(!$scope.balance &&　$scope.balance == 0){
 				return;
 			}
-				$scope.isSelected = !$scope.isSelected;
-				console.log($scope.isSelected);
-				$scope.isSuccess = !$scope.isSuccess;
-				if($scope.isSelected){
-					$rootScope.balance='1';
-				}
+			$scope.isSelected = !$scope.isSelected;
 		}
 		
 		$scope.wx_Method=function(){
 			$scope.isWx = !$scope.isWx;
-			if(!$scope.isSelected){
-				$rootScope.balance='0';
-			}	
 		}
 	
 		$scope.pay_wx = function(){
-			if(!$scope.isSuccess && !$scope.isWx){
+			console.log($rootScope.balance);
+			if(!$scope.isSelected && !$scope.isWx){
 				alert('请选择支付方式');
 				return;
-			}else if($scope.isSuccess){
+			}else if($scope.isSelected){
 				$data.payRequest($rootScope.requestUrl, $rootScope.balance, function(data){
 					if(data.require_third_party_payment){
 						$data.wx_pay_request = data.pay_request_json;	
 						$data.prePromptPay = true;
 						$rootScope.payment = '微信支付';
-						$rootScope.balanc_total = $scope.balance;
 						$location.path('/order');
 						return;
 					}
 					$rootScope.payment = '零钱支付';
-					$rootScope.balanc_total = batch.total_fee;
 					$rootScope.share = false;
 					$location.path('/share');
 				});
 			}else{
+				$rootScope.balance='0';
 				$data.payRequest($rootScope.requestUrl, $rootScope.balance, function(data){
 					$data.wx_pay_request = data.pay_request_json;
 					$data.prePromptPay = true;
 					$rootScope.payment = '微信支付';
-					$rootScope.balanc_total = 0;
 					$location.path('/order');
 				});
 			}

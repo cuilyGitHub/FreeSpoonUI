@@ -13,7 +13,7 @@
 			<div class='spare' ng-if='day>0'>剩<span>{{day}}</span>天</div>
 			<div class='spare' ng-if='day<=0'>剩<span>{{hour}}</span>小时</div>
             <div class='attend'>已有<span>{{batch.participant_count}}人</span>参团</div>
-			<div class='send'>预计{{batch.arrived_time | short_date}}发货</div>
+			<div class='send'>预计{{batch.arrived_time | format_ch}}发货</div>
         </div>
         <div class="left" >
             <div class="sculpture"><img ng-src="{{reseller.wx_headimgurl}}"  alt=""></div>
@@ -85,7 +85,7 @@
 				</li>
 				<li class='box'>
 					<div class='left'>验证码</div>
-					<div class='getCode' ng-click='getCode()'>获取验证码</div>
+					<div class='getCode' ng-click='getCode()' ng-class="{true:'but_null',false:''}[paraclass]" ng-bind='paracont'></div>
 					<input type='tel' placeholder='请输入验证码' ng-model='code'>
 				</li>
 			</ul>

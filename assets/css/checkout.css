@@ -301,6 +301,9 @@ body {
   text-align: center;
   margin: 0.2rem 0;
 }
+.phone_matter .register .content .box .but_null {
+  background: #ccc;
+}
 .phone_matter .register .content .box input {
   width: 2rem;
   height: 0.5rem;
@@ -472,18 +475,11 @@ body {
 #checkout .content {
   margin-bottom: 1rem;
   padding-top: 0;
-  /*margin-top: 1rem;*/
-}
-#checkout .content .show {
-  display: blok;
-}
-#checkout .content .hide {
-  display: none;
 }
 #checkout .content .user {
   overflow: hidden;
   background: url('../images/rope.png') no-repeat 0% bottom;
-  padding: 0.2rem;
+  padding: 0.2rem 0.2rem 0.3rem 0.2rem;
 }
 #checkout .content .user .sculpture {
   overflow: hidden;
@@ -513,7 +509,9 @@ body {
   margin-top: 0 !important;
 }
 #checkout .content .user .write input {
-  height: 0.5rem;
+  font-size: 0.3rem;
+  font-weight: normal;
+  height: 0.6rem;
   border: none;
 }
 #checkout .content .user .right {
@@ -577,19 +575,19 @@ body {
   padding-left: 0.7rem;
 }
 #checkout .content ul .address_row .sinceConent span {
-  font-size: 0.2rem;
+  font-size: 0.25rem;
   font-weight: normal;
   color: #CCCCCC;
   padding-left: 0.3rem;
 }
 #checkout .content ul .address_row .sinceConent .left {
   background: url('../images/clock.png') no-repeat left;
-  background-size: 0.2rem;
+  background-size: 0.25rem;
 }
 #checkout .content ul .address_row .sinceConent .right {
   margin-left: 0.5rem;
   background: url('../images/grayPhone.png') no-repeat left;
-  background-size: 0.2rem;
+  background-size: 0.25rem;
 }
 #checkout .content ul .checked {
   background: url("../images/3.png") no-repeat left !important;
