@@ -7,7 +7,7 @@
     <title></title>
 </head>
 <body>
-  <div id="index" class='page' ng-class="{true:'set_height',false:''}[isHeight]">
+  <div id="index" ng-class="{true:'set_height',false:''}[isHeight]">
     <div class="board">
 		<div class="right" >
 			<div class='spare' ng-if='day>0'>剩<span>{{day}}</span>天</div>
@@ -44,9 +44,9 @@
 					</div>
                     <div class="last ">
                         <div class="counter">
-                            <a class="block left" href="javascript:void(0);" ng-click="removeCommodity(x);">-</a>
+                            <div class="btn" href="javascript:void(0);" ng-click="removeCommodity(x);">-</div>
                             <span class="block center">{{x.num | safenum}}</span>
-                            <a class="block right" href="javascript:void(0);" ng-click="addCommodity(x);">+</a>
+                            <div class="btn" href="javascript:void(0);" ng-click="addCommodity(x);">+</div>
                         </div>
                         <div class="regulator">
                             <span class="groupon_icon"><img src="assets/images/poper.png" alt=""></span>
@@ -114,11 +114,11 @@
             <ul  class="cart">
                 <li class="template" ng-repeat="x in commodities" ng-if="!!x.num">
                     <div class="popup_reduce">
-                        <div class="price">{{x.price | convert}}</div>
+                        <div class="price">{{x.unit_price | convert}}</div>
                         <div class="regulator_right">
-                            <a href="javascript:void(0);" ng-click="removeCommodity(x);">-</a>
+                            <div class='btn' ng-click="removeCommodity(x);">-</div>
                             <span class="center">{{x.num | safenum}}</span>
-                            <a href="javascript:void(0);" ng-click="addCommodity(x);">+</a>
+                            <div class='btn' ng-click="addCommodity(x);">+</div>
                         </div>
                     </div>
                     <span class="field_title">{{x.title}}</span>

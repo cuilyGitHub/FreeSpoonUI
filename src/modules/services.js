@@ -155,6 +155,30 @@ module.exports = function(app){
 			
 		}
 		
+		//刷新接口
+		this.refresh = function(token,cb){
+			$http({
+				method:'post',
+				url:appconfig+'auth/refresh',
+				data:{
+					token:token,
+				},
+				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
+			})
+			.success(function(data){
+				if(!data){
+					cb(null);
+					return;
+				}
+				cb(data);
+			})
+			.error(function(){
+				cb(null);
+			});
+
+		}
+		
+		
 		//团购列表
 		this.bulksRes = function(cb){
 		$http({
@@ -324,6 +348,8 @@ module.exports = function(app){
 					return;
 				}
 				cb(data);
+			}).error(function(){
+				wx.closeWindow();
 			});
 		};	
 		

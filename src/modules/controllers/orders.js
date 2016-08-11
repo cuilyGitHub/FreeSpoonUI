@@ -39,14 +39,18 @@ module.exports = function(app){
 			}
 		}
 		
-		$scope.openOrder = function(orderId){	
+		$scope.openOrder = function(orderId,index){
+			if(batch[index].status<0){
+				alert('订单已过期');
+				return;
+			}
 			$rootScope.orderId = orderId;
 			$location.path("/order");
 		}
 		
 		$scope.openShare = function(orderId,index){	
-			if(batch[index].bulk_status<0){
-				alert('团购已过期');
+			if(batch[index].status<0){
+				alert('订单已过期');
 				return;
 			}
 			$rootScope.orderId = orderId;

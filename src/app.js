@@ -72,7 +72,7 @@ register_dishs(app);
 
 app.controller('MenuController', function($rootScope,$scope, $route){
 	$scope.$route = $route;
-	$rootScope.load = false;
+	$rootScope.load = true;
 });
 
 app.config(function($routeProvider, $locationProvider,$httpProvider,$resourceProvider){

@@ -440,15 +440,14 @@ body {
   float: right;
   width: 1.4rem;
 }
-.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right a {
-  box-sizing: border-box;
+.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right .btn {
   display: block;
   border: 1px solid #ff9934;
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 0.4rem;
+  height: 0.4rem;
   text-align: center;
   border-radius: 50%;
-  line-height: 0.5rem;
+  line-height: 0.4rem;
   vertical-align: middle;
   overflow: hidden;
   float: left;
@@ -462,12 +461,9 @@ body {
   float: left;
   overflow: hidden;
 }
-.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right a:active {
+.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right .btn:active {
   background: #ff9934;
   color: white;
-}
-.content {
-  /*margin-top:1rem;*/
 }
 .content .no_address {
   font-size: 0.35rem;
@@ -476,13 +472,11 @@ body {
   padding-left: 30%;
 }
 .content .box {
-  height: 2rem;
   border-bottom: 1px solid #ccc;
   padding: 0.3rem 0 0.3rem 0.3rem;
   box-sizing: border-box;
 }
 .content .box .left {
-  height: 1.4rem;
   margin-right: 1.5rem;
 }
 .content .box .left .top {
@@ -490,7 +484,6 @@ body {
   line-height: 0.7rem;
 }
 .content .box .left p {
-  height: 0.7rem;
   color: #ccc;
 }
 .content .box .left .text {

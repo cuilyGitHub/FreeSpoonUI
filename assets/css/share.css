@@ -440,15 +440,14 @@ body {
   float: right;
   width: 1.4rem;
 }
-.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right a {
-  box-sizing: border-box;
+.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right .btn {
   display: block;
   border: 1px solid #ff9934;
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 0.4rem;
+  height: 0.4rem;
   text-align: center;
   border-radius: 50%;
-  line-height: 0.5rem;
+  line-height: 0.4rem;
   vertical-align: middle;
   overflow: hidden;
   float: left;
@@ -462,7 +461,7 @@ body {
   float: left;
   overflow: hidden;
 }
-.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right a:active {
+.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right .btn:active {
   background: #ff9934;
   color: white;
 }

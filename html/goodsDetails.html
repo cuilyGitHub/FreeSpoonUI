@@ -7,7 +7,7 @@
     <title></title>
 </head>
 <body>
-	<div class='page' ng-class="{true:'set_height',false:''}[isHeight]">
+	<div ng-class="{true:'set_height',false:''}[isHeight]">
 		<img class='banner' ng-src='{{batch.cover}}' alt='' />
 		<div class='bannerInfo'>
 			<div class='oneline'>
@@ -17,9 +17,9 @@
 			<p class='twoline'>{{batch.desc}}</p>
 			<div class='threeline'>
 				<div class="regulator_right">
-					<a href="javascript:void(0);" ng-click="removeShopCartNum();">-</a>
+					<div class='btn' ng-click="removeShopCartNum();">-</div>
 					<span class="center">{{shopCartNum | safenum}}</span>
-					<a href="javascript:void(0);" ng-click="addShopCartNum();">+</a>
+					<div class='btn' ng-click="addShopCartNum();">+</div>
 				</div>
 				<div class='unit_price'>￥<span>{{batch.unit_price | int}}</span>.{{batch.unit_price | fraction}}</div>
 				<div class='market_price'>￥{{batch.market_price | convert}}</div>
@@ -81,9 +81,9 @@
 						<div class="popup_reduce">
 							<div class="price">{{x.price | convert}}</div>
 							<div class="regulator_right">
-								<a href="javascript:void(0);" ng-click="removeCommodity(x);">-</a>
+								<div class='btn' ng-click="removeCommodity(x);">-</div>
 								<span class="center">{{x.num | safenum}}</span>
-								<a href="javascript:void(0);" ng-click="addCommodity(x);">+</a>
+								<div class='btn' ng-click="addCommodity(x);">+</div>
 							</div>
 						</div>
 						<span class="field_title">{{x.title}}</span>

@@ -17,10 +17,31 @@ module.exports = function(app){
 			$scope.order = batch;
 			$scope.dispatcher = batch.dispatcher;
 			
-			if(!batch.payrequest || !batch.payrequest.use_balance == 1){
-				$scope.balance =0;			
-			}else{
-				$scope.balance = batch.payrequest.balance_fee;
+			(function(){
+				if(!batch.payrequest){
+					$scope.balance =0;
+					$scope.paymentText = '未支付';
+					return;
+				}
+				if(batch.payrequest.use_balance == 0){
+					$scope.balance =0;
+					$scope.paymentText = '微信支付';
+					return;
+				}
+				if(batch.payrequest.use_balance == 1 && batch.payrequest.third_party_fee==0){
+					$scope.balance = batch.payrequest.balance_fee;
+					$scope.paymentText = '余额支付';
+					return;
+				}
+				if(batch.payrequest.use_balance == 1 && batch.payrequest.third_party_fee>0){
+					$scope.balance = batch.payrequest.balance_fee;
+					$scope.paymentText = '微信支付';
+					return;
+				}
+			})()
+			
+			if(batch.status!=1){
+				$scope.balance = '0';
 			}
 		
 			$scope.pay = function(){
@@ -33,18 +54,10 @@ module.exports = function(app){
 			}
 			
 			$scope.payment = function(){
-				if(batch.status == -1){
-					alert('团购已过期');
-					return;
-				}
 				$location.path("/payment");
 			}
 			
 			$scope.goShare = function(){
-				if(batch.bulk_status<0){
-					alert('团购已过期');
-					return;
-				}
 				$rootScope.share = true;
 				$location.path("/share");
 			};

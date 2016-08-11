@@ -1,5 +1,9 @@
 @import "global";
 @import "component";
+.set_height{
+	height:100vh !important;
+	overflow:hidden !important;
+}
 #index{
 	@header-height: 1.4rem;
 	background:@color_misty_gray;
@@ -8,10 +12,6 @@
 	}
 	.hide{
 		display:none !important;
-	}
-	.set_height{
-		height:100vh !important;
-		overflow:hidden !important;
 	}
 	.board {
 		height: @header-height;
@@ -30,8 +30,8 @@
 				margin: 0.3rem 0.2rem;
 				float: left;
 				border-radius: 50%;
-				background: url("../images/user.png") no-repeat center;
-				background-size: 1rem;
+				background: url("../images/default_icon.png") no-repeat center;
+				background-size: 0.8rem;
 				img {
 					max-width: 100%;
 					height: 100%;
@@ -158,7 +158,7 @@
 							border-radius:50%;
 							overflow:hidden;
 							margin:0.2rem 0.1rem;
-							background: url(../images/user.png) center no-repeat;
+							background: url(../images/default_icon.png) center no-repeat;
 							background-size: 0.8rem;
 							img{
 								height:0.8rem;
@@ -230,7 +230,7 @@
 						vertical-align: middle;
 						float: right;
 						margin: (@height - @counter_height )/2 0.2rem;
-						span, a {
+						span, .btn {
 							float: left;
 							width: 0.5rem;
 							height: 0.5rem;
@@ -238,14 +238,11 @@
 							line-height: 0.5rem;
 							.font_large;
 						}
-						a {
+						.btn {
 							border: 1px solid @color_orange;
+							border-radius: 50%;
 						}
-						span {
-							border-top: 1px solid @color_orange;
-							border-bottom: 1px solid @color_orange;
-						}
-						a:active {
+						.btn:active {
 							background: @color_orange;
 							color: @color_white;
 						}

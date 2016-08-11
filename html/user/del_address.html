@@ -22,8 +22,9 @@
 				<input type='tel' placeholder='填写联系电话' ng-model='mob'/>
 			</li>
 			<li class='box'>
-				<div class='left' >收货地址</div>
-				<input type='text' placeholder='填写收货地址' ng-model='address'/>
+				<div class='left address'>收货地址</div>
+				<!--<input type='text' placeholder='请输入' ng-model='address'/>-->
+				<textarea ng-class="{true:'line',false:''}[isLine]" placeholder="请输入" onfocus="style='height:55px;'" onblur="this.style.height=this.scrollHeight+'px';"  ng-model='address'></textarea>
 			</li>
 		</ul>
    </div>

@@ -24,7 +24,7 @@ module.exports = function(app){
 		var shareInfo = {
 			card_title:'一家一农',
 			card_desc:'每周团购深海野生海鲜，新鲜水果，种类齐全，品质至上',
-			card_url:appconfig.apiUrl+'business/redirect?state=',
+			card_url:appconfig+'business/redirect?state=',
 			card_icon:'http://dev.yijiayinong.com/assets/images/logo.png'
 		};
 		$wxBridge.configShare(shareInfo);

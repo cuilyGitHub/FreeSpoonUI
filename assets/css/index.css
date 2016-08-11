@@ -440,15 +440,14 @@ body {
   float: right;
   width: 1.4rem;
 }
-.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right a {
-  box-sizing: border-box;
+.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right .btn {
   display: block;
   border: 1px solid #ff9934;
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 0.4rem;
+  height: 0.4rem;
   text-align: center;
   border-radius: 50%;
-  line-height: 0.5rem;
+  line-height: 0.4rem;
   vertical-align: middle;
   overflow: hidden;
   float: left;
@@ -462,9 +461,13 @@ body {
   float: left;
   overflow: hidden;
 }
-.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right a:active {
+.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right .btn:active {
   background: #ff9934;
   color: white;
+}
+.set_height {
+  height: 100vh !important;
+  overflow: hidden !important;
 }
 #index {
   background: #e5e5e5;
@@ -474,10 +477,6 @@ body {
 }
 #index .hide {
   display: none !important;
-}
-#index .set_height {
-  height: 100vh !important;
-  overflow: hidden !important;
 }
 #index .board {
   height: 1.4rem;
@@ -498,8 +497,8 @@ body {
   margin: 0.3rem 0.2rem;
   float: left;
   border-radius: 50%;
-  background: url("../images/user.png") no-repeat center;
-  background-size: 1rem;
+  background: url("../images/default_icon.png") no-repeat center;
+  background-size: 0.8rem;
 }
 #index .board .left .sculpture img {
   max-width: 100%;
@@ -634,7 +633,7 @@ body {
   border-radius: 50%;
   overflow: hidden;
   margin: 0.2rem 0.1rem;
-  background: url(../images/user.png) center no-repeat;
+  background: url(../images/default_icon.png) center no-repeat;
   background-size: 0.8rem;
 }
 #index .main ul li .buyer .left .headPortrait img {
@@ -704,7 +703,7 @@ body {
   margin: 0.125rem 0.2rem;
 }
 #index .main ul li .last .counter span,
-#index .main ul li .last .counter a {
+#index .main ul li .last .counter .btn {
   float: left;
   width: 0.5rem;
   height: 0.5rem;
@@ -713,14 +712,11 @@ body {
   font-size: 0.3rem;
   font-weight: normal;
 }
-#index .main ul li .last .counter a {
+#index .main ul li .last .counter .btn {
   border: 1px solid #ff9934;
+  border-radius: 50%;
 }
-#index .main ul li .last .counter span {
-  border-top: 1px solid #ff9934;
-  border-bottom: 1px solid #ff9934;
-}
-#index .main ul li .last .counter a:active {
+#index .main ul li .last .counter .btn:active {
   background: #ff9934;
   color: white;
 }

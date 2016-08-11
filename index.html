@@ -4,8 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<meta name="apple-mobile-web-app-capable" content="yes"/>
-	<meta name="x5-fullscreen" content="true">
-	<meta name="full-screen" content="yes">
     <title ng-bind='title'></title>
 	<style type="text/css">
 		body{
@@ -14,7 +12,9 @@
 		.load_bg{
 			width:100vw;
 			height:100vh;
-			opacity:0.3;
+			position: fixed;
+			background: rgba(0,0,0,0.26);
+			z-index: 9999;
 		}
         .load{
                 right: 0;
@@ -29,7 +29,7 @@
         }
     </style>
 	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-    <script type="text/javascript" src="assets/js/app.js"></script>
+    <script type="text/javascript" src="assets/js/app.min.js"></script>
     <script type="text/javascript">
 		angular.element(document.getElementsByTagName('head')).append(
 			angular.element('<base href="' + window.location.pathname + '" />'));
