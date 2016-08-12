@@ -80,17 +80,6 @@ body {
   margin-bottom: 0.2rem;
   background: white;
 }
-/*弹出层遮罩*/
-.matter {
-  display: none;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.26);
-  z-index: 1000;
-  top: 0;
-  bottom: 1.7rem;
-}
 /*通用header头*/
 .header {
   z-index: 100;
@@ -255,6 +244,17 @@ body {
   font-weight: bold;
   color: #ff9934;
 }
+/*弹出层遮罩*/
+.matter {
+  display: none;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  top: 0;
+  bottom: 1.7rem;
+}
 /*手机登陆弹窗*/
 .phone_matter {
   display: none;
@@ -262,7 +262,7 @@ body {
   position: fixed;
   height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.26);
+  background: rgba(0, 0, 0, 0.4);
   top: 0;
   bottom: 1.7rem;
 }

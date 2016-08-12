@@ -1,11 +1,7 @@
 module.exports = function(app){
 
-	app.controller('user_center_controller', function($scope, $location, $rootScope, $wxBridge, auth){
-
-		if(!auth){
-			$location.path("/error");
-			return;
-		}		
+	app.controller('user_center_controller', function($scope, $location, $rootScope, $wxBridge, $data, auth){
+	
 		// import data
 		$rootScope.auth = auth;
 		if(!$rootScope.auth){
@@ -14,11 +10,13 @@ module.exports = function(app){
 		}
 		
 		$rootScope.title = '个人中心';
-			
-		//import data
-		if($rootScope.auth){
+		
+		//刷新状态
+		$data.refresh($rootScope.auth.token,function(data){
+			$rootScope.auth = data;
 			$scope.data = $rootScope.auth;
-		}
+		})	
+
 		
 		//配置微信分享
 		var shareInfo = {
@@ -28,6 +26,9 @@ module.exports = function(app){
 			card_icon:'http://dev.yijiayinong.com/assets/images/logo.png'
 		};
 		$wxBridge.configShare(shareInfo);
+		
+	
+
 		
 		$scope.address = function(){;
 			if(!$rootScope.auth.user){

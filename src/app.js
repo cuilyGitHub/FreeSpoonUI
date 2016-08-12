@@ -333,7 +333,6 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 						if(data.status == 1){
 							alert('您已购买成功');
 							$location.path("/order");
-							deferred.resolve(null);
 							return;
 						}
 						$rootScope.load = false;
