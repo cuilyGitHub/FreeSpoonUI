@@ -22,15 +22,6 @@ gulp.task('help',function(){
 	console.log('gulp run --env	production	用于生产环境');
 });
 
-/*var knowOptions = {
-	string:'env',
-	default:{
-		env:process.env.NODE_ENV || 'development'
-	}
-};
-
-var options = minimist(process.argv.slice(2), knowOptions);*/
-
 function string_src(filename, string) {
   var src = require('stream').Readable({ objectMode: true })
   src._read = function () {

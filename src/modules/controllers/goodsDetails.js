@@ -1,12 +1,7 @@
 module.exports = function(app){
 
 	app.controller('GoodsDetailsController', function($scope, $data, $location, batch, $shopCart, $rootScope, $interval){
-	 
-		if(!batch){
-			$location.path("/error");
-			return;
-		}
-		
+
 		$rootScope.title = '商品详情';
 		$scope.mob = '';
 		$scope.code = '';
@@ -140,6 +135,7 @@ module.exports = function(app){
 			for(var i = 0; i< $shopCart.shopCartData.products.length; i++){
 				var commodity = $shopCart.shopCartData.products[i];
 				commodity.num = 0;
+				$scope.shopCartNum = commodity.num;
 			}
 		}
 		

@@ -1,16 +1,7 @@
 module.exports = function(app){
 
 	app.controller('OrdersController', function($scope, $route, $data, $location, $rootScope, batch){
-				
-		if(!batch){
-			$data.preData={
-				title:'参数错误',
-				desc:'参数不存在'
-			}
-			$location.path("/error");
-			return;
-		}
-		
+
 		$scope.orders = batch;
 	
 		$rootScope.title = '我的订单';
@@ -49,6 +40,10 @@ module.exports = function(app){
 		}
 		
 		$scope.openShare = function(orderId,index){	
+			if(batch[index].bulk_status<0){
+					alert('团购已过期');
+					return;
+			}
 			if(batch[index].status<0){
 				alert('订单已过期');
 				return;

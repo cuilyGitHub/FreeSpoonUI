@@ -49,57 +49,39 @@ module.exports = function(app){
 		//this recipesId from recipes.js
 		//this dishsId from dishs.js
 		
+		//true:弹出服务器错误信息
+		$rootScope.debug = false;
+		
 		this.preData = null;
-		
 		var that = this;
-				
-		/*this.requestConfirm = function(cb){
-			var state = that.getStateFromUrl();
-			if(!state){
-				cb(null);
+
+		//get token
+		this.authRes = function(cb){
+			if($rootScope.auth){
+				cb($rootScope.auth);
 				return;
-			}
-			params = state.split(',');
-			if(params.length != 2){
-				cb(null);
-				return;
-			}
-			var batchId = params[0];
-			var distId = params[1];
-			if(!batchId || !distId){
-				cb(null);
-				return;
-			}
-			var code = that.getWXCodeFromUrl();
-			if(!code){
-				cb(null);
-				return;
-			}
-			$http.post(publicValue.domain+"confirm", {
-				batchId: batchId,
-				distId: distId,
-				code: code
-			})
-			.success(function(data){
-				if(!that.basicVerify(data)){
-					cb(null);
+			}else{
+				var code = $location.search().code;
+				if(!code){
+					alert('code不存在');
 					return;
-				}
-				if(data.res.data.offered.date == 0){
+				};
+				$http.post(appconfig+'business/weixin',{code:code})
+				.then(function(resp){
+					if(!resp){
+						cb(null);
+						return;
+					}
+					cb(resp.data);
+				},function(resp){
+					if($rootScope.debug){
+						alert(JSON.stringify(resp));
+						return;
+					}
 					cb(null);
-					return;
-				}
-				if(!data.res || !data.res.data){
-					cb(null);
-					return;
-				}
-				cb(data.res.data);
-			})
-			.error(function(){
-				cb(null);
-			});
-		};*/
-		
+				});
+			}
+		}
 		
 		//绑定手机
 		this.bindMob = function(mob, code, cb){
@@ -113,47 +95,24 @@ module.exports = function(app){
 				},
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
-			.success(function(data){
-				if(!data){
+			.then(function(resp){
+				if(!resp){
 					cb(null);
 					return;
 				}
-				$rootScope.auth = data;
-				defer.resolve(data);
-				cb(data);
-			})
-			.error(function(data){
-				defer.reject(data);
+				$rootScope.auth = resp.data;
+				defer.resolve(resp.data);
+				cb(resp.data);
+			},function(resp){
+				if($rootScope.debug){
+					alert(JSON.stringify(resp));
+					return;
+				}
+				defer.reject(resp);
 				cb(null);
 			});
 			return defer.promise
 		};
-		
-		//get token
-		this.authRes = function(cb){
-			if($rootScope.auth){
-				cb($rootScope.auth);
-				return;
-			}else{
-				var code = $location.search().code;
-				if(!code){
-					alert('code不存在');
-					return;
-				}
-				$http.post(appconfig+'business/weixin',{code:code})
-				.success(function(data){
-				if(!data){
-					cb(null);
-					return;
-				}
-					cb(data)
-				})
-				.error(function(){
-					cb(null);
-				});
-			}
-			
-		}
 		
 		//刷新接口
 		this.refresh = function(token,cb){
@@ -165,19 +124,20 @@ module.exports = function(app){
 				},
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
-			.success(function(data){
-				if(!data){
+			.then(function(resp){
+				if(!resp){
 					cb(null);
 					return;
 				}
-				cb(data);
-			})
-			.error(function(){
+				cb(resp.data);
+			},function(resp){
+				if($rootScope.debug){
+					alert(JSON.stringify(resp));
+					return;
+				}
 				cb(null);
 			});
-
 		}
-		
 		
 		//团购列表
 		this.bulksRes = function(cb){
@@ -186,33 +146,39 @@ module.exports = function(app){
 				url:appconfig+'business/bulks/',
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
-			.success(function(data){
-				if(!data){
+			.then(function(resp){
+				if(!resp){
 					cb(null);
 					return;
 				}
-				cb(data);
-			})
-			.error(function(){
+				cb(resp.data);
+			},function(resp){
+				if($rootScope.debug){
+					alert(JSON.stringify(resp));
+					return;
+				}
 				cb(null);
 			});
 		}
 		
-		//search list
+		//搜索列表
 		this.searchRes = function(search,cb){
 		$http({
 				method:'get',
 				url:appconfig+'business/bulks/?'+search,
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
-			.success(function(data){
-				if(!data){
+			.then(function(resp){
+				if(!resp){
 					cb(null);
 					return;
 				}
-				cb(data);
-			})
-			.error(function(){
+				cb(resp.data);
+			},function(){
+				if($rootScope.debug){
+					alert(JSON.stringify(resp));
+					return;
+				}
 				cb(null);
 			});
 		}
@@ -224,14 +190,17 @@ module.exports = function(app){
 				url:appconfig+'business/bulks/'+batch+'/',
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
-			.success(function(data){
-				if(!data){
+			.then(function(resp){
+				if(!resp){
 					cb(null);
 					return;
 				}
-				cb(data);
-			})
-			.error(function(){
+				cb(resp.data);
+			},function(resp){
+				if($rootScope.debug){
+					alert(JSON.stringify(resp));
+					return;
+				}
 				cb(null);
 			});
 		}
@@ -243,14 +212,17 @@ module.exports = function(app){
 				url:appconfig+'business/products/'+productsId+'/',
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
-			.success(function(data){
-				if(!data){
+			.then(function(resp){
+				if(!resp){
 					cb(null);
 					return;
 				}
-				cb(data);
-			})
-			.error(function(){
+				cb(resp.data);
+			},function(resp){
+				if($rootScope.debug){
+					alert(JSON.stringify(resp));
+					return;
+				}
 				cb(null);
 			});
 		}
@@ -265,33 +237,39 @@ module.exports = function(app){
 				},
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
-			.success(function(data){
-				if(!data){
+			.then(function(resp){
+				if(!resp){
 					cb(null);
 					return;
 				}
-				cb(data);
-			})
-			.error(function(){
+				cb(resp.data);
+			},function(resp){
+				if($rootScope.debug){
+					alert(JSON.stringify(resp));
+					return;
+				}
 				cb(null);
 			});
 		}
 		
-		//订单列表页
+		//订单列表
 		this.requestOrders = function(cb){
 			$http({
 				method:'get',
 				url:appconfig+'business/orders/',
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
-			.success(function(data){
-				if(!data){
+			.then(function(resp){
+				if(!resp){
 					cb(null);
 					return;
 				}
-				cb(data);
-			})
-			.error(function(){
+				cb(resp.data);
+			},function(resp){
+				if($rootScope.debug){
+					alert(JSON.stringify(resp));
+					return;
+				}
 				cb(null);
 			});
 		};	
@@ -304,14 +282,17 @@ module.exports = function(app){
 				data:requestData,
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
-			.success(function(data){
-				if(!data){
+			.then(function(resp){
+				if(!resp){
 					cb(null);
 					return;
 				}
-				cb(data);
-			})
-			.error(function(){
+				cb(resp.data);
+			},function(resp){
+				if($rootScope.debug){
+					alert(JSON.stringify(resp));
+					return;
+				}
 				cb(null);
 			});
 		};
@@ -326,29 +307,39 @@ module.exports = function(app){
 				},
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
-			.success(function(data){
-				if(!data){
+			.then(function(resp){
+				if(!resp){
 					cb(null);
 					return;
 				}
-				cb(data);
+				cb(resp.data);
+			},function(resp){
+				if($rootScope.debug){
+					alert(JSON.stringify(resp));
+					return;
+				}
+				cb(null);
 			});
 		};	
 		
-		//get order data
+		//订单详情
 		this.orderRequest = function(orderId, cb){
 			$http({
 				method:'get',
 				url:appconfig+'business/orders/'+orderId+'/',
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
-			.success(function(data){
-				if(!data){
+			.then(function(resp){
+				if(!resp){
 					cb(null);
 					return;
 				}
-				cb(data);
-			}).error(function(){
+				cb(resp.data);
+			},function(resp){
+				if($rootScope.debug){
+					alert(JSON.stringify(resp));
+					return;
+				}
 				wx.closeWindow();
 			});
 		};	
@@ -360,12 +351,18 @@ module.exports = function(app){
 				url:appconfig+'business/orders/'+orderId+'/',
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
-			.success(function(data){
-				if(!data){
+			.then(function(resp){
+				if(!resp){
 					cb(null);
 					return;
 				}
-				cb(data);
+				cb(resp.data);
+			},function(resp){
+				if($rootScope.debug){
+					alert(JSON.stringify(resp));
+					return;
+				}
+				cd(null);
 			});
 		};	
 		
@@ -376,30 +373,66 @@ module.exports = function(app){
 				url:appconfig+'business/sms/'+mob+'/',
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
-			.success(function(data){
-				if(!data){
+			.then(function(resp){
+				if(!resp){
 					cb(null);
 					return;
 				}
-				cb(data);
+				cb(resp.data);
+			},function(resp){
+				if($rootScope.debug){
+					alert(JSON.stringify(resp));
+					return;
+				}
+				cd(null);
 			});
 		};	
 		
+		//get user center data
 		this.userRequest = function(code,cb){
 			$http({
 				method:'get',
 				url:appconfig+'auth/user/',
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
-			.success(function(data){
-				if(!data){
+			.then(function(resp){
+				if(!resp){
 					cb(null);
 					return;
 				}
-				cb(data);
+				cb(resp.data);
+			},function(resp){
+				if($rootScope.debug){
+					alert(JSON.stringify(resp));
+					return;
+				}
+				cd(null);
 			});
 		};	
 		
+		//地址列表
+		this.addressRequest = function(cb){
+			$http({
+				method:'get',
+				url:appconfig+'business/shippingaddresses/',
+				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
+			})
+			.then(function(resp){
+				if(!resp){
+					cb(null);
+					return;
+				}
+				cb(resp.data);
+			},function(resp){
+				if($rootScope.debug){
+					alert(JSON.stringify(resp));
+					return;
+				}
+				cd(null);
+			});
+		};
+		
+		//添加地址
 		this.add_address = function(address_data, cb){
 			$http({
 				method:'post',
@@ -407,15 +440,18 @@ module.exports = function(app){
 				data:address_data,
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
-			.success(function(data){
-				if(!data){
+			.then(function(resp){
+				if(!resp){
 					cb(null);
 					return;
 				}
-				cb(data);
-			})
-			.error(function(){
-				cb(null);
+				cb(resp.data);
+			},function(resp){
+				if($rootScope.debug){
+					alert(JSON.stringify(resp));
+					return;
+				}
+				cd(null);
 			});
 		};	
 		
@@ -426,12 +462,18 @@ module.exports = function(app){
 				url:appconfig+'business/shippingaddresses/'+address_id+'/',
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
-			.success(function(data){
-				if(!data){
+			.then(function(resp){
+				if(!resp){
 					cb(null);
 					return;
 				}
-				cb(data);
+				cb(resp.data);
+			},function(resp){
+				if($rootScope.debug){
+					alert(JSON.stringify(resp));
+					return;
+				}
+				cd(null);
 			});
 		};	
 		
@@ -442,15 +484,22 @@ module.exports = function(app){
 				url:appconfig+'business/shippingaddresses/'+address_id+'/',
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
-			.success(function(data){
-				if(!data){
+			.then(function(resp){
+				if(!resp){
 					cb(null);
 					return;
 				}
-				cb(data);
+				cb(resp.data);
+			},function(resp){
+				if($rootScope.debug){
+					alert(JSON.stringify(resp));
+					return;
+				}
+				cd(null);
 			});
 		};	
 		
+		//修改地址
 		this.put_address = function(address_id, address_info, cb){
 			$http({
 				method:'put',
@@ -458,12 +507,18 @@ module.exports = function(app){
 				data:address_info,
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
-			.success(function(data){
-				if(!data){
+			.then(function(resp){
+				if(!resp){
 					cb(null);
 					return;
 				}
-				cb(data);
+				cb(resp.data);
+			},function(resp){
+				if($rootScope.debug){
+					alert(JSON.stringify(resp));
+					return;
+				}
+				cd(null);
 			});
 		};	
 		

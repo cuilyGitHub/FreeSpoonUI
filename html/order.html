@@ -65,14 +65,14 @@
 					</tr>
 					<tr>
 						<td>自提点地址:</td>
-						<td>{{dispatcher.address}}</td>
+						<td>{{storage.address}}</td>
 					</tr>
 					<tr>
 						<td class="message">营业时间:</td>
-						<td>预计{{dispatcher.opening_time}}时到{{dispatcher.closing_time}}时(以短信通知为准)</td>
+						<td>预计{{storage.opening_time}}时到{{storage.closing_time}}时(以短信通知为准)</td>
 					</tr>
 				</table>
-				<a class='phone' ng-href='tel://{{dispatcher.mob}}'></a>
+				<a class='phone' ng-href='tel://{{storage.mob}}'></a>
 			</div>
 		</div>
 		<div class='card'>
@@ -104,7 +104,7 @@
 		<div class='footer'>
 			<!-- <span class='btn'>确认收货</span> -->
 			<!-- <span class='btn'>查看物流</span> -->
-			<span class='btn' ng-click='del()' ng-if='order.status==-1 || order.status==4' >删除订单</span>
+			<span class='btn' ng-click='del()' ng-if='order.status==-1'>删除订单</span>
 			<span class='btn' ng-click='payment()' ng-if='order.status==0'>去支付</span>
 			<span class='btn' ng-click='orderConfirm()' ng-if='order.status==0 || order.status==1'>取消订单</span>
 			<span class='btn' ng-click='goShare()' ng-if='order.status>=0'>接龙</span>

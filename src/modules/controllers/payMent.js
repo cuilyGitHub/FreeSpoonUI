@@ -1,13 +1,7 @@
 module.exports = function(app){
 	
-	app.controller('PaymentController',['payRequest', '$rootScope', '$scope', '$data', '$location', 'batch', function(payRequest, $rootScope, $scope, $data, $location, batch){
-		
-		//if($data.ordersData ){
-			//var batch = $data.ordersData;
-		//}else{
-			//var batch = batch;
-		//}
-		
+	app.controller('PaymentController',function($rootScope, $scope, $data, $location, batch){
+	
 	$data.refresh($rootScope.auth.token,function(data){
 		$rootScope.auth = data;
 		$scope.balance = $rootScope.auth.user.balance;
@@ -85,6 +79,6 @@ module.exports = function(app){
 			}
 		}
 		
-	}]);
+	});
 
 }

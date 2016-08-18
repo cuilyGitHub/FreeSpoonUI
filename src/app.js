@@ -12,7 +12,6 @@ var utils = require('./modules/utils');
 var config = require('./modules/config');
 var registerServices = require('./modules/services');
 var registerFilters = require('./modules/filters');
-var registerFactorys = require('./modules/factorys');
 
 // controllers modules
 var registerCheckout = require('./modules/controllers/checkout');
@@ -25,7 +24,6 @@ var registerOrders = require('./modules/controllers/orders');
 var registerPayMent = require('./modules/controllers/payMent');
 var registerRecord = require('./modules/controllers/record');
 var registerShare = require('./modules/controllers/share');
-var registerAuth = require('./modules/controllers/auth');
 
 //user controllers modules
 var register_user_center = require('./modules/controllers/user/user_center');
@@ -44,7 +42,6 @@ var app = angular.module('app', ['ngRoute','ngResource']);
 config(app)
 registerServices(app);
 registerFilters(app);
-registerFactorys(app);
 
 //register controllers
 registerCheckout(app);
@@ -57,7 +54,6 @@ registerOrders(app);
 registerPayMent(app);
 registerRecord(app);
 registerShare(app);
-registerAuth(app);
 
 //register user controllers
 register_user_center(app);
@@ -79,24 +75,7 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 	$locationProvider.html5Mode(true);
 	$resourceProvider.defaults.stripTrailingSlashes = false;
 	$routeProvider
-		//get token
 		.when('/', {
-			templateUrl: 'html/auth.html',
-			controller: 'AuthController',
-			resolve: {
-				auth: ['$q', '$location', '$rootScope','authRes', function($q, $location,$rootScope,authRes){
-						var code = $location.search().code;
-						var deferred = $q.defer();
-						authRes.save({},{code:code},function(data,headers){
-							deferred.resolve(data);
-						},function(data,headers){
-							deferred.reject(data);
-						});
-						return deferred.promise;
-				}]
-			}
-		})
-		.when('/freeIndex', {
 			templateUrl: 'html/freeIndex.html',
 			controller: 'FreeIndexController',
 			resolve: {
@@ -115,13 +94,37 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 							$rootScope.auth = data;
 							if($rootScope.search){
 								$data.searchRes($rootScope.search,function(data){
+									if(!data){
+										$data.preData={
+											title:'参数错误',
+											desc:'参数不存在'
+										}
+										$location.path("/error");
+										$rootScope.load = false;
+										deferred.resolve(null);
+										return;
+									}
 									$rootScope.load = false;
 									deferred.resolve(data);
-								})
+								},function(data,headers){
+									deferred.reject(data);
+								});
 							}else{
 								$data.bulksRes(function(data){
+									if(!data){
+										$data.preData={
+											title:'参数错误',
+											desc:'参数不存在'
+										}
+										$location.path("/error");
+										$rootScope.load = false;
+										deferred.resolve(null);
+										return;
+									}
 									$rootScope.load = false;
 									deferred.resolve(data);
+								},function(data,headers){
+									deferred.reject(data);
 								})
 							}
 						});
@@ -151,14 +154,26 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 								$rootScope.id = $location.search().state;
 							}
 							$data.bulkRes($rootScope.id,function(data){
-								if($shopCart.shopCartData &&$shopCart.shopCartData.id === data.id){
+								if(!data){
+									$data.preData={
+										title:'参数错误',
+										desc:'参数不存在'
+									}
+									$location.path("/error");
+									$rootScope.load = false;
+									deferred.resolve(null);
+									return;
+								}								
+								if($shopCart.shopCartData && $shopCart.shopCartData.id === data.id){
 									$rootScope.load = false;
 									deferred.resolve($shopCart.shopCartData);
 									return;
 								}
 								$rootScope.load = false;
 								deferred.resolve(data);
-							})
+							},function(data,headers){
+								deferred.reject(data);
+							});
 					});
 					return deferred.promise;
 				}]
@@ -172,6 +187,16 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 					$rootScope.load = true;
 					var deferred = $q.defer();
 					$data.products($rootScope.productsId,function(data){
+						if(!data){
+							$data.preData={
+								title:'参数错误',
+								desc:'参数不存在'
+							}
+							$location.path("/error");
+							$rootScope.load = false;
+							deferred.resolve(null);
+							return;
+						}
 						$rootScope.load = false;
 						deferred.resolve(data);
 					},function(data,headers){
@@ -194,9 +219,21 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 						return deferred.promise;	
 					}else{
 						$data.bulkRes($rootScope.id,function(data){
+							if(!data){
+								$data.preData={
+									title:'参数错误',
+									desc:'参数不存在'
+								}
+								$location.path("/error");
+								$rootScope.load = false;
+								deferred.resolve(null);
+								return;
+							}
 							$rootScope.load = false;
 							deferred.resolve(data);
-						})
+						},function(data){
+							deferred.reject(data);
+						});
 						return deferred.promise;
 					}
 				}]
@@ -240,6 +277,8 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 							}
 							$rootScope.load = false;
 							deferred.resolve(data);
+						},function(data){
+							deferred.reject(data);
 						});	
 					});
 					return deferred.promise;
@@ -266,6 +305,8 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 						}
 						$rootScope.load = false;
 						deferred.resolve(data);
+					},function(data){
+						deferred.reject(data);
 					});	
 					return deferred.promise;
 				}]
@@ -350,6 +391,16 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 					$rootScope.load = true;
 					var deferred = $q.defer();
 					$data.historys($rootScope.productsId,function(data){
+						if(!data){
+							$data.preData={
+								title:'参数错误',
+								desc:'参数不存在'
+							}
+							$location.path("/error");
+							$rootScope.load = false;
+							deferred.resolve(null);
+							return;
+						}
 						$rootScope.load = false;
 						deferred.resolve(data);
 					},function(data,headers){
@@ -364,7 +415,7 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 			templateUrl: 'html/user/user_center.html',
 			controller: 'user_center_controller',
 			resolve: {
-				auth: ['$q', '$location', '$rootScope','authRes', function($q, $location,$rootScope,authRes){
+				auth: ['$q', '$location', '$rootScope','$data', function($q, $location,$rootScope,$data){
 						$rootScope.load = true;
 						var code = $location.search().code;
 						var deferred = $q.defer();
@@ -373,9 +424,19 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 							deferred.resolve($rootScope.auth);
 							return deferred.promise;
 						}else{
-							authRes.save({},{code:code},function(data){
+							$data.authRes(function(data){
+								if(!data){
+									$data.preData={
+										title:'参数错误',
+										desc:'参数不存在'
+									}
+									$location.path("/error");
+									$rootScope.load = false;
+									deferred.resolve(null);
+									return;
+								}
 								$rootScope.load = false;
-								deferred.resolve(data);
+								deferred.resolve(data);	
 							},function(data,headers){
 								deferred.reject(data);
 							});
@@ -389,15 +450,14 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 			templateUrl: 'html/user/update_address.html',
 			controller: 'update_address_controller',
 			resolve: {
-				data: ['$q', 'address', '$rootScope', function($q, address, $rootScope){
+				data: ['$q', '$data', '$rootScope', function($q, $data, $rootScope){
 					$rootScope.load = true;
 					var deferred = $q.defer();
-					address.charge({},function(data){
+					$data.addressRequest(function(data){
 						$rootScope.load = false;
 						deferred.resolve(data);
-					},function(data){
-						$rootScope.load = false;
-						deferred.resolve(data);
+					},function(data,headers){
+						deferred.reject(data);
 					});
 					return deferred.promise;
 				}]

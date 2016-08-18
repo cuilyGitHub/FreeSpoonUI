@@ -4,11 +4,6 @@ module.exports = function(app){
 	
 	app.controller('IndexController', function($scope, $location, $data, $wxBridge, batch, $rootScope, $interval, $shopCart){
 		
-		if(!batch){
-			$location.path("/error");
-			return;
-		}
-		
 		//配置微信分享
 		$wxBridge.configShare(batch);
 		

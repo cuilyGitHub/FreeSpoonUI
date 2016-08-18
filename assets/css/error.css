@@ -439,6 +439,7 @@ body {
   display: inline-block;
   float: right;
   width: 1.4rem;
+  line-height: 100%;
 }
 .popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right .btn {
   display: block;

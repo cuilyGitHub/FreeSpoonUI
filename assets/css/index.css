@@ -439,6 +439,7 @@ body {
   display: inline-block;
   float: right;
   width: 1.4rem;
+  line-height: 100%;
 }
 .popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right .btn {
   display: block;
@@ -698,7 +699,7 @@ body {
 #index .main ul li .last .counter {
   width: 1.6rem;
   height: 0.55rem;
-  line-height: 0.55rem;
+  line-height: 100%;
   float: right;
   margin: 0.125rem 0.2rem;
 }

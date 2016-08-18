@@ -1,11 +1,7 @@
 module.exports = function(app){
 
 	app.controller('FreeIndexController', function($route,$scope, $data, $location, batch, $rootScope,$wxBridge){
-			
-		if(!batch){
-			$location.path("/error");
-			return;
-		}
+	
 		$scope.searchBox = false;
 		$scope.box = true;
 		$scope.content = false;
@@ -24,6 +20,11 @@ module.exports = function(app){
 		// import data
 		$scope.batch = batch;
 		
+		for(var i=0;i<batch.length;i++){
+			var num = batch[i].covers.length;
+			batch[i].covers.match = parseInt(Math.random()*(num),10);
+		}
+
 		if($rootScope.search_val){
 			$scope.val = $rootScope.search_val;
 		}else{
@@ -47,7 +48,7 @@ module.exports = function(app){
 		
 		$scope.cancel = function(){
 			$rootScope.search = null;
-			$location.path("/freeIndex");
+			$location.path("/");
 			$route.reload();
 		}
 		
@@ -64,7 +65,7 @@ module.exports = function(app){
 			var keycode = window.event?e.keyCode:e.which;
 			if(keycode == 13){
 				$rootScope.search = 'search=' + $scope.val;
-				$location.path('/freeIndex');
+				$location.path('/');
 				$route.reload();
 			}
 		}

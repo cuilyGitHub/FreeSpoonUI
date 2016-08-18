@@ -1,7 +1,7 @@
 module.exports = function(app){
 
 	app.controller('ErrorController', function($scope,$data){
-		//TODO
+		
 		if(!$data.preData){
 			$scope.title = '错误',
 			$scope.desc = '未知错误'

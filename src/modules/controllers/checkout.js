@@ -2,30 +2,19 @@ module.exports = function(app){
 
 	app.controller('CheckController', function($scope, $location, $data, $rootScope, $wxBridge, batch){
 
-		if(!batch){
-			$data.preData={
-				title:'参数错误',
-				desc:'参数不存在'
-			}
-			$location.path("/error");
-			return;
-		}
-		
 		//配置微信分享
 		$wxBridge.configShare(batch);
-		
-		
 
 		$rootScope.title = '订单确认';
 	
 		$scope.commodities = batch.products;
 		$scope.totalPrice = batch.totalPrice;
-		$scope.dispatchers = batch.dispatchers;
+		$scope.storages = batch.storages;
 		$scope.mob = batch.recent_obtain_mob;
 		$scope.name = batch.recent_obtain_name;
 		
 		//选择地址
-		$scope.selectedAddress = batch.dispatchers[0];
+		$scope.selectedAddress = batch.storages[0];
 		$scope.selectAddress = function(p){
 			$scope.selectedAddress = p;
 		}
@@ -71,7 +60,7 @@ module.exports = function(app){
 				obtain_name: $scope.name,
 				obtain_mob: $scope.mob,
 				bulk_id: batch.id,
-				dispatcher_id: $scope.selectedAddress.id,
+				storage_id: $scope.selectedAddress.id,
 				goods: puchared
 			};
 

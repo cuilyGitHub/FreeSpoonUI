@@ -15,7 +15,7 @@ module.exports = function(app){
 			
 			$scope.paymentText = $rootScope.payment;
 			$scope.order = batch;
-			$scope.storage = batch.storage;
+			$scope.dispatcher = batch.dispatcher;
 			
 			(function(){
 				if(!batch.payrequest){
@@ -40,7 +40,7 @@ module.exports = function(app){
 				}
 			})()
 			
-			if(batch.status == 0){
+			if(batch.status!=1){
 				$scope.balance = '0';
 			}
 		
@@ -58,10 +58,6 @@ module.exports = function(app){
 			}
 			
 			$scope.goShare = function(){
-				if(batch.bulk_status<0){
-					alert('团购已过期');
-					return;
-				}
 				$rootScope.share = true;
 				$location.path("/share");
 			};
