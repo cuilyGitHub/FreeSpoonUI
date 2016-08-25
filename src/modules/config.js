@@ -1,0 +1,1 @@
+module.exports = function(app){appconfig = "http://api.yijiayinong.com/v1/"}
