@@ -537,7 +537,7 @@ function createXMLHTTPRequest(){
 	 
 	 if(xhr){
 		xhr.open('post',appconfig+'business/wxConfig',true)
-		xhr.setRequestHeader("Content-Type","application/json; charset=utf-8;");
+		xhr.setRequestHeader("Content-Type","application/json;charset=utf-8;");
 		xhr.onreadystatechange = function(){
 			var XMLHttpReq = xhr;
 			if(XMLHttpReq.readyState == 4){

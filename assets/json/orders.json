@@ -1,7 +1,0 @@
-	[
-	{"id":1,"leader":"宋慧琼","status":0,"pics":["assets/images/1.jpg","assets/images/2.jpg","assets/images/3.jpg"],"totalFee":2000,"total":5,"avatar":"/assets/images/headerPri.jpg"},
-
-	{"id":2,"leader":"宋慧琼","status":1,"pics":["assets/images/4.jpg","assets/images/5.jpg","assets/images/6.jpg"],"totalFee":9000,"total":2,"avatar":"assets/images/headerPri.jpg"},
-         
-    {"id":3,"leader":"宋慧琼","status":2,"pics":["assets/images/1.jpg","assets/images/2.jpg","assets/images/3.jpg"], "totalFee":8888,"total":6,"avatar":"assets/images/headerPri.jpg"}
-	]
