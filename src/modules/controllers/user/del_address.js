@@ -10,6 +10,9 @@ module.exports = function(app){
 			$location.path("/error");
 			return;
 		}
+		if(!$rootScope.fromCheckout){
+			$scope.isShow = true;
+		}
 		
 		$rootScope.title = '修改地址';
 		

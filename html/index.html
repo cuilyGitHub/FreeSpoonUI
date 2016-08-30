@@ -36,12 +36,6 @@
                         </div>
                         <p ng-click='goodsDetails(this.$index)'>{{x.desc}}</p>
                     </div>
-					<div class='buyer' ng-click='jump(this.$index)'>
-						<div class='right'>{{x.participant_count}}</div>
-						<div class='left'>
-							<div class='headPortrait' ng-repeat='buyer in x.participant_avatars track by $index'><img ng-src='{{buyer}}' alt='' /></div>
-						</div>
-					</div>
                     <div class="last ">
                         <div class="counter">
                             <div class="btn" ng-click="removeCommodity(x);">-</div>
@@ -58,6 +52,12 @@
 							<div class='market_price'>{{x.market_price | convert}}</div>
                         </div>
                     </div>
+					<div class='buyer' ng-click='jump(this.$index)'>
+						<div class='right'>{{x.participant_count}}</div>
+						<div class='left'>
+							<div class='headPortrait' ng-repeat='buyer in x.participant_avatars track by $index'><img ng-src='{{buyer}}' alt='' /></div>
+						</div>
+					</div>
                  </div>
             </li>         
         </ul>

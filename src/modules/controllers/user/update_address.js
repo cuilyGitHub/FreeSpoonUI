@@ -18,5 +18,13 @@ module.exports = function(app){
 			$data.address_id = address_id;
 			$location.path("/del_address");
 		}
+		
+		$scope.jumpCheckout = function(id){
+			if(!$rootScope.fromCheckout){
+				return;
+			}
+			$rootScope.userAddressInfo = data[id];
+			$location.path("/checkout").replace();
+		}
 	});
 }

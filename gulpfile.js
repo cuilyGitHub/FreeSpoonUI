@@ -32,8 +32,6 @@ function string_src(filename, string) {
 }
 
 gulp.task('constants',function(){
-	//var myConfig = require('./config.json');
-	//var envConfig = myConfig[options.env];
 	var envConfig = process.env.SERVICE_API_URL;
 	var conConfig = 'module.exports = function(app){appconfig = ' + JSON.stringify(envConfig)+'}';
 	return string_src("config.js", conConfig)

@@ -7,16 +7,12 @@
     <title></title>	
 </head>
 <body>
-	<!--<div class="header">
-			<span class="ico back" ng-click='back()'></span>
-			<div class="text">收货地址</div>
-	</div>-->
    <div class='content'>
 		<div class='no_address' ng-if='data.length == 0'>暂无任何收货地址</div>
 		<ul ng-if='data'>
 			<li class='box' ng-repeat='x in data'>
 				<div class='right' ng-click='revise_address(x.id)'></div>
-				<div class='left'>
+				<div class='left' ng-click='jumpCheckout($index)'>
 					<div class='top'>
 						<span>{{x.name}}</span>
 						<span class='text'>{{x.mob}}</span>

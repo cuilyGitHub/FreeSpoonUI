@@ -29,27 +29,27 @@
         </div>
 		<div class='card'>
 			<div class="title">取货信息</div>
-			<!-- <div class="delivery_list">
+			<div class="delivery_list" ng-if='order.receive_mode == 2'>
 				<table>
 					<tr>
 						<td class="message">收货人:</td>
-						<td>莉莉</td>
+						<td>{{order.receive_name}}</td>
 					</tr>
 					<tr class='two'>
 						<td class="message bottom">手机号:</td>
-						<td class='bottom'>15209633819</td>
+						<td class='bottom'>{{order.receive_mob}}</td>
 					</tr>
 					<tr>
 						<td class="message top">配送方式:</td>
 						<td class='top'>送货上门</td>
 					</tr>
 					<tr>
-						<td class="message">取货地址:</td>
-						<td>海定区实验小学东门</td>
+						<td class="message">送货地址:</td>
+						<td>{{order.receive_address}}</td>
 					</tr>
 				</table>
-			</div> -->
-			<div class="delivery_list">
+			</div>
+			<div class="delivery_list" ng-if='order.receive_mode == 1'>
 				<table>
 					<tr>
 						<td class="message ">收货人:</td>

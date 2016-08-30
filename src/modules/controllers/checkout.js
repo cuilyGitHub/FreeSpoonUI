@@ -12,6 +12,52 @@ module.exports = function(app){
 		$scope.storages = batch.storages;
 		$scope.mob = batch.recent_obtain_mob;
 		$scope.name = batch.recent_obtain_name;
+		$scope.receive_mode = batch.receive_mode;
+		
+		//处理送货上门返回来的数据
+		if(!$rootScope.userAddressInfo){
+			$scope.userAddress = '请选择地址';
+		}else{
+			$scope.receive = 2;
+			$scope.isReadonly = true;
+			$scope.mob = $rootScope.userAddressInfo.mob;
+			$scope.name = $rootScope.userAddressInfo.name;
+			$scope.userAddress = $rootScope.userAddressInfo.address;
+		}
+		//控制tab选项卡
+		function since(){
+			$scope.isWrite = true;
+			$scope.isReadonly = false;
+			$scope.sinceTab = true;
+			$scope.dispatchingTab = false;
+			$scope.isSince = true;
+			$scope.isDispatching = false;
+		}
+		function dispatching(){
+			$scope.isWrite = false;
+			$scope.isReadonly = true;
+			$scope.sinceTab = false;
+			$scope.dispatchingTab = true;
+			$scope.isSince = false;
+			$scope.isDispatching = true;
+		}
+		
+		(function(){
+			if(batch.receive_mode == 1){
+				since();
+				return
+			}
+			if(batch.receive_mode == 2){
+				dispatching();
+				return;
+			}
+			if(batch.receive_mode == 3&&!$rootScope.userAddressInfo){
+				since();
+			}else{
+				dispatching();
+			}
+		})();
+		
 		
 		//选择地址
 		$scope.selectedAddress = batch.storages[0];
@@ -19,6 +65,20 @@ module.exports = function(app){
 			$scope.selectedAddress = p;
 		}
 		
+		//选择配送方式
+		$scope.switch = function(code){
+			$scope.receive = code;
+			if($scope.receive == 1){
+				since();
+			}else{
+				dispatching();
+			}
+		}
+		
+		$scope.jumpAddress = function(){
+			$rootScope.fromCheckout = true;
+			$location.path('/update_address');
+		}
 		
 		$scope.addInfo=function(){
 			$scope.isTrue = true;
@@ -41,11 +101,14 @@ module.exports = function(app){
 				alert("电话不存在");
 				return;
 			}
-			if(!$scope.selectedAddress){
+			if($scope.receive_mode == 1&&!$scope.selectedAddress){
 				alert("请选择取货地址");
 				return;
 			}
-			
+			if($scope.receive == 2&&!$rootScope.userAddressInfo){
+				alert("请选择收货地址");
+				return;
+			}
 			var puchared = [];
 			for(var i = 0; i < batch.products.length; i++){
 				var commodity = batch.products[i]; 
@@ -56,22 +119,58 @@ module.exports = function(app){
 					});
 				}
 			}
-			var requestData={
-				obtain_name: $scope.name,
-				obtain_mob: $scope.mob,
-				bulk_id: batch.id,
-				storage_id: $scope.selectedAddress.id,
-				goods: puchared
-			};
-
+			//处理用户选择的是自提还是送货
+			if($scope.receive_mode!=3){
+				if($scope.receive_mode == 1){
+					var requestData={
+						receive_mode:$scope.receive_mode,
+						obtain_name: $scope.name,
+						obtain_mob: $scope.mob,
+						bulk_id: batch.id,
+						storage_id: $scope.selectedAddress.id,
+						goods: puchared
+					};
+				}else{
+					var requestData={
+						receive_mode:$scope.receive_mode,
+						obtain_name: $scope.name,
+						obtain_mob: $scope.mob,
+						bulk_id: batch.id,
+						shippingaddress_id: $rootScope.userAddressInfo.id,
+						goods: puchared
+					};
+				}
+			}else{
+				if(!$scope.receive){
+					$scope.receive = 1;
+				}
+				if($scope.receive == 1){
+					var requestData={
+						receive_mode:$scope.receive,
+						obtain_name: $scope.name,
+						obtain_mob: $scope.mob,
+						bulk_id: batch.id,
+						storage_id: $scope.selectedAddress.id,
+						goods: puchared
+					};
+				}else{
+					var requestData={
+						receive_mode:$scope.receive,
+						obtain_name: $scope.name,
+						obtain_mob: $scope.mob,
+						bulk_id: batch.id,
+						shippingaddress_id: $rootScope.userAddressInfo.id,
+						goods: puchared
+					};
+				}
+			}
+			
 			$data.requestUnifiedOrder(requestData, function(data){
 				$data.ordersData = data;
 				$rootScope.orderId = data.id;
 				$location.path('/payment').replace();
 			});
 		}
-		
-		
 		
 		//配送方式选项卡
 		var box=document.getElementById('box');

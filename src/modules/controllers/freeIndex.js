@@ -40,7 +40,7 @@ module.exports = function(app){
 		$scope.jump = function(data){
 			
 			$rootScope.id = data.id;
-			if(data.status<0){
+			if(data.status!=0){
 				return;
 			}
 			$location.path("/index") ;

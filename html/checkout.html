@@ -9,33 +9,42 @@
 </head>
 <body>
     <div id="checkout" class='page'>
-    <!--<div class="header">
-		<span class='ico back' ng-click='back()' ></span>
-		<div class="text">订单确认</div>
-    </div>-->
     <div class="content">
 		<div class='card'>
 			<div class="user">
 				<!--<div class="right" ng-click='addInfo()'></div>-->
-	 			<div class='write'>
+	 			<div class='write' ng-if='receive_mode == 1 || isWrite'>
 					<span>姓名</span>
 					<input type='text' id='nikeName' placeholder ="填写姓名" ng-model='name'/>
 				</div>
-				<div class='write'>
+				<div class='write' ng-if='receive_mode == 1 || isWrite'>
 					<span >电话</span>
 					<input type='tel' id='mob'  placeholder ="填写电话" ng-model='mob'/>
+				</div>
+				<div class='write' ng-if='receive_mode == 2 || isReadonly'>
+					<span>姓名</span>
+					<input type='text' id='nikeName' readonly="readonly" ng-model='name'/>
+				</div>
+				<div class='write' ng-if='receive_mode == 2 || isReadonly'>
+					<span >电话</span>
+					<input type='tel' id='mob' readonly="readonly" ng-model='mob'/>
 				</div>
 			</div> 
 		</div>
 		<div class='card'>
 			<div id='box' class='box'>
-				<!--<span class='sinceTitle'>送货上门</span>-->
-				<span class='sinceTitle success'>上门自提</span>
+				<span class='sinceTitle success' ng-click='switch(2)' ng-if='receive_mode==2 || receive_mode==3' ng-class="{true:'success',false:'del'}[isDispatching]">送货上门</span>
+				<span class='sinceTitle success' ng-click='switch(1)' ng-if='receive_mode==1 || receive_mode==3' ng-class="{true:'success',false:'del'}[isSince]">上门自提</span>
 				<div>配送方式</div>
 			</div>
-			<div id='tip'>
-				<!--<div><p class='delivery'>此功能暂未开放</p></div>-->
-				<div class='select'>
+			<div id='tip' class='tip'>
+				<div class='dispatching' ng-show='dispatchingTab' ng-if='receive_mode==2 || receive_mode==3'>
+					<div class='replace' ng-click='jumpAddress()'>选择地址</div>
+					<div class='address'>
+						<p>{{userAddress}}</p>
+					</div>
+				</div>
+				<div ng-show="sinceTab" ng-if='receive_mode==1 || receive_mode==3'>
 					<ul>
 						<li class='address_row' ng-repeat="p in storages">
 							<div class='circular' ng-class="{checked: p.id == selectedAddress.id}" ng-click="selectAddress(p)"></div>

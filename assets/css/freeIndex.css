@@ -544,7 +544,7 @@ body {
   position: relative;
 }
 .box ul .rows .banner .Subtitle,
-.box ul .rows .banner h1,
+.box ul .rows .banner h2,
 .box ul .rows .banner .statusInfo {
   display: block;
   position: absolute;
@@ -558,6 +558,9 @@ body {
   color: white;
   height: 0.8rem;
   line-height: 0.8rem;
+}
+.box ul .rows .banner h2 {
+  top: 1.1rem;
 }
 .box ul .rows .banner span {
   height: 0.5rem;
