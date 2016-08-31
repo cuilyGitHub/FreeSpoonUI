@@ -12,22 +12,21 @@
     <div class="content">
 		<div class='card'>
 			<div class="user">
-				<!--<div class="right" ng-click='addInfo()'></div>-->
 	 			<div class='write' ng-if='receive_mode == 1 || isWrite'>
 					<span>姓名</span>
-					<input type='text' id='nikeName' placeholder ="填写姓名" ng-model='name'/>
+					<input type='text' id='nikeName' ng-blur='watchName()' placeholder ="填写姓名" ng-model='name'/>
 				</div>
 				<div class='write' ng-if='receive_mode == 1 || isWrite'>
 					<span >电话</span>
-					<input type='tel' id='mob'  placeholder ="填写电话" ng-model='mob'/>
+					<input type='tel' id='mob' ng-blur='watchMob()' placeholder ="填写电话" ng-model='mob'/>
 				</div>
 				<div class='write' ng-if='receive_mode == 2 || isReadonly'>
 					<span>姓名</span>
-					<input type='text' id='nikeName' readonly="readonly" ng-model='name'/>
+					<input type='text' readonly="readonly" ng-model='receive_name'/>
 				</div>
 				<div class='write' ng-if='receive_mode == 2 || isReadonly'>
 					<span >电话</span>
-					<input type='tel' id='mob' readonly="readonly" ng-model='mob'/>
+					<input type='tel' readonly="readonly" ng-model='receive_mob'/>
 				</div>
 			</div> 
 		</div>

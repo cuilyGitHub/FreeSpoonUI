@@ -4,9 +4,10 @@ module.exports = function(app){
 
 		//配置微信分享
 		$wxBridge.configShare(batch);
-
+		//设置head头里title
 		$rootScope.title = '订单确认';
-	
+		
+		//数据绑定
 		$scope.commodities = batch.products;
 		$scope.totalPrice = batch.totalPrice;
 		$scope.storages = batch.storages;
@@ -20,10 +21,11 @@ module.exports = function(app){
 		}else{
 			$scope.receive = 2;
 			$scope.isReadonly = true;
-			$scope.mob = $rootScope.userAddressInfo.mob;
-			$scope.name = $rootScope.userAddressInfo.name;
+			$scope.receive_mob = $rootScope.userAddressInfo.mob;
+			$scope.receive_name = $rootScope.userAddressInfo.name;
 			$scope.userAddress = $rootScope.userAddressInfo.address;
 		}
+		
 		//控制tab选项卡
 		function since(){
 			$scope.isWrite = true;
@@ -57,14 +59,7 @@ module.exports = function(app){
 				dispatching();
 			}
 		})();
-		
-		
-		//选择地址
-		$scope.selectedAddress = batch.storages[0];
-		$scope.selectAddress = function(p){
-			$scope.selectedAddress = p;
-		}
-		
+
 		//选择配送方式
 		$scope.switch = function(code){
 			$scope.receive = code;
@@ -75,24 +70,28 @@ module.exports = function(app){
 			}
 		}
 		
+		//选择自提地址
+		$scope.selectedAddress = batch.storages[0];
+		$scope.selectAddress = function(p){
+			$scope.selectedAddress = p;
+		}
+		
+		//更新自提点用户信息
+		$scope.watchName = function(){
+			$scope.name=document.getElementById('nikeName').value;
+		}
+		$scope.watchMob = function(){
+			$scope.mob=document.getElementById('mob').value;
+		}
+		
+		//选择送货地址
 		$scope.jumpAddress = function(){
 			$rootScope.fromCheckout = true;
 			$location.path('/update_address');
 		}
 		
-		$scope.addInfo=function(){
-			$scope.isTrue = true;
-			if($scope.name == batch.recent_obtain_name){
-				$scope.name=batch.recent_obtain_name;
-			}
-			if($scope.mob == batch.recent_obtain_mob){
-				$scope.mob=batch.recent_obtain_mob;
-			}
-		}		
-		
 		//点击支付
-		$scope.pay = function(commodities){	
-		
+		$scope.pay = function(commodities){
 			if(!$scope.name || $scope.name.length == 0){
 				alert("昵称不存在");
 				return;
@@ -119,7 +118,7 @@ module.exports = function(app){
 					});
 				}
 			}
-			//处理用户选择的是自提还是送货
+			//处理用户选择的是自提还是送货,返回服务器需要的数据
 			if($scope.receive_mode!=3){
 				if($scope.receive_mode == 1){
 					var requestData={
