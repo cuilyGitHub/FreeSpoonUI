@@ -163,7 +163,13 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 									$rootScope.load = false;
 									deferred.resolve(null);
 									return;
-								}								
+								}
+								if(data.status!=0){
+									$location.path("/");
+									$rootScope.load = false;
+									deferred.resolve(null);
+									return;
+								}											
 								if($shopCart.shopCartData && $shopCart.shopCartData.id === data.id){
 									$rootScope.load = false;
 									deferred.resolve($shopCart.shopCartData);

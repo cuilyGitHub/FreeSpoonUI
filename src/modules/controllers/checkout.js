@@ -163,6 +163,9 @@ module.exports = function(app){
 					};
 				}
 			}
+			if(document.getElementById('note').value){
+				requestData.comments = document.getElementById('note').value;
+			}
 			
 			$data.requestUnifiedOrder(requestData, function(data){
 				$data.ordersData = data;

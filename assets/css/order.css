@@ -615,6 +615,10 @@ body {
   right: 0.5rem;
   bottom: 0.5rem;
 }
+#Order_details .main .des {
+  padding: 0 0.2rem 0.2rem 0.2rem;
+  color: #6D6B6B;
+}
 #Order_details .main .footer {
   width: 100%;
   height: 1.2rem;

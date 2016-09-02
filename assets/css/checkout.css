@@ -600,7 +600,7 @@ body {
   line-height: 2rem;
   text-align: center;
   font-size: 0.35rem;
-  color: #6d6b6b;
+  color: #6D6B6B;
 }
 #checkout .content .tip .dispatching .address {
   width: 6rem;
@@ -620,4 +620,11 @@ body {
   text-align: center;
   float: right;
   margin: 0.1rem 0.5rem 0 0;
+}
+#checkout .content .note {
+  resize: none;
+  border: none;
+  margin: 0 0.2rem;
+  font-size: 0.25rem;
+  color: #6D6B6B;
 }
