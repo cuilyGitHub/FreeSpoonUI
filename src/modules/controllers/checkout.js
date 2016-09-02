@@ -21,8 +21,8 @@ module.exports = function(app){
 		}else{
 			$scope.receive = 2;
 			$scope.isReadonly = true;
-			$scope.receive_mob = $rootScope.userAddressInfo.mob;
-			$scope.receive_name = $rootScope.userAddressInfo.name;
+			$scope.mob = $rootScope.userAddressInfo.mob;
+			$scope.name = $rootScope.userAddressInfo.name;
 			$scope.userAddress = $rootScope.userAddressInfo.address;
 		}
 		
@@ -93,7 +93,7 @@ module.exports = function(app){
 		//点击支付
 		$scope.pay = function(commodities){
 			if(!$scope.name || $scope.name.length == 0){
-				alert("昵称不存在");
+				alert("姓名不存在");
 				return;
 			}
 			if(!$scope.mob || $scope.mob.length!=11){
