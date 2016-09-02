@@ -107,6 +107,9 @@ module.exports = function(app){
 			if($scope.receive == 2&&!$rootScope.userAddressInfo){
 				alert("请选择收货地址");
 				return;
+			}else if($scope.receive_mode == 2&&!$rootScope.userAddressInfo){
+				alert("请选择收货地址");
+				return;
 			}
 			var puchared = [];
 			for(var i = 0; i < batch.products.length; i++){
