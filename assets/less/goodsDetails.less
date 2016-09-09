@@ -20,14 +20,12 @@
 	padding: 0.2rem 0.3rem;
     box-sizing: border-box;
 	.oneline{
-		height:0.8rem;
 		.name{
-			.font_x_large_bold;
-			height: 0.8rem;
-			line-height: 0.8rem;
+			.font_large;
+			width:6rem;
 			display: block;
 			float: left;
-			margin-right:0.1rem;
+			margin: 0.1rem 0.1rem 0.1rem 0;
 		}
 		.box{
 			background:@color_orange;
@@ -44,9 +42,20 @@
 	.twoline{
 		color: @color_dark_gray;
 		line-height: 0.35rem;
+		clear: both;
+	}
+	.IDPurchase{
+		float:right;
+		color:@color_green;
+		.font_normal;
+		height: 0.6rem;
+		line-height: 0.5rem;
+		margin: 0 0.2rem;
 	}
 	.threeline{
 		height:0.8rem;
+		clear: both;
+		margin: 0.3rem 0;
 		.regulator_right {
 			width: 1.6rem;
 			height: .55rem;
@@ -57,6 +66,19 @@
 				display: block;
 				border: 1px solid @color_orange;
 				border-radius: 50%;
+				float: left;
+				width: .5rem;
+				height: .5rem;
+				text-align: center;
+				line-height: .5rem;
+				font-size: .3rem;
+				font-weight: 400;
+			}
+			.btn_g{
+				display: block;
+				border: 1px solid @color_gray;
+				border-radius: 50%;
+				color:@color_gray;
 				float: left;
 				width: .5rem;
 				height: .5rem;
@@ -84,21 +106,31 @@
 			height: 0.8rem;
 			line-height: 0.8rem;
 			float: left;
-			font-size: 0.3rem;
+			.font_xx_large;
 			color: @color_orange;
 			margin-right: 0.25rem;
 			span{
-				.font_x_large;
+				.font_xxx_large;
 				color: orange;
 			}
 		}
-		.market_price{
-			height: 0.62rem;
-			display: table-cell;
-			vertical-align: bottom;
-			.font_large;
-			color: #c8c8c8;
-			text-decoration: line-through;
+		.surplus{
+			float:left;
+			.market_price{
+				height: 0.4rem;
+				line-height: 0.4rem;
+				.font_large;
+				color: @color_smoky_gray;
+				text-decoration: line-through;
+			}
+			.GoodPurchase{
+				height: 0.4rem;
+				line-height: 0.4rem;
+				.font_normal;
+				.strong{
+					font-weight: bold;
+				}
+			}
 		}
 	}
 }

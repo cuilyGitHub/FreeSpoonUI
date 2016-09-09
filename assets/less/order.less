@@ -120,32 +120,26 @@ body{
     }
 	.delivery_list {
 		position:relative;
-		padding: 0 0.2rem 0.2rem 0.3rem;
-		table{
-			border-collapse: collapse;
-			width: 100%;
-			tr{
-				height:0.5rem;
-				td{
-					color:@color_dark_gray;
-				}
-				.message{
-					width: 1.5rem;
-				}
-				.top{
-					padding-top: 0.2rem;	
-				}
-				.bottom{
-					padding-bottom: 0.2rem;
-					color:@color_dark_gray;
-				}
+		padding: 0 0.2rem 0.2rem 0.2rem;
+		.info{
+			height:0.5rem;
+			line-height:0.5rem;
+			.name{
+				float:left;
+				margin-right:0.3rem;
 			}
 		}
+		.method{
+			height:0.5rem;
+			line-height:0.5rem;
+			color:@color_gray;
+		}
+	
 		.phone{
-			width:1rem;
-			height:1rem;
+			width:0.5rem;
+			height:0.5rem;
 			background:url('../images/greenPhone.png') no-repeat center;
-			background-size:0.4rem;
+			background-size:0.25rem;
 			position:absolute;
 			right:0.5rem;
 			bottom:0.5rem;

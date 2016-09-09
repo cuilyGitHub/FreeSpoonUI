@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel='stylesheet' type='text/css' href='../assets/css/userInfoRevise.min.css'
+    <title></title>	
+</head>
+<body>
+   <div class='content'>
+		<div class='name'>
+			<input type='tel' placeholder='收货人姓名' ng-model='name'>
+		</div>
+		<div class='mob'>
+			<input type='tel' placeholder='手机号码' ng-model='mob'>
+		</div>
+   </div>
+   <div  class="button" ng-class="{update:name || mob,but_null:!name || !mob}">
+        <div class="select">
+        <a class="text" href="javascript:void(0);" ng-click='keepInfo()'>保存</a>
+        </div>
+    </div>
+</div> 
+</body>
+</html>

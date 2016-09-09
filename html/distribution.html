@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel='stylesheet' type='text/css' href='../assets/css/distribution.min.css'/>
+    <title></title>	
+</head>
+<body>
+	<div class='method_title' ng-if='data.receive_mode == 1'>自提点自提</div>
+	<div class='method_title' ng-if='data.receive_mode == 2'>送货上门</div>
+	<div class='method' ng-if='data.receive_mode == 3'>
+		<div class='pick_point select_tab' ng-class="{true:'select_tab',false:'del'}[isPick_point]" ng-click='pick_point()'>自提点自提</div>
+		<div class='express' ng-class="{true:'select_tab',false:'del'}[isExpress]" ng-click='express()'>送货上门</div>
+	</div>
+	<div class='card pick_pointBox show' ng-class="{true:'show',false:'hide'}[isPick_point]" ng-if='data.receive_mode == 1 || data.receive_mode == 3'>
+		<div class='user_info' ng-click='reviseUser()'>
+			<div class='arrow'></div>
+			<div>
+				<span class='name'>收货人：{{name}}</span>
+				<span class='mob'>电话：{{mob}}</span>
+			</div>
+		</div>
+		<ul>
+			<li class='address_row' ng-repeat='x in data.storages'>
+				<div class='circular' ng-class="{checked: x.id == selectedPick_point.id}" ng-click="selectPick_point(x)"></div>
+				<div class='sinceAddress'>
+					<div class='address'></div>
+					<p class='des'>{{x.address}}</p>
+				</div>
+				<div class='sinceConent'>
+					<span class='left'>{{x.opening_time}}点-{{x.closing_time}}点</span>
+					<span class='right'>{{x.mob}}</span>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class='card expressBox' ng-class="{true:'show',false:'hide'}[isExpress]" ng-if='data.receive_mode == 2 || data.receive_mode == 3'>
+		<div class='no_address' ng-if='expressInfo.length == 0'>还没有收货地址，赶快添加一个吧</div>
+		<ul>
+			<li class='box' ng-repeat='e in expressInfo'>
+				<div class='circular' ng-class="{checked: e.id == selectedExpress.id}" ng-click="selectExpress(e)"></div>
+				<div class='right' ng-click='update(e.id)'></div>
+				<div class='left'>
+					<div class='top'>
+						<span>{{e.name}}</span>
+						<span class='text'>{{e.mob}}</span>
+					</div>
+					<p>{{e.address}}</p>
+				</div>	
+			</li>
+		</ul>
+	</div>
+	<div  class="button fixed" ng-if='data.receive_mode>0 && isPick_point' >
+        <div class="select">
+			<a class="text" href="javascript:void(0);" ng-click='jumpCheckout()'>确定</a>
+        </div>
+    </div>
+	<div  class="smallButton fixed" ng-if='expressInfo.length >= 0 && !isPick_point'>
+        <div class="select">
+			<a class="text" href="javascript:void(0);" ng-click='jumpCheckout()'>确定</a>
+        </div>
+		<div class="select">
+			<a class="text" href="javascript:void(0);" ng-click='add()'>添加新地址</a>
+        </div>
+    </div>
+</div> 
+</body>
+</html>

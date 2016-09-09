@@ -31,50 +31,22 @@
 		</div>
 		<div class='card'>
 			<div class="title">取货信息</div>
-			<div class="delivery_list" ng-if='order.receive_mode == 2'>
-				<table>
-					<tr>
-						<td class="message">收货人:</td>
-						<td>{{order.receive_name}}</td>
-					</tr>
-					<tr class='two'>
-						<td class="message bottom">手机号:</td>
-						<td class='bottom'>{{order.receive_mob}}</td>
-					</tr>
-					<tr>
-						<td class="message top">配送方式:</td>
-						<td class='top'>送货上门</td>
-					</tr>
-					<tr>
-						<td class="message">送货地址:</td>
-						<td>{{order.receive_address}}</td>
-					</tr>
-				</table>
-			</div>
 			<div class="delivery_list" ng-if='order.receive_mode == 1'>
-				<table>
-					<tr>
-						<td class="message ">收货人:</td>
-						<td>{{order.obtain_name}}</td>
-					</tr>
-					<tr class='two'>
-						<td class="message bottom">手机号:</td>
-						<td class='bottom'>{{order.obtain_mob}}</td>
-					</tr>
-					<tr>
-						<td class="message top">配送方式:</td>
-						<td class='top'>上门自提</td>
-					</tr>
-					<tr>
-						<td>自提点地址:</td>
-						<td>{{storage.address}}</td>
-					</tr>
-					<tr>
-						<td class="message">营业时间:</td>
-						<td>预计{{storage.opening_time}}时到{{storage.closing_time}}时(以短信通知为准)</td>
-					</tr>
-				</table>
+				<div class='info'>
+					<div class='name'>收货人：{{order.obtain_name}}</div>
+					<div>手机号：{{order.obtain_mob}}</div>
+				</div>
+				<p>取货地址：{{storage.address}}({{storage.mob}})</p>
+				<div class='method'>配送方式：{{receive_mode}}</div>
 				<a class='phone' ng-href='tel://{{storage.mob}}'></a>
+			</div>
+			<div class="delivery_list" ng-if='order.receive_mode == 2'>
+				<div class='info'>
+					<div class='name'>收货人：{{order.receive_name}}</div>
+					<div>手机号：{{order.receive_mob}}</div>
+				</div>
+				<p>取货地址：{{order.receive_address}}</p>
+				<div class='method'>配送方式：{{receive_mode}}</div>
 			</div>
 		</div>
 		<div class='card'>

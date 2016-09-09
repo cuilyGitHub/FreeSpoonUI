@@ -36,7 +36,11 @@ module.exports = function(app){
 					alert('地址添加失败');
 					return;
 				}
-				$location.path('update_address');
+				if($rootScope.fromDistribution){
+					$location.path('/distribution');
+				}else{
+					$location.path('update_address');
+				}
 			});
 		}
 		

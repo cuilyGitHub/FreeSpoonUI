@@ -57,6 +57,15 @@ module.exports = function(app){
 			if($scope.isSelected){
 				$rootScope.balance = '1';
 				$data.payRequest($rootScope.requestUrl, $rootScope.balance, function(data){
+					if(data.errcode == -2){
+						$scope.isShow = true;
+						var name = [];
+						for(var i=0;i<data.detail.length;i++){
+							name.push(data.detail[i].product_title);
+						}
+						$scope.name = name.join('、')
+						return;
+					}
 					if(data.require_third_party_payment){
 						$data.wx_pay_request = data.pay_request_json;	
 						$data.prePromptPay = true;
@@ -71,12 +80,25 @@ module.exports = function(app){
 			}else{
 				$rootScope.balance='0';
 				$data.payRequest($rootScope.requestUrl, $rootScope.balance, function(data){
+					if(data.errcode == -2){
+						$scope.isShow = true;
+						var name = [];
+						for(var i=0;i<data.detail.length;i++){
+							name.push(data.detail[i].product_title);
+						}
+						$scope.name = name.join('、')
+						return;
+					}
 					$data.wx_pay_request = data.pay_request_json;
 					$data.prePromptPay = true;
 					$rootScope.payment = '微信支付';
 					$location.path('/order');
 				});
 			}
+		}
+		
+		$scope.close_popup = function(){
+			$scope.isShow = false;
 		}
 		
 	});

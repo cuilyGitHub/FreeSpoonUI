@@ -10,7 +10,7 @@ module.exports = function(app){
 			$location.path("/error");
 			return;
 		}
-		if(!$rootScope.fromCheckout){
+		if(!$rootScope.fromDistribution){
 			$scope.isShow = true;
 		}
 		
@@ -63,7 +63,11 @@ module.exports = function(app){
 					alert('地址修改失败');
 					return;
 				}
-				$location.path('update_address');
+				if($rootScope.fromDistribution){
+					$location.path('/distribution');
+				}else{
+					$location.path('update_address');
+				}
 			});
 		}
 		

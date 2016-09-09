@@ -26,7 +26,18 @@ module.exports = function(app){
 				cancel: function () {
 					//TODO
 				}
-		   });
+			});
+			wx.onMenuShareTimeline({
+				title: shareInfo.card_title, // 分享标题
+				link: shareInfo.card_url, // 分享链接
+				imgUrl: shareInfo.card_icon, // 分享图标
+				success: function () { 
+					// 用户确认分享后执行的回调函数
+				},
+				cancel: function () { 
+					// 用户取消分享后执行的回调函数
+				}
+			});
 		};
 		
 		this.pay = function(wx_pay_request, callback){
@@ -228,10 +239,10 @@ module.exports = function(app){
 		}
 		
 		//成交记录
-		this.historys= function(productsId,cb){
+		this.historys= function(productsId,url,cb){
 		$http({
 				method:'get',
-				url:appconfig+'business/purchasedproducthistorys/',
+				url:url,
 				params:{
 					'product_id':productsId
 				},
@@ -275,7 +286,7 @@ module.exports = function(app){
 		};	
 		
 		//post services post order data
-		this.requestUnifiedOrder = function(requestData, cb){
+		this.requestUnifiedOrder = function(requestData,cb){
 			$http({
 				method:'post',
 				url:appconfig+'business/orders/',
@@ -293,11 +304,11 @@ module.exports = function(app){
 					alert(JSON.stringify(resp));
 					return;
 				}
-				cb(null);
+				cb(resp.data);
 			});
 		};
 		
-		//get weixin pay interface 
+		//支付接口
 		this.payRequest = function(requestUrl, balanceStatus, cb){
 			$http({
 				method:'get',
@@ -318,7 +329,7 @@ module.exports = function(app){
 					alert(JSON.stringify(resp));
 					return;
 				}
-				cb(null);
+				cb(resp.data);
 			});
 		};	
 		

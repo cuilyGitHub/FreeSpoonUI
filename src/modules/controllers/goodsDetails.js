@@ -52,16 +52,49 @@ module.exports = function(app){
 			if(!commodity.num){
 				commodity.num = 0;
 			}
-			commodity.num += 1;
-			$scope.shopCartNum = $shopCart.shopCartData.products[$shopCart.id].num;
+			if(commodity.purchased_count){
+				var surplus = commodity.stock - commodity.purchased_count;
+			}else{
+				var surplus = commodity.stock;
+			}
+			if(commodity.limit>0){
+				if(commodity.num < surplus){
+					if(commodity.num < commodity.limit){
+						commodity.num += 1;
+					};
+				};
+			}else{
+				if(commodity.num < surplus){
+					commodity.num += 1;
+				};
+			}
 		};
 		
 		$scope.addShopCartNum = function(commodity){
+			if($shopCart.shopCartData.status!=0){
+				return;
+			}
 			if(!$shopCart.shopCartData.products[$shopCart.id].num){
 				$shopCart.shopCartData.products[$shopCart.id].num = 0;
 			}
-			$shopCart.shopCartData.products[$shopCart.id].num += 1;
-			$scope.shopCartNum = $shopCart.shopCartData.products[$shopCart.id].num;
+			if(commodity.purchased_count){
+				var surplus = commodity.stock - commodity.purchased_count;
+			}else{
+				var surplus = commodity.stock;
+			}
+			if(commodity.limit>0){
+				if($shopCart.shopCartData.products[$shopCart.id].num < surplus){
+					if($shopCart.shopCartData.products[$shopCart.id].num < commodity.limit){
+						$shopCart.shopCartData.products[$shopCart.id].num += 1;
+						$scope.shopCartNum = $shopCart.shopCartData.products[$shopCart.id].num;
+					};
+				};
+			}else{
+				if($shopCart.shopCartData.products[$shopCart.id].num < surplus){
+					$shopCart.shopCartData.products[$shopCart.id].num += 1;
+					$scope.shopCartNum = $shopCart.shopCartData.products[$shopCart.id].num;
+				};
+			}
 		};
 		
 		$scope.removeCommodity = function(commodity){
@@ -76,6 +109,9 @@ module.exports = function(app){
 		};
 		
 		$scope.removeShopCartNum = function(commodity){
+			if($shopCart.shopCartData.status!=0){
+				return;
+			}
 			if(!$shopCart.shopCartData.products[$shopCart.id].num){
 				$shopCart.shopCartData.products[$shopCart.id].num = 0;
 			}

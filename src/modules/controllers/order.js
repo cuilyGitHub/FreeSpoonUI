@@ -17,6 +17,12 @@ module.exports = function(app){
 			$scope.order = batch;
 			$scope.storage = batch.storage;
 			
+			if(batch.receive_mode == 1){
+				$scope.receive_mode = "自提点自提";
+			}else if(batch.receive_mode == 2){
+				$scope.receive_mode = "送货上门";
+			}
+			
 			(function(){
 				if(!batch.payrequest){
 					$scope.balance =0;
@@ -38,7 +44,7 @@ module.exports = function(app){
 					$scope.paymentText = '微信支付';
 					return;
 				}
-			})()
+			})();
 			
 			if(batch.status == 0){
 				$scope.balance = '0';

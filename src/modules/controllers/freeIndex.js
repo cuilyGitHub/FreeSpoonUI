@@ -37,12 +37,8 @@ module.exports = function(app){
 			$scope.setWidth = true;
 		}
 		
-		$scope.jump = function(data){
-			
+		$scope.jump = function(data){	
 			$rootScope.id = data.id;
-			if(data.status!=0){
-				return;
-			}
 			$location.path("/index") ;
 		}
 		

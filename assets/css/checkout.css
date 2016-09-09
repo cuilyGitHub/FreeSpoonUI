@@ -148,28 +148,23 @@ body {
   position: fixed;
 }
 .smallButton {
-  bottom: 0;
-  width: 50%;
+  bottom: 0.2rem;
+  width: 100%;
   z-index: 1100;
 }
 .smallButton .select {
+  width: 50%;
   height: 0.9rem;
-  background: white;
+  float: left;
 }
 .smallButton .select .text {
-  background: #599c3d;
+  background: #ff9934;
   margin: 0.1rem 0.1rem;
   color: white;
   text-align: center;
   display: block;
   height: 0.8rem;
   line-height: 0.8rem;
-}
-.seat {
-  float: right;
-}
-.seat .select .text {
-  background: #ff9934;
 }
 /*标题通栏*/
 .title {
@@ -267,8 +262,8 @@ body {
   bottom: 1.7rem;
 }
 .phone_matter .register {
-  width: 5rem;
-  height: 3rem;
+  width: 6rem;
+  height: 4rem;
   background: white;
   position: absolute;
   top: 0;
@@ -280,36 +275,38 @@ body {
 }
 .phone_matter .register .content {
   width: 100%;
-  height: 2rem;
+  height: 3rem;
 }
 .phone_matter .register .content .box {
   width: 100%;
-  height: 1rem;
-  line-height: 1rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
 }
 .phone_matter .register .content .box .left {
   float: left;
   margin: 0 0.2rem;
+  font-size: 0.3rem;
 }
 .phone_matter .register .content .box .getCode {
   width: 1.5rem;
   float: right;
-  height: 0.6rem;
-  line-height: 0.6rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
   background: orange;
   color: white;
   text-align: center;
-  margin: 0.2rem 0;
+  margin: 0.3rem 0;
 }
 .phone_matter .register .content .box .but_null {
   background: #ccc;
 }
 .phone_matter .register .content .box input {
-  width: 2rem;
-  height: 0.5rem;
+  width: 3rem;
+  height: 0.7rem;
+  font-size: 0.3rem;
 }
 .phone_matter .register .content .box .mob {
-  width: 3.5rem !important;
+  width: 4.5rem !important;
 }
 .phone_matter .register .button_sure {
   height: 0.8rem;
@@ -441,7 +438,8 @@ body {
   width: 1.4rem;
   line-height: 100%;
 }
-.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right .btn {
+.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right .btn,
+.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right .btn_g {
   display: block;
   border: 1px solid #ff9934;
   width: 0.4rem;
@@ -466,8 +464,54 @@ body {
   background: #ff9934;
   color: white;
 }
+.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right .btn_g {
+  border: 1px solid #CCCCCC;
+  border-radius: 50%;
+  color: #CCCCCC;
+}
+/*提示弹窗*/
+.popup_window {
+  display: none;
+  width: 6rem;
+  background: white;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10000;
+  -webkit-transform: translate(-50%, -50%);
+}
+.popup_window .top {
+  height: 1rem;
+  background: #599c3d;
+  text-align: center;
+  line-height: 1rem;
+  font-size: 0.4rem;
+  font-weight: normal;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.popup_window .center {
+  margin: 0.2rem;
+}
+.popup_window .bottom {
+  width: 6rem;
+  height: 1rem;
+  line-height: 1rem;
+  bottom: 0;
+  text-align: center;
+  font-size: 0.4rem;
+  font-weight: normal;
+  border-top: 1px solid #e5e5e5;
+}
 body {
   background: #e5e5e5;
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
 }
 #checkout {
   height: 100%;
@@ -481,150 +525,61 @@ body {
   background: url('../images/rope.png') no-repeat 0% bottom;
   padding: 0.2rem 0.2rem 0.3rem 0.2rem;
 }
-#checkout .content .user .sculpture {
-  overflow: hidden;
-  width: 0.6rem;
-  height: 0.6rem;
-  float: left;
-  border-radius: 50%;
-  vertical-align: middle;
-  line-height: 0.6rem;
-}
-#checkout .content .user .sculpture img {
-  max-width: 100%;
-  height: 100%;
-}
-#checkout .content .user .write {
-  height: 0.6rem;
-  line-height: 0.6rem;
-}
-#checkout .content .user .write span {
-  height: 0.6rem;
-  line-height: 0.6rem;
-  display: block;
-  width: 1rem;
-  font-size: 0.3rem;
-  font-weight: normal;
-  float: left;
-  margin-top: 0 !important;
-}
-#checkout .content .user .write input {
-  font-size: 0.3rem;
-  font-weight: normal;
-  height: 0.6rem;
-  border: none;
-}
-#checkout .content .user .right {
-  height: 1.2rem;
+#checkout .content .user .arrow {
   float: right;
-  background: url('../images/pen.png') no-repeat center;
-  background-size: 0.5rem;
-  width: 1rem;
-}
-#checkout .content .box {
-  height: 1rem;
-  line-height: 1rem;
-  margin: 0 0.2rem;
-  font-size: 0.35rem;
-  font-weight: normal;
-}
-#checkout .content .box .sinceTitle {
-  display: block;
-  height: 0.8rem;
-  float: right;
-  font-size: 0.3rem;
-  font-weight: normal;
-  margin-right: 0.3rem;
-}
-#checkout .content .box .success {
-  border-bottom: 2px solid #ff9934;
-  color: #ff9934;
-}
-#checkout .content .box .del {
-  color: #000;
-  border-bottom: none;
-}
-#checkout .content .tip ul {
-  margin: 0 0.2rem;
-}
-#checkout .content .tip ul .address_row {
-  padding: 0.2rem 0;
-}
-#checkout .content .tip ul .address_row .circular {
   width: 0.5rem;
-  height: 0.5rem;
-  margin: 0.15rem 0;
-  border-radius: 50%;
-  border: 1px solid #ccc;
-  float: left;
+  height: 2rem;
+  background: url(../images/back_right.png) no-repeat center;
+  background-size: 0.2rem;
 }
-#checkout .content .tip ul .address_row .sinceAddress {
-  height: 0.4rem;
-  line-height: 0.4rem;
-  padding-left: 0.7rem;
+#checkout .content .user .user_info {
+  margin-right: 0.8rem;
+  height: 0.6rem;
+  line-height: 0.6rem;
 }
-#checkout .content .tip ul .address_row .sinceAddress span {
-  background: url('../images/positionGray.png') no-repeat left;
-  background-size: 0.20rem;
-  padding-left: 0.3rem;
+#checkout .content .user .user_info .left {
   font-size: 0.25rem;
   font-weight: normal;
 }
-#checkout .content .tip ul .address_row .sinceConent {
-  height: 0.4rem;
-  line-height: 0.4rem;
-  padding-left: 0.7rem;
+#checkout .content .user .user_info .right {
+  float: right;
+  font-size: 0.25rem;
+  font-weight: normal;
 }
-#checkout .content .tip ul .address_row .sinceConent span {
+#checkout .content .user .address {
+  font-size: 0.25rem;
+  font-weight: normal;
+  margin-right: 0.8rem;
+  height: 1rem;
+}
+#checkout .content .user .method {
   font-size: 0.25rem;
   font-weight: normal;
   color: #CCCCCC;
-  padding-left: 0.3rem;
-}
-#checkout .content .tip ul .address_row .sinceConent .left {
-  background: url('../images/clock.png') no-repeat left;
-  background-size: 0.25rem;
-}
-#checkout .content .tip ul .address_row .sinceConent .right {
-  margin-left: 0.5rem;
-  background: url('../images/grayPhone.png') no-repeat left;
-  background-size: 0.25rem;
-}
-#checkout .content .tip ul .checked {
-  background: url("../images/3.png") no-repeat left !important;
-  background-size: 0.5rem !important;
-  border: none !important;
-}
-#checkout .content .tip .delivery {
-  height: 2rem;
-  line-height: 2rem;
-  text-align: center;
-  font-size: 0.35rem;
-  color: #6D6B6B;
-}
-#checkout .content .tip .dispatching .address {
-  width: 6rem;
+  height: 0.5rem;
   line-height: 0.5rem;
-  min-height: 1rem;
-  padding: 0.1rem 0.2rem;
-  box-sizing: border-box;
-}
-#checkout .content .tip .dispatching .address p {
-  color: #878787;
-}
-#checkout .content .tip .dispatching .replace {
-  width: 1.2rem;
-  height: .5rem;
-  line-height: 0.5rem;
-  border: 1px solid #000;
-  text-align: center;
-  float: right;
-  margin: 0.1rem 0.5rem 0 0;
 }
 #checkout .content .note {
   resize: none;
   border: none;
+  width: 80%;
   margin: 0 0.2rem;
   font-size: 0.25rem;
   color: #6D6B6B;
+}
+#checkout .des {
+  font-size: 0.3rem;
+  font-weight: normal;
+}
+#checkout .box {
+  width: 100%;
+  font-size: 0.3rem;
+  font-weight: normal;
+  margin-top: 0.2rem;
+}
+#checkout .box tr .left {
+  text-align: left;
+}
+#checkout .box tr .right {
+  text-align: center;
 }

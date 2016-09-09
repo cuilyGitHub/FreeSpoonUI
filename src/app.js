@@ -24,6 +24,8 @@ var registerOrders = require('./modules/controllers/orders');
 var registerPayMent = require('./modules/controllers/payMent');
 var registerRecord = require('./modules/controllers/record');
 var registerShare = require('./modules/controllers/share');
+var registerDistribution = require('./modules/controllers/distribution');
+var registerUserInfoRevise = require('./modules/controllers/userInfoRevise');
 
 //user controllers modules
 var register_user_center = require('./modules/controllers/user/user_center');
@@ -54,6 +56,8 @@ registerOrders(app);
 registerPayMent(app);
 registerRecord(app);
 registerShare(app);
+registerDistribution(app);
+registerUserInfoRevise(app);
 
 //register user controllers
 register_user_center(app);
@@ -163,13 +167,7 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 									$rootScope.load = false;
 									deferred.resolve(null);
 									return;
-								}
-								if(data.status!=0){
-									$location.path("/");
-									$rootScope.load = false;
-									deferred.resolve(null);
-									return;
-								}											
+								}									
 								if($shopCart.shopCartData && $shopCart.shopCartData.id === data.id){
 									$rootScope.load = false;
 									deferred.resolve($shopCart.shopCartData);
@@ -242,6 +240,60 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 						});
 						return deferred.promise;
 					}
+				}]
+			}
+		})
+		.when('/distribution', {
+			templateUrl: 'html/distribution.html',
+			controller: 'DistributionController',
+			resolve: {
+				data: ['$q', '$location', '$data', '$rootScope', '$shopCart', function($q, $location, $data, $rootScope, $shopCart){
+					$rootScope.load = true;
+					var deferred = $q.defer();
+					$data.bulkRes($rootScope.id,function(data){
+						if(!data){
+							$data.preData={
+								title:'参数错误',
+								desc:'参数不存在'
+							}
+							$location.path("/error");
+							$rootScope.load = false;
+							deferred.resolve(null);
+							return;
+						}
+						$rootScope.load = false;
+						deferred.resolve(data);
+					},function(data){
+						deferred.reject(data);
+					});
+					return deferred.promise;
+				}]
+			}
+		})
+		.when('/userInfoRevise', {
+			templateUrl: 'html/userInfoRevise.html',
+			controller: 'userInfoRevise_controller',
+			resolve: {
+				data: ['$q', '$location', '$data', '$rootScope', '$shopCart', function($q, $location, $data, $rootScope, $shopCart){
+					$rootScope.load = true;
+					var deferred = $q.defer();
+					$data.bulkRes($rootScope.id,function(data){
+						if(!data){
+							$data.preData={
+								title:'参数错误',
+								desc:'参数不存在'
+							}
+							$location.path("/error");
+							$rootScope.load = false;
+							deferred.resolve(null);
+							return;
+						}
+						$rootScope.load = false;
+						deferred.resolve(data);
+					},function(data){
+						deferred.reject(data);
+					});
+					return deferred.promise;
 				}]
 			}
 		})
@@ -396,7 +448,7 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$resourcePro
 				batch: ['$q', '$location', '$data', '$rootScope', function($q, $location, $data, $rootScope){
 					$rootScope.load = true;
 					var deferred = $q.defer();
-					$data.historys($rootScope.productsId,function(data){
+					$data.historys($rootScope.productsId,$rootScope.historyUrl,function(data){
 						if(!data){
 							$data.preData={
 								title:'参数错误',

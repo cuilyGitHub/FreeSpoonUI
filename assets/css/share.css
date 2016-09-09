@@ -148,28 +148,23 @@ body {
   position: fixed;
 }
 .smallButton {
-  bottom: 0;
-  width: 50%;
+  bottom: 0.2rem;
+  width: 100%;
   z-index: 1100;
 }
 .smallButton .select {
+  width: 50%;
   height: 0.9rem;
-  background: white;
+  float: left;
 }
 .smallButton .select .text {
-  background: #599c3d;
+  background: #ff9934;
   margin: 0.1rem 0.1rem;
   color: white;
   text-align: center;
   display: block;
   height: 0.8rem;
   line-height: 0.8rem;
-}
-.seat {
-  float: right;
-}
-.seat .select .text {
-  background: #ff9934;
 }
 /*标题通栏*/
 .title {
@@ -267,8 +262,8 @@ body {
   bottom: 1.7rem;
 }
 .phone_matter .register {
-  width: 5rem;
-  height: 3rem;
+  width: 6rem;
+  height: 4rem;
   background: white;
   position: absolute;
   top: 0;
@@ -280,36 +275,38 @@ body {
 }
 .phone_matter .register .content {
   width: 100%;
-  height: 2rem;
+  height: 3rem;
 }
 .phone_matter .register .content .box {
   width: 100%;
-  height: 1rem;
-  line-height: 1rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
 }
 .phone_matter .register .content .box .left {
   float: left;
   margin: 0 0.2rem;
+  font-size: 0.3rem;
 }
 .phone_matter .register .content .box .getCode {
   width: 1.5rem;
   float: right;
-  height: 0.6rem;
-  line-height: 0.6rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
   background: orange;
   color: white;
   text-align: center;
-  margin: 0.2rem 0;
+  margin: 0.3rem 0;
 }
 .phone_matter .register .content .box .but_null {
   background: #ccc;
 }
 .phone_matter .register .content .box input {
-  width: 2rem;
-  height: 0.5rem;
+  width: 3rem;
+  height: 0.7rem;
+  font-size: 0.3rem;
 }
 .phone_matter .register .content .box .mob {
-  width: 3.5rem !important;
+  width: 4.5rem !important;
 }
 .phone_matter .register .button_sure {
   height: 0.8rem;
@@ -441,7 +438,8 @@ body {
   width: 1.4rem;
   line-height: 100%;
 }
-.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right .btn {
+.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right .btn,
+.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right .btn_g {
   display: block;
   border: 1px solid #ff9934;
   width: 0.4rem;
@@ -465,6 +463,46 @@ body {
 .popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right .btn:active {
   background: #ff9934;
   color: white;
+}
+.popup-window-from-bottom .box .cart .template .popup_reduce .regulator_right .btn_g {
+  border: 1px solid #CCCCCC;
+  border-radius: 50%;
+  color: #CCCCCC;
+}
+/*提示弹窗*/
+.popup_window {
+  display: none;
+  width: 6rem;
+  background: white;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10000;
+  -webkit-transform: translate(-50%, -50%);
+}
+.popup_window .top {
+  height: 1rem;
+  background: #599c3d;
+  text-align: center;
+  line-height: 1rem;
+  font-size: 0.4rem;
+  font-weight: normal;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.popup_window .center {
+  margin: 0.2rem;
+}
+.popup_window .bottom {
+  width: 6rem;
+  height: 1rem;
+  line-height: 1rem;
+  bottom: 0;
+  text-align: center;
+  font-size: 0.4rem;
+  font-weight: normal;
+  border-top: 1px solid #e5e5e5;
 }
 #Payment_success {
   height: 100%;

@@ -36,11 +36,17 @@
                         </div>
                         <p ng-click='goodsDetails(this.$index)'>{{x.desc}}</p>
                     </div>
-                    <div class="last ">
-                        <div class="counter">
-                            <div class="btn" ng-click="removeCommodity(x);">-</div>
+					<div class='IDPurchase' ng-if='x.limit>0'>每个ID限购{{x.limit}}份</div>
+                    <div class="last">
+                        <div class="counter" ng-if='batch.status==0 && x.stock-x.purchased_count > 0'>
+                            <div class='btn' ng-click="removeCommodity(x);">-</div>
                             <span class="block center">{{x.num | safenum}}</span>
-                            <div class="btn" ng-click="addCommodity(x);">+</div>
+                            <div ng-class='{btn_g:x.num==x.stock-x.purchased_count ||x.num==x.limit || x.stock-x.purchased_count==0 ,btn:x.num!=x.stock-x.purchased_count}' ng-click="addCommodity(x);">+</div>
+                        </div>
+						<div class="counter" ng-if='batch.status!=0 || x.stock-x.purchased_count <= 0'>
+                            <div class="btn_g" ng-click="removeCommodity(x);">-</div>
+                            <span class="block center">{{x.num | safenum}}</span>
+                            <div class="btn_g" ng-click="addCommodity(x);">+</div>
                         </div>
                         <div class="regulator">
                             <span class="groupon_icon"><img src="assets/images/poper.png" alt=""></span>
@@ -49,7 +55,11 @@
                                 <span>.</span>
                                 <span>{{x.unit_price | fraction}}</span>
                             </div>
-							<div class='market_price'>{{x.market_price | convert}}</div>
+							<div class='surplus'>
+								<div class='market_price'>{{x.market_price | convert}}</div>
+								<div class='GoodPurchase' ng-if='x.stock-x.purchased_count>=0'>剩余<span class='strong'>{{x.stock-x.purchased_count}}</span>份</div>
+								<div class='GoodPurchase' ng-if='x.stock-x.purchased_count<0'>剩余<span class='strong'>0</span>份</div>
+							</div>
                         </div>
                     </div>
 					<div class='buyer' ng-click='jump(this.$index)'>
@@ -63,7 +73,8 @@
         </ul>
     </div> 
     <div  class="footer">
-        <a ng-class="{right:true, buttonStatus:totalNum>0}"  ng-click="checkout();">选好了</a>
+        <a ng-class="{right:true, buttonStatus:totalNum>0}" ng-if='batch.status==0' ng-click="checkout();">选好了</a>
+		<a class='right' ng-if='batch.status!=0' ng-click="checkout();">已结束</a>
         <div class="left" ng-click='popup()'>
             <div class="shop"><span ng-class="{true:'show',false:'hide'}[isAmount]">{{totalNum}}</span></div>
             <div class="shop_info">
@@ -116,9 +127,9 @@
                     <div class="popup_reduce">
                         <div class="price">{{x.unit_price | convert}}</div>
                         <div class="regulator_right">
-                            <div class='btn' ng-click="removeCommodity(x);">-</div>
+                            <div class='btn' ng-class="{btn_g:x.stock-x.purchased_count==0,btn:null}" ng-click="removeCommodity(x);">-</div>
                             <span class="center">{{x.num | safenum}}</span>
-                            <div class='btn' ng-click="addCommodity(x);">+</div>
+                            <div ng-class='{btn_g:x.num==x.stock-x.purchased_count||x.num==x.limit || x.stock-x.purchased_count==0 ,btn:x.num!=x.stock-x.purchased_count}'  ng-click="addCommodity(x);">+</div>
                         </div>
                     </div>
                     <span class="field_title">{{x.title}}</span>

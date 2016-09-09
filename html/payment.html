@@ -54,5 +54,13 @@
 			<a class="text boxColor" ng-click='pay_wx()'>确认支付</a>
 		</div>
 	</div>
+	<div class='phone_matter' ng-class="{true:'show',false:'hide'}[isShow]"></div>
+	<div class='popup_window' ng-class="{true:'show',false:'hide'}[isShow]">
+		<div class='top'>温馨提示</div>
+		<div class='center'>
+			<p class='des'>{{name}}商品已抢完，请重新选择商品!</p>
+		</div>
+		<div class='bottom' ng-click='close_popup()'>确定</div>
+	</div>
 </body>
 </html>

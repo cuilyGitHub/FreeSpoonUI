@@ -1,0 +1,200 @@
+@import "global";
+@import "component";
+body{
+	background:@color_misty_gray;
+}
+.method_title{
+	height:1.2rem;
+	line-height:1.2rem;
+	border-bottom:2px solid @color_orange;
+	.font_xx_large;
+	text-align:center;
+	color:@color_orange;
+	background:white;
+}
+.method{
+	height:1.2rem;
+	line-height:1.2rem;
+	background:white;
+	.font_xx_large;
+	border: 1px solid @color_gray;
+	.pick_point{
+		width:50%;
+		text-align:center;
+		float:left;
+	}
+	.express{
+		text-align:center;
+		width: 50%;
+		float: right;
+	}
+}
+/*自提*/
+.pick_pointBox{
+	display: none;
+	clear:both;
+	.user_info{
+		height:1rem;
+		background:@color_smoky_yellow;
+		padding-left: 0.3rem;
+		padding-right: 0.2rem;
+		ul{
+			margin-bottom: 1rem;
+		}
+		.arrow{
+			float: right;
+			width:0.5rem;
+			height:1rem;
+			background:url(../images/back_right.png)no-repeat center ;
+			background-size: 0.2rem;
+		}
+		.name, .mob{
+			.font_large;
+			height:1rem;
+			line-height:1rem;
+		}
+		.mob{
+			margin-left: 0.3rem;
+		}
+	}
+	ul{
+		.address_row{
+			padding:0.2rem;
+			border-bottom: 1px solid @color_gray;
+			.circular{
+				width:0.5rem;
+				height:0.5rem;
+				margin:0.15rem 0;
+				border-radius:50%;
+				border:1px solid @color_gray;
+				float:left;
+			}
+			.sinceAddress{
+				.address{
+					background: url(../images/positionGray.png) center no-repeat;
+					background-size: .2rem;
+					width: 0.4rem;
+					height: 0.4rem;
+					float: left;
+				}
+				.des{
+					padding-left:0.3rem;
+					.font_normal;
+				}
+				line-height:0.4rem;
+				padding-left:0.7rem;
+			}
+			.sinceConent{
+				height:0.4rem;
+				line-height:0.4rem;
+				padding-left:0.8rem;
+				span{
+					.font_normal;
+					color:@color_gray;
+					padding-left:0.3rem;
+				}
+				.left{
+					background:url('../images/clock.png') no-repeat left;
+					background-size:0.25rem;
+				}
+				.right{
+					margin-left:0.5rem;
+					background:url('../images/grayPhone.png') no-repeat left;
+					background-size:0.25rem;
+				}
+			}
+		}
+		.checked {
+			background: url("../images/3.png") no-repeat left !important;
+			background-size: 0.5rem !important;
+			border: none !important;
+		}
+	}
+}
+/*配送*/
+.expressBox{
+	display: none;
+	.no_address{
+		.font_x_large;
+		color: @color_gray;
+		width: 6rem;
+		top: 50%;
+		left: 50%;
+		position: absolute;
+		transform: translate(-50%, -50%);
+	}
+	.tip{
+		height: 1.4rem;
+		line-height:1.4rem;
+		float: left;
+		background-size: .5rem;
+		width: 0.6rem;    
+		padding: 0.4rem 0;
+		box-sizing: border-box;
+		margin-right: 0.2rem;
+		.round{
+			width:0.4rem;
+			height:0.4rem;
+			border:1px solid @color_gray;
+			border-radius:50%;
+		}
+	}
+	.box{
+		border-bottom: 1px solid #ccc;
+		padding: 0.3rem 0 0.3rem 0.3rem;
+		box-sizing: border-box;
+		.circular{
+			width:0.5rem;
+			height:0.5rem;
+			margin:0.2rem 0;
+			border-radius:50%;
+			border:1px solid @color_gray;
+			float:left;
+		}
+		.checked {
+			background: url("../images/3.png") no-repeat left !important;
+			background-size: 0.5rem !important;
+			border: none !important;
+		}
+		.left{
+			margin-right:1.5rem;
+			margin-left:0.8rem;
+			.top{
+				height:0.7rem;
+				line-height:0.7rem;
+				.font_normal
+			}
+			p{
+				
+				color:#ccc;
+				.font_normal
+			}
+			.text{
+				margin-left:0.3rem;
+				.font_normal
+			}
+		}
+		.right{
+			height:1rem;
+			float:right;
+			background:url('../images/pen.png') no-repeat center;
+			background-size:0.5rem;
+			width:1rem;
+		}
+	}
+}
+/*选项卡*/
+.select_tab{
+	border-bottom:2px solid @color_orange;
+	color:@color_orange;
+}
+.del{
+	color: #000;
+	border-bottom: none;
+}
+.show{
+	display: block;
+}
+.hide{
+	display: none;
+}

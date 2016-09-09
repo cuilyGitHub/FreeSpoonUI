@@ -504,221 +504,33 @@ body {
   font-weight: normal;
   border-top: 1px solid #e5e5e5;
 }
-.show {
-  display: block !important;
+body {
+  background: #e5e5e5;
 }
-.hide {
-  display: none !important;
+.content {
+  background: white;
 }
-.set_height {
-  height: 100vh !important;
-  overflow: hidden !important;
-}
-.banner {
-  width: 100%;
-  display: block;
-}
-.bannerInfo {
-  padding: 0.2rem 0.3rem;
+.content .name,
+.content .mob {
+  height: 1.3rem;
+  border-bottom: 1px solid #ccc;
   box-sizing: border-box;
 }
-.bannerInfo .oneline .name {
-  font-size: 0.3rem;
-  font-weight: normal;
-  width: 6rem;
-  display: block;
-  float: left;
-  margin: 0.1rem 0.1rem 0.1rem 0;
-}
-.bannerInfo .oneline .box {
-  background: #ff9934;
-  display: block;
-  width: 1.3rem;
-  line-height: 0.5rem;
-  height: 0.5rem;
-  color: white;
-  text-align: center;
-  float: right;
-  margin: 0.1rem 0 0.2rem 0;
-}
-.bannerInfo .twoline {
-  color: #6D6B6B;
-  line-height: 0.35rem;
-  clear: both;
-}
-.bannerInfo .IDPurchase {
-  float: right;
-  color: #599c3d;
-  font-size: 0.25rem;
-  font-weight: normal;
+.content .name input,
+.content .mob input {
+  width: 90%;
+  border: none;
   height: 0.6rem;
-  line-height: 0.5rem;
-  margin: 0 0.2rem;
-}
-.bannerInfo .threeline {
-  height: 0.8rem;
-  clear: both;
-  margin: 0.3rem 0;
-}
-.bannerInfo .threeline .regulator_right {
-  width: 1.6rem;
-  height: .55rem;
-  line-height: .55rem;
-  float: right;
-  margin: .125rem .2rem;
-}
-.bannerInfo .threeline .regulator_right .btn {
-  display: block;
-  border: 1px solid #ff9934;
-  border-radius: 50%;
-  float: left;
-  width: .5rem;
-  height: .5rem;
-  text-align: center;
-  line-height: .5rem;
-  font-size: .3rem;
-  font-weight: 400;
-}
-.bannerInfo .threeline .regulator_right .btn_g {
-  display: block;
-  border: 1px solid #CCCCCC;
-  border-radius: 50%;
-  color: #CCCCCC;
-  float: left;
-  width: .5rem;
-  height: .5rem;
-  text-align: center;
-  line-height: .5rem;
-  font-size: .3rem;
-  font-weight: 400;
-}
-.bannerInfo .threeline .regulator_right span {
-  display: block;
-  float: left;
-  width: .5rem;
-  height: .5rem;
-  text-align: center;
-  line-height: .5rem;
-  font-size: .3rem;
-  font-weight: 400;
-}
-.bannerInfo .threeline .regulator_right .btn:active {
-  background: #ff9934;
-  color: white;
-}
-.bannerInfo .threeline .unit_price {
-  height: 0.8rem;
-  line-height: 0.8rem;
-  float: left;
-  font-size: 0.4rem;
-  font-weight: normal;
-  color: #ff9934;
-  margin-right: 0.25rem;
-}
-.bannerInfo .threeline .unit_price span {
-  font-size: 0.5rem;
-  font-weight: normal;
-  color: orange;
-}
-.bannerInfo .threeline .surplus {
-  float: left;
-}
-.bannerInfo .threeline .surplus .market_price {
-  height: 0.4rem;
-  line-height: 0.4rem;
+  line-height: 0.6rem;
+  margin: 0.35rem 0.2rem;
   font-size: 0.3rem;
-  font-weight: normal;
-  color: #c8c8c8;
-  text-decoration: line-through;
 }
-.bannerInfo .threeline .surplus .GoodPurchase {
-  height: 0.4rem;
-  line-height: 0.4rem;
-  font-size: 0.25rem;
-  font-weight: normal;
+.update {
+  margin-top: 1rem;
 }
-.bannerInfo .threeline .surplus .GoodPurchase .strong {
-  font-weight: bold;
+.but_null {
+  margin-top: 1rem;
 }
-ul {
-  margin-bottom: 1.4rem;
-}
-ul .commandList img {
-  width: 100%;
-  display: block;
-}
-ul .commandList p {
-  margin: 0.2rem 0.15rem;
-  font-size: 0.3rem;
-  color: #6D6B6B;
-}
-.footer {
-  z-index: 1001;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 1rem;
-  background: white;
-  border-top: 1px solid #CCCCCC;
-}
-.footer .left {
-  background: white;
-  width: auto;
-  margin-right: 2rem;
-  height: 1rem;
-}
-.footer .left .shop {
-  position: relative;
-  float: left;
-  width: 1rem;
-  height: 1rem;
-  background: url("../images/shop.png") no-repeat center;
-  background-size: 0.6rem;
-}
-.footer .left .shop span {
-  display: none;
-  width: 0.4rem;
-  height: 0.4rem;
-  line-height: 0.4rem;
-  border-radius: 50%;
-  background: #ff9934;
-  color: white;
-  text-align: center;
-  vertical-align: middle;
-  position: absolute;
-  top: 0.1rem;
-  right: 0;
-  font-size: 0.2rem;
-}
-.footer .left .shop_info {
-  width: auto;
-  margin-left: 1rem;
-  padding: -0.25rem 0;
-  height: 1.3rem;
-}
-.footer .left .shop_info .line1 {
-  height: 1rem;
-  line-height: 1rem;
-  font-size: 0.3rem;
-  font-weight: bold;
-}
-.footer .left .shop_info .line2 {
-  height: 0.3rem;
-  line-height: 0.3rem;
-  font-size: 0.2rem;
-}
-.footer .right {
-  height: 1rem;
-  float: right;
-  width: 2rem;
-  background: #c8c8c8;
-  text-align: center;
-  font-size: 0.4rem;
-  font-weight: normal;
-  line-height: 1rem;
-  color: white;
-  vertical-align: middle;
-}
-.footer .buttonStatus {
-  background: #ff9934 !important;
+.but_null .text {
+  background: #ccc;
 }

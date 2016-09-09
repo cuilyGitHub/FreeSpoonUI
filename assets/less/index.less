@@ -171,15 +171,25 @@
 						line-height:1.2rem;
 						font-size:0.3rem;
 						float:right;
+						margin: 0 0.2rem;
 					}
+				}
+				.IDPurchase{
+					float:right;
+					color:@color_green;
+					.font_normal;
+					height: 0.6rem;
+					line-height: 0.5rem;
+					margin: 0 0.2rem;
 				}
 				.last {
 					@height: 0.8rem;
-					margin: 0.3rem 0;
+					clear:both;
 					.regulator {
 						width: 100%;
 						margin-right: 2rem;
 						height: @height;
+						margin: 0.3rem 0;
 						.groupon_icon {
 							background: @color_charcoal_gray;
 							width: @height;
@@ -216,12 +226,23 @@
 								margin: 0 -0.01rem;
 							}
 						}
-						.market_price{
-							height: 0.8rem;
-							line-height: 1.2rem;
-							.font_large;
-							color: @color_smoky_gray;
-							text-decoration: line-through;
+						.surplus{
+							float:left;
+							.market_price{
+								height: 0.4rem;
+								line-height: 0.4rem;
+								.font_large;
+								color: @color_smoky_gray;
+								text-decoration: line-through;
+							}
+							.GoodPurchase{
+								height: 0.4rem;
+								line-height:0.4rem;
+								.font_normal;
+								.strong{
+									font-weight: bold;
+								}
+							}
 						}
 					}
 					.counter {
@@ -231,7 +252,7 @@
 						line-height: 100%;
 						float: right;
 						margin: (@height - @counter_height )/2 0.2rem;
-						span, .btn {
+						span, .btn, .btn_g {
 							float: left;
 							width: 0.5rem;
 							height: 0.5rem;
@@ -247,6 +268,11 @@
 							background: @color_orange;
 							color: @color_white;
 							
+						}
+						.btn_g{
+							border: 1px solid @color_gray;
+							border-radius: 50%;
+							color:@color_gray;
 						}
 					}
 				}

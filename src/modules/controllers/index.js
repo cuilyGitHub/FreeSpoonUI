@@ -72,6 +72,9 @@ module.exports = function(app){
 			if(!$rootScope.auth || !$rootScope.auth.user){
 				register();
 			}else{
+				if(batch.status!=0){
+					return;
+				}
 				if(!!batch.totalNum && batch.totalNum>0){
 					$data.preData = null;
 					$location.path("/checkout");
@@ -90,15 +93,37 @@ module.exports = function(app){
 			$scope.isShow = false;
 			$scope.isHeight = false;
 		}
-		
+
 		$scope.addCommodity = function(commodity){
+			if(batch.status!=0){
+				return;
+			}
 			if(!commodity.num){
 				commodity.num = 0;
 			}
-			commodity.num += 1;
+			if(commodity.purchased_count){
+				var surplus = commodity.stock - commodity.purchased_count;
+			}else{
+				var surplus = commodity.stock;
+			}
+			
+			if(commodity.limit>0){
+				if(commodity.num < surplus){
+					if(commodity.num < commodity.limit){
+						commodity.num += 1;
+					};
+				};
+			}else{
+				if(commodity.num < surplus){
+					commodity.num += 1;
+				};
+			}
 		};
 		
 		$scope.removeCommodity = function(commodity){
+			if(batch.status!=0){
+				return;
+			}
 			if(!commodity.num){
 				commodity.num = 0;
 			}
@@ -137,6 +162,7 @@ module.exports = function(app){
 		
 		$scope.jump=function(id){
 			$rootScope.productsId = $scope.commodities[id].id;
+			$rootScope.historyUrl = $scope.commodities[id].history;
 			$location.path("/record");
 		}
 		
@@ -146,7 +172,7 @@ module.exports = function(app){
 			$location.path("/goodsDetails");
 		}
 		
-		$scope.jumpOrders=function(){
+		/*$scope.jumpOrders=function(){
 			if(!$rootScope.auth || !$rootScope.auth.user){
 				register();
 			}else{
@@ -154,7 +180,7 @@ module.exports = function(app){
 				$location.path("/orders");
 			}
 			
-		}
+		}*/
 		
 		//手机验证码
 		$scope.getCode=function(){
