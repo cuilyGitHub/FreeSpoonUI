@@ -3,15 +3,27 @@ module.exports = function(app){
 	app.controller('DistributionController', function($scope, $location, $data, $rootScope, data){
 
 		$scope.data = data;
+		//判断用户是不是第一次进该团购
+		$rootScope.bulks = data.id
 		
-		//判断用户最后选择的方式
-		if(data.receive_mode ==1 || data.receive_mode ==3){
+		$scope.isPick_point = true;
+		$scope.isExpress = false;
+		
+		//判断用户最后选择的方式		
+		if(data.receive_mode ==1){
 			$scope.isPick_point = true;
 			$scope.isExpress = false;
-		}
-		if(data.receive_mode ==2){
+		}else if(data.receive_mode ==2){
 			$scope.isPick_point = false;
 			$scope.isExpress = true;
+		}else if(data.receive_mode ==3){
+			if($rootScope.receive_mode == 1){
+				$scope.isPick_point = true;
+				$scope.isExpress = false;
+			}else if($rootScope.receive_mode == 2){
+				$scope.isPick_point = false;
+				$scope.isExpress = true;
+			}
 		}
 		
 		//用户信息处理
@@ -29,14 +41,13 @@ module.exports = function(app){
 			(function(){
 				$data.addressRequest(function(data){
 					$scope.expressInfo = data;
-					$scope.selectedExpress = data[0];
 				})
 			})();
 		}
 		
 		//选择收货地址
 		$scope.selectExpress = function(e){
-			$scope.selectedExpress = e;
+			$rootScope.expressId = e.id;
 		}
 		
 		//修改自提用户信息
@@ -45,9 +56,8 @@ module.exports = function(app){
 		}
 		
 		//选择自提地址
-		$scope.selectedPick_point = data.storages[0];
 		$scope.selectPick_point = function(x){
-			$scope.selectedPick_point = x;
+			$rootScope.selectedPick_point = x;
 		}
 		
 		//修改地址
@@ -65,21 +75,21 @@ module.exports = function(app){
 		
 		//返回确认订单页
 		$scope.jumpCheckout = function(){
-			if(!$scope.selectedExpress && !$scope.selectedPick_point){
-				alert('请选择地址');
+			if(!$rootScope.expressId && !$rootScope.selectedPick_point){
+				$location.path('/checkout').replace();
 				return;
 			}
-			if($scope.isExpress && $scope.selectedExpress){
+			if($scope.isExpress && $rootScope.expressId){
 				//处理送货上门数据
 				$rootScope.receive_mode = 2;
-				$rootScope.selectAddres = $scope.selectedExpress;
+				$rootScope.selectAddres = $rootScope.expressId;
 			}
-			if($scope.isPick_point && $scope.selectedPick_point){
+			if($scope.isPick_point && $rootScope.selectedPick_point){
 				//自提数据处理
 				$rootScope.receive_mode = 1;
-				$rootScope.selectAddres = $scope.selectedPick_point;
+				$rootScope.selectAddres = $rootScope.selectedPick_point;
 			}
-			$location.path('/checkout');
+			$location.path('/checkout').replace();
 		}
 		
 		//选项卡

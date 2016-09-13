@@ -21,7 +21,7 @@
 				<span class='mob'>电话：{{mob}}</span>
 			</div>
 		</div>
-		<ul>
+		<ul class='rows_box'>
 			<li class='address_row' ng-repeat='x in data.storages'>
 				<div class='circular' ng-class="{checked: x.id == selectedPick_point.id}" ng-click="selectPick_point(x)"></div>
 				<div class='sinceAddress'>
@@ -37,9 +37,9 @@
 	</div>
 	<div class='card expressBox' ng-class="{true:'show',false:'hide'}[isExpress]" ng-if='data.receive_mode == 2 || data.receive_mode == 3'>
 		<div class='no_address' ng-if='expressInfo.length == 0'>还没有收货地址，赶快添加一个吧</div>
-		<ul>
+		<ul class='rows_box'>
 			<li class='box' ng-repeat='e in expressInfo'>
-				<div class='circular' ng-class="{checked: e.id == selectedExpress.id}" ng-click="selectExpress(e)"></div>
+				<div class='circular' ng-class="{checked: e.id == expressId}" ng-click="selectExpress(e)"></div>
 				<div class='right' ng-click='update(e.id)'></div>
 				<div class='left'>
 					<div class='top'>

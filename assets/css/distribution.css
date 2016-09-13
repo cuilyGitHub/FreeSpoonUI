@@ -535,6 +535,9 @@ body {
   width: 50%;
   float: right;
 }
+.rows_box {
+  margin-bottom: 1.2rem;
+}
 /*自提*/
 .pick_pointBox {
   display: none;

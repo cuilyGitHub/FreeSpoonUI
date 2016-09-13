@@ -20,7 +20,7 @@ module.exports = function(app){
 			}
 			$rootScope.Consignee = $scope.name;
 			$rootScope.userPhone = $scope.mob;
-			$location.path('/distribution');
+			$location.path('/distribution').replace();
 		}
 		
 	});

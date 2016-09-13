@@ -30,7 +30,8 @@
 				<div class='unit_price'>￥<span>{{batch.unit_price | int}}</span>.{{batch.unit_price | fraction}}</div>
 				<div class='surplus'>
 					<div class='market_price'>￥{{batch.market_price | convert}}</div>
-					<div class='GoodPurchase'>剩余<span class='strong'>{{batch.stock-batch.purchased_count}}</span>份</div>
+					<div class='GoodPurchase' ng-if='batch.stock-batch.purchased_count>=0'>剩余<span class='strong'>{{batch.stock-batch.purchased_count}}</span>份</div>
+					<div class='GoodPurchase' ng-if='batch.stock-batch.purchased_count<0'>剩余<span class='strong'>0</span>份</div>
 				</div>
 			</div>
 		</div>

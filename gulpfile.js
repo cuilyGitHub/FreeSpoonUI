@@ -14,13 +14,6 @@ var gulp = require('gulp'),
 	modRewrite = require('connect-modrewrite'),
 	minimist = require('minimist'),
 	gutil = require('gulp-util');
-	
-	
-gulp.task('help',function(){
-	console.log('gulp help		gulp参数说明');
-	console.log('gulp uglify		压缩文件');
-	console.log('gulp run --env	production	用于生产环境');
-});
 
 function string_src(filename, string) {
   var src = require('stream').Readable({ objectMode: true })

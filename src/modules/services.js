@@ -304,6 +304,7 @@ module.exports = function(app){
 					alert(JSON.stringify(resp));
 					return;
 				}
+				//cb(null);
 				cb(resp.data);
 			});
 		};

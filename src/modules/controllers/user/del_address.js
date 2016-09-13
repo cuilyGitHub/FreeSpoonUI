@@ -64,6 +64,7 @@ module.exports = function(app){
 					return;
 				}
 				if($rootScope.fromDistribution){
+					$rootScope.receive_mode = 2;
 					$location.path('/distribution');
 				}else{
 					$location.path('update_address');
