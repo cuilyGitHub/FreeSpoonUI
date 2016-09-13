@@ -17,7 +17,13 @@ module.exports = function(app){
 		}
 		//用户对配送方式选择处理
 		if(!$rootScope.receive_mode){
-			if(batch.receive_mode == 1 || batch.receive_mode == 3){
+			if($rootScope.Consignee &&　$rootScope.userPhone){
+				$scope.mob = $rootScope.userPhone;
+				$scope.name = $rootScope.Consignee;
+				$scope.method = '自提点自提';
+				$scope.default_receive_mode = 1;
+				$scope.address = batch.storages[0].address;
+			}else if(batch.receive_mode == 1 || batch.receive_mode == 3){
 				$scope.method = '自提点自提';
 				$scope.address = batch.storages[0].address;
 				$scope.mob = batch.recent_obtain_mob;

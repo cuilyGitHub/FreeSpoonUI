@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title ng-bind='title'></title>
+	<style type="text/css">
+		body{
+			margin:0 !important;
+		}
+		.load_bg{
+			width:100vw;
+			height:100vh;
+			position: fixed;
+			background:#fff;
+			z-index: 9999;
+		}
+        .load{
+                right: 0;
+		 		top: 0;
+				bottom: 0;
+				left:0;
+				width: 100px;
+				height: 113px;
+				margin: auto;
+				position: absolute;
+				z-index: 99999;
+        }
+    </style>
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="assets/js/app.min.js"></script>
+    <script type="text/javascript">
+		angular.element(document.getElementsByTagName('head')).append(
+			angular.element('<base href="' + window.location.pathname + '" />'));
+
+		var winW = document.documentElement.clientWidth;
+        var winH = document.documentElement.clientHeight;
+        if(winW > winH){
+			document.documentElement.style.fontSize = winW / 6.4 + "px";
+        } else {
+			document.documentElement.style.fontSize = 50 + "px";
+        }
+    </script>
+</head>
+<!--<body ng-app="app">-->
+<body>
+<div ng-controller="MenuController">
+	<div class='load_bg' ng-if='load'>
+		<img src="../assets/images/loading.gif" alt="" class="load"/>
+	</div>
+	<div ng-view></div>
+</div> 
+</body>
+</html>
