@@ -586,7 +586,7 @@ function createXMLHTTPRequest(){
 (function initWXConfig(angular){
 	var cfg = {
 		url: window.location.href,
-		jsApiList: ['chooseWXPay', 'onMenuShareAppMessage', 'closeWindow']
+		jsApiList: ['chooseWXPay', 'onMenuShareAppMessage', 'onMenuShareTimeline', 'closeWindow']
 	};
 	
 	cfg=JSON.stringify(cfg);
