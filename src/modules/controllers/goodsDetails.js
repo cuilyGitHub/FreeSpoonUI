@@ -1,10 +1,19 @@
 module.exports = function(app){
 
-	app.controller('GoodsDetailsController', function($scope, $data, $location, batch, $shopCart, $rootScope, $interval){
+	app.controller('GoodsDetailsController', function($scope, $data, $location, batch, $shopCart, $rootScope, $wxBridge){
 
 		$rootScope.title = '商品详情';
 		$scope.mob = '';
 		$scope.code = '';
+		
+		//配置分享信息
+		var shareInfo = {
+			card_title:'我准备买新鲜美味的'+batch.title+'，快来拼团吧！',
+			card_desc:batch.desc,
+			card_url:appconfig+'business/redirect/index?state='+$rootScope.id,
+			card_icon:batch.cover
+		};
+		$wxBridge.configShare(shareInfo);
 		
 		//phone message code
 		$scope.paracont = '获取验证码';

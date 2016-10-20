@@ -28,7 +28,10 @@
 					<div class='btn_g' ng-click="addShopCartNum(batch);">+</div>
 				</div>
 				<div class='unit_price'>￥<span>{{batch.unit_price | int}}</span>.{{batch.unit_price | fraction}}</div>
-				<div class='surplus'>
+				<div class='surplus' ng-if='batch.limit == -1'>
+					<div class='market_price no_Glimit'>￥{{batch.market_price | convert}}</div>
+				</div>
+				<div class='surplus' ng-if='batch.limit != -1'>
 					<div class='market_price'>￥{{batch.market_price | convert}}</div>
 					<div class='GoodPurchase' ng-if='batch.stock-batch.purchased_count>=0'>剩余<span class='strong'>{{batch.stock-batch.purchased_count}}</span>份</div>
 					<div class='GoodPurchase' ng-if='batch.stock-batch.purchased_count<0'>剩余<span class='strong'>0</span>份</div>

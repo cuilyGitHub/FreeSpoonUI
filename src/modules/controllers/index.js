@@ -7,6 +7,17 @@ module.exports = function(app){
 		//配置微信分享
 		$wxBridge.configShare(batch);
 		
+		(function(){
+			var url = window.location.toString();
+			var id = url.split('.')[3];
+			
+			if(id){
+				var t = $('.'+id).offset().top;
+				$(window).scrollTop(t);
+			}
+			
+		})();
+		
 		//save all shopCart data
 		$shopCart.shopCartData = batch;
 		

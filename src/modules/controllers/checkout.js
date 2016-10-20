@@ -152,7 +152,7 @@ module.exports = function(app){
 			$data.requestUnifiedOrder(requestData, function(data){
 				if(data.errcode == -1){
 					$scope.isShow = true;
-					$scope.data = data.detail;
+					$scope.overstepData = data.detail;
 					return;
 				}
 				$data.ordersData = data;

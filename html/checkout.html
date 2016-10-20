@@ -55,7 +55,7 @@
 		<div class='center'>
 			<p class='des'>部分商品已超过限购数量，请重新选择商品!</p>
 			<table class='box'>
-				<tr ng-repeat='x in data'>
+				<tr ng-repeat='x in overstepData'>
 					<td class='left'>{{$index+1}}.{{x.product_title}}</td>
 					<td class='right'>超出{{x.quantity+x.purchased-x.product_limit}}{{x.product_spec}}</td>
 				</tr>

@@ -751,6 +751,11 @@ body {
   color: #c8c8c8;
   text-decoration: line-through;
 }
+#index .main ul li .last .regulator .surplus .no_limit {
+  height: .8rem !important;
+  line-height: 1.2rem !important;
+  font-size: .3rem !important;
+}
 #index .main ul li .last .regulator .surplus .GoodPurchase {
   height: 0.4rem;
   line-height: 0.4rem;

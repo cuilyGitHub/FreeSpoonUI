@@ -525,7 +525,7 @@ body {
 .bannerInfo .oneline .name {
   font-size: 0.3rem;
   font-weight: normal;
-  width: 6rem;
+  width: 4rem;
   display: block;
   float: left;
   margin: 0.1rem 0.1rem 0.1rem 0;
@@ -639,6 +639,10 @@ body {
 }
 .bannerInfo .threeline .surplus .GoodPurchase .strong {
   font-weight: bold;
+}
+.bannerInfo .threeline .no_Glimit {
+  height: 0.4rem !important;
+  line-height: 0.4rem !important;
 }
 ul {
   margin-bottom: 1.4rem;

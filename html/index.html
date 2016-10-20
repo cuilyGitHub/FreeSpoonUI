@@ -9,9 +9,14 @@
 <body>
   <div id="index" ng-class="{true:'set_height',false:''}[isHeight]">
     <div class="board">
-		<div class="right" >
+		<div class="right" ng-if='batch.status != -1'>
 			<div class='spare' ng-if='day>0'>剩<span>{{day}}</span>天</div>
 			<div class='spare' ng-if='day<=0'>剩<span>{{hour}}</span>小时</div>
+            <div class='attend'>已有<span>{{batch.participant_count}}人</span>参团</div>
+			<div class='send'>{{batch.arrived_time}}</div>
+        </div>
+		<div class="right" ng-if='batch.status == -1'>
+			<div class='spare'>剩<span>0</span>天</div>
             <div class='attend'>已有<span>{{batch.participant_count}}人</span>参团</div>
 			<div class='send'>预计{{batch.arrived_time | format_ch}}发货</div>
         </div>
@@ -25,6 +30,7 @@
     <div id="move" class="main" >
         <ul>    
             <li ng-repeat="x in commodities">
+				<a ng-href='{{x.id}}'></a>
                 <div class='banner' ng-click='goodsDetails(this.$index)'>
                     <img ng-src="{{x.cover}}"  alt="">
                 </div>
@@ -55,7 +61,10 @@
                                 <span>.</span>
                                 <span>{{x.unit_price | fraction}}</span>
                             </div>
-							<div class='surplus'>
+							<div class='surplus' ng-if='x.limit == -1'>
+								<div class='market_price no_limit'>{{x.market_price | convert}}</div>
+							</div>
+							<div class='surplus' ng-if='x.limit!=-1'>
 								<div class='market_price'>{{x.market_price | convert}}</div>
 								<div class='GoodPurchase' ng-if='x.stock-x.purchased_count>=0'>剩余<span class='strong'>{{x.stock-x.purchased_count}}</span>份</div>
 								<div class='GoodPurchase' ng-if='x.stock-x.purchased_count<0'>剩余<span class='strong'>0</span>份</div>
@@ -73,8 +82,8 @@
         </ul>
     </div> 
     <div  class="footer">
-        <a ng-class="{right:true, buttonStatus:totalNum>0}" ng-if='batch.status==0' ng-click="checkout();">选好了</a>
-		<a class='right' ng-if='batch.status!=0' ng-click="checkout();">已结束</a>
+        <a ng-class="{right:true, buttonStatus:totalNum>0}" ng-if='batch.status==0 || batch.status==-2' ng-click="checkout();">选好了</a>
+		<a class='right' ng-if='batch.status!=0 && batch.status!=-2' ng-click="checkout();">已结束</a>
         <div class="left" ng-click='popup()'>
             <div class="shop"><span ng-class="{true:'show',false:'hide'}[isAmount]">{{totalNum}}</span></div>
             <div class="shop_info">

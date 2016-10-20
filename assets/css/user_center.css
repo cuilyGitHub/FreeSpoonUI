@@ -538,6 +538,14 @@ body {
   background: url('../images/phone.png') no-repeat 15%;
   background-size: 0.35rem;
 }
+.content .box .qq {
+  background: url('../images/QQ.png') no-repeat 15%;
+  background-size: 0.35rem;
+}
+.content .box .waiter {
+  background: url('../images/Waiter.png') no-repeat 15%;
+  background-size: 0.35rem;
+}
 .content .box .tel,
 .content .box .money {
   height: 1.3rem;

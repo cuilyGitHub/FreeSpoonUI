@@ -582,8 +582,7 @@ body {
   position: relative;
 }
 .box ul .rows .banner .Subtitle,
-.box ul .rows .banner h2,
-.box ul .rows .banner .statusInfo {
+.box ul .rows .banner h2 {
   display: block;
   position: absolute;
   top: 0;
@@ -592,7 +591,7 @@ body {
   bottom: 0;
   margin: auto;
   text-align: center;
-  z-index: 10;
+  z-index: 2;
   color: white;
   height: 0.8rem;
   line-height: 0.8rem;
@@ -618,17 +617,16 @@ body {
   top: 0;
   background: #000;
   opacity: 0.3;
-  z-index: 2;
+  z-index: 1;
 }
 .box ul .rows .banner .statusInfo {
-  border-radius: 20px;
-  width: 3rem;
-  background: #000;
-  opacity: 0.7;
-  font-size: 0.35rem;
+  width: 2rem;
+  right: 0.2rem;
+  position: absolute;
+  z-index: 7;
 }
 .box ul .rows .banner .bg {
-  opacity: 0.6;
+  z-index: 3;
 }
 .box ul .rows .reseller {
   height: 1.5rem;
@@ -686,9 +684,6 @@ body {
   color: white;
   border-radius: 10px;
   float: right;
-}
-.box ul .rows .purchase .gray {
-  background: #c8c8c8 !important;
 }
 .box ul .rows .purchase .productsInfo {
   width: 4rem;

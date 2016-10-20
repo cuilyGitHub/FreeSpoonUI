@@ -10,10 +10,10 @@ module.exports = function(app){
 		
 		//配置微信分享
 		var shareInfo = {
-			card_title:'一家一农',
-			card_desc:'每周团购深海野生海鲜，新鲜水果，种类齐全，品质至上',
+			card_title:'你想要的，一家一农都可以团购！',
+			card_desc:'专业野生海鲜，时令进口水果，任由你选择！舌尖上的美味，让生活更有滋味！',
 			card_url:appconfig+'business/redirect?state=',
-			card_icon:'http://dev.yijiayinong.com/assets/images/logo.png'
+			card_icon:'http://dev.yijiayinong.com/assets/images/logo.jpg'
 		};
 		$wxBridge.configShare(shareInfo);
 			
