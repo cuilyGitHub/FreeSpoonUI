@@ -154,7 +154,7 @@ module.exports = function(app){
 		this.bulksRes = function(cb){
 		$http({
 				method:'get',
-				url:appconfig+'business/bulks/',
+				url:appconfig+'business/bulks/?page_size=50',
 				headers:{'Authorization':'JWT '+ $rootScope.auth.token}
 			})
 			.then(function(resp){
